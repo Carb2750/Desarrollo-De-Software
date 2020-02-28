@@ -6,7 +6,7 @@ var mysql = require('mysql');
 var con = mysql.createPool({
     host: "localhost",
     user: "root",
-    password: "desarrollo",
+    password: "",
     database: 'intae',
     insecureAuth: true,
     multipleStatements: true
