@@ -1135,4 +1135,100 @@ router.get('/get_registrocompleto', (req, res, next) => {
 
 
 
+router.get('/get_all_alumnos', (req, res, next) => {
+    var query = 'SELECT * FROM  `alumnos datos`';
+    con.query(query, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+
+router.get('/get_alumno', (req, res, next) => {
+    var query = 'select * from `alumnos datos` where id_alumno = ?';
+    var values = [req.query.id_alumno];
+    con.query(query, values, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+
+
+
+router.put('/update_alumno', (req, res, next) => {
+            var query = 'update `alumnos datos` set nombre_alumno=?,apellido_alumno=?,nacionalidad=?,lugar_procedencia=?,residencia_actual=?,nombre_padre=?,tel_padre=?,ocupacion_padre=?,nombre_madre=?,tel_madre=?,ocupacion_madre=?,aspectos_pedagogicos=?,cod_aspectos_personal=?,tel_casa=?,tel_trabajo=?,correo=?,codigo_ficha=? where id_alumno=?';
+            var values = [req.body.nombre_alumno,
+                req.body.apellido_alumno,
+                req.body.nacionalidad,
+                req.body.lugar_procedencia,
+                req.body.residencia_actual,
+                req.body.nombre_padre,
+                req.body.tel_padre,
+                req.body.ocupacion_padre,
+                req.body.nombre_madre,
+                req.body.tel_madre,
+                req.body.ocupacion_madre,
+                req.body.aspectos_pedagogicos,
+                req.body.cod_aspectos_personal,
+                req.body.tel_casa,
+                req.body.tel_trabajo,
+                req.body.correo,
+                req.body.codigo_ficha,
+                req.body.id_alumno]
+            con.query(query, values, (err, result, fields) => {
+                if(err) {
+                    next(err);
+                } else {
+                    res.status(200).json(result);
+                }
+            });
+        });
+
+router.post('/insert_alumno', (req, res, next) => {
+    var query = 'INSERT INTO `alumnos datos` (`id_alumno`, `nombre_alumno`, `apellido_alumno`, `nacionalidad`, `lugar_procedencia`, `residencia_actual`, `nombre_padre`, `tel_padre`, `ocupacion_padre`, `nombre_madre`, `tel_madre`, `ocupacion_madre`, `aspectos_pedagogicos`, `cod_aspectos_personal`, `tel_casa`, `tel_trabajo`, `correo`, `codigo_ficha`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    var values = [req.body.id_alumno,
+                req.body.nombre_alumno,
+                req.body.apellido_alumno,
+                req.body.nacionalidad,
+                req.body.lugar_procedencia,
+                req.body.residencia_actual,
+                req.body.nombre_padre,
+                req.body.tel_padre,
+                req.body.ocupacion_padre,
+                req.body.nombre_madre,
+                req.body.tel_madre,
+                req.body.ocupacion_madre,
+                req.body.aspectos_pedagogicos,
+                req.body.cod_aspectos_personal,
+                req.body.tel_casa,
+                req.body.tel_trabajo,
+                req.body.correo,
+                req.body.codigo_ficha];
+    con.query(query, values, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.delete('/delete_alumno', (req, res, next) => {
+        var query = 'delete from `alumnos datos` where id_alumno=?';
+        var values = [req.query.id_alumno];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+               next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
 module.exports = router;
