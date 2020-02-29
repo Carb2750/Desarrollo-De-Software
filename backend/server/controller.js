@@ -36,7 +36,7 @@ router.get('/get_usuario', (req, res, next) => {
 });
 
 router.post('/insert_usuario', (req, res, next) => {
-    var query = 'INSERT INTO `intae`.`usuarios` (`nombre`, `apellido`, `usuario`, `pass`, `correo`, `tipo`) VALUES (?,?,?,?,?,?);';
+    var query = 'INSERT INTO `intae`.`usuarios` (`nombre`, `apellido`, `usuario`, `pass`, `correo`, `tipo`) VALUES (?,?,?,?,?,?)';
     var values = [req.body.nombre,
                 req.body.apellido,
                 req.body.usuario,
@@ -238,5 +238,329 @@ router.get('/get_aspectospedagogicos', (req, res, next) => {
         }
     });
 });
+
+
+router.get('/get_ficha', (req, res, next) => {
+    var query = 'select `ficha`.`num_ficha` as `No. Ficha`, `curso`.`desc_curso` as `Curso`, `seccion`.`desc_seccion` as `Seccion`, `modalidad`.`desc_modadlidad` as `Modalidad`, `jornada`.`desc_jornada` as `Jornada`,`ciudad`.`nom_ciudad` as `Ciudad`, `ficha`.`año` as `Año`, `ficha`.`comparte_hogar` as  `Vive con`, `ficha`.`obs_inst_proced` as `Instituto de procedencia`, `ficha`.`indice_acad` as `Indice academico`, `ficha`.`obs_repite_curso` as `Repite Curso`, `ficha`.`obs_materia_restrada` as `Materia Retrasada`, `ficha`.`obs_beca` as `Beca`, `ficha`.`num_emergencia` as `Numero de emergencia`, `ficha`.`motivacion_ingreso` as `Motivacion de ingreso`, `ficha`.`observaciones` as `Observaciones` from `ficha` join `seccion` on `ficha`.`cod_seccion` = `seccion`.`cod_seccion` join `curso` on `ficha`.`cod_curso` = `curso`.`cod_curso` join `modalidad` on `ficha`.`cod_modalidad` = `modalidad`.`cod_modalidad` join `jornada` on `ficha`.`cod_jornada` = `jornada`.`cod_jornada` join `ciudad` on `ficha`.`cod_ciudad` = `ciudad`.`cod_ciudad` where `ficha`.`num_ficha` = ?';
+    var values = [req.query.num_ficha];
+    con.query(query, values, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+    router.post('/insert_ficha', (req, res, next) => {
+            var query = 'insert into ficha (num_ficha,cod_curso,cod_seccion,cod_modalidad,cod_jornada,cod_ciudad,año,comparte_hogar,obs_inst_proced,indice_acad,obs_repite_curso,obs_materia_restrada,obs_beca,num_emergencia,motivacion_ingreso,observaciones) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+            var values = [req.body.num_ficha,
+                            req.body.cod_curso,
+                            req.body.cod_seccion,
+                            req.body.cod_modalidad,
+                            req.body.cod_jornada,
+                            req.body.cod_ciudad,
+                            req.body.año,
+                            req.body.comparte_hogar,
+                            req.body.obs_inst_proced,
+                            req.body.indice_acad,
+                            req.body.obs_repite_curso,
+                            req.body.obs_materia_retrasada,
+                            req.body.obs_beca,
+                            req.body.num_emergencia,
+                            req.body.motivacion_ingreso,
+                            req.body.observaciones];
+            con.query(query, values, (err, result, fields) => {
+                if(err) {
+                    next(err);
+                } else {
+                    res.status(200).json(result);
+                }
+            });
+        });
+
+router.put('/update_ficha', (req, res, next) => {
+            var query = 'update ficha set cod_curso=?,cod_seccion=?,cod_modalidad=?,cod_jornada=?,cod_ciudad=?,año=?,comparte_hogar=?,obs_inst_proced=?,indice_acad=?,obs_repite_curso=?,obs_materia_restrada=?,obs_beca=?,num_emergencia=?,motivacion_ingreso=?,observaciones=? where num_ficha=?';
+            var values = [req.body.cod_curso,
+                            req.body.cod_seccion,
+                            req.body.cod_modalidad,
+                            req.body.cod_jornada,
+                            req.body.cod_ciudad,
+                            req.body.año,
+                            req.body.comparte_hogar,
+                            req.body.obs_inst_proced,
+                            req.body.indice_acad,
+                            req.body.obs_repite_curso,
+                            req.body.obs_materia_retrasada,
+                            req.body.obs_beca,
+                            req.body.num_emergencia,
+                            req.body.motivacion_ingreso,
+                            req.body.observaciones,
+                            req.body.num_ficha];
+            con.query(query, values, (err, result, fields) => {
+                if(err) {
+                    next(err);
+                } else {
+                    res.status(200).json(result);
+                }
+            });
+        });
+
+router.delete('/delete_ficha', (req, res, next) => {
+        var query = 'delete from ficha where num_ficha=?';
+        var values = [req.query.num_ficha];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+               next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+
+router.get('/get_ciudad', (req, res, next) => {
+        var query = 'SELECT * FROM ciudad';
+        con.query(query, (err, result, fields) => {
+            if(err) {
+                next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+router.post('/insert_ciudad', (req, res, next) => {
+        var query = 'insert into ciudad (nom_ciudad) values(?)';
+        var values = [req.body.nom_ciudad];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+               next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+router.put('/update_ciudad', (req, res, next) => {
+        var query = 'update ciudad set nom_ciudad=? where cod_ciudad=?';
+        var values = [req.body.nom_ciudad,
+                        req.body.cod_ciudad];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+               next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+router.delete('/delete_ciudad', (req, res, next) => {
+        var query = 'delete from ciudad where cod_ciudad=?';
+        var values = [req.body.cod_ciudad];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+               next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+router.get('/get_documentos', (req, res, next) => {
+    var query = 'SELECT * FROM documentos';
+    con.query(query, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.post('/insert_documentos', (req, res, next) => {
+        var query = 'insert into documentos (descrip_doc) values(?)';
+        var values = [req.body.descrip_doc];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+                next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+router.put('/update_documentos', (req, res, next) => {
+        var query = 'update documentos set descrip_doc = ? where tipo_documento = ?';
+        var values = [req.body.descrip_doc,
+                        req.body.tipo_documento];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+               next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+router.delete('/delete_documentos', (req, res, next) => {
+        var query = 'delete from documentos where tipo_documento=?';
+        var values = [req.query.tipo_documento];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+               next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+router.get('/get_jornada', (req, res, next) => {
+    var query = 'SELECT * FROM jornada';
+    con.query(query, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.post('/insert_jornada', (req, res, next) => {
+        var query = 'insert into jornada (desc_jornada) values(?)';
+        var values = [req.body.desc_jornada];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+                next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+    router.put('/update_jornada', (req, res, next) => {
+        var query = 'update jornada set desc_jornada = ? where cod_jornada = ?';
+        var values = [req.body.desc_jornada,
+                        req.body.cod_jornada];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+               next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+router.delete('/delete_jornada', (req, res, next) => {
+        var query = 'delete from jornada where cod_jornada=?';
+        var values = [req.query.cod_jornada];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+               next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+router.get('/get_seccion', (req, res, next) => {
+    var query = 'SELECT * FROM seccion';
+    con.query(query, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.post('/insert_seccion', (req, res, next) => {
+        var query = 'insert into seccion (desc_seccion) values(?)';
+        var values = [req.body.desc_seccion];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+                next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+router.put('/update_seccion', (req, res, next) => {
+        var query = 'update seccion set desc_seccion = ? where cod_seccion = ?';
+        var values = [req.body.desc_seccion,
+                        req.body.cod_seccion];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+               next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+router.delete('/delete_seccion', (req, res, next) => {
+        var query = 'delete from seccion where cod_seccion=?';
+        var values = [req.query.cod_seccion];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+               next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+router.get('/get_modalidad', (req, res, next) => {
+    var query = 'SELECT * FROM modalidad';
+    con.query(query, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.post('/insert_modalidad', (req, res, next) => {
+        var query = 'insert into modalidad (desc_modadlidad) values(?)';
+        var values = [req.body.desc_modadlidad];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+                next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+router.put('/update_modalidad', (req, res, next) => {
+        var query = 'update modalidad set desc_modadlidad = ? where cod_modalidad = ?';
+        var values = [req.body.desc_modadlidad,
+                        req.body.cod_modalidad];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+               next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+router.delete('/delete_modalidad', (req, res, next) => {
+        var query = 'delete from modalidad where cod_modalidad=?';
+        var values = [req.query.cod_modalidad];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+               next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+
+
+
 
 module.exports = router;
