@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+
+        div.solid{
+            border-style: solid;
+            border-color: lightgreen;
+            
+        }
+
+
+        .mar3{
+            margin-left: 25px;
+        }
+        .mar{
+            margin-left: 10px;
+            margin-top: 15px;
+        }
+
+        .mar1{
+            margin-top: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div style="margin-right: 25px;" class="mar3 text-center">
+        <h1 class="text-success"> Mantenimiento Aspectos Pedagogicos </h1>
+    
+           
+            <table style="margin-right: 25px;"  class="table table-hover table-striped table-info text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Motivos de Ingreso</th>
+                    <th>Donde Curso Sexto Grado</th>
+                    <th>Ubicación</th>
+                    
+                    <th>Tipo de Escuela</th>
+                    <th>Rendimiento Academico</th>
+                    <th>Asignatura Dificultad</th>
+                    <th>Asignatura Facilidad</th>
+                    <th>Forma de Estudio</th>
+                    <th>Se Considera un Estudiante</th>
+                    <th>Reprobado algun curso o clase</th>
+                    <th>Reportado</th>
+                    <th>Expulsado</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let x of listado_pedagogicos">
+                    <td>{{x.motivos}}</td>
+                    <td>{{x.sexto_grado_cursado}}</td>
+                    <td>{{x.ubicacion_centro_anterior}}</td>
+                    
+                    <td>{{x.descripcion}}</td>
+                    <td>{{x.descripcion_rendimiento}}</td>
+                    <td>{{x.descripcion_dificil}}</td>
+                    <td>{{x.descripcion_facil}}</td>
+                    <td>{{x.descripcion_estudio}}</td>
+                    <td>{{x.descripcion_consideracion}}</td>
+                    <td>{{x.obs_reprobado}}</td>
+                    <td>{{x.obs_reportes}}</td>
+                    <td>{{x.obs_expulsion}}</td>
+                    
+                    <td><button (click)="pass_code(x.codigo_pedagogicos)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
+                    <td><button (click)="delete_pedagogico(x.codigo_pedagogicos)" class="btn btn-danger">Borrar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    
+
+
+    
+    <button (click)="toggleShow()" class="mar3 btn btn-primary" style="margin-bottom: 10px;">Nuevo Registro</button>
+    <div *ngIf="isShown" class="row container-fluid"  id="divshow" style="margin-bottom: 10px;" >
+        <div style="margin-right:4px;"  class="mar3 solid row mt-3 p-3">
+            <div class="col-md-4">
+            <input type="text" placeholder="Motivos de Ingreso" class="form-control" [(ngModel)]="pedagogico.motivos">
+            </div>
+            <div class=" col-md-4 ">
+            <input type="text" placeholder="Donde Curso Sexto Grado" class="form-control" [(ngModel)]="pedagogico.sexto_grado_cursado">
+            </div>
+            <div class=" col-md-4">
+            <input type="text" placeholder="Ubicacion" class="form-control" [(ngModel)]="pedagogico.ubicacion_centro_anterior">
+            </div>
+            <div style="display: flex; justify-content: space-between; width: 100%; padding: 15px;">
+                <div class="">
+                    <label>Tipo Escuela:</label>
+                <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_escuela" name="optradio"  value="1">Privado</label>
+                <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_escuela" name="optradio"  value="2">Publico</label><br>
+                </div>
+                <div class="">
+                    <label>Rendimiento Academico:</label>
+                <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio"  value="1">Muy Satisfactorio</label>
+                <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio"  value="2">Satisfactorio</label>
+                <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio"  value="3">Insuficiente</label>
+                <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio"  value="4">Avanzado</label>
+                </div>
+            </div>
+            <br>
+            <div class=" col-md-6 ">
+                <label>Asignatura Dificultad:</label>
+            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="1">Matemáticas</label>
+            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="2">Español</label>
+            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="3">CC.NN.</label>
+            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="4">CC.SS.</label>
+            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="5">Física</label>
+            </div>
+            <div class=" col-md-6">
+                <label>Asignatura Facilidad:</label>
+            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="1">Matemáticas</label>
+            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="2">Español</label>
+            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="3">CC.NN.</label>
+            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="4">CC.SS.</label>
+            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="5">Física</label>
+            </div>
+            <div class=" col-md-6">
+                <label>Forma de Estudio:</label>
+            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio"  value="1">Diariamente</label>
+            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio"  value="2">Solo para examen</label>
+            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio"  value="3">No estudia</label>
+            </div>
+
+            <div class=" col-md-6">
+                <label>Se considera un estudiante:</label>
+            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi"  value="1">Excelente</label>
+            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi"  value="2">Muy Bueno</label>
+            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi"  value="3">Bueno</label>
+            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi"  value="4">Regular</label>
+            </div>
+            <div class="col-md-4">
+                <textarea cols="5" rows="5" type="text" placeholder="Ha sido reportado" class="form-control" [(ngModel)]="pedagogico.obs_reportes"></textarea>
+                </div>
+                <div class=" col-md-4 ">
+                <textarea cols="5" rows="5" type="text" placeholder="Ha sido expulsado" class="form-control" [(ngModel)]="pedagogico.obs_expulsion"></textarea>
+                </div>
+                <div class=" col-md-4">
+                <textarea cols="5" rows="5" type="text" placeholder="Ha reprobado una clase" class="form-control" [(ngModel)]="pedagogico.obs_reprobado"></textarea>
+                </div>
+            <button style="margin-top: 5px; margin-left: 14px;" (click)="insert_pedagogico()" (click)="toggleShow()" class="btn btn-primary">Insertar</button>
+        </div>
+    </div>
+    
+
+  <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Actualización de Registro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+                <form>
+                    <div class="">
+                        <input type="text" placeholder="Motivos de Ingreso" class="form-control" [(ngModel)]="pedagogico.motivos" name="motivos">
+                    </div>
+                    <div class="mar1">
+                        <input type="text" placeholder="Donde Curso Sexto Grado" class="form-control" [(ngModel)]="pedagogico.sexto_grado_cursado" name="sexto_grado_cursado">
+                    </div>
+                    <div class="mar1">
+                        <input type="text" placeholder="Ubicacion" class="form-control" [(ngModel)]="pedagogico.ubicacion_centro_anterior" name="ubicacion_centro_anterior">
+                    </div>
+                    <div class="mar1 ">
+                        <label style="display: block;">Tipo Escuela</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_escuela" name="optradio"  value="1">Privado</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_escuela" name="optradio"  value="2">Publico</label><br>
+                    </div>
+                    <div class="mar1">
+                        <label style="display: block;">Rendimiento Academico</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio"  value="1">Muy Satisfactorio</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio"  value="2">Satisfactorio</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio"  value="3">Insuficiente</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio"  value="4">Avanzado</label>
+                    </div>
+                    <div class="mar1 ">
+                        <label style="display: block">Asignatura Dificultad</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="1">Matemáticas</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="2">Español</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="3">CC.NN.</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="4">CC.SS.</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="5">Física</label>
+                    </div>
+                    <div class="mar1 ">
+                        <label style="display: block;">Asignatura Facilidad</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="1">Matemáticas</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="2">Español</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="3">CC.NN.</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="4">CC.SS.</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="5">Física</label>
+                    </div>
+                    <div class="mar1 ">
+                        <label style="display: block;">Forma de Estudio</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio"  value="1">Diariamente</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio"  value="2">Solo para examen</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio"  value="3">No estudia</label>
+                    </div>
+            
+                    <div class="mar1 ">
+                        <label style="display: block;">Se considera un estudiante</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi"  value="1">Excelente</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi"  value="2">Muy Bueno</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi"  value="3">Bueno</label>
+                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi"  value="4">Regular</label>
+                    </div>
+                    <div class="">
+                        <input type="text" placeholder="Ha sido reportado" class="form-control" [(ngModel)]="pedagogico.obs_reportes" name="obs_reportes">
+                    </div>
+                    <div class="mar1  ">
+                        <input type="text" placeholder="Ha sido expulsado" class="form-control" [(ngModel)]="pedagogico.obs_expulsion" name="obs_expulsion">
+                    </div>
+                    <div class="mar1 ">
+                        <input type="text" placeholder="Ha reprobado una clase" class="form-control" [(ngModel)]="pedagogico.obs_reprobado" name="obs_reprobado">
+                    </div>
+                 </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button (click)="update_pedagogico()"  class="btn btn-primary">Actualizar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
