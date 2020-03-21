@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+
+        div.solid{
+            border-style: solid;
+            border-color: lightgreen;
+            
+        }
+
+
+        .mar3{
+            margin-left: 25px;
+        }
+        .mar{
+            margin-left: 10px;
+            margin-top: 15px;
+        }
+
+        .mar1{
+            margin-top: 15px;
+        }
+
+    </style>
+</head>
+<body>
+    <div style="margin-right: 25px;" class="mar3 text-center">
+        <h1 class="text-success"> Mantenimiento Usuarios </h1>
+          
+            <table style="margin-right: 25px;"  class="table table-hover table-striped table-info text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Usuario</th>
+                    <th>Contraseña</th>
+                    <th>Correo</th>
+                    <th>Tipo</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let x of listado_info">
+                    <td>{{x.nombre}}</td>
+                    <td>{{x.apellido}}</td>
+                    <td>{{x.usuario}}</td>
+                    <td>{{x.pass}}</td>
+                    <td>{{x.correo}}</td>
+                    <td>{{x.tipo}}</td>
+                    <td><button (click)="pass_code(x.codigo)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
+                    <td><button (click)="delete_usuario(x.codigo)" class="btn btn-danger">Borrar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    
+
+
+    
+    <button style="margin-bottom: 10px;" (click)="toggleShow()" class="mar3 btn btn-primary">Nuevo Usuario</button>
+    <div  style="margin-bottom: 10px;" *ngIf="isShown" class="row container-fluid"  id="divshow" >
+        <div styel="margin-right:4px;"  class="mar3 solid row mt-3 p-3">
+            <div class="col-md-3">
+
+            <input type="text" placeholder="Nombre" class="form-control" [(ngModel)]="usuario.nombre">
+            </div>
+            <div class="col-md-3 ">
+            <input type="text" placeholder="Apellido" class="form-control" [(ngModel)]="usuario.apellido">
+            </div>
+            <div class="col-md-3">
+            <input type="text" placeholder="Usuario" class="form-control" [(ngModel)]="usuario.usuario">
+            </div>
+            <div  class="col-md-3">
+            <input type="text" placeholder="Contraseña" class="form-control" [(ngModel)]="usuario.pass">
+            </div>
+            <div style="margin-top: 5px;" class="col-md-3">
+            <input type="text" placeholder="Correo" class="form-control" [(ngModel)]="usuario.correo">
+            </div>
+            <div style="margin-top: 5px;" class="col-md-3">
+            <input type="text" placeholder="Tipo" class="form-control" [(ngModel)]="usuario.tipo">
+            </div>
+            <button style="margin-top: 5px; margin-left: 14px;" (click)="insert_usuario()" (click)="toggleShow()" class="btn btn-primary">Insertar Usuario</button>
+        </div>
+    </div>
+    
+
+  <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Actualización de Usuario</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+                <form >
+                    <label>Nombre</label>
+                    <input [(ngModel)]="usuario.nombre" name="descripcion" type="text" class="form-control"  value="">
+                    <label>Apellido</label>
+                    <input [(ngModel)]="usuario.apellido" name="descripcion" type="text" class="form-control"  value="">
+                    <label>Usuario</label>
+                    <input [(ngModel)]="usuario.usuario" name="descripcion" type="text" class="form-control"  value="">
+                    <label>Contraseña</label>
+                    <input [(ngModel)]="usuario.pass" name="descripcion" type="text" class="form-control"  value="">
+                    <label>Correo</label>
+                    <input [(ngModel)]="usuario.correo" name="descripcion" type="text" class="form-control"  value="">
+                    <label class="mar"><input type="radio" [(ngModel)]="usuario.tipo" name="optradio"  value="Administrador" >Administrador</label>
+                    <label class="mar"><input type="radio" name="optradio" [(ngModel)]="usuario.tipo" value="Usuario">Usuario</label><br>
+                 </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button (click)="update_usuario()"  class="btn btn-primary">Actualizar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+
+
+

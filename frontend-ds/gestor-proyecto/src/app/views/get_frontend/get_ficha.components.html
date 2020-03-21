@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha Alumno</title>
+    <style>
+        .mar3{
+            margin-left: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-right: 25px;" class="mar3 text-center">
+        <h1 class="text-success"> Ficha </h1>
+    
+        <button (click)="get_ficha(alumnos_datos.id_alumno)" class="btn btn-primary">Buscar</button>
+
+        <div style="margin-left:0.5px;" class="row mt-3 p-3">
+            <div class="col-md-3">
+            <input type="text" placeholder="ID" class="form-control" [(ngModel)]="alumnos_datos.id_alumno">
+            </div>
+        </div>
+            
+            <table class="table table-hover table-striped table-info text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>No. Expediente</th>
+                    <th>Creacion de Expediente</th>
+                    <th>Nombre Alumno</th>
+                    <th>Apellido</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Edad</th>
+                    <th>Sexo</th>
+                    <th>Curso</th>
+                    <th>Seccion</th>
+                    <th>Modalidad</th>
+                    <th>Jornada</th>
+                    <th>Año</th>
+                    <th>Nombre del Padre</th>
+                    <th>Telefono del Padre</th>
+                    <th>Nombre de la Madre</th>
+                    <th>Telefono de la Madre</th>
+                    <th>Telefono de la Casa</th>
+                    <th>Telefono del Trabajo</th>
+                    <th>Correo Electronico</th>
+                    <th>Residencia de los Padres</th>
+                    <th>Vive con</th>
+                    <th>Instituto de Procendencia</th>
+                    <th>Indice Academico</th>
+                    <th>Repite Curso</th>
+                    <th>Materia Retrasada</th>
+                    <th>Beca</th>
+                    <th>Numero de Emergencia</th>
+                    <th>Motivos de Ingreso</th>
+                    <th>Observaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let x of listado_ficha">
+                    <td>{{x.id_alumno}}</td>
+                    <td>{{x.codigo_expediente}}</td>
+                    <td>{{x.fecha_expediente}}</td>
+                    <td>{{x.nombre_alumno}}</td>
+                    <td>{{x.apellido_alumno}}</td>
+                    <td>{{x.fecha_nacimiento}}</td>
+                    <td>{{x.edad}}</td>
+                    <td>{{x.sexo}}</td>
+                    <td>{{x.desc_curso}}</td>
+                    <td>{{x.desc_seccion}}</td>
+                    <td>{{x.desc_modadlidad}}</td>
+                    <td>{{x.desc_jornada}}</td>
+                    <td>{{x.anio}}</td>
+                    <td>{{x.nombre_padre}}</td>
+                    <td>{{x.tel_padre}}</td>
+                    <td>{{x.nombre_madre}}</td>
+                    <td>{{x.tel_madre}}</td>
+                    <td>{{x.tel_casa}}</td>
+                    <td>{{x.tel_trabajo}}</td>
+                    <td>{{x.correo}}</td>
+                    <td>{{x.residencia_actual}}</td>
+                    <td>{{x.comparte_hogar}}</td>
+                    <td>{{x.obs_inst_proced}}</td>
+                    <td>{{x.indice_acad}}</td>
+                    <td>{{x.obs_repite_curso}}</td>
+                    <td>{{x.obs_materia_restrada}}</td>
+                    <td>{{x.obs_beca}}</td>
+                    <td>{{x.num_emergencia}}</td>
+                    <td>{{x.motivacion_ingreso}}</td>
+                    <td>{{x.observaciones}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</body>
+</html>
+
+
+
