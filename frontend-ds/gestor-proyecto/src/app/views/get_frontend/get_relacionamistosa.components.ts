@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { AppService } from 'src/app/app.service';
+import swal from 'sweetalert2';
 
 @Component({
     selector: 'get_frontend',
@@ -30,7 +31,11 @@ export class GetRelacionAmistosaComponent implements OnInit{
         this.service.get_relacionamistosa().subscribe(
             data => response = data,
             err => {
-                console.log("Error al consultar el servicio");
+                swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salio mal!',
+                })
             },
             () => {
                 this.listado_relacionamistosa = response;
@@ -44,12 +49,22 @@ export class GetRelacionAmistosaComponent implements OnInit{
         this.service.insert_relacionamistosa(this.relacionamistosa).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.relacionamistosa={
                 descripcion:""
             }
+            swal.fire({
+                title: 'Datos guardados exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
         this.get_relacionamistosa();
         }
         );
@@ -61,15 +76,38 @@ export class GetRelacionAmistosaComponent implements OnInit{
         var load={
             cod_relaciones_amistosas:id
         }
-        this.service.delete_relacionamistosa(load).subscribe(
-        data => response = data,
-        err => {
-        console.log("Error al consultar servicio");
-        },
-        ()=> {
-            this.get_relacionamistosa();
-        }
-        );
+        swal.fire({
+            title: 'Advertencia!',
+            text: "Esta seguro desea borrar este registro?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.value) {
+                this.service.delete_relacionamistosa(load).subscribe(
+                    data => response = data,
+                    err => {
+                        swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal!',
+                        })
+                    },
+                    ()=> {
+                        this.get_relacionamistosa();
+                    }
+                    );
+              swal.fire(
+                'Borrado!',
+                'El registro a sido borrado.',
+                'success'
+              )
+            }
+          })
+
     }
 
 
@@ -87,12 +125,22 @@ export class GetRelacionAmistosaComponent implements OnInit{
         this.service.update_relacionamistosa(load, this.relacionamistosa).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.relacionamistosa = {
                 descripcion:""
             };
+            swal.fire({
+                title: 'Datos actualizados exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
             this.get_relacionamistosa();
         }
         );
@@ -114,9 +162,4 @@ export class GetRelacionAmistosaComponent implements OnInit{
 
     }
 
-    toggleShow1() {
-
-        this.isShown = ! this.isShown;
-    
-        }
 }

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { AppService } from 'src/app/app.service';
+import swal from 'sweetalert2';
 
 @Component({
     selector: 'get_frontend',
@@ -30,7 +31,11 @@ export class GetConsideracionComponent implements OnInit{
         this.service.get_consideraciones().subscribe(
             data => response = data,
             err => {
-                console.log("Error al consultar el servicio");
+                swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salio mal!',
+                })
             },
             () => {
                 this.listado_consideracion = response;
@@ -44,12 +49,22 @@ export class GetConsideracionComponent implements OnInit{
         this.service.insert_consideracion(this.consideracion).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.consideracion={
                 descripcion:""
             }
+            swal.fire({
+                title: 'Datos guardados exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
         this.get_consideraciones();
         }
         );
@@ -61,15 +76,37 @@ export class GetConsideracionComponent implements OnInit{
         var load={
             cod_consideracion:id
         }
-        this.service.delete_consideracion(load).subscribe(
-        data => response = data,
-        err => {
-        console.log("Error al consultar servicio");
-        },
-        ()=> {
-            this.get_consideraciones();
-        }
-        );
+        swal.fire({
+            title: 'Advertencia!',
+            text: "Esta seguro desea borrar este registro?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.value) {
+                this.service.delete_consideracion(load).subscribe(
+                    data => response = data,
+                    err => {
+                        swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal!',
+                        })
+                    },
+                    ()=> {
+                        this.get_consideraciones();
+                    }
+                    );
+              swal.fire(
+                'Borrado!',
+                'El registro a sido borrado.',
+                'success'
+              )
+            }
+          })
     }
 
 
@@ -87,12 +124,22 @@ export class GetConsideracionComponent implements OnInit{
         this.service.update_consideracion(load, this.consideracion).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.consideracion = {
                 descripcion:""
             };
+            swal.fire({
+                title: 'Datos actualizados exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
             this.get_consideraciones();
         }
         );
@@ -113,10 +160,4 @@ export class GetConsideracionComponent implements OnInit{
     this.isShown = ! this.isShown;
 
     }
-
-    toggleShow1() {
-
-        this.isShown = ! this.isShown;
-    
-        }
 }

@@ -4,27 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-
-
-        div.solid{
-            border-style: solid;
-            border-color: lightgreen;
-            
-        }
-
-
         .mar3{
             margin-left: 25px;
         }
-        .mar{
-            margin-left: 10px;
-            margin-top: 15px;
-        }
-
-        .mar1{
-            margin-top: 15px;
-        }
-
     </style>
 </head>
 <body>
@@ -65,27 +47,50 @@
     
     <button style="margin-bottom: 10px;" (click)="toggleShow()" class="mar3 btn btn-primary">Nuevo Usuario</button>
     <div  style="margin-bottom: 10px;" *ngIf="isShown" class="row container-fluid"  id="divshow" >
-        <div styel="margin-right:4px;"  class="mar3 solid row mt-3 p-3">
-            <div class="col-md-3">
-
-            <input type="text" placeholder="Nombre" class="form-control" [(ngModel)]="usuario.nombre">
+        <div  class="container-md border rounded border-primary">
+            <div class="container-md">
+                <form action="/" enctype="multipart/form-data" method="post" ngNativeValidate #form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="nom">Nombre</label>
+                            <input type="text" id="nom" class="form-control" required [(ngModel)]="usuario.nombre" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="apell">Apellido</label>
+                            <input type="text" id="apell" class="form-control" required [(ngModel)]="usuario.apellido" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="usu">Usuario</label>
+                            <input type="text" id="usu" class="form-control" required [(ngModel)]="usuario.usuario" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="cont">Contraseña</label>
+                            <input type="text" id="cont" class="form-control" required [(ngModel)]="usuario.pass" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="cor">Correo</label>
+                            <input type="text" id="cor" class="form-control" required [(ngModel)]="usuario.correo" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="usuario" style="margin-right: 10px;">Tipo de Usuario</label>
+                            <div class="form-check" id="rendimiento">
+                                <input type="radio" required [(ngModel)]="usuario.tipo" name="optadio" id="ms" value="Administrador">
+                                <label class="form-check-label" for="ms">Administrador</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio"  [(ngModel)]="usuario.tipo" name="optadio" id="com" value="Comun">
+                                <label class="form-check-label" for="com">Comun</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" (click)="form.checkValidity()? insert_usuario() : null" class="btn btn-primary">Insertar Usuario</button>
+                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" (click)="toggleShow()" class="btn btn-primary">Esconder</button>
+                </form>
             </div>
-            <div class="col-md-3 ">
-            <input type="text" placeholder="Apellido" class="form-control" [(ngModel)]="usuario.apellido">
-            </div>
-            <div class="col-md-3">
-            <input type="text" placeholder="Usuario" class="form-control" [(ngModel)]="usuario.usuario">
-            </div>
-            <div  class="col-md-3">
-            <input type="text" placeholder="Contraseña" class="form-control" [(ngModel)]="usuario.pass">
-            </div>
-            <div style="margin-top: 5px;" class="col-md-3">
-            <input type="text" placeholder="Correo" class="form-control" [(ngModel)]="usuario.correo">
-            </div>
-            <div style="margin-top: 5px;" class="col-md-3">
-            <input type="text" placeholder="Tipo" class="form-control" [(ngModel)]="usuario.tipo">
-            </div>
-            <button style="margin-top: 5px; margin-left: 14px;" (click)="insert_usuario()" (click)="toggleShow()" class="btn btn-primary">Insertar Usuario</button>
         </div>
     </div>
     
@@ -100,25 +105,48 @@
           </button>
         </div>
         <div class="modal-body">
-                <form >
-                    <label>Nombre</label>
-                    <input [(ngModel)]="usuario.nombre" name="descripcion" type="text" class="form-control"  value="">
-                    <label>Apellido</label>
-                    <input [(ngModel)]="usuario.apellido" name="descripcion" type="text" class="form-control"  value="">
-                    <label>Usuario</label>
-                    <input [(ngModel)]="usuario.usuario" name="descripcion" type="text" class="form-control"  value="">
-                    <label>Contraseña</label>
-                    <input [(ngModel)]="usuario.pass" name="descripcion" type="text" class="form-control"  value="">
-                    <label>Correo</label>
-                    <input [(ngModel)]="usuario.correo" name="descripcion" type="text" class="form-control"  value="">
-                    <label class="mar"><input type="radio" [(ngModel)]="usuario.tipo" name="optradio"  value="Administrador" >Administrador</label>
-                    <label class="mar"><input type="radio" name="optradio" [(ngModel)]="usuario.tipo" value="Usuario">Usuario</label><br>
-                 </form>
+            <div  class="container-md">
+                <div class="container-md">
+                    <form action="/" enctype="multipart/form-data" method="put" ngNativeValidate #form1>
+                        <div class="form-group">
+                            <label for="nom">Nombre</label>
+                            <input type="text" id="nom" class="form-control" required [(ngModel)]="usuario.nombre" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group">
+                            <label for="apell">Apellido</label>
+                            <input type="text" id="apell" class="form-control" required [(ngModel)]="usuario.apellido" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group">
+                            <label for="usu">Usuario</label>
+                            <input type="text" id="usu" class="form-control" required [(ngModel)]="usuario.usuario" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group">
+                            <label for="cont">Contraseña</label>
+                            <input type="text" id="cont" class="form-control" required [(ngModel)]="usuario.pass" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group">
+                            <label for="cor">Correo</label>
+                            <input type="text" id="cor" class="form-control" required [(ngModel)]="usuario.correo" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group">
+                            <label for="usuario" style="margin-right: 10px;">Tipo de Usuario</label>
+                            <div class="form-check form-check-inline" id="rendimiento">
+                                <input type="radio" required [(ngModel)]="usuario.tipo" name="optadio" id="ms" value="Administrador">
+                                <label class="form-check-label" for="ms">Administrador</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio"  [(ngModel)]="usuario.tipo" name="optadio" id="com" value="Comun">
+                                <label class="form-check-label" for="com">Comun</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button (click)="update_usuario()"  class="btn btn-primary">Actualizar</button>
-        </div>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button (click)="form1.checkValidity()? update_usuario() : errores()"  class="btn btn-primary">Actualizar</button>
+          </div>
       </div>
     </div>
   </div>

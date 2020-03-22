@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { AppService } from 'src/app/app.service';
+import swal from 'sweetalert2';
 
 @Component({
     selector: 'get_frontend',
@@ -9,6 +10,7 @@ import { AppService } from 'src/app/app.service';
 
 export class GetPedagogicosComponent implements OnInit{
     public listado_pedagogicos:any[];
+    public listado_codigo: any[];
 
     constructor(public service:AppService) {
         this.listado_pedagogicos = [];
@@ -34,6 +36,7 @@ export class GetPedagogicosComponent implements OnInit{
 
     ngOnInit(){
         this.get_pedagogicos();
+        this.get_codigos();
     }
 
     get_pedagogicos() {
@@ -41,10 +44,36 @@ export class GetPedagogicosComponent implements OnInit{
         this.service.get_pedagogicos().subscribe(
             data => response = data,
             err => {
-                console.log("Error al consultar el servicio");
+                swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salio mal!',
+                })
             },
             () => {
                 this.listado_pedagogicos = response;
+                console.log(response);
+            }
+        )
+    }
+
+    errores(){
+        swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Algun campo requerido esta vacio!',
+        })
+    }
+
+    get_codigos() {
+        var response;
+        this.service.get_tipoescuela().subscribe(
+            data => response = data,
+            err => {
+                this.listado_codigo = [];
+            },
+            () => {
+                this.listado_codigo = response;
                 console.log(response);
             }
         )
@@ -55,7 +84,11 @@ export class GetPedagogicosComponent implements OnInit{
         this.service.insert_pedagogico(this.pedagogico).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+                })
         },
         ()=> {
             this.pedagogico = {
@@ -72,6 +105,13 @@ export class GetPedagogicosComponent implements OnInit{
                 obs_expulsion:"",
                 obs_reprobado:""
                 }
+                swal.fire({
+                    title: 'Registro creado exitosamente!',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                
         this.get_pedagogicos();
         }
         );
@@ -83,15 +123,38 @@ export class GetPedagogicosComponent implements OnInit{
         var load={
         codigo_pedagogicos:id
         }
-        this.service.delete_pedagogico(load).subscribe(
-        data => response = data,
-        err => {
-        console.log("Error al consultar servicio");
-        },
-        ()=> {
-            this.get_pedagogicos();
-        }
-        );
+        swal.fire({
+            title: 'Advertencia!',
+            text: "Esta seguro desea borrar este registro?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.value) {
+                this.service.delete_pedagogico(load).subscribe(
+                    data => response = data,
+                    err => {
+                        swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal!',
+                        })
+                    },
+                    ()=> {
+                        this.get_pedagogicos();
+                    }
+                    );
+              swal.fire(
+                'Borrado!',
+                'El registro a sido borrado.',
+                'success'
+              )
+            }
+          })
+        
     }
 
 
@@ -108,7 +171,11 @@ export class GetPedagogicosComponent implements OnInit{
         this.service.update_pedagogico(load, this.pedagogico).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.pedagogico={
@@ -125,6 +192,12 @@ export class GetPedagogicosComponent implements OnInit{
                 obs_expulsion:"",
                 obs_reprobado:""
             };
+            swal.fire({
+                title: 'Registro actualizado exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
             this.get_pedagogicos();
         }
         );

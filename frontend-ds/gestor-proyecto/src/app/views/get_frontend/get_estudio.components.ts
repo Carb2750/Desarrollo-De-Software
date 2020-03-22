@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { AppService } from 'src/app/app.service';
+import swal from 'sweetalert2';
 
 @Component({
     selector: 'get_frontend',
@@ -32,7 +33,11 @@ export class GetEstudioComponent implements OnInit{
         this.service.get_estudios().subscribe(
             data => response = data,
             err => {
-                console.log("Error al consultar el servicio");
+                swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salio mal!',
+                })
             },
             () => {
                 this.listado_estudio = response;
@@ -46,12 +51,22 @@ export class GetEstudioComponent implements OnInit{
         this.service.insert_estudio(this.estudio).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.estudio={
                 descripcion:""
             }
+            swal.fire({
+                title: 'Datos agregados exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
         this.get_estudios();
         }
         );
@@ -63,15 +78,37 @@ export class GetEstudioComponent implements OnInit{
         var load={
             codigo_estudio:id
         }
-        this.service.delete_estudio(load).subscribe(
-        data => response = data,
-        err => {
-        console.log("Error al consultar servicio");
-        },
-        ()=> {
-            this.get_estudios();
-        }
-        );
+        swal.fire({
+            title: 'Advertencia!',
+            text: "Esta seguro desea borrar este registro?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.value) {
+                this.service.delete_estudio(load).subscribe(
+                    data => response = data,
+                    err => {
+                        swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal!',
+                        })
+                    },
+                    ()=> {
+                        this.get_estudios();
+                    }
+                    );
+              swal.fire(
+                'Borrado!',
+                'El registro a sido borrado.',
+                'success'
+              )
+            }
+          })
     }
 
 
@@ -89,12 +126,22 @@ export class GetEstudioComponent implements OnInit{
         this.service.update_estudio(load, this.estudio).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.estudio = {
                 descripcion:""
             };
+            swal.fire({
+                title: 'Característica actualizada exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
             this.get_estudios();
         }
         );
@@ -116,9 +163,5 @@ export class GetEstudioComponent implements OnInit{
 
     }
 
-    toggleShow1() {
 
-        this.isShown = ! this.isShown;
-    
-        }
 }

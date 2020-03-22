@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { AppService } from 'src/app/app.service';
+import swal from 'sweetalert2';
 
 @Component({
     selector: 'get_frontend',
@@ -23,7 +24,6 @@ export class GetCiudadComponent implements OnInit {
 
     
     ngOnInit(){
-        console.log("component has been initialized!");
         this.get_ciudades();
     }
 
@@ -32,7 +32,11 @@ export class GetCiudadComponent implements OnInit {
         this.service.get_ciudades().subscribe(
             data => response = data,
             err => {
-                console.log("Error al consultar el servicio");
+                swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salio mal!',
+                  })
             },
             () => {
                 this.listado_ciudad = response;
@@ -48,12 +52,22 @@ export class GetCiudadComponent implements OnInit {
         this.service.insert_ciudad(this.ciudad).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.ciudad={
                 nom_ciudad:""
             }
+            swal.fire({
+                title: 'Ciudad agregada exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
         this.get_ciudades();
         }
         );
@@ -65,15 +79,37 @@ export class GetCiudadComponent implements OnInit {
         var load={
         cod_ciudad:id
         }
-        this.service.delete_ciudad(load).subscribe(
-        data => response = data,
-        err => {
-        console.log("Error al consultar servicio");
-        },
-        ()=> {
-            this.get_ciudades();
-        }
-        );
+        swal.fire({
+            title: 'Advertencia!',
+            text: "Esta seguro desea borrar esta ciudad?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.value) {
+                this.service.delete_ciudad(load).subscribe(
+                    data => response = data,
+                    err => {
+                        swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salio mal!',
+                        })
+                    },
+                    ()=> {
+                        this.get_ciudades();
+                    }
+                    );
+              swal.fire(
+                'Borrado!',
+                'La ciudad a sido borrada.',
+                'success'
+              )
+            }
+          })
     }
 
 
@@ -91,12 +127,22 @@ export class GetCiudadComponent implements OnInit {
         this.service.update_ciudad(load, this.ciudad).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+                })
         },
         ()=> {
             this.ciudad = {
                 nom_ciudad:""
             };
+            swal.fire({
+                title: 'Ciudad actualizada exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
             this.get_ciudades();
         }
         );
@@ -117,10 +163,4 @@ export class GetCiudadComponent implements OnInit {
     this.isShown = ! this.isShown;
 
     }
-
-    toggleShow1() {
-
-        this.isShown = ! this.isShown;
-    
-        }
 }

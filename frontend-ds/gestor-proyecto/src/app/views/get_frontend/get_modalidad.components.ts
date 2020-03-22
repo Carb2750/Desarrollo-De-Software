@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { AppService } from 'src/app/app.service';
+import swal from 'sweetalert2'
 
 @Component({
     selector: 'get_frontend',
@@ -30,11 +31,14 @@ export class GetModalidadComponent implements OnInit{
         this.service.get_modalidades().subscribe(
             data => response = data,
             err => {
-                console.log("Error al consultar el servicio");
+                swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salio mal!',
+                })
             },
             () => {
                 this.listado_modalidad = response;
-                console.log(response);
             }
         )
     }
@@ -44,39 +48,76 @@ export class GetModalidadComponent implements OnInit{
         this.service.insert_modalidad(this.modalidad).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.modalidad={
                 desc_modadlidad:""
             }
         this.get_modalidades();
+        swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Modalidad agregada exitosamente!',
+            showConfirmButton: false,
+            timer: 1500
+          })
         }
         );
     }
 
     delete_modalidad(id){
+
+                    
         console.log("Registro a borrar: " + id);
         var response;
         var load={
             cod_modalidad:id
         }
-        this.service.delete_modalidad(load).subscribe(
-        data => response = data,
-        err => {
-        console.log("Error al consultar servicio");
-        },
-        ()=> {
-            this.get_modalidades();
-        }
-        );
+
+        swal.fire({
+            title: 'Advertencia!',
+            text: "Esta seguro desea borrar esta modalidad?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.value) {
+                this.service.delete_modalidad(load).subscribe(
+                data => response = data,
+                err => {
+                    swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salio mal!',
+                    })
+                },
+                ()=> {
+                    this.get_modalidades();
+                }
+                );
+              swal.fire(
+                'Borrado!',
+                'El registro a sido borrado.',
+                'success'                
+              )
+              
+            }
+          })
+        
     }
 
 
 
 
     update_modalidad(){
-        console.log("Registro a editar: " + this.id);
         var response;
         var load={
             cod_modalidad:this.id
@@ -87,13 +128,25 @@ export class GetModalidadComponent implements OnInit{
         this.service.update_modalidad(load, this.modalidad).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.modalidad = {
                 desc_modadlidad:""
             };
+            swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Modalidad actualizada exitosamente!',
+                showConfirmButton: false,
+                timer: 1500
+              })
             this.get_modalidades();
+            
         }
         );
         
@@ -114,9 +167,5 @@ export class GetModalidadComponent implements OnInit{
 
     }
 
-    toggleShow1() {
 
-        this.isShown = ! this.isShown;
-    
-        }
 }

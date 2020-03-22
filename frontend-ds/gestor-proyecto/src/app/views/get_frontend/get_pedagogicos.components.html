@@ -4,27 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-
-
-        div.solid{
-            border-style: solid;
-            border-color: lightgreen;
-            
-        }
-
-
         .mar3{
             margin-left: 25px;
         }
-        .mar{
-            margin-left: 10px;
-            margin-top: 15px;
-        }
-
-        .mar1{
-            margin-top: 5px;
-        }
-
     </style>
 </head>
 <body>
@@ -81,71 +63,153 @@
     
     <button (click)="toggleShow()" class="mar3 btn btn-primary" style="margin-bottom: 10px;">Nuevo Registro</button>
     <div *ngIf="isShown" class="row container-fluid"  id="divshow" style="margin-bottom: 10px;" >
-        <div style="margin-right:4px;"  class="mar3 solid row mt-3 p-3">
-            <div class="col-md-4">
-            <input type="text" placeholder="Motivos de Ingreso" class="form-control" [(ngModel)]="pedagogico.motivos">
-            </div>
-            <div class=" col-md-4 ">
-            <input type="text" placeholder="Donde Curso Sexto Grado" class="form-control" [(ngModel)]="pedagogico.sexto_grado_cursado">
-            </div>
-            <div class=" col-md-4">
-            <input type="text" placeholder="Ubicacion" class="form-control" [(ngModel)]="pedagogico.ubicacion_centro_anterior">
-            </div>
-            <div style="display: flex; justify-content: space-between; width: 100%; padding: 15px;">
-                <div class="">
-                    <label>Tipo Escuela:</label>
-                <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_escuela" name="optradio"  value="1">Privado</label>
-                <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_escuela" name="optradio"  value="2">Publico</label><br>
-                </div>
-                <div class="">
-                    <label>Rendimiento Academico:</label>
-                <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio"  value="1">Muy Satisfactorio</label>
-                <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio"  value="2">Satisfactorio</label>
-                <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio"  value="3">Insuficiente</label>
-                <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio"  value="4">Avanzado</label>
-                </div>
-            </div>
-            <br>
-            <div class=" col-md-6 ">
-                <label>Asignatura Dificultad:</label>
-            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="1">Matemáticas</label>
-            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="2">Español</label>
-            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="3">CC.NN.</label>
-            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="4">CC.SS.</label>
-            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="5">Física</label>
-            </div>
-            <div class=" col-md-6">
-                <label>Asignatura Facilidad:</label>
-            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="1">Matemáticas</label>
-            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="2">Español</label>
-            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="3">CC.NN.</label>
-            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="4">CC.SS.</label>
-            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="5">Física</label>
-            </div>
-            <div class=" col-md-6">
-                <label>Forma de Estudio:</label>
-            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio"  value="1">Diariamente</label>
-            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio"  value="2">Solo para examen</label>
-            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio"  value="3">No estudia</label>
-            </div>
+        <div class="container-md border rounded border-primary">
+            <div class="container-md">
+                <form action="/" enctype="multipart/form-data" method="post" ngNativeValidate #form>
+                    <div style="margin-top: 8px;" class="form-group">
+                        <label for="motivos">Motivos de Ingreso</label>
+                        <textarea cols="8" rows="6" type="text" id="motivos" class="form-control" required [(ngModel)]="pedagogico.motivos" [ngModelOptions]="{standalone: true}"></textarea>
+                        
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="sexto">Donde Curso Sexto Grado</label>
+                            <input type="text" id="sexto"  class="form-control" required [(ngModel)]="pedagogico.sexto_grado_cursado" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="ubicacion">Ubicación del Centro Académico Anterior</label>
+                            <input type="text" id="ubicacion" class="form-control" required [(ngModel)]="pedagogico.ubicacion_centro_anterior" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group col-md-4" >
+                            <label for="escuela">Tipo de Escuela de la que proviene</label>
+                            <select id="escuela" class="form-control" required [(ngModel)]="pedagogico.codigo_escuela" [ngModelOptions]="{standalone: true}" >
+                              <option selected value="">- Seleccione -</option>
+                              <option *ngFor="let x of listado_codigo" [value]="x.codigo_escuela">{{x.descripcion}}</option>
+                            </select>
+                          </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="rendimiento" style="margin-right: 10px;">Rendimiento Academico</label>
+                        <div class="form-check form-check-inline" id="rendimiento">
+                            <input type="radio" required [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio" id="ms" value="1">
+                            <label class="form-check-label" for="ms">Muy Satisfactorio</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio"  [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio" id="satisfactorio" value="2">
+                            <label class="form-check-label" for="satisfactorio">Satisfactorio</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio" id="insuficiente" value="3">
+                            <label class="form-check-label" for="insuficiente">Insuficiente</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio" id="avanzado" value="4">
+                            <label class="form-check-label" for="avanzado">Avanzado</label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="dificultad" style="margin-right: 10px;">Asignatura que presenta dificultad</label>
+                            <div class="form-check form-check-inline" id="dificultad">
+                                <input type="radio" required [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="matd" value="1">
+                                <label class="form-check-label" for="matd">Matemáticas</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="espd" value="2">
+                                <label class="form-check-label" for="espd">Español</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="cnd" value="3">
+                                <label class="form-check-label" for="cnd">CC.NN.</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="csd" value="4">
+                                <label class="form-check-label" for="csd">CC.SS.</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="fd" value="5">
+                                <label class="form-check-label" for="fd">Física</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="facilidad" style="margin-right: 10px;">Asignatura que se le facilita</label>
+                            <div class="form-check form-check-inline" id="facilidad">
+                                <input type="radio"required [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="matf" value="1">
+                                <label class="form-check-label" for="matf">Matemáticas</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="espf" value="2">
+                                <label class="form-check-label" for="espf">Español</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="cnf" value="3">
+                                <label class="form-check-label" for="cnf">CC.NN.</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="csf" value="4">
+                                <label class="form-check-label" for="csf">CC.SS.</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="ff" value="5">
+                                <label class="form-check-label" for="ff">Física</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="estudio" style="margin-right: 10px;">Forma de Estudio</label>
+                            <div class="form-check form-check-inline" id="estudio">
+                                <input type="radio" required [(ngModel)]="pedagogico.codigo_estudio" name="optdio"  id="dia" value="1">
+                                <label class="form-check-label" for="dia">Diariamente</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio" id="se" value="2">
+                                <label class="form-check-label" for="se">Solo para examen</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio" id="ne" value="3">
+                                <label class="form-check-label" for="ne">No estudia</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="estudiante" style="margin-right: 10px;">Se considera un estudiante</label>
+                            <div class="form-check form-check-inline" id="estudiante">
+                                <input type="radio"required [(ngModel)]="pedagogico.cod_consideracion" name="opadi" id="exc" value="1">
+                                <label class="form-check-label" for="exc">Excelente</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi" id="mb" value="2">
+                                <label class="form-check-label" for="mb">Muy bueno</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi" id="b" value="3">
+                                <label class="form-check-label" for="b">Bueno</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi" id="reg" value="4">
+                                <label class="form-check-label" for="reg">Regular</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="repor">¿Ha sido reportado?</label>
+                            <textarea cols="5" rows="5" type="text" id="repor" placeholder="En caso de ser si, escriba porque, de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_reportes" [ngModelOptions]="{standalone: true}"></textarea>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="expu">¿Ha sido expulsado?</label>
+                            <textarea cols="5" rows="5" type="text" id="expu" placeholder="En caso de ser si, escriba porque, de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_expulsion" [ngModelOptions]="{standalone: true}"></textarea>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="repro">¿Ha reprobado alguna clase?</label>
+                            <textarea cols="5" rows="5" type="text" id="repro" placeholder="En caso de ser si, escriba cual(es), de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_reprobado" [ngModelOptions]="{standalone: true}"></textarea>
+                        </div>
 
-            <div class=" col-md-6">
-                <label>Se considera un estudiante:</label>
-            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi"  value="1">Excelente</label>
-            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi"  value="2">Muy Bueno</label>
-            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi"  value="3">Bueno</label>
-            <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi"  value="4">Regular</label>
+                    </div>
+                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="form.checkValidity()? insert_pedagogico() : null" class="btn btn-primary">Insertar</button>
+                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="toggleShow()" class="btn btn-primary">Esconder</button>
+                </form>
             </div>
-            <div class="col-md-4">
-                <textarea cols="5" rows="5" type="text" placeholder="Ha sido reportado" class="form-control" [(ngModel)]="pedagogico.obs_reportes"></textarea>
-                </div>
-                <div class=" col-md-4 ">
-                <textarea cols="5" rows="5" type="text" placeholder="Ha sido expulsado" class="form-control" [(ngModel)]="pedagogico.obs_expulsion"></textarea>
-                </div>
-                <div class=" col-md-4">
-                <textarea cols="5" rows="5" type="text" placeholder="Ha reprobado una clase" class="form-control" [(ngModel)]="pedagogico.obs_reprobado"></textarea>
-                </div>
-            <button style="margin-top: 5px; margin-left: 14px;" (click)="insert_pedagogico()" (click)="toggleShow()" class="btn btn-primary">Insertar</button>
         </div>
     </div>
     
@@ -160,72 +224,151 @@
           </button>
         </div>
         <div class="modal-body">
-                <form>
-                    <div class="">
-                        <input type="text" placeholder="Motivos de Ingreso" class="form-control" [(ngModel)]="pedagogico.motivos" name="motivos">
-                    </div>
-                    <div class="mar1">
-                        <input type="text" placeholder="Donde Curso Sexto Grado" class="form-control" [(ngModel)]="pedagogico.sexto_grado_cursado" name="sexto_grado_cursado">
-                    </div>
-                    <div class="mar1">
-                        <input type="text" placeholder="Ubicacion" class="form-control" [(ngModel)]="pedagogico.ubicacion_centro_anterior" name="ubicacion_centro_anterior">
-                    </div>
-                    <div class="mar1 ">
-                        <label style="display: block;">Tipo Escuela</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_escuela" name="optradio"  value="1">Privado</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_escuela" name="optradio"  value="2">Publico</label><br>
-                    </div>
-                    <div class="mar1">
-                        <label style="display: block;">Rendimiento Academico</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio"  value="1">Muy Satisfactorio</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio"  value="2">Satisfactorio</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio"  value="3">Insuficiente</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio"  value="4">Avanzado</label>
-                    </div>
-                    <div class="mar1 ">
-                        <label style="display: block">Asignatura Dificultad</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="1">Matemáticas</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="2">Español</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="3">CC.NN.</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="4">CC.SS.</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio"  value="5">Física</label>
-                    </div>
-                    <div class="mar1 ">
-                        <label style="display: block;">Asignatura Facilidad</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="1">Matemáticas</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="2">Español</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="3">CC.NN.</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="4">CC.SS.</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio"  value="5">Física</label>
-                    </div>
-                    <div class="mar1 ">
-                        <label style="display: block;">Forma de Estudio</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio"  value="1">Diariamente</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio"  value="2">Solo para examen</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio"  value="3">No estudia</label>
-                    </div>
-            
-                    <div class="mar1 ">
-                        <label style="display: block;">Se considera un estudiante</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi"  value="1">Excelente</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi"  value="2">Muy Bueno</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi"  value="3">Bueno</label>
-                        <label class="mar"><input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi"  value="4">Regular</label>
-                    </div>
-                    <div class="">
-                        <input type="text" placeholder="Ha sido reportado" class="form-control" [(ngModel)]="pedagogico.obs_reportes" name="obs_reportes">
-                    </div>
-                    <div class="mar1  ">
-                        <input type="text" placeholder="Ha sido expulsado" class="form-control" [(ngModel)]="pedagogico.obs_expulsion" name="obs_expulsion">
-                    </div>
-                    <div class="mar1 ">
-                        <input type="text" placeholder="Ha reprobado una clase" class="form-control" [(ngModel)]="pedagogico.obs_reprobado" name="obs_reprobado">
-                    </div>
-                 </form>
+            <div class="container-md">
+                <div class="container-md">
+                    <form ngNativeValidate #form1>
+                        <div style="margin-top: 8px;" class="form-group">
+                            <label for="mot">Motivos de Ingreso</label>
+                            <textarea cols="8" rows="6" id="mot" type="text" class="form-control" required [(ngModel)]="pedagogico.motivos" [ngModelOptions]="{standalone: true}"></textarea>
+                            
+                        </div>
+                        <div class="form-group">
+                                <label for="sto">Donde Curso Sexto Grado</label>
+                                <input type="text" id="sto"  class="form-control" required [(ngModel)]="pedagogico.sexto_grado_cursado" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group">
+                                <label for="ubica">Ubicación del Centro Académico Anterior</label>
+                                <input type="text" id="ubica" class="form-control" required [(ngModel)]="pedagogico.ubicacion_centro_anterior" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group">
+                                <label for="escuel">Tipo de Escuela de la que proviene</label>
+                                <select id="escuela" class="form-control" required [(ngModel)]="pedagogico.codigo_escuela" [ngModelOptions]="{standalone: true}" >
+                                    <option selected value="">- Seleccione -</option>
+                                    <option *ngFor="let x of listado_codigo" [value]="x.codigo_escuela">{{x.descripcion}}</option>
+                                </select>                           
+                        </div>
+                        <div class="form-group">
+                            <label for="rendimiento" style="margin-right: 10px;">Rendimiento Academico</label>
+                            <div class="form-check" id="rendimiento">
+                                <input type="radio" required [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio" id="ms" value="1">
+                                <label class="form-check-label" for="ms">Muy Satisfactorio</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio" id="satisfactorio" value="2">
+                                <label class="form-check-label" for="satisfactorio">Satisfactorio</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio" id="insuficiente" value="3">
+                                <label class="form-check-label" for="insuficiente">Insuficiente</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio" id="avanzado" value="4">
+                                <label class="form-check-label" for="avanzado">Avanzado</label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="dificultad" style="margin-right: 10px;">Asignatura que presenta dificultad</label>
+                                <div class="form-check" id="dificultad">
+                                    <input type="radio" required [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="matd" value="1">
+                                    <label class="form-check-label" for="matd">Matemáticas</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="espd" value="2">
+                                    <label class="form-check-label" for="espd">Español</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="cnd" value="3">
+                                    <label class="form-check-label" for="cnd">CC.NN.</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="csd" value="4">
+                                    <label class="form-check-label" for="csd">CC.SS.</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="fd" value="5">
+                                    <label class="form-check-label" for="fd">Física</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="facilidad" style="margin-right: 10px;">Asignatura que se le facilita</label>
+                                <div class="form-check" id="facilidad">
+                                    <input type="radio" required [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="matf" value="1">
+                                    <label class="form-check-label" for="matf">Matemáticas</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="espf" value="2">
+                                    <label class="form-check-label" for="espf">Español</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="cnf" value="3">
+                                    <label class="form-check-label" for="cnf">CC.NN.</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="csf" value="4">
+                                    <label class="form-check-label" for="csf">CC.SS.</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="ff" value="5">
+                                    <label class="form-check-label" for="ff">Física</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="estudio" style="margin-right: 10px;">Forma de Estudio</label>
+                                <div class="form-check" id="estudio">
+                                    <input type="radio" required [(ngModel)]="pedagogico.codigo_estudio" name="optdio"  id="dia" value="1">
+                                    <label class="form-check-label" for="dia">Diariamente</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio" id="se" value="2">
+                                    <label class="form-check-label" for="se">Solo para examen</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio" id="ne" value="3">
+                                    <label class="form-check-label" for="ne">No estudia</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="estudiante" style="margin-right: 10px;">Se considera un estudiante</label>
+                                <div class="form-check" id="estudiante">
+                                    <input type="radio" required [(ngModel)]="pedagogico.cod_consideracion" name="opadi" id="exc" value="1">
+                                    <label class="form-check-label" for="exc">Excelente</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi" id="mb" value="2">
+                                    <label class="form-check-label" for="mb">Muy bueno</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi" id="b" value="3">
+                                    <label class="form-check-label" for="b">Bueno</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi" id="reg" value="4">
+                                    <label class="form-check-label" for="reg">Regular</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rep">¿Ha sido reportado?</label>
+                            <textarea cols="5" rows="5" type="text" id="rep" placeholder="En caso de ser si, escriba porque, de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_reportes" [ngModelOptions]="{standalone: true}"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exp">¿Ha sido expulsado?</label>
+                            <textarea cols="5" rows="5" type="text" id="exp" placeholder="En caso de ser si, escriba porque, de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_expulsion" [ngModelOptions]="{standalone: true}"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="repr">¿Ha reprobado alguna clase?</label>
+                            <textarea cols="5" rows="5" type="text" id="repr" placeholder="En caso de ser si, escriba cual(es), de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_reprobado" [ngModelOptions]="{standalone: true}"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button (click)="update_pedagogico()"  class="btn btn-primary">Actualizar</button>
+          <button type="button" (click)="form1.checkValidity()? update_pedagogico() : errores()"  class="btn btn-primary">Actualizar</button>
         </div>
       </div>
     </div>

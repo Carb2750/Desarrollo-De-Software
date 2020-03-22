@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { AppService } from 'src/app/app.service';
+import swal from 'sweetalert2';
 
 @Component({
     selector: 'get_frontend',
@@ -30,7 +31,11 @@ export class GetAmigoComponent implements OnInit{
         this.service.get_amigos().subscribe(
             data => response = data,
             err => {
-                console.log("Error al consultar el servicio");
+                swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salio mal!',
+                  })
             },
             () => {
                 this.listado_amigo = response;
@@ -44,12 +49,22 @@ export class GetAmigoComponent implements OnInit{
         this.service.insert_amigo(this.amigo).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.amigo={
                 descripcion:""
             }
+            swal.fire({
+                title: 'Mejor amigo agregado exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
         this.get_amigos();
         }
         );
@@ -61,15 +76,38 @@ export class GetAmigoComponent implements OnInit{
         var load={
             cod_mejor_amigo:id
         }
-        this.service.delete_amigo(load).subscribe(
-        data => response = data,
-        err => {
-        console.log("Error al consultar servicio");
-        },
-        ()=> {
-            this.get_amigos();
-        }
-        );
+        swal.fire({
+            title: 'Advertencia!',
+            text: "Esta seguro desea borrar este registro?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.value) {
+                this.service.delete_amigo(load).subscribe(
+                    data => response = data,
+                    err => {
+                        swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal!',
+                        })
+                    },
+                    ()=> {
+                        this.get_amigos();
+                    }
+                    );
+              swal.fire(
+                'Borrado!',
+                'El registro a sido borrado.',
+                'success'
+              )
+            }
+          })
+
     }
 
 
@@ -87,12 +125,22 @@ export class GetAmigoComponent implements OnInit{
         this.service.update_amigo(load, this.amigo).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.amigo = {
                 descripcion:""
             };
+            swal.fire({
+                title: 'Mejor amigo actualizado exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
             this.get_amigos();
         }
         );
@@ -115,9 +163,4 @@ export class GetAmigoComponent implements OnInit{
 
     }
 
-    toggleShow1() {
-
-        this.isShown = ! this.isShown;
-    
-        }
 }

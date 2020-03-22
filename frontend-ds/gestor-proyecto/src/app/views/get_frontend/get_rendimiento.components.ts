@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { AppService } from 'src/app/app.service';
+import swal from 'sweetalert2';
 
 @Component({
     selector: 'get_frontend',
@@ -30,7 +31,11 @@ export class GetRendimientoComponent implements OnInit{
         this.service.get_rendimientoacademico().subscribe(
             data => response = data,
             err => {
-                console.log("Error al consultar el servicio");
+                swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salio mal!',
+                })
             },
             () => {
                 this.listado_rendimientoacademico = response;
@@ -44,12 +49,22 @@ export class GetRendimientoComponent implements OnInit{
         this.service.insert_rendimientoacademico(this.rendimientoacademico).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.rendimientoacademico={
                 descripcion:""
             }
+            swal.fire({
+                title: 'Datos guardados exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
         this.get_rendimientoacademico();
         }
         );
@@ -61,15 +76,37 @@ export class GetRendimientoComponent implements OnInit{
         var load={
             codigo_rendimiento:id
         }
-        this.service.delete_rendimientoacademico(load).subscribe(
-        data => response = data,
-        err => {
-        console.log("Error al consultar servicio");
-        },
-        ()=> {
-            this.get_rendimientoacademico();
-        }
-        );
+        swal.fire({
+            title: 'Advertencia!',
+            text: "Esta seguro desea borrar el registro?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.value) {
+                this.service.delete_rendimientoacademico(load).subscribe(
+                    data => response = data,
+                    err => {
+                        swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal!',
+                        })
+                    },
+                    ()=> {
+                        this.get_rendimientoacademico();
+                    }
+                    );
+              swal.fire(
+                'Borrado!',
+                'El registro a sido borrado.',
+                'success'
+              )
+            }
+          })
     }
 
 
@@ -86,12 +123,22 @@ export class GetRendimientoComponent implements OnInit{
         this.service.update_rendimientoacademico(load, this.rendimientoacademico).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.rendimientoacademico = {
                 descripcion:""
             };
+            swal.fire({
+                title: 'Datos actualizados exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
             this.get_rendimientoacademico();
         }
         );
@@ -113,9 +160,4 @@ export class GetRendimientoComponent implements OnInit{
 
     }
 
-    toggleShow1() {
-
-        this.isShown = ! this.isShown;
-    
-        }
 }
