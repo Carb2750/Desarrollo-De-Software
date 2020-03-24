@@ -4,10 +4,10 @@ import { AppService } from 'src/app/app.service';
 
 @Component({
     selector: 'get_frontend',
-    templateUrl: './get_ficha.components.html'
+    templateUrl: './get_fichacompleta.components.html'
 })
 
-export class GetFichaComponent {
+export class GetFichaCompletaComponent {
     public listado_ficha:any[];
 
     constructor(public service:AppService) {
@@ -23,7 +23,7 @@ export class GetFichaComponent {
         var load={
             id_alumno:id
             }
-        this.service.get_ficha(load).subscribe(
+        this.service.get_fichacompleta(load).subscribe(
             data => response = data,
             err => {
                 console.log("Error al consultar el servicio");

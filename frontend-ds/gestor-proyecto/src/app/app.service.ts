@@ -28,7 +28,7 @@ export class AppService{
         return this.httpClient.put(this.endPoint + "/update_usuario", usuario, {params: load, responseType: 'json'});
     }
 
-    get_ficha(load):Observable<any>{
+    get_fichacompleta(load):Observable<any>{
         return this.httpClient.get(this.endPoint + "/get_fichacompleta", {params: load, responseType: 'json'});
     }
     
@@ -358,6 +358,24 @@ export class AppService{
         return this.httpClient.put(this.endPoint + "/update_tipoescuela", escuela, {params: load, responseType: 'json'});
     }
 
+    
+    get_convive():Observable<any>{
+        return this.httpClient.get(this.endPoint + "/get_convive", {responseType: 'json'});
+    }
+
+    insert_convive(load):Observable<any>{
+        return this.httpClient.post(this.endPoint + "/insert_convive", load, { responseType: 'json' });
+    }
+
+    delete_convive(load):Observable<any>{
+        return this.httpClient.delete(this.endPoint + "/delete_convive", {params:load, responseType: 'json' });
+    }
+
+    update_convive(load, convive):Observable<any> {
+        convive.codigo_convive = load.codigo_convive
+        return this.httpClient.put(this.endPoint + "/update_convive", convive, {params: load, responseType: 'json'});
+    }
+
 
     get_transtornos():Observable<any>{
         return this.httpClient.get(this.endPoint + "/get_transtornos", {responseType: 'json'});
@@ -391,5 +409,60 @@ export class AppService{
     update_pedagogico(load, pedagogico):Observable<any> {
         pedagogico.codigo_pedagogicos = load.codigo_pedagogicos
         return this.httpClient.put(this.endPoint + "/update_aspectospedagogicos", pedagogico, {params: load, responseType: 'json'});
+    }
+
+    get_personales():Observable<any>{
+        return this.httpClient.get(this.endPoint + "/get_aspectospersonales", {responseType: 'json'});
+    }
+
+
+    insert_personales(load):Observable<any>{
+        return this.httpClient.post(this.endPoint + "/insert_aspectospersonales", load, { responseType: 'json' });
+    }
+
+    delete_personales(load):Observable<any>{
+        return this.httpClient.delete(this.endPoint + "/delete_aspectospersonales", {params:load, responseType: 'json' });
+    }
+
+    update_personales(load, personal):Observable<any> {
+        personal.cod_aspectos_personal = load.cod_aspectos_personal
+        return this.httpClient.put(this.endPoint + "/update_aspectospersonales", personal, {params: load, responseType: 'json'});
+    }
+
+
+    get_alumno():Observable<any>{
+        return this.httpClient.get(this.endPoint + "/get_alumno", {responseType: 'json'});
+    }
+
+
+    insert_alumno(load):Observable<any>{
+        return this.httpClient.post(this.endPoint + "/insert_alumno", load, { responseType: 'json' });
+    }
+
+    delete_alumno(load):Observable<any>{
+        return this.httpClient.delete(this.endPoint + "/delete_alumno", {params:load, responseType: 'json' });
+    }
+
+    update_alumno(load, alumno):Observable<any> {
+        alumno.id_alumno = load.id_alumno
+        return this.httpClient.put(this.endPoint + "/update_alumno", alumno, {params: load, responseType: 'json'});
+    }
+
+    get_ficha():Observable<any>{
+        return this.httpClient.get(this.endPoint + "/get_ficha", {responseType: 'json'});
+    }
+
+
+    insert_ficha(load):Observable<any>{
+        return this.httpClient.post(this.endPoint + "/insert_ficha", load, { responseType: 'json' });
+    }
+
+    delete_ficha(load):Observable<any>{
+        return this.httpClient.delete(this.endPoint + "/delete_ficha", {params:load, responseType: 'json' });
+    }
+
+    update_ficha(load, ficha):Observable<any> {
+        ficha.num_ficha = load.num_ficha
+        return this.httpClient.put(this.endPoint + "/update_ficha", ficha, {params: load, responseType: 'json'});
     }
 }

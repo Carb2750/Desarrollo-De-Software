@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .mar3{
+            margin-left: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-right: 25px;" class="mar3 text-center">
+        <h1 class="text-success"> Mantenimiento Fichas </h1>
+    
+           
+            <table style="margin-right: 25px;"  class="table table-hover table-striped table-info text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>No. de Ficha</th>
+                    <th>Curso</th>
+                    <th>Sección</th>
+                    <th>Modalidad</th>
+                    <th>Jornada</th>
+                    <th>Ciudad de Nacimiento</th>
+                    <th>Año de Ingreso</th>
+                    <th>Instituto de Procedencia</th>
+                    <th>Indice Academico</th>
+                    <th>Repite Curso</th>
+                    <th>Materia Retrasada</th>
+                    <th>Becas</th>
+                    <th>Contacto de Emergencia</th>
+                    <th>Número de Emergencia</th>
+                    <th>Observaciones</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let x of listado_fichas">
+                    <td>{{x.num_ficha}}</td>
+                    <td>{{x.desc_curso}}</td>
+                    <td>{{x.desc_seccion}}</td>
+                    <td>{{x.desc_modadlidad}}</td>
+                    <td>{{x.desc_jornada}}</td>
+                    <td>{{x.nom_ciudad}}</td>
+                    <td>{{x.anio}}</td>
+                    <td>{{x.obs_inst_proced}}</td>
+                    <td>{{x.indice_acad}}</td>
+                    <td>{{x.obs_repite_curso}}</td>
+                    <td>{{x.obs_materia_restrada}}</td>
+                    <td>{{x.obs_beca}}</td>
+                    <td>{{x.contacto_emergencia}}</td>
+                    <td>{{x.num_emergencia}}</td>
+                    <td>{{x.observaciones}}</td>
+                    <td><button (click)="pass_code(x.num_ficha)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
+                    <td><button (click)="delete_ficha(x.num_ficha)" class="btn btn-danger">Borrar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    
+
+
+    
+    <button (click)="toggleShow()" class="mar3 btn btn-primary" style="margin-bottom: 10px;">Nuevo Registro</button>
+    <div *ngIf="isShown" class="row container-fluid"  id="divshow" style="margin-bottom: 10px;" >
+        <div class="container-md border rounded border-primary">
+            <div class="container-md">
+                <form action="/" enctype="multipart/form-data" method="post" ngNativeValidate #form>
+                    <div class="form-row">
+                        <div class="form-group offset-md-1 col-md-2">
+                            <label for="curso">Curso</label>
+                            <select id="curso" class="form-control" required [(ngModel)]="ficha.cod_curso" [ngModelOptions]="{standalone: true}" >
+                              <option selected value="">- Seleccione -</option>
+                              <option *ngFor="let x of listado_codigo_curso" [value]="x.cod_curso">{{x.desc_curso}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="mod">Modalidad</label>
+                            <select id="mod" class="form-control" required [(ngModel)]="ficha.cod_modalidad" [ngModelOptions]="{standalone: true}" >
+                              <option selected value="">- Seleccione -</option>
+                              <option *ngFor="let x of listado_codigo_modalidad" [value]="x.cod_modalidad">{{x.desc_modadlidad}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group offset-md-3 col-md-2">
+                            <label for="sec">Sección</label>
+                            <select id="sec" class="form-control" required [(ngModel)]="ficha.cod_seccion" [ngModelOptions]="{standalone: true}" >
+                              <option selected value="">- Seleccione -</option>
+                              <option *ngFor="let x of listado_codigo_seccion" [value]="x.cod_seccion">{{x.desc_seccion}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="jor">Jornada</label>
+                            <select id="jor" class="form-control" required [(ngModel)]="ficha.cod_jornada" [ngModelOptions]="{standalone: true}" >
+                              <option selected value="">- Seleccione -</option>
+                              <option *ngFor="let x of listado_codigo_jornada" [value]="x.cod_jornada">{{x.desc_jornada}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group offset-md-3 col-md-6">
+                            <label for="ciu">Ciudad de Nacimiento</label>
+                            <select id="ciu" class="form-control" required [(ngModel)]="ficha.cod_ciudad" [ngModelOptions]="{standalone: true}" >
+                              <option selected value="">- Seleccione -</option>
+                              <option *ngFor="let x of listado_codigo_ciudad" [value]="x.cod_ciudad">{{x.nom_ciudad}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="anio">Año de Ingreso</label>
+                            <input type="text" id="anio" class="form-control" required [(ngModel)]="ficha.anio" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="proce">Instituto de Procedencia</label>
+                            <input type="text" id="proce" class="form-control" required [(ngModel)]="ficha.obs_inst_proced" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="ind">Indice Academico</label>
+                            <input type="text" id="ind" class="form-control" required [(ngModel)]="ficha.indice_acad" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="repcurso">Repite Curso</label>
+                            <textarea cols="4" rows="4" type="text" id="repcurso" placeholder="Sí o No" class="form-control" required [(ngModel)]="ficha.obs_repite_curso" [ngModelOptions]="{standalone: true}"></textarea>
+                            <small id="helper1" class="form-text text-muted">
+                               Si su respuesta es sí, escriba cual
+                               </small>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="matre">Lleva materia retrasada</label>
+                            <textarea cols="4" rows="4" type="text" id="matre" placeholder="Sí o No" class="form-control" required [(ngModel)]="ficha.obs_materia_restrada" [ngModelOptions]="{standalone: true}"></textarea>
+                            <small id="helper2" class="form-text text-muted">
+                               Si su respuesta es sí, escriba cual
+                               </small>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="beca">Tiene Beca</label>
+                            <textarea cols="4" rows="4" type="text" id="beca"  class="form-control" placeholder="Sí o No" required [(ngModel)]="ficha.obs_beca" [ngModelOptions]="{standalone: true}"></textarea>
+                            <small id="helper3" class="form-text text-muted">
+                               Si su respuesta es sí, escriba cual
+                               </small>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="input-group" style="margin-top: 10px; margin-bottom: 10px;">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">Contacto de Emergencia</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Nombre" required [(ngModel)]="ficha.contacto_emergencia" [ngModelOptions]="{standalone: true}">
+                            <input type="text"  class="form-control" placeholder="Teléfono" required [(ngModel)]="ficha.num_emergencia" [ngModelOptions]="{standalone: true}">
+                          </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="obs">Observaciones</label>
+                            <textarea cols="8" rows="6" type="text" id="obs"  class="form-control" [(ngModel)]="ficha.observaciones" [ngModelOptions]="{standalone: true}"></textarea>
+                        </div>
+                    </div>
+                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="form.checkValidity()? insert_ficha() : null" class="btn btn-primary">Insertar</button>
+                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="toggleShow()" class="btn btn-primary">Esconder</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+  <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Actualización de Registro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="container-md">
+                <div class="container-md">
+                    <form action="/" enctype="multipart/form-data" method="post" ngNativeValidate #form1>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="curs">Curso</label>
+                                <select id="curs" class="form-control" required [(ngModel)]="ficha.cod_curso" [ngModelOptions]="{standalone: true}" >
+                                  <option selected value="">Seleccione</option>
+                                  <option *ngFor="let x of listado_codigo_curso" [value]="x.cod_curso">{{x.desc_curso}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group  col-md-4">
+                                <label for="secc">Sección</label>
+                                <select id="secc" class="form-control" required [(ngModel)]="ficha.cod_seccion" [ngModelOptions]="{standalone: true}" >
+                                  <option selected value="">Seleccione</option>
+                                  <option *ngFor="let x of listado_codigo_seccion" [value]="x.cod_seccion">{{x.desc_seccion}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="jorn">Jornada</label>
+                                <select id="jorn" class="form-control" required [(ngModel)]="ficha.cod_jornada" [ngModelOptions]="{standalone: true}" >
+                                  <option selected value="">Seleccione</option>
+                                  <option *ngFor="let x of listado_codigo_jornada" [value]="x.cod_jornada">{{x.desc_jornada}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="moda">Modalidad</label>
+                                <select id="moda" class="form-control" required [(ngModel)]="ficha.cod_modalidad" [ngModelOptions]="{standalone: true}" >
+                                  <option selected value="">- Seleccione -</option>
+                                  <option *ngFor="let x of listado_codigo_modalidad" [value]="x.cod_modalidad">{{x.desc_modadlidad}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group offset-md-3 col-md-6">
+                                <label for="ciud">Ciudad de Nacimiento</label>
+                                <select id="ciud" class="form-control" required [(ngModel)]="ficha.cod_ciudad" [ngModelOptions]="{standalone: true}" >
+                                  <option selected value="">- Seleccione -</option>
+                                  <option *ngFor="let x of listado_codigo_ciudad" [value]="x.cod_ciudad">{{x.nom_ciudad}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group offset-md-1 col-md-5">
+                                <label for="ani">Año de Ingreso</label>
+                                <input type="text" id="ani" class="form-control" required [(ngModel)]="ficha.anio" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="in">Indice Academico</label>
+                                <input type="text" id="in" class="form-control" required [(ngModel)]="ficha.indice_acad" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="proc">Instituto de Procedencia</label>
+                                <input type="text" id="proc" class="form-control" required [(ngModel)]="ficha.obs_inst_proced" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="repcurs">Repite Curso</label>
+                                <textarea cols="4" rows="3" type="text" id="repcurs" placeholder="Sí o No" class="form-control" required [(ngModel)]="ficha.obs_repite_curso" [ngModelOptions]="{standalone: true}"></textarea>
+                                <small id="helper4" class="form-text text-muted">
+                                   Si su respuesta es sí, escriba cual
+                                   </small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="bec">Tiene Beca</label>
+                                <textarea cols="4" rows="3" type="text" id="bec"  class="form-control" placeholder="Sí o No" required [(ngModel)]="ficha.obs_beca" [ngModelOptions]="{standalone: true}"></textarea>
+                                <small id="helper6" class="form-text text-muted">
+                                   Si su respuesta es sí, escriba cual
+                                   </small>
+                            </div>
+                        </div>
+                        <div clas="form-row">
+                            <div class="form-group col-md-12" style="padding: 0%;">
+                                <label for="matr">Lleva materia retrasada</label>
+                                <textarea cols="4" rows="3" type="text" id="matr" placeholder="Sí o No" class="form-control" required [(ngModel)]="ficha.obs_materia_restrada" [ngModelOptions]="{standalone: true}"></textarea>
+                                <small id="helper5" class="form-text text-muted">
+                                   Si su respuesta es sí, escriba cual
+                                   </small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="input-group" style="margin-top: 10px; margin-bottom: 10px;">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">Contacto de Emergencia</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Nombre" required [(ngModel)]="ficha.contacto_emergencia" [ngModelOptions]="{standalone: true}">
+                                <input type="text"  class="form-control" placeholder="Teléfono" required [(ngModel)]="ficha.num_emergencia" [ngModelOptions]="{standalone: true}">
+                              </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="ob">Observaciones</label>
+                                <textarea cols="8" rows="6" type="text" id="ob"  class="form-control" [(ngModel)]="ficha.observaciones" [ngModelOptions]="{standalone: true}"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" (click)="form1.checkValidity()? update_ficha() : errores()"  class="btn btn-primary">Actualizar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
