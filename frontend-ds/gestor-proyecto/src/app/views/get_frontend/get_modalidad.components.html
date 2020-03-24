@@ -4,35 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        
-
-        div.solid{
-            border-style: solid;
-            border-color: lightgreen;
-            
-        }
-
-
         .mar3{
             margin-left: 25px;
         }
-        .mar{
-            margin-left: 10px;
-            margin-top: 15px;
-        }
-
-        .mar1{
-            margin-top: 15px;
-        }
-
     </style>
 </head>
 <body>
     <div style="margin-right: 25px;"  class="mar3 text-center">
         <h1 class="text-success"> Mantenimiento Modalidades </h1>
-    
-    
-            
             <table  class="table table-hover table-striped table-info text-center">
             <thead class="thead-dark">
                 <tr>
@@ -57,16 +36,17 @@
     
     <button  style="margin-bottom: 10px;" (click)="toggleShow()" class="mar3 btn btn-primary">Nueva Modalidad</button>
     <div *ngIf="isShown" class="row container-fluid"  id="divshow" >
-        <div style="width: 75%; margin-top: 20px; margin-bottom: 15px;"  class="mar3 solid row mt-3 p-3">
-            <div class="col-md-6">
-            
-            <input type="text" placeholder="Modalidad" class="form-control" [(ngModel)]="modalidad.desc_modadlidad">
+        <div class="container-md border rounded border-primary" style="margin-bottom: 10px;">
+            <div class="container-md">
+                <form action="/" enctype="multipart/form-data"  method="post" ngNativeValidate #form>
+                    <div class="form-group col-md-6">
+                        <label for="mod">Nombre de la modalidad</label>
+                        <input type="text" id="mod" class="form-control" required [(ngModel)]="modalidad.desc_modadlidad" [ngModelOptions]="{standalone: true}" >
+                    </div>
+                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" (click)="form.checkValidity()?  insert_modalidad() : null" class="btn btn-primary">Insertar Modalidad</button>
+                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" (click)="toggleShow()"  class="btn btn-primary">Esconder</button>
+                </form>
             </div>
-            <div style="margin-top: 10px;" class="col-md-7">
-            <button (click)="insert_modalidad()" (click)="toggleShow()" class="btn btn-primary">Insertar Modalidad</button>
-            </div>
-            
-            
         </div>
     </div>
     
@@ -81,14 +61,20 @@
           </button>
         </div>
         <div class="modal-body">
-                <form>
-                <label>Modalidad</label>
-                <input [(ngModel)]="modalidad.desc_modadlidad" name="desc_modadlidad" type="text" class="form-control"  value="">
-                </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button (click)="update_modalidad()"  class="btn btn-primary">Actualizar</button>
+            <div class="container-md">
+                <div class="container-md">
+                    <form action="/" enctype="multipart/form-data"  method="put" ngNativeValidate #form1>
+                        <div class="form-group">
+                            <label for="mo">Nombre de la modalidad</label>
+                            <input type="text" id="mo" class="form-control" required [(ngModel)]="modalidad.desc_modadlidad" [ngModelOptions]="{standalone: true}" >
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button (click)="form1.checkValidity()? update_modalidad() : null"  class="btn btn-primary">Actualizar</button>
+                          </div>
+                    </form>
+                </div>
+            </div>
         </div>
       </div>
     </div>

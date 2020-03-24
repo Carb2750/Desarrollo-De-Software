@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { AppService } from 'src/app/app.service';
+import swal from 'sweetalert2';
 
 @Component({
     selector: 'get_frontend',
@@ -30,7 +31,11 @@ export class GetFacilidadComponent implements OnInit{
         this.service.get_facilidades().subscribe(
             data => response = data,
             err => {
-                console.log("Error al consultar el servicio");
+                swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salio mal!',
+                })
             },
             () => {
                 this.listado_facilidad = response;
@@ -44,12 +49,22 @@ export class GetFacilidadComponent implements OnInit{
         this.service.insert_facilidad(this.facilidad).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.facilidad={
                 descripcion:""
             }
+            swal.fire({
+                title: 'Asignatura agregada exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
         this.get_facilidades();
         }
         );
@@ -61,15 +76,37 @@ export class GetFacilidadComponent implements OnInit{
         var load={
             cod_asignatura_facilidad:id
         }
-        this.service.delete_facilidad(load).subscribe(
-        data => response = data,
-        err => {
-        console.log("Error al consultar servicio");
-        },
-        ()=> {
-            this.get_facilidades();
-        }
-        );
+        swal.fire({
+            title: 'Advertencia!',
+            text: "Esta seguro desea borrar esta asignatura?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.value) {
+                this.service.delete_facilidad(load).subscribe(
+                    data => response = data,
+                    err => {
+                        swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal!',
+                        })
+                    },
+                    ()=> {
+                        this.get_facilidades();
+                    }
+                    );
+              swal.fire(
+                'Borrado!',
+                'La asignatura a sido borrada.',
+                'success'
+              )
+            }
+          })
     }
 
 
@@ -87,12 +124,22 @@ export class GetFacilidadComponent implements OnInit{
         this.service.update_facilidad(load, this.facilidad).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.facilidad = {
                 descripcion:""
             };
+            swal.fire({
+                title: 'Asignatura actualizada exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
             this.get_facilidades();
         }
         );
@@ -113,10 +160,4 @@ export class GetFacilidadComponent implements OnInit{
     this.isShown = ! this.isShown;
 
     }
-
-    toggleShow1() {
-
-        this.isShown = ! this.isShown;
-    
-        }
 }

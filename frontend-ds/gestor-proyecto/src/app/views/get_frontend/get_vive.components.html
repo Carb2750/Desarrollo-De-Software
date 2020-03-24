@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         .mar3{
             margin-left: 25px;
@@ -11,21 +12,23 @@
 </head>
 <body>
     <div style="margin-right: 25px;"  class="mar3 text-center">
-        <h1 class="text-success"> Mantenimiento Documentos</h1>
+        <h1 class="text-success"> Mantenimiento Convivencia </h1>
+    
+    
             
             <table  class="table table-hover table-striped table-info text-center">
             <thead class="thead-dark">
                 <tr>
-                    <th>Nombre del documento</th>
+                    <th>Con quien vive</th>
                     <th></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let x of listado_documento">
-                    <td>{{x.descrip_doc}}</td>
-                    <td><button (click)="pass_code(x.tipo_documento)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
-                    <td><button (click)="delete_documento(x.tipo_documento)" class="btn btn-danger">Borrar</button></td>
+                <tr *ngFor="let x of listado_vive">
+                    <td>{{x.descripcion}}</td>
+                    <td><button (click)="pass_code(x.codigo_convive)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
+                    <td><button (click)="delete_vive(x.codigo_convive)" class="btn btn-danger">Borrar</button></td>
                 </tr>
             </tbody>
         </table>
@@ -35,16 +38,16 @@
 
 
     
-    <button  style="margin-bottom: 10px;" (click)="toggleShow()" class="mar3 btn btn-primary">Nuevo documento</button>
+    <button  style="margin-bottom: 10px;" (click)="toggleShow()" class="mar3 btn btn-primary">Nuevo registro</button>
     <div *ngIf="isShown" class="row container-fluid"  id="divshow" >
         <div class="container-md border rounded border-primary" style="margin-bottom: 10px;">
             <div class="container-md">
                 <form action="/" enctype="multipart/form-data"  method="post" ngNativeValidate #form>
                     <div class="form-group col-md-6">
-                        <label for="doc">Nombre del documento</label>
-                        <input type="text" id="doc" class="form-control" required [(ngModel)]="documento.descrip_doc" [ngModelOptions]="{standalone: true}" >
+                        <label for="sec">Nombre</label>
+                        <input type="text" id="sec" class="form-control" required [(ngModel)]="vive.descripcion" [ngModelOptions]="{standalone: true}" >
                     </div>
-                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" (click)="form.checkValidity()?  insert_documento() : null" class="btn btn-primary">Insertar documento</button>
+                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" (click)="form.checkValidity()?  insert_vive() : null" class="btn btn-primary">Insertar dato</button>
                     <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" (click)="toggleShow()"  class="btn btn-primary">Esconder</button>
                 </form>
             </div>
@@ -56,7 +59,7 @@
     <div class="modal-dialog modal-dialog-scrollable" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Actualización de Documentos</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">Actualización</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -64,20 +67,19 @@
         <div class="modal-body">
             <div class="container-md">
                 <div class="container-md">
-                    <form action="/" enctype="multipart/form-data"  method="put" ngNativeValidate #form1>
+                    <form ngNativeValidate #form1>
                         <div class="form-group">
-                            <label for="doc">Nombre del documento</label>
-                            <input type="text" id="doc" class="form-control" required [(ngModel)]="documento.descrip_doc" [ngModelOptions]="{standalone: true}" >
+                            <label for="se">Nombre</label>
+                            <input type="text" id="se" class="form-control" required [(ngModel)]="vive.descripcion" [ngModelOptions]="{standalone: true}" >
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button (click)="form1.checkValidity()? update_documento() : null"  class="btn btn-primary">Actualizar</button>
+                            <button type="submit" (click)="form1.checkValidity()? update_vive() : null"  class="btn btn-primary">Actualizar</button>
                           </div>
                     </form>
                 </div>
             </div>
         </div>
-
       </div>
     </div>
   </div>

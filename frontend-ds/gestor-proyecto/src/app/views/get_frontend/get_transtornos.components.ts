@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { AppService } from 'src/app/app.service';
+import swal from 'sweetalert2';
 
 @Component({
     selector: 'get_frontend',
@@ -30,7 +31,11 @@ export class GetTranstornosComponent implements OnInit{
         this.service.get_transtornos().subscribe(
             data => response = data,
             err => {
-                console.log("Error al consultar el servicio");
+                swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salio mal!',
+                })
             },
             () => {
                 this.listado_transtornos = response;
@@ -44,12 +49,22 @@ export class GetTranstornosComponent implements OnInit{
         this.service.insert_transtornos(this.transtornos).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.transtornos={
                 descripcion:""
             }
+            swal.fire({
+                title: 'Trastorno agregado exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
         this.get_transtornos();
         }
         );
@@ -61,15 +76,37 @@ export class GetTranstornosComponent implements OnInit{
         var load={
             codigo_trans:id
         }
-        this.service.delete_transtornos(load).subscribe(
-        data => response = data,
-        err => {
-        console.log("Error al consultar servicio");
-        },
-        ()=> {
-            this.get_transtornos();
-        }
-        );
+        swal.fire({
+            title: 'Advertencia!',
+            text: "Esta seguro desea borrar este trastorno?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.value) {
+                this.service.delete_transtornos(load).subscribe(
+                    data => response = data,
+                    err => {
+                        swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal!',
+                        })
+                    },
+                    ()=> {
+                        this.get_transtornos();
+                    }
+                    );
+              swal.fire(
+                'Borrado!',
+                'El trastorno a sido borrado.',
+                'success'
+              )
+            }
+          })
     }
 
 
@@ -87,12 +124,22 @@ export class GetTranstornosComponent implements OnInit{
         this.service.update_transtornos(load, this.transtornos).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.transtornos = {
                 descripcion:""
             };
+            swal.fire({
+                title: 'Trastorno actualizado exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
             this.get_transtornos();
         }
         );
@@ -113,12 +160,6 @@ export class GetTranstornosComponent implements OnInit{
     this.isShown = ! this.isShown;
 
     }
-
-    toggleShow1() {
-
-        this.isShown = ! this.isShown;
-    
-        }
 
         
 }

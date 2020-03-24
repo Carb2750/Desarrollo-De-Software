@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import {AppService} from './app.service'
 
 import { GetFrontendComponent } from './views/get_frontend/get_frontend.components';
-import { GetFichaComponent } from './views/get_frontend/get_ficha.components';
+import { GetFichaCompletaComponent } from './views/get_frontend/get_fichacompleta.components';
 import { GetRegistroComponent } from './views/get_frontend/get_registro.components';
 import { GetCiudadComponent } from './views/get_frontend/get_ciudad.components';
 import { GetDeporteComponent } from './views/get_frontend/get_deportes.components';
@@ -29,6 +29,10 @@ import { GetRendimientoComponent } from './views/get_frontend/get_rendimiento.co
 import { GetTipoEscuelaComponent } from './views/get_frontend/get_tipoescuela.components';
 import { GetTranstornosComponent } from './views/get_frontend/get_transtornos.components';
 import { GetPedagogicosComponent } from './views/get_frontend/get_pedagogicos.components';
+import { GetPersonalesComponent } from './views/get_frontend/get_personales.components';
+import { GetViveComponent } from './views/get_frontend/get_vive.components';
+import { GetAlumnosComponent } from './views/get_frontend/get_alumno.components';
+import { GetFichasComponent } from './views/get_frontend/get_fichas.components';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 
@@ -37,7 +41,7 @@ import {FormsModule} from '@angular/forms';
   declarations: [
     AppComponent,
     GetFrontendComponent,
-    GetFichaComponent,
+    GetFichaCompletaComponent,
     GetRegistroComponent,
     GetCiudadComponent,
     GetDeporteComponent,
@@ -59,7 +63,11 @@ import {FormsModule} from '@angular/forms';
     GetRendimientoComponent,
     GetTipoEscuelaComponent,
     GetTranstornosComponent,
-    GetPedagogicosComponent
+    GetPedagogicosComponent,
+    GetPersonalesComponent,
+    GetViveComponent,
+    GetAlumnosComponent,
+    GetFichasComponent
     
   ],
   imports: [

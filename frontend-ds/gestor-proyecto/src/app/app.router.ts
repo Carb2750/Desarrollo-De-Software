@@ -2,7 +2,7 @@ import {NgModule, Component} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import { GetFrontendComponent } from './views/get_frontend/get_frontend.components';
-import { GetFichaComponent } from './views/get_frontend/get_ficha.components';
+import { GetFichaCompletaComponent } from './views/get_frontend/get_fichacompleta.components';
 import { GetRegistroComponent } from './views/get_frontend/get_registro.components';
 import { GetCiudadComponent } from './views/get_frontend/get_ciudad.components';
 import { GetDeporteComponent } from './views/get_frontend/get_deportes.components';
@@ -25,6 +25,10 @@ import { GetRendimientoComponent } from './views/get_frontend/get_rendimiento.co
 import { GetTipoEscuelaComponent } from './views/get_frontend/get_tipoescuela.components';
 import { GetTranstornosComponent } from './views/get_frontend/get_transtornos.components';
 import { GetPedagogicosComponent } from './views/get_frontend/get_pedagogicos.components';
+import { GetPersonalesComponent } from './views/get_frontend/get_personales.components';
+import { GetViveComponent } from './views/get_frontend/get_vive.components';
+import { GetAlumnosComponent } from './views/get_frontend/get_alumno.components';
+import { GetFichasComponent } from './views/get_frontend/get_fichas.components';
 const routes: Routes = [
     {
         path: 'listado_usuarios',
@@ -32,7 +36,7 @@ const routes: Routes = [
     },
     {
         path: 'listado_ficha',
-        component: GetFichaComponent
+        component: GetFichaCompletaComponent
     },
     {
         path: 'registro',
@@ -122,6 +126,22 @@ const routes: Routes = [
     {
         path: 'aspectos_pedagogicos',
         component: GetPedagogicosComponent
+    },
+    {
+        path: 'aspectos_personales',
+        component: GetPersonalesComponent
+    },
+    {
+        path: 'vive',
+        component: GetViveComponent
+    },
+    {
+        path: 'alumnos',
+        component: GetAlumnosComponent
+    },
+    {
+        path: 'fichas',
+        component: GetFichasComponent
     }
 ];
 

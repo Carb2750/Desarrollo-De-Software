@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { AppService } from 'src/app/app.service';
+import swal from 'sweetalert2';
+
 
 @Component({
     selector: 'get_frontend',
@@ -30,7 +32,11 @@ export class GetJornadaComponent implements OnInit{
         this.service.get_jornadas().subscribe(
             data => response = data,
             err => {
-                console.log("Error al consultar el servicio");
+                swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salio mal!',
+                })
             },
             () => {
                 this.listado_jornada = response;
@@ -44,12 +50,22 @@ export class GetJornadaComponent implements OnInit{
         this.service.insert_jornada(this.jornada).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.jornada={
                 desc_jornada:""
             }
+            swal.fire({
+                title: 'Jornada agregada exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
         this.get_jornadas();
         }
         );
@@ -61,15 +77,37 @@ export class GetJornadaComponent implements OnInit{
         var load={
             cod_jornada:id
         }
-        this.service.delete_jornada(load).subscribe(
-        data => response = data,
-        err => {
-        console.log("Error al consultar servicio");
-        },
-        ()=> {
-            this.get_jornadas();
-        }
-        );
+        swal.fire({
+            title: 'Advertencia!',
+            text: "Esta seguro desea borrar esta jornada?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.value) {
+                this.service.delete_jornada(load).subscribe(
+                    data => response = data,
+                    err => {
+                        swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal!',
+                        })
+                    },
+                    ()=> {
+                        this.get_jornadas();
+                    }
+                    );
+              swal.fire(
+                'Borrado!',
+                'La jornada a sido borrada.',
+                'success'
+              )
+            }
+          })
     }
 
 
@@ -87,12 +125,22 @@ export class GetJornadaComponent implements OnInit{
         this.service.update_jornada(load, this.jornada).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.jornada = {
                 desc_jornada:""
             };
+            swal.fire({
+                title: 'Jornada actualizada exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
             this.get_jornadas();
         }
         );
@@ -114,9 +162,4 @@ export class GetJornadaComponent implements OnInit{
 
     }
 
-    toggleShow1() {
-
-        this.isShown = ! this.isShown;
-    
-        }
 }

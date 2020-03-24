@@ -3,29 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOLa</title>
     <style>
-        
-
-        div.solid{
-            border-style: solid;
-            border-color: lightgreen;
-            
-        }
-
-
         .mar3{
             margin-left: 25px;
         }
-        .mar{
-            margin-left: 10px;
-            margin-top: 15px;
-        }
-
-        .mar1{
-            margin-top: 15px;
-        }
-
     </style>
 </head>
 <body>
@@ -57,16 +38,17 @@
     
     <button  style="margin-bottom: 10px;" (click)="toggleShow()" class="mar3 btn btn-primary">Nuevo Trastorno</button>
     <div *ngIf="isShown" class="row container-fluid"  id="divshow" >
-        <div style="width: 75%; margin-top: 20px; margin-bottom: 15px;"  class="mar3 solid row mt-3 p-3">
-            <div class="col-md-6">
-            
-            <input type="text" placeholder="Nombre del trastorno" class="form-control" [(ngModel)]="transtornos.descripcion">
+        <div class="container-md border rounded border-primary" style="margin-bottom: 10px;">
+            <div class="container-md">
+                <form action="/" enctype="multipart/form-data"  method="post" ngNativeValidate #form>
+                    <div class="form-group col-md-6">
+                        <label for="sec">Nombre del trastorno</label>
+                        <input type="text" id="sec" class="form-control" required [(ngModel)]="transtornos.descripcion" [ngModelOptions]="{standalone: true}" >
+                    </div>
+                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" (click)="form.checkValidity()?  insert_transtornos() : null" class="btn btn-primary">Insertar trastorno</button>
+                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" (click)="toggleShow()"  class="btn btn-primary">Esconder</button>
+                </form>
             </div>
-            <div style="margin-top: 10px;" class="col-md-7">
-            <button (click)="insert_transtornos()" (click)="toggleShow()" class="btn btn-primary">Insertar Trastorno</button>
-            </div>
-            
-            
         </div>
     </div>
     
@@ -81,14 +63,20 @@
           </button>
         </div>
         <div class="modal-body">
-                <form>
-                <label>Nombre del Trastorno</label>
-                <input [(ngModel)]="transtornos.descripcion" name="descripcion" type="text" class="form-control"  value="">
-                </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button (click)="update_transtornos()"  class="btn btn-primary">Actualizar</button>
+            <div class="container-md">
+                <div class="container-md">
+                    <form ngNativeValidate #form1>
+                        <div class="form-group">
+                            <label for="se">Nombre del trastorno</label>
+                            <input type="text" id="se" class="form-control" required [(ngModel)]="transtornos.descripcion" [ngModelOptions]="{standalone: true}" >
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" (click)="form1.checkValidity()? update_transtornos() : null"  class="btn btn-primary">Actualizar</button>
+                          </div>
+                    </form>
+                </div>
+            </div>
         </div>
       </div>
     </div>

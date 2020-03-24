@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { AppService } from 'src/app/app.service';
+import swal from 'sweetalert2';
 
 @Component({
     selector: 'get_frontend',
@@ -30,7 +31,11 @@ export class GetDocumentoComponent implements OnInit{
         this.service.get_documentos().subscribe(
             data => response = data,
             err => {
-                console.log("Error al consultar el servicio");
+                swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salio mal!',
+                })
             },
             () => {
                 this.listado_documento = response;
@@ -44,12 +49,22 @@ export class GetDocumentoComponent implements OnInit{
         this.service.insert_documento(this.documento).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.documento={
                 descrip_doc:""
             }
+            swal.fire({
+                title: 'Documento agregado exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
         this.get_documentos();
         }
         );
@@ -61,15 +76,38 @@ export class GetDocumentoComponent implements OnInit{
         var load={
             tipo_documento:id
         }
-        this.service.delete_documento(load).subscribe(
-        data => response = data,
-        err => {
-        console.log("Error al consultar servicio");
-        },
-        ()=> {
-            this.get_documentos();
-        }
-        );
+        swal.fire({
+            title: 'Advertencia!',
+            text: "Esta seguro desea borrar este documento?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.value) {
+                this.service.delete_documento(load).subscribe(
+                    data => response = data,
+                    err => {
+                        swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal!',
+                        })
+                    },
+                    ()=> {
+                        this.get_documentos();
+                    }
+                    );
+              swal.fire(
+                'Borrado!',
+                'El documento a sido borrado.',
+                'success'
+              )
+            }
+          })
+        
     }
 
 
@@ -86,12 +124,22 @@ export class GetDocumentoComponent implements OnInit{
         this.service.update_documento(load, this.documento).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.documento = {
                 descrip_doc:""
             };
+            swal.fire({
+                title: 'Documento actualizado exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
             this.get_documentos();
         }
         );
@@ -113,9 +161,4 @@ export class GetDocumentoComponent implements OnInit{
 
     }
 
-    toggleShow1() {
-
-        this.isShown = ! this.isShown;
-    
-        }
 }

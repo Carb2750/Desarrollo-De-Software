@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { AppService } from 'src/app/app.service';
+import swal from 'sweetalert2';
 
 @Component({
     selector: 'get_frontend',
@@ -30,7 +31,11 @@ export class GetArteComponent implements OnInit{
         this.service.get_artes().subscribe(
             data => response = data,
             err => {
-                console.log("Error al consultar el servicio");
+                swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salio mal!',
+                })
             },
             () => {
                 this.listado_arte = response;
@@ -44,12 +49,22 @@ export class GetArteComponent implements OnInit{
         this.service.insert_arte(this.arte).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.arte={
                 descripcion:""
             }
+            swal.fire({
+                title: 'Actividad artística agregada exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
         this.get_artes();
         }
         );
@@ -61,15 +76,37 @@ export class GetArteComponent implements OnInit{
         var load={
             cod_act_artistica:id
         }
-        this.service.delete_arte(load).subscribe(
-        data => response = data,
-        err => {
-        console.log("Error al consultar servicio");
-        },
-        ()=> {
-            this.get_artes();
-        }
-        );
+        swal.fire({
+            title: 'Advertencia!',
+            text: "Esta seguro desea borrar esta actividad artística?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.value) {
+                this.service.delete_arte(load).subscribe(
+                    data => response = data,
+                    err => {
+                        swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal!',
+                        })
+                    },
+                    ()=> {
+                        this.get_artes();
+                    }
+                    );
+              swal.fire(
+                'Borrado!',
+                'La actividad artística a sido borrada.',
+                'success'
+              )
+            }
+          })
     }
 
 
@@ -87,12 +124,22 @@ export class GetArteComponent implements OnInit{
         this.service.update_arte(load, this.arte).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.arte = {
                 descripcion:""
             };
+            swal.fire({
+                title: 'Actividad artística actualizada exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
             this.get_artes();
         }
         );
@@ -113,10 +160,4 @@ export class GetArteComponent implements OnInit{
     this.isShown = ! this.isShown;
 
     }
-
-    toggleShow1() {
-
-        this.isShown = ! this.isShown;
-    
-        }
 }

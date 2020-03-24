@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .mar3{
+            margin-left: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-right: 25px;" class="mar3 text-center">
+        <h1 class="text-success"> Mantenimiento Aspectos Personales </h1>
+    
+           
+            <table style="margin-right: 25px;"  class="table table-hover table-striped table-info text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Codigo</th>
+                    <th>Vive con</th>
+                    <th>Otro residente</th>
+                    <th>Sociabilidad</th>
+                    <th>Relación con quien vive</th>
+                    <th>Observación</th>
+                    <th>Noviazgo</th>
+                    <th>Mejor Amigo</th>
+                    <th>Otro Mejor Amigo</th>
+                    <th>Actividad Deportiva</th>
+                    <th>Otro Deporte</th>
+                    <th>Actividad Artistica</th>
+                    <th>Otra Arte</th>
+                    <th>Religion</th>
+                    <th>Problema Emocional</th>
+                    <th>Ayuda</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let x of listado_personales">
+                    <td>{{x.cod_aspectos_personal}}</td>
+                    <td>{{x.descripcion_convive}}</td>
+                    <td>{{x.obs_residencias}}</td>
+                    <td>{{x.descripcion_social}}</td>
+                    <td>{{x.descripcion_amistosa}}</td>
+                    <td>{{x.obs_relaciones_amistosas}}</td>
+                    <td>{{x.obs_noviazgos}}</td>
+                    <td>{{x.descripcion_mejor}}</td>
+                    <td>{{x.obs_mejor_amigo}}</td>
+                    <td>{{x.descripcion_deportiva}}</td>
+                    <td>{{x.obs_actividades_deportivas}}</td>
+                    <td>{{x.descripcion_artistica}}</td>
+                    <td>{{x.obs_actividades_artisticas}}</td>
+                    <td>{{x.obs_religion}}</td>
+                    <td>{{x.descripcion_emocional}}</td>
+                    <td>{{x.obs_ayudas}}</td>                   
+                    <td><button (click)="pass_code(x.cod_aspectos_personal)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
+                    <td><button (click)="delete_personal(x.cod_aspectos_personal)" class="btn btn-danger">Borrar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    
+
+
+    
+    <button (click)="toggleShow()" class="mar3 btn btn-primary" style="margin-bottom: 10px;">Nuevo Registro</button>
+    <div *ngIf="isShown" class="row container-fluid"  id="divshow" style="margin-bottom: 10px;" >
+        <div class="container-md border rounded border-primary">
+            <div class="container-md">
+                <form action="/" enctype="multipart/form-data" method="post" ngNativeValidate #form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="vive">Con quien vive actualmente</label>
+                            <select id="vive" class="form-control" required [(ngModel)]="personal.codigo_convive" [ngModelOptions]="{standalone: true}" >
+                              <option selected value="">- Seleccione -</option>
+                              <option *ngFor="let x of listado_codigo_convive" [value]="x.codigo_convive">{{x.descripcion}}</option>
+                            </select>
+                            <small id="helper" class="form-text text-muted">
+                               Si escoge la opción "Otro", especifique en el espacio proporcionado
+                              </small>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="otro1">Especificación</label>
+                            <input type="text" id="otro1" class="form-control" [(ngModel)]="personal.obs_residencias" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="ra">Situación actual de las relaciones amistosas con las personas que vive</label>
+                            <select id="ra" class="form-control" required [(ngModel)]="personal.cod_relaciones_amistosas" [ngModelOptions]="{standalone: true}" >
+                              <option selected value="">- Seleccione -</option>
+                              <option *ngFor="let x of listado_codigo_amistosa" [value]="x.cod_relaciones_amistosas">{{x.descripcion}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="por">Explique porque</label>
+                            <textarea cols="4" rows="4" type="text" id="por"  class="form-control" [(ngModel)]="personal.obs_relaciones_amistosas" [ngModelOptions]="{standalone: true}"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row" style="margin-top: 40px;">
+                        <div class="form-group col-md-3">
+                            <label for="rs">Como es en las relaciones sociales</label>
+                            <select id="rs" class="form-control" required [(ngModel)]="personal.cod_relaciones_sociales" [ngModelOptions]="{standalone: true}" >
+                              <option selected value="">- Seleccione -</option>
+                              <option *ngFor="let x of listado_codigo_sociales" [value]="x.cod_relaciones_sociales">{{x.descripcion}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="ma">¿Quien es su mejor amigo?</label>
+                            <select id="ma" class="form-control" required [(ngModel)]="personal.cod_mejor_amigo" [ngModelOptions]="{standalone: true}" >
+                              <option selected value="">- Seleccione -</option>
+                              <option *ngFor="let x of listado_codigo_amigos" [value]="x.cod_mejor_amigo">{{x.descripcion}}</option>
+                            </select>
+                            <small id="helper1" class="form-text text-muted">
+                                Si escoge la opción "Otro", especifique en el espacio proporcionado
+                               </small>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="amigo">Especificación Mejor Amigo</label>
+                            <input type="text" id="amigo" class="form-control"  [(ngModel)]="personal.obs_mejor_amigo" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="noviazgo">Tiene novio</label>
+                            <input type="text" id="noviazgo" class="form-control" required [(ngModel)]="personal.obs_noviazgos" [ngModelOptions]="{standalone: true}">
+                            <small id="helper2" class="form-text text-muted">
+                                Si tiene,también escriba la frecuencia con la que se ven
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label for="deporte">Que actividad deportiva le gusta?</label>
+                            <select id="deporte" class="form-control" required [(ngModel)]="personal.cod_act_deportiva" [ngModelOptions]="{standalone: true}" >
+                              <option selected value="">- Seleccione -</option>
+                              <option *ngFor="let x of listado_codigo_deportes" [value]="x.cod_act_deportiva">{{x.descripcion}}</option>
+                            </select>
+                            <small id="helper3" class="form-text text-muted">
+                               Si escoge la opción "Otro", especifique en el espacio proporcionado
+                              </small>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="otro2">Otro deporte</label>
+                            <input type="text" id="otro2" class="form-control" [(ngModel)]="personal.obs_actividades_deportivas" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label for="arte">Participa en alguna actividad artística?</label>
+                            <select id="arte" class="form-control" required [(ngModel)]="personal.cod_act_artistica" [ngModelOptions]="{standalone: true}" >
+                              <option selected value="">- Seleccione -</option>
+                              <option *ngFor="let x of listado_codigo_artes" [value]="x.cod_act_artistica">{{x.descripcion}}</option>
+                            </select>
+                            <small id="helper4" class="form-text text-muted">
+                               Si escoge la opción "Otro", especifique en el espacio proporcionado
+                              </small>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="otro3">Otra arte</label>
+                            <input type="text" id="otro3"  class="form-control" [(ngModel)]="personal.obs_actividades_artisticas" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="rel">Qué religion práctica?</label>
+                            <input type="text" id="rel"  class="form-control" required [(ngModel)]="personal.obs_religion" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="emo">Ha vivido o vives algún problema emocional?</label>
+                            <select id="emo" class="form-control" required [(ngModel)]="personal.cod_problema_emocional" [ngModelOptions]="{standalone: true}" >
+                              <option selected value="">- Seleccione -</option>
+                              <option *ngFor="let x of listado_codigo_problemas" [value]="x.cod_problema_emocional">{{x.descripcion}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="ayuda">A quien acudes cuando tienes problemas?</label>
+                            <input type="text" id="ayuda" placeholder="Papá, Mamá, amigo, etc." class="form-control" required [(ngModel)]="personal.obs_ayudas" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="form.checkValidity()? insert_personal() : null" class="btn btn-primary">Insertar</button>
+                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="toggleShow()" class="btn btn-primary">Esconder</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+  <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Actualización de Registro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="container-md">
+                <div class="container-md">
+                    <form action="/" enctype="multipart/form-data" method="put" ngNativeValidate #form1>
+                        <div class="form-group">
+                            <label for="viv">Con quien vive actualmente</label>
+                            <select id="viv" class="form-control" required [(ngModel)]="personal.codigo_convive" [ngModelOptions]="{standalone: true}" >
+                                <option selected value="">- Seleccione -</option>
+                                <option *ngFor="let x of listado_codigo_convive" [value]="x.codigo_convive">{{x.descripcion}}</option>
+                            </select>
+                            <small id="helper5" class="form-text text-muted">
+                               Si escoge la opción "Otro", especifique en el espacio proporcionado
+                               </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="otro1">Especificación</label>
+                            <input type="text" id="otro4" class="form-control" [(ngModel)]="personal.obs_residencias" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group">
+                            <label for="ras">Situación actual de las relaciones amistosas con las personas que vive</label>
+                            <select id="ras" class="form-control" required [(ngModel)]="personal.cod_relaciones_amistosas" [ngModelOptions]="{standalone: true}" >
+                              <option selected value="">- Seleccione -</option>
+                              <option *ngFor="let x of listado_codigo_amistosa" [value]="x.cod_relaciones_amistosas">{{x.descripcion}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="porq">Explique porque</label>
+                            <textarea cols="4" rows="4" type="text" id="porq"  class="form-control" [(ngModel)]="personal.obs_relaciones_amistosas" [ngModelOptions]="{standalone: true}"></textarea>
+                        </div>
+                        <div class="form-row">
+                             <div class="form-group col-md-6">
+                                <label for="rss">Como es en las relaciones sociales</label>
+                                <select id="rss" class="form-control" required [(ngModel)]="personal.cod_relaciones_sociales" [ngModelOptions]="{standalone: true}" >
+                                  <option selected value="">- Seleccione -</option>
+                                  <option *ngFor="let x of listado_codigo_sociales" [value]="x.cod_relaciones_sociales">{{x.descripcion}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-top: 40px;">
+                            <div class="form-group col-md-6">
+                                <label for="mas">¿Quien es su mejor amigo?</label>
+                                <select id="mas" class="form-control" required [(ngModel)]="personal.cod_mejor_amigo" [ngModelOptions]="{standalone: true}" >
+                                  <option selected value="">- Seleccione -</option>
+                                  <option *ngFor="let x of listado_codigo_amigos" [value]="x.cod_mejor_amigo">{{x.descripcion}}</option>
+                                </select>
+                                <small id="helper6" class="form-text text-muted">
+                                    Si escoge la opción "Otro", especifique en el espacio proporcionado
+                                   </small>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="amig">Especificación Mejor Amigo</label>
+                                <input type="text" id="amig" class="form-control"  [(ngModel)]="personal.obs_mejor_amigo" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="noviazg">Tiene novio</label>
+                                <input type="text" id="noviazg" class="form-control" required [(ngModel)]="personal.obs_noviazgos" [ngModelOptions]="{standalone: true}">
+                                <small id="helper7" class="form-text text-muted">
+                                    Si tiene,también escriba la frecuencia con la que se ven
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <label for="deport">Que actividad deportiva le gusta?</label>
+                                <select id="deport" class="form-control" required [(ngModel)]="personal.cod_act_deportiva" [ngModelOptions]="{standalone: true}" >
+                                  <option selected value="">- Seleccione -</option>
+                                  <option *ngFor="let x of listado_codigo_deportes" [value]="x.cod_act_deportiva">{{x.descripcion}}</option>
+                                </select>
+                                <small id="helper8" class="form-text text-muted">
+                                   Si escoge la opción "Otro", especifique en el espacio proporcionado
+                                  </small>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="otro2">Otro deporte</label>
+                                <input type="text" id="otro5" class="form-control" [(ngModel)]="personal.obs_actividades_deportivas" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <label for="art">Participa en alguna actividad artística?</label>
+                                <select id="art" class="form-control" required [(ngModel)]="personal.cod_act_artistica" [ngModelOptions]="{standalone: true}" >
+                                  <option selected value="">- Seleccione -</option>
+                                  <option *ngFor="let x of listado_codigo_artes" [value]="x.cod_act_artistica">{{x.descripcion}}</option>
+                                </select>
+                                <small id="helper9" class="form-text text-muted">
+                                   Si escoge la opción "Otro", especifique en el espacio proporcionado
+                                  </small>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="otro3"><br>Otra arte</label>
+                                <input type="text" id="otro6"  class="form-control" [(ngModel)]="personal.obs_actividades_artisticas" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="reli">Qué religion práctica?</label>
+                                <input type="text" id="reli"  class="form-control" required [(ngModel)]="personal.obs_religion" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="emo">Ha vivido o vives algún problema emocional?</label>
+                                <select id="emo" class="form-control" required [(ngModel)]="personal.cod_problema_emocional" [ngModelOptions]="{standalone: true}" >
+                                  <option selected value="">- Seleccione -</option>
+                                  <option *ngFor="let x of listado_codigo_problemas" [value]="x.cod_problema_emocional">{{x.descripcion}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="ayud">A quien acudes cuando tienes problemas?</label>
+                                <input type="text" id="ayud" placeholder="Padres, amigo, etc." class="form-control" required [(ngModel)]="personal.obs_ayudas" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" (click)="form1.checkValidity()? update_personal() : errores()"  class="btn btn-primary">Actualizar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+
+

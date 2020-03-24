@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { AppService } from 'src/app/app.service';
+import swal from 'sweetalert2';
 
 @Component({
     selector: 'get_frontend',
@@ -30,7 +31,11 @@ export class GetSeccionComponent implements OnInit{
         this.service.get_secciones().subscribe(
             data => response = data,
             err => {
-                console.log("Error al consultar el servicio");
+                swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salio mal!',
+                })
             },
             () => {
                 this.listado_seccion = response;
@@ -44,12 +49,22 @@ export class GetSeccionComponent implements OnInit{
         this.service.insert_seccion(this.seccion).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.seccion={
                 desc_seccion:""
             }
+            swal.fire({
+                title: 'Seccion agregada exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
         this.get_secciones();
         }
         );
@@ -61,15 +76,38 @@ export class GetSeccionComponent implements OnInit{
         var load={
             cod_seccion:id
         }
-        this.service.delete_seccion(load).subscribe(
-        data => response = data,
-        err => {
-        console.log("Error al consultar servicio");
-        },
-        ()=> {
-            this.get_secciones();
-        }
-        );
+        swal.fire({
+            title: 'Advertencia!',
+            text: "Esta seguro desea borrar esta seccción?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.value) {
+                this.service.delete_seccion(load).subscribe(
+                    data => response = data,
+                    err => {
+                        swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal!',
+                        })
+                    },
+                    ()=> {
+                        this.get_secciones();
+                    }
+                    );
+              swal.fire(
+                'Borrado!',
+                'La sección a sido borrada.',
+                'success'
+              )
+            }
+          })
+        
     }
 
 
@@ -81,18 +119,27 @@ export class GetSeccionComponent implements OnInit{
         var load={
             cod_seccion:this.id
         };
-
-        console.log("adssadsadsadasdsadsa: " + this.seccion[0]);
+        
 
         this.service.update_seccion(load, this.seccion).subscribe(
         data => response = data,
         err => {
-        console.log("Error al consultar servicio");
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
         },
         ()=> {
             this.seccion = {
                 desc_seccion:""
             };
+            swal.fire({
+                title: 'Sección actualizada exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
             this.get_secciones();
         }
         );
@@ -114,9 +161,4 @@ export class GetSeccionComponent implements OnInit{
 
     }
 
-    toggleShow1() {
-
-        this.isShown = ! this.isShown;
-    
-        }
 }

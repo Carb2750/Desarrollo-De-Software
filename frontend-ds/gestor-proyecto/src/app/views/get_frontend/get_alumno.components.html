@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .mar3{
+            margin-left: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-right: 25px;" class="mar3 text-center">
+        <h1 class="text-success"> Mantenimiento Alumnos </h1>
+    
+           
+            <table style="margin-right: 25px;"  class="table table-hover table-striped table-info text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>No. de Identidad</th>
+                    <th>Codigo de Expediente</th>
+                    <th>Creación de Expediente</th>
+                    <th>Primer Nombre</th>
+                    <th>Segundo Nombre</th>
+                    <th>Primer Apellido</th>
+                    <th>Segundo Apellido</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Sexo</th>
+                    <th>Nacionalidad</th>
+                    <th>Correo</th>
+                    <th>Lugar de Procedencia</th>
+                    <th>Residencia Actual de Padres</th>
+                    <th>Teléfono Celular</th>
+                    <th>Teléfono de Casa</th>
+                    <th>Teléfono de Trabajo</th>
+                    <th>Nombre del Padre</th>
+                    <th>Teléfono del Padre</th>
+                    <th>Ocupación del Padre</th>
+                    <th>Nombre de la Madre</th>
+                    <th>Teléfono de la Madre</th>
+                    <th>Ocupación de la Madre</th>
+                    <th>Codigo Pg</th>
+                    <th>Codigo Pr</th>
+                    <th>Codigo F</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let x of listado_alumno">
+                    <td>{{x.id_alumno}}</td>
+                    <td>{{x.codigo_expediente}}</td>
+                    <td>{{x.fecha_expediente}}</td>
+                    <td>{{x.nombre_alumno}}</td>
+                    <td>{{x.segundo_nombre}}</td>
+                    <td>{{x.apellido_alumno}}</td>
+                    <td>{{x.segundo_apellido}}</td>
+                    <td>{{x.fecha_nacimiento}}</td>
+                    <td>{{x.sexo}}</td>
+                    <td>{{x.nacionalidad}}</td>
+                    <td>{{x.correo}}</td>
+                    <td>{{x.lugar_procedencia}}</td>
+                    <td>{{x.residencia_actual}}</td>
+                    <td>{{x.tel_celular}}</td>
+                    <td>{{x.tel_casa}}</td>
+                    <td>{{x.tel_trabajo}}</td>
+                    <td>{{x.nombre_padre}}</td>
+                    <td>{{x.tel_padre}}</td>
+                    <td>{{x.ocupacion_padre}}</td>   
+                    <td>{{x.nombre_madre}}</td>
+                    <td>{{x.tel_madre}}</td>
+                    <td>{{x.ocupacion_madre}}</td>
+                    <td>{{x.aspectos_pedagogicos}}</td>
+                    <td>{{x.cod_aspectos_personal}}</td>                  
+                    <td>{{x.codigo_ficha}}</td>
+                    <td><button (click)="pass_code(x.id_alumno)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
+                    <td><button (click)="delete_alumno(x.id_alumno)" class="btn btn-danger">Borrar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    
+
+
+    
+    <button (click)="toggleShow()" class="mar3 btn btn-primary" style="margin-bottom: 10px;">Nuevo Registro</button>
+    <div *ngIf="isShown" class="row container-fluid"  id="divshow" style="margin-bottom: 10px;" >
+        <div class="container-md border rounded border-primary">
+            <div class="container-md">
+                <form action="/" enctype="multipart/form-data" method="post" ngNativeValidate #form>
+                    <div class="form-row">
+                        <div class="form-group offset-md-3 col-md-6">
+                            <label for="identidad">No. de Identidad</label>
+                            <input type="text" id="identidad" class="form-control" required [(ngModel)]="alumno.id_alumno" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombres">Nombres</label>
+                            <div class="input-group" id="nombres">
+                                <input type="text" placeholder="Primer Nombre" class="form-control" required [(ngModel)]="alumno.nombre_alumno" [ngModelOptions]="{standalone: true}">
+                                <input type="text" placeholder="Segundo Nombre" class="form-control" [(ngModel)]="alumno.segundo_nombre" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="form-group ml-md-auto">
+                            <label for="apellidos">Apellidos</label>
+                            <div class="input-group" id="apellidos">
+                                <input type="text" placeholder="Primer Apellido" class="form-control" required [(ngModel)]="alumno.apellido_alumno" [ngModelOptions]="{standalone: true}">
+                                <input type="text" placeholder="Segundo Apellido" class="form-control" [(ngModel)]="alumno.segundo_apellido" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row" style="margin-top: 15px; margin-bottom: 15px;">
+                        <div class="form-group offset-md-4 col-md-4">
+                                <label for="na">Fecha de Nacimiento</label>
+                                <input type="date" format="yyyy/mm/dd" id="na" placeholder="Fecha" class="form-control" required [(ngModel)]="alumno.fecha_nacimiento" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6"  style="margin-top: 25px;">
+                            <label for="sexo" style="margin-right: 10px;">Sexo</label>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" required [(ngModel)]="alumno.sexo" name="optadio" id="op1" value="Masculino">
+                                <label class="form-check-label" for="op1">Masculino</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio"  [(ngModel)]="alumno.sexo" name="optadio" id="op2" value="Femenino">
+                                <label class="form-check-label" for="op2">Femenino</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="nac">Nacionalidad</label>
+                            <input type="text" id="nac" class="form-control" required [(ngModel)]="alumno.nacionalidad" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="proce">Lugar de Procedencia</label>
+                            <textarea cols="6" rows="3" type="text" id="proce"  class="form-control" [(ngModel)]="alumno.lugar_procedencia" [ngModelOptions]="{standalone: true}"></textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="resi">Residencia Actual de los Padres</label>
+                            <textarea cols="6" rows="3" type="text" id="resi"  class="form-control" [(ngModel)]="alumno.residencia_actual" [ngModelOptions]="{standalone: true}"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group offset-md-3 col-md-6">
+                            <label for="correo">Correo Electrónico</label>
+                        <input type="text" id="correo"  class="form-control" required [(ngModel)]="alumno.correo" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="telc">Teléfono Celular</label>
+                            <input type="text" id="telc"  class="form-control" [(ngModel)]="alumno.tel_celular" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="telca">Teléfono Casa</label>
+                            <input type="text" id="telca"  class="form-control" [(ngModel)]="alumno.tel_casa" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="telt">Teléfono de Trabajo</label>
+                            <input type="text" id="telt"  class="form-control" [(ngModel)]="alumno.tel_trabajo" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label for="nomp">Nombre de su Padre o Guardian</label>
+                        <input type="text" id="nomp"  class="form-control" required [(ngModel)]="alumno.nombre_padre" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="ocupp">Ocupación de su Padre o Guardian</label>
+                            <input type="text" id="ocupp"  class="form-control" required [(ngModel)]="alumno.ocupacion_padre" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="telp">Teléfono de su Padre o Guardian</label>
+                            <input type="text" id="telp"  class="form-control" required [(ngModel)]="alumno.tel_padre" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                            <label for="nomm">Nombre de su Madre o Guardian</label>
+                            <input type="text" id="nomm"  class="form-control" [(ngModel)]="alumno.nombre_madre" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="ocupm">Ocupación de su Madre o Guardian</label>
+                            <input type="text" id="ocupm"  class="form-control"  [(ngModel)]="alumno.ocupacion_madre" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="telm">Teléfono de su Madre o Guardian</label>
+                            <input type="text" id="telm"  class="form-control"  [(ngModel)]="alumno.tel_madre" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="peda">Pedagogicos</label>
+                            <input type="text" id="peda"  class="form-control" required [(ngModel)]="alumno.aspectos_pedagogicos" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="perso">Personal</label>
+                            <input type="text" id="perso"  class="form-control" required [(ngModel)]="alumno.cod_aspectos_personal" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="fic">Ficha</label>
+                            <input type="text" id="fic"  class="form-control" required [(ngModel)]="alumno.codigo_ficha" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="form.checkValidity()? insert_alumno() : null" class="btn btn-primary">Insertar</button>
+                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="toggleShow()" class="btn btn-primary">Esconder</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+  <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Actualización de Registro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="container-md">
+                <div class="container-md">
+                    <form action="/" enctype="multipart/form-data" method="put" ngNativeValidate #form1>
+                        <div class="form-row">
+                            <label for="identidad">No. de Identidad</label>
+                            <input type="text" id="identidad" class="form-control" required [(ngModel)]="alumno.id_alumno" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-row">
+                            <label for="nombres">Nombres</label>
+                            <div class="input-group" id="nombres">
+                                <input type="text" placeholder="Primer Nombre" class="form-control" required [(ngModel)]="alumno.nombre_alumno" [ngModelOptions]="{standalone: true}">
+                                <input type="text" placeholder="Segundo Nombre" class="form-control" [(ngModel)]="alumno.segundo_nombre" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label for="apellidos">Apellidos</label>
+                            <div class="input-group" id="apellidos">
+                                <input type="text" placeholder="Primer Apellido" class="form-control" required [(ngModel)]="alumno.apellido_alumno" [ngModelOptions]="{standalone: true}">
+                                <input type="text" placeholder="Segundo Apellido" class="form-control" [(ngModel)]="alumno.segundo_apellido" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group offset-md-3 col-md-6">
+                                    <label for="nacim">Fecha de Nacimiento</label>
+                                    <input type="date" format="yyyy/mm/dd"  class="form-control" required [(ngModel)]="alumno.fecha_nacimiento" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="sexo" style="margin-right: 10px;">Sexo</label>
+                                <div class="form-check">
+                                    <input type="radio" required [(ngModel)]="alumno.sexo" name="optadio" id="op1" value="Masculino">
+                                    <label class="form-check-label" for="op1">Masculino</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio"  [(ngModel)]="alumno.sexo" name="optadio" id="op2" value="Femenino">
+                                    <label class="form-check-label" for="op2">Femenino</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="nac">Nacionalidad</label>
+                                <input type="text" id="nac" class="form-control" required [(ngModel)]="alumno.nacionalidad" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label for="proce">Lugar de Procedencia</label>
+                            <textarea cols="6" rows="3" type="text" id="proce"  class="form-control" [(ngModel)]="alumno.lugar_procedencia" [ngModelOptions]="{standalone: true}"></textarea>
+                        </div>
+                        <div class="form-row">
+                            <label for="resi">Residencia Actual de los Padres</label>
+                            <textarea cols="6" rows="3" type="text" id="resi"  class="form-control" [(ngModel)]="alumno.residencia_actual" [ngModelOptions]="{standalone: true}"></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group offset-md-3 col-md-6">
+                                <label for="correo">Correo Electrónico</label>
+                            <input type="text" id="correo"  class="form-control" required [(ngModel)]="alumno.correo" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="telc">Teléfono Celular</label>
+                                <input type="text" id="telc"  class="form-control" [(ngModel)]="alumno.tel_celular" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="telca">Teléfono Casa</label>
+                                <input type="text" id="telca"  class="form-control" [(ngModel)]="alumno.tel_casa" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="telt">Teléfono Trabajo</label>
+                                <input type="text" id="telt"  class="form-control" [(ngModel)]="alumno.tel_trabajo" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label for="nomp">Nombre de su Padre o Guardian</label>
+                            <input type="text" id="nomp"  class="form-control" required [(ngModel)]="alumno.nombre_padre" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="ocupp">Ocupación de su Padre o Guardian</label>
+                                <input type="text" id="ocupp"  class="form-control" required [(ngModel)]="alumno.ocupacion_padre" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="telp">Teléfono de su Padre o Guardian</label>
+                                <input type="text" id="telp"  class="form-control" required [(ngModel)]="alumno.tel_padre" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label for="nomm">Nombre de su Madre o Guardian</label>
+                            <input type="text" id="nomm"  class="form-control" [(ngModel)]="alumno.nombre_madre" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="ocupm">Ocupación de su Madre o Guardian</label>
+                                <input type="text" id="ocupm"  class="form-control" [(ngModel)]="alumno.ocupacion_madre" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="telm">Teléfono de su Madre o Guardian</label>
+                                <input type="text" id="telm"  class="form-control" [(ngModel)]="alumno.tel_madre" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="peda">Pedagogicos</label>
+                                <input type="text" id="peda"  class="form-control" required [(ngModel)]="alumno.aspectos_pedagogicos" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="perso">Personal</label>
+                                <input type="text" id="perso"  class="form-control" required [(ngModel)]="alumno.cod_aspectos_personal" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="fic">Ficha</label>
+                                <input type="text" id="fic"  class="form-control" required [(ngModel)]="alumno.codigo_ficha" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" (click)="form1.checkValidity()? update_alumno() : errores()"  class="btn btn-primary">Actualizar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+
+

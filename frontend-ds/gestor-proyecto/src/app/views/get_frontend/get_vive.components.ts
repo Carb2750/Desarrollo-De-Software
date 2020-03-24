@@ -3,35 +3,32 @@ import {Router} from '@angular/router';
 import { AppService } from 'src/app/app.service';
 import swal from 'sweetalert2';
 
-
 @Component({
     selector: 'get_frontend',
-    templateUrl: './get_cursos.components.html'
+    templateUrl: './get_vive.components.html'
 })
 
-export class GetCursoComponent implements OnInit{
-    public listado_curso:any[];
+export class GetViveComponent implements OnInit{
+    public listado_vive:any[];
 
     constructor(public service:AppService) {
-        this.listado_curso = [];
+        this.listado_vive = [];
     }
 
-
+    
     public id;
 
-    public curso = {
-        desc_curso:""
+    public vive = {
+        descripcion:""
     }
 
     ngOnInit(){
-        this.get_cursos();
+        this.get_vive();
     }
 
-
-
-    get_cursos() {
+    get_vive() {
         var response;
-        this.service.get_cursos().subscribe(
+        this.service.get_convive().subscribe(
             data => response = data,
             err => {
                 swal.fire({
@@ -41,15 +38,15 @@ export class GetCursoComponent implements OnInit{
                 })
             },
             () => {
-                this.listado_curso = response;
+                this.listado_vive = response;
                 console.log(response);
             }
         )
     }
 
-    insert_curso(){
+    insert_vive(){
         var response;
-        this.service.insert_curso(this.curso).subscribe(
+        this.service.insert_convive(this.vive).subscribe(
         data => response = data,
         err => {
             swal.fire({
@@ -59,29 +56,29 @@ export class GetCursoComponent implements OnInit{
             })
         },
         ()=> {
-            this.curso={
-                desc_curso:""
+            this.vive={
+                descripcion:""
             }
             swal.fire({
-                title: 'Curso agregado exitosamente!',
+                title: 'Datos guardados exitosamente!',
                 icon: 'success',
                 showConfirmButton: false,
                 timer: 1500
             })
-        this.get_cursos();
+        this.get_vive();
         }
         );
     }
 
-    delete_curso(id){
+    delete_vive(id){
         console.log("Registro a borrar: " + id);
         var response;
         var load={
-            cod_curso:id
+            codigo_convive:id
         }
         swal.fire({
             title: 'Advertencia!',
-            text: "Esta seguro desea borrar este curso?",
+            text: "Esta seguro desea borrar este registro?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -90,7 +87,7 @@ export class GetCursoComponent implements OnInit{
             cancelButtonText: 'Cancelar'
           }).then((result) => {
             if (result.value) {
-                this.service.delete_curso(load).subscribe(
+                this.service.delete_convive(load).subscribe(
                     data => response = data,
                     err => {
                         swal.fire({
@@ -100,29 +97,30 @@ export class GetCursoComponent implements OnInit{
                         })
                     },
                     ()=> {
-                        this.get_cursos();
+                        this.get_vive();
                     }
                     );
               swal.fire(
                 'Borrado!',
-                'El curso a sido borrado.',
+                'El registro a sido borrado.',
                 'success'
               )
             }
           })
-        
     }
 
 
 
 
-    update_curso(){
+    update_vive(){
         console.log("Registro a editar: " + this.id);
         var response;
         var load={
-            cod_curso:this.id
+            codigo_convive:this.id
         };
-        this.service.update_curso(load, this.curso).subscribe(
+
+
+        this.service.update_convive(load, this.vive).subscribe(
         data => response = data,
         err => {
             swal.fire({
@@ -132,16 +130,16 @@ export class GetCursoComponent implements OnInit{
             })
         },
         ()=> {
-            this.curso = {
-                desc_curso:""
+            this.vive = {
+                descripcion:""
             };
             swal.fire({
-                title: 'Curso actualizado exitosamente!',
+                title: 'Datos actualizados exitosamente!',
                 icon: 'success',
                 showConfirmButton: false,
                 timer: 1500
             })
-            this.get_cursos();
+            this.get_vive();
         }
         );
         
@@ -162,4 +160,6 @@ export class GetCursoComponent implements OnInit{
 
     }
 
+
+        
 }

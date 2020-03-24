@@ -5,43 +5,52 @@ import swal from 'sweetalert2';
 
 @Component({
     selector: 'get_frontend',
-    templateUrl: './get_pedagogicos.components.html'
+    templateUrl: './get_alumno.components.html'
 })
 
-export class GetPedagogicosComponent implements OnInit{
-    public listado_pedagogicos:any[];
-    public listado_codigo: any[];
+export class GetAlumnosComponent implements OnInit{
+    public listado_alumno:any[];
 
     constructor(public service:AppService) {
-        this.listado_pedagogicos = [];
+        this.listado_alumno = [];
     }
 
     public id;
     
 
-    public pedagogico = {
-        motivos:"",
-        sexto_grado_cursado:"",
-        ubicacion_centro_anterior:"",
-        codigo_escuela:"",
-        codigo_rendimiento:"",
-        cod_asignatura_dificultad:"",
-        cod_asignatura_facilidad:"",
-        codigo_estudio:"",
-        cod_consideracion:"",
-        obs_reportes:"",
-        obs_expulsion:"",
-        obs_reprobado:""
+    public alumno = {
+        id_alumno:"",
+        nombre_alumno:"",
+        segundo_nombre:"",
+        apellido_alumno:"",
+        segundo_apellido:"",
+        fecha_nacimiento:"",
+        sexo:"",
+        nacionalidad:"",
+        lugar_procedencia:"",
+        residencia_actual:"",
+        nombre_padre:"",
+        tel_padre:"",
+        ocupacion_padre:"",
+        nombre_madre:"",
+        tel_madre:"",
+        ocupacion_madre:"",
+        aspectos_pedagogicos:"",
+        cod_aspectos_personal:"",
+        tel_celular:"",
+        tel_casa:"",
+        tel_trabajo:"",
+        correo:"",
+        codigo_ficha:""
     }
 
     ngOnInit(){
-        this.get_pedagogicos();
-        this.get_codigos();
+        this.get_alumno();
     }
 
-    get_pedagogicos() {
+    get_alumno() {
         var response;
-        this.service.get_pedagogicos().subscribe(
+        this.service.get_alumno().subscribe(
             data => response = data,
             err => {
                 swal.fire({
@@ -51,7 +60,7 @@ export class GetPedagogicosComponent implements OnInit{
                 })
             },
             () => {
-                this.listado_pedagogicos = response;
+                this.listado_alumno = response;
                 console.log(response);
             }
         )
@@ -65,45 +74,44 @@ export class GetPedagogicosComponent implements OnInit{
         })
     }
 
-    get_codigos() {
+    
+    insert_alumno(){
         var response;
-        this.service.get_tipoescuela().subscribe(
-            data => response = data,
-            err => {
-                this.listado_codigo = [];
-            },
-            () => {
-                this.listado_codigo = response;
-                console.log(response);
-            }
-        )
-    }
-
-    insert_pedagogico(){
-        var response;
-        this.service.insert_pedagogico(this.pedagogico).subscribe(
+        this.service.insert_alumno(this.alumno).subscribe(
         data => response = data,
         err => {
+            console.log(response);
             swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Algo salio mal!',
-                })
+            })
         },
         ()=> {
-            this.pedagogico = {
-                motivos:"",
-                sexto_grado_cursado:"",
-                ubicacion_centro_anterior:"",
-                codigo_escuela:"",
-                codigo_rendimiento:"",
-                cod_asignatura_dificultad:"",
-                cod_asignatura_facilidad:"",
-                codigo_estudio:"",
-                cod_consideracion:"",
-                obs_reportes:"",
-                obs_expulsion:"",
-                obs_reprobado:""
+            this.alumno = {
+                    id_alumno:"",
+                    nombre_alumno:"",
+                    segundo_nombre:"",
+                    apellido_alumno:"",
+                    segundo_apellido:"",
+                    fecha_nacimiento:"",
+                    sexo:"",
+                    nacionalidad:"",
+                    lugar_procedencia:"",
+                    residencia_actual:"",
+                    nombre_padre:"",
+                    tel_padre:"",
+                    ocupacion_padre:"",
+                    nombre_madre:"",
+                    tel_madre:"",
+                    ocupacion_madre:"",
+                    aspectos_pedagogicos:"",
+                    cod_aspectos_personal:"",
+                    tel_celular:"",
+                    tel_casa:"",
+                    tel_trabajo:"",
+                    correo:"",
+                    codigo_ficha:""
                 }
                 swal.fire({
                     title: 'Registro creado exitosamente!',
@@ -112,16 +120,16 @@ export class GetPedagogicosComponent implements OnInit{
                     timer: 1500
                 })
                 
-        this.get_pedagogicos();
+        this.get_alumno();
         }
         );
     }
 
-    delete_pedagogico(id){
+    delete_alumno(id){
         console.log("Registro a borrar: " + id);
         var response;
         var load={
-        codigo_pedagogicos:id
+        id_alumno:id
         }
         swal.fire({
             title: 'Advertencia!',
@@ -134,7 +142,7 @@ export class GetPedagogicosComponent implements OnInit{
             cancelButtonText: 'Cancelar'
           }).then((result) => {
             if (result.value) {
-                this.service.delete_pedagogico(load).subscribe(
+                this.service.delete_alumno(load).subscribe(
                     data => response = data,
                     err => {
                         swal.fire({
@@ -144,7 +152,7 @@ export class GetPedagogicosComponent implements OnInit{
                         })
                     },
                     ()=> {
-                        this.get_pedagogicos();
+                        this.get_alumno();
                     }
                     );
               swal.fire(
@@ -160,15 +168,13 @@ export class GetPedagogicosComponent implements OnInit{
 
 
 
-    update_pedagogico(){
+    update_alumno(){
         console.log("Registro a editar: " + this.id);
         var response;
         var load={
-            codigo_pedagogicos:this.id
+            id_alumno:this.id
         };
-
-
-        this.service.update_pedagogico(load, this.pedagogico).subscribe(
+        this.service.update_alumno(load, this.alumno).subscribe(
         data => response = data,
         err => {
             swal.fire({
@@ -178,19 +184,30 @@ export class GetPedagogicosComponent implements OnInit{
             })
         },
         ()=> {
-            this.pedagogico={
-                motivos:"",
-                sexto_grado_cursado:"",
-                ubicacion_centro_anterior:"",
-                codigo_escuela:"",
-                codigo_rendimiento:"",
-                cod_asignatura_dificultad:"",
-                cod_asignatura_facilidad:"",
-                codigo_estudio:"",
-                cod_consideracion:"",
-                obs_reportes:"",
-                obs_expulsion:"",
-                obs_reprobado:""
+            this.alumno={
+                    id_alumno:"",
+                    nombre_alumno:"",
+                    segundo_nombre:"",
+                    apellido_alumno:"",
+                    segundo_apellido:"",
+                    fecha_nacimiento:"",
+                    sexo:"",
+                    nacionalidad:"",
+                    lugar_procedencia:"",
+                    residencia_actual:"",
+                    nombre_padre:"",
+                    tel_padre:"",
+                    ocupacion_padre:"",
+                    nombre_madre:"",
+                    tel_madre:"",
+                    ocupacion_madre:"",
+                    aspectos_pedagogicos:"",
+                    cod_aspectos_personal:"",
+                    tel_celular:"",
+                    tel_casa:"",
+                    tel_trabajo:"",
+                    correo:"",
+                    codigo_ficha:""
             };
             swal.fire({
                 title: 'Registro actualizado exitosamente!',
@@ -198,7 +215,7 @@ export class GetPedagogicosComponent implements OnInit{
                 showConfirmButton: false,
                 timer: 1500
             })
-            this.get_pedagogicos();
+            this.get_alumno();
         }
         );
         
