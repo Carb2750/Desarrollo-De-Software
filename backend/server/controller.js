@@ -1301,58 +1301,6 @@ router.post('/insert_estudioconstante', (req, res, next) => {
             });
         });
 
-    
-/*router.get('/get_fichadocumento', (req, res, next) => {
-    var query = 'select * from `ficha_documentos`';
-    con.query(query, (err, result, fields) => {
-        if(err) {
-            next(err);
-        } else {
-            res.status(200).json(result);
-        }
-    });
-});
-
-
-router.put('/update_fichadocumentos', (req, res, next) => {
-        var query = 'UPDATE `ficha_documento` SET `tipo_documento` = ? WHERE `num_ficha` = ? and `tipo_documento` = ?';
-        var values = [req.body.tipo_documento,
-                        req.body.num_ficha];
-        con.query(query, values, (err, result, fields) => {
-            if(err) {
-               next(err);
-            } else {
-                res.status(200).json(result);
-            }
-        });
-    });
-
-router.delete('/delete_fichadocumentos', (req, res, next) => {
-        var query = 'DELETE FROM `ficha_documentos` WHERE `num_ficha` = ? and `tipo_documento` = ?';
-        var values = [req.query.num_ficha,
-                        req.query.tipo_documento];
-        con.query(query, values, (err, result, fields) => {
-            if(err) {
-               next(err);
-            } else {
-                res.status(200).json(result);
-            }
-        });
-    });
-
-router.post('/insert_fichadocumento', (req, res, next) => {
-        var query = 'INSERT INTO `ficha_documentos` (`num_ficha`,`tipo_documento`) VALUES (?,?)';
-        var values = [req.body.num_ficha,
-                        req.body.tipo_documento];
-        con.query(query, values, (err, result, fields) => {
-            if(err) {
-                next(err);
-            } else {
-                res.status(200).json(result);
-            }
-        });
-    });*/
-
 
 router.get('/get_fichacompleta', (req, res, next) => {
     var query = 'select `alumnos datos`.`id_alumno` as  `id_alumno`, `alumnos datos`.`codigo_expediente` as `codigo_expediente`, `alumnos datos`.`fecha_expediente` as `fecha_expediente`,  `alumnos datos`.`nombre_alumno` as `nombre_alumno`,`alumnos datos`.`apellido_alumno` as `apellido_alumno`,`alumnos datos`.`fecha_nacimiento` as `fecha_nacimiento`,`alumnos datos`.`sexo` as `sexo`, `curso`.`desc_curso` as `desc_curso`, `seccion`.`desc_seccion` as `desc_seccion`, `modalidad`.`desc_modadlidad` as `desc_modadlidad`, `jornada`.`desc_jornada` as `desc_jornada`,`ficha`.`anio` as `anio`, `alumnos datos`.`nombre_padre` as `nombre_padre`,`alumnos datos`.`tel_padre` as `tel_padre`, `alumnos datos`.`nombre_madre` as `nombre_madre`, `alumnos datos`.`tel_madre` as `tel_madre`, `alumnos datos`.`tel_casa` as `tel_casa`, `alumnos datos`.`tel_trabajo` as `tel_trabajo`, `alumnos datos`.`correo` as `correo`, `alumnos datos`.`residencia_actual` as `residencia_actual`,`ficha`.`comparte_hogar` as  `comparte_hogar`, `ficha`.`obs_inst_proced` as `obs_inst_proced`, `ficha`.`indice_acad` as `indice_acad`, `ficha`.`obs_repite_curso` as `obs_repite_curso`, `ficha`.`obs_materia_restrada` as `obs_materia_restrada`, `ficha`.`obs_beca` as `obs_beca`,`ficha`.`num_emergencia` as `num_emergencia`, `ficha`.`motivacion_ingreso` as `motivacion_ingreso`, `ficha`.`observaciones` as `observaciones` from `alumnos datos` join `ficha` on `alumnos datos`.`codigo_ficha` = `ficha`.`num_ficha` join `seccion` on `ficha`.`cod_seccion` = `seccion`.`cod_seccion` join `curso` on `ficha`.`cod_curso` = `curso`.`cod_curso` join `modalidad` on `ficha`.`cod_modalidad` = `modalidad`.`cod_modalidad` join `jornada` on `ficha`.`cod_jornada` = `jornada`.`cod_jornada` join `ciudad` on `ficha`.`cod_ciudad` = `ciudad`.`cod_ciudad` where id_alumno = ?';
@@ -1384,7 +1332,7 @@ router.get('/get_registrocompleto', (req, res, next) => {
 
 
 router.get('/get_alumno', (req, res, next) => {
-    var query = 'select `id_alumno` as `id_alumno`, `codigo_expediente` as `codigo_expediente`, `fecha_expediente` as `fecha_expediente`, `nombre_alumno` as `nombre_alumno`, `segundo_nombre` as `segundo_nombre`, `apellido_alumno` as `apellido_alumno`, `segundo_apellido` as `segundo_apellido`, `fecha_nacimiento` as `fecha_nacimiento`, `sexo` as `sexo`,`nacionalidad` as `nacionalidad`, `correo` as `correo`, `lugar_procedencia` as `lugar_procedencia`, `residencia_actual` as `residencia_actual`, `tel_celular` as `tel_celular`, `tel_casa` as `tel_casa`, `tel_trabajo` as `tel_trabajo`, `nombre_padre` as `nombre_padre`, `tel_padre` as `tel_padre`, `ocupacion_padre` as `ocupacion_padre`, `nombre_madre` as `nombre_madre`, `tel_madre` as `tel_madre`, `ocupacion_madre` as `ocupacion_madre`, `aspectos_pedagogicos` as `aspectos_pedagogicos`, `cod_aspectos_personal` as `cod_aspectos_personal`, `codigo_ficha` as `codigo_ficha` from `alumnos datos`';
+    var query = 'select `id_alumno` as `id_alumno`, `codigo_expediente` as `codigo_expediente`, `fecha_expediente` as `fecha_expediente`, `nombre_alumno` as `nombre_alumno`, `segundo_nombre` as `segundo_nombre`, `apellido_alumno` as `apellido_alumno`, `segundo_apellido` as `segundo_apellido`, DATE_FORMAT(FROM_DAYS(DATEDIFF(now(),`fecha_nacimiento`)), "%Y")+0 AS Edad , `fecha_nacimiento` as `fecha_nacimiento`, `sexo` as `sexo`,`nacionalidad` as `nacionalidad`, `correo` as `correo`, `lugar_procedencia` as `lugar_procedencia`, `residencia_actual` as `residencia_actual`, `tel_celular` as `tel_celular`, `tel_casa` as `tel_casa`, `tel_trabajo` as `tel_trabajo`, `nombre_padre` as `nombre_padre`, `tel_padre` as `tel_padre`, `ocupacion_padre` as `ocupacion_padre`, `nombre_madre` as `nombre_madre`, `tel_madre` as `tel_madre`, `ocupacion_madre` as `ocupacion_madre`, `aspectos_pedagogicos` as `aspectos_pedagogicos`, `cod_aspectos_personal` as `cod_aspectos_personal`, `codigo_ficha` as `codigo_ficha` from `alumnos datos`';
     con.query(query, (err, result, fields) => {
         if(err) {
             next(err);
@@ -1477,17 +1425,6 @@ router.delete('/delete_alumno', (req, res, next) => {
         });
 });
 
-router.get('/get_alumnos_transtornos', (req, res, next) => {
-    var query = 'select `descripcion` from `alumnos_transtornos` join `transtornos` on `alumnos_transtornos`.`codigo_trans` = `transtornos`.`codigo_trans` where `alumnos_transtornos`.`codigo_expediente` = ?';
-    var values = [req.query.codigo_expediente];
-    con.query(query, values, (err, result, fields) => {
-        if(err) {
-            next(err);
-        } else {
-            res.status(200).json(result);
-        }
-    });
-});
     
 
 router.get('/get_convive', (req, res, next) => {
@@ -1532,6 +1469,111 @@ router.delete('/delete_convive', (req, res, next) => {
         con.query(query, values, (err, result, fields) => {
             if(err) {
                next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+router.get('/get_alumnotranstorno', (req, res, next) => {
+    var query = 'select  `alumnos_transtornos`.`codigo_detalle` as `codigo_detalle`,`alumnos datos`.`id_alumno` as `id_alumno`, `transtornos`.`descripcion` as `descripcion` from `alumnos_transtornos` join `alumnos datos` on `alumnos datos`.`codigo_expediente` = `alumnos_transtornos`.`codigo_expediente` join `transtornos` on `transtornos`.`codigo_trans` = `alumnos_transtornos`.`codigo_trans` order by `codigo_detalle`';
+    con.query(query, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+
+router.put('/update_alumnotranstorno', (req, res, next) => {
+        var query = 'UPDATE `alumnos_transtornos` SET `codigo_expediente` = ?, `codigo_trans` = ? WHERE `codigo_detalle`= ?';
+        var values = [req.body.codigo_expediente,
+                        req.body.codigo_trans,
+                        req.body.codigo_detalle];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+               next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+router.delete('/delete_alumnotranstorno', (req, res, next) => {
+        var query = 'DELETE FROM `alumnos_transtornos` WHERE `codigo_detalle` = ?';
+        var values = [req.query.codigo_detalle];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+               next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+
+
+
+router.post('/insert_alumnotranstorno', (req, res, next) => {
+        var query = 'INSERT INTO `alumnos_transtornos` (`codigo_expediente`,`codigo_trans`) VALUES (?,?)';
+        var values = [req.body.codigo_expediente,
+                        req.body.codigo_trans];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+                next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+
+router.get('/get_fichadocumentos', (req, res, next) => {
+    var query = 'SELECT `ficha_documentos`.`codigo_detalles` as `codigo_detalles`,`alumnos datos`.`id_alumno` as `id_alumno`,`documentos`.`descrip_doc` as `descrip_doc` FROM `ficha_documentos` join `documentos` on `ficha_documentos`.`tipo_documento` = `documentos`.`tipo_documento`  join `ficha` on `ficha_documentos`.`num_ficha` = `ficha`.`num_ficha` join `alumnos datos` on `alumnos datos`.`codigo_ficha` = `ficha`.`num_ficha` order by `codigo_detalles`';
+    con.query(query, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.put('/update_fichadocumentos', (req, res, next) => {
+        var query = 'UPDATE `ficha_documentos` SET `num_ficha` = ?, `tipo_documento` = ?  WHERE `codigo_detalles` = ?';
+        var values = [req.body.num_ficha,
+                        req.body.tipo_documento,
+                        req.body.codigo_detalles];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+               next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+    
+router.delete('/delete_fichadocumentos', (req, res, next) => {
+        var query = 'DELETE FROM `ficha_documentos` WHERE `codigo_detalles` = ?';
+        var values = [req.query.codigo_detalles];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+               next(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    });
+
+router.post('/insert_fichadocumentos', (req, res, next) => {
+        var query = 'INSERT INTO `ficha_documentos` (`num_ficha`,`tipo_documento`) VALUES (?,?)';
+        var values = [req.body.num_ficha,
+                        req.body.tipo_documento];
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+                next(err);
             } else {
                 res.status(200).json(result);
             }

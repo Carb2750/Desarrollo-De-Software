@@ -29,6 +29,8 @@ import { GetPersonalesComponent } from './views/get_frontend/get_personales.comp
 import { GetViveComponent } from './views/get_frontend/get_vive.components';
 import { GetAlumnosComponent } from './views/get_frontend/get_alumno.components';
 import { GetFichasComponent } from './views/get_frontend/get_fichas.components';
+import { GetDetalletransComponent } from './views/get_frontend/get_alumnostrastornos.components';
+import { GetFichaDocumentoComponent } from './views/get_frontend/get_fichadocumentos.components';
 const routes: Routes = [
     {
         path: 'listado_usuarios',
@@ -142,6 +144,14 @@ const routes: Routes = [
     {
         path: 'fichas',
         component: GetFichasComponent
+    },
+    {
+        path: 'alumnos_trastornos',
+        component: GetDetalletransComponent
+    },
+    {
+        path: 'ficha_documentos',
+        component: GetFichaDocumentoComponent
     }
 ];
 

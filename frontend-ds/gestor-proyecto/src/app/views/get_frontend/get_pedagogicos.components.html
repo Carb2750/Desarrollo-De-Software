@@ -92,105 +92,41 @@
                     </div>
                     <div class="form-group">
                         <label for="rendimiento" style="margin-right: 10px;">Rendimiento Academico</label>
-                        <div class="form-check form-check-inline" id="rendimiento">
-                            <input type="radio" required [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio" id="ms" value="1">
-                            <label class="form-check-label" for="ms">Muy Satisfactorio</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input type="radio"  [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio" id="satisfactorio" value="2">
-                            <label class="form-check-label" for="satisfactorio">Satisfactorio</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio" id="insuficiente" value="3">
-                            <label class="form-check-label" for="insuficiente">Insuficiente</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio" id="avanzado" value="4">
-                            <label class="form-check-label" for="avanzado">Avanzado</label>
-                        </div>
+                        <select id="rendimiento" class="form-control" required [(ngModel)]="pedagogico.codigo_rendimiento" [ngModelOptions]="{standalone: true}" >
+                          <option selected value="">- Seleccione -</option>
+                          <option *ngFor="let x of listado_rendimiento" [value]="x.codigo_rendimiento">{{x.descripcion}}</option>
+                        </select>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="dificultad" style="margin-right: 10px;">Asignatura que presenta dificultad</label>
-                            <div class="form-check form-check-inline" id="dificultad">
-                                <input type="radio" required [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="matd" value="1">
-                                <label class="form-check-label" for="matd">Matemáticas</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="espd" value="2">
-                                <label class="form-check-label" for="espd">Español</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="cnd" value="3">
-                                <label class="form-check-label" for="cnd">CC.NN.</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="csd" value="4">
-                                <label class="form-check-label" for="csd">CC.SS.</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="fd" value="5">
-                                <label class="form-check-label" for="fd">Física</label>
-                            </div>
+                            <select id="dificultad" class="form-control" required [(ngModel)]="pedagogico.cod_asignatura_dificultad" [ngModelOptions]="{standalone: true}" >
+                                <option selected value="">- Seleccione -</option>
+                                <option *ngFor="let x of listado_dificultad" [value]="x.cod_asignatura_dificultad">{{x.descripcion}}</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="facilidad" style="margin-right: 10px;">Asignatura que se le facilita</label>
-                            <div class="form-check form-check-inline" id="facilidad">
-                                <input type="radio"required [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="matf" value="1">
-                                <label class="form-check-label" for="matf">Matemáticas</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="espf" value="2">
-                                <label class="form-check-label" for="espf">Español</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="cnf" value="3">
-                                <label class="form-check-label" for="cnf">CC.NN.</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="csf" value="4">
-                                <label class="form-check-label" for="csf">CC.SS.</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="ff" value="5">
-                                <label class="form-check-label" for="ff">Física</label>
-                            </div>
+                            <select id="facilidad" class="form-control" required [(ngModel)]="pedagogico.cod_asignatura_facilidad" [ngModelOptions]="{standalone: true}" >
+                                <option selected value="">- Seleccione -</option>
+                                <option *ngFor="let x of listado_facilidad" [value]="x.cod_asignatura_facilidad">{{x.descripcion}}</option>
+                              </select>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="estudio" style="margin-right: 10px;">Forma de Estudio</label>
-                            <div class="form-check form-check-inline" id="estudio">
-                                <input type="radio" required [(ngModel)]="pedagogico.codigo_estudio" name="optdio"  id="dia" value="1">
-                                <label class="form-check-label" for="dia">Diariamente</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio" id="se" value="2">
-                                <label class="form-check-label" for="se">Solo para examen</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio" id="ne" value="3">
-                                <label class="form-check-label" for="ne">No estudia</label>
-                            </div>
+                            <select id="estudio" class="form-control" required [(ngModel)]="pedagogico.codigo_estudio" [ngModelOptions]="{standalone: true}" >
+                                <option selected value="">- Seleccione -</option>
+                                <option *ngFor="let x of listado_estudio" [value]="x.codigo_estudio">{{x.descripcion}}</option>
+                              </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="estudiante" style="margin-right: 10px;">Se considera un estudiante</label>
-                            <div class="form-check form-check-inline" id="estudiante">
-                                <input type="radio"required [(ngModel)]="pedagogico.cod_consideracion" name="opadi" id="exc" value="1">
-                                <label class="form-check-label" for="exc">Excelente</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi" id="mb" value="2">
-                                <label class="form-check-label" for="mb">Muy bueno</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi" id="b" value="3">
-                                <label class="form-check-label" for="b">Bueno</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi" id="reg" value="4">
-                                <label class="form-check-label" for="reg">Regular</label>
-                            </div>
+                            <select id="estudiante" class="form-control" required [(ngModel)]="pedagogico.cod_consideracion" [ngModelOptions]="{standalone: true}" >
+                                <option selected value="">- Seleccione -</option>
+                                <option *ngFor="let x of listado_consideracion" [value]="x.cod_consideracion">{{x.descripcion}}</option>
+                              </select>
                         </div>
                     </div>
                     <div class="form-row">
@@ -209,7 +145,7 @@
 
                     </div>
                     <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="form.checkValidity()? insert_pedagogico() : null" class="btn btn-primary">Insertar</button>
-                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="toggleShow()" class="btn btn-primary">Esconder</button>
+                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="toggleShow()" class="btn btn-secondary">Esconder</button>
                 </form>
             </div>
         </div>
@@ -244,112 +180,48 @@
                         </div>
                         <div class="form-group">
                                 <label for="escuel">Tipo de Escuela de la que proviene</label>
-                                <select id="escuela" class="form-control" required [(ngModel)]="pedagogico.codigo_escuela" [ngModelOptions]="{standalone: true}" >
+                                <select id="escuel" class="form-control" required [(ngModel)]="pedagogico.codigo_escuela" [ngModelOptions]="{standalone: true}" >
                                     <option selected value="">- Seleccione -</option>
                                     <option *ngFor="let x of listado_codigo" [value]="x.codigo_escuela">{{x.descripcion}}</option>
                                 </select>                           
                         </div>
                         <div class="form-group">
-                            <label for="rendimiento" style="margin-right: 10px;">Rendimiento Academico</label>
-                            <div class="form-check" id="rendimiento">
-                                <input type="radio" required [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio" id="ms" value="1">
-                                <label class="form-check-label" for="ms">Muy Satisfactorio</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio" id="satisfactorio" value="2">
-                                <label class="form-check-label" for="satisfactorio">Satisfactorio</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio" id="insuficiente" value="3">
-                                <label class="form-check-label" for="insuficiente">Insuficiente</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" [(ngModel)]="pedagogico.codigo_rendimiento" name="optadio" id="avanzado" value="4">
-                                <label class="form-check-label" for="avanzado">Avanzado</label>
-                            </div>
+                            <label for="rendimient" style="margin-right: 10px;">Rendimiento Academico</label>
+                            <select id="rendimient" class="form-control" required [(ngModel)]="pedagogico.codigo_rendimiento" [ngModelOptions]="{standalone: true}" >
+                                <option selected value="">- Seleccione -</option>
+                                <option *ngFor="let x of listado_rendimiento" [value]="x.codigo_rendimiento">{{x.descripcion}}</option>
+                              </select>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="dificultad" style="margin-right: 10px;">Asignatura que presenta dificultad</label>
-                                <div class="form-check" id="dificultad">
-                                    <input type="radio" required [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="matd" value="1">
-                                    <label class="form-check-label" for="matd">Matemáticas</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="espd" value="2">
-                                    <label class="form-check-label" for="espd">Español</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="cnd" value="3">
-                                    <label class="form-check-label" for="cnd">CC.NN.</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="csd" value="4">
-                                    <label class="form-check-label" for="csd">CC.SS.</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_dificultad" name="opadio" id="fd" value="5">
-                                    <label class="form-check-label" for="fd">Física</label>
-                                </div>
+                                <label for="dificulta" style="margin-right: 10px;">Asignatura que presenta dificultad</label>
+                                <select id="dificulta" class="form-control" required [(ngModel)]="pedagogico.cod_asignatura_dificultad" [ngModelOptions]="{standalone: true}" >
+                                    <option selected value="">- Seleccione -</option>
+                                    <option *ngFor="let x of listado_dificultad" [value]="x.cod_asignatura_dificultad">{{x.descripcion}}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="facilidad" style="margin-right: 10px;">Asignatura que se le facilita</label>
-                                <div class="form-check" id="facilidad">
-                                    <input type="radio" required [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="matf" value="1">
-                                    <label class="form-check-label" for="matf">Matemáticas</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="espf" value="2">
-                                    <label class="form-check-label" for="espf">Español</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="cnf" value="3">
-                                    <label class="form-check-label" for="cnf">CC.NN.</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="csf" value="4">
-                                    <label class="form-check-label" for="csf">CC.SS.</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" [(ngModel)]="pedagogico.cod_asignatura_facilidad" name="opdio" id="ff" value="5">
-                                    <label class="form-check-label" for="ff">Física</label>
-                                </div>
+                                <label for="facilida" style="margin-right: 10px;">Asignatura que se le facilita</label>
+                                <select id="facilida" class="form-control" required [(ngModel)]="pedagogico.cod_asignatura_facilidad" [ngModelOptions]="{standalone: true}" >
+                                    <option selected value="">- Seleccione -</option>
+                                    <option *ngFor="let x of listado_facilidad" [value]="x.cod_asignatura_facilidad">{{x.descripcion}}</option>
+                                  </select>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="estudio" style="margin-right: 10px;">Forma de Estudio</label>
-                                <div class="form-check" id="estudio">
-                                    <input type="radio" required [(ngModel)]="pedagogico.codigo_estudio" name="optdio"  id="dia" value="1">
-                                    <label class="form-check-label" for="dia">Diariamente</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio" id="se" value="2">
-                                    <label class="form-check-label" for="se">Solo para examen</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" [(ngModel)]="pedagogico.codigo_estudio" name="optdio" id="ne" value="3">
-                                    <label class="form-check-label" for="ne">No estudia</label>
-                                </div>
+                            <div class="form-group col-md-5">
+                                <label for="estudi" style="margin-right: 10px;">Forma de Estudio</label>
+                                <select id="estudi" class="form-control" required [(ngModel)]="pedagogico.codigo_estudio" [ngModelOptions]="{standalone: true}" >
+                                    <option selected value="">- Seleccione -</option>
+                                    <option *ngFor="let x of listado_estudio" [value]="x.codigo_estudio">{{x.descripcion}}</option>
+                                  </select>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="estudiante" style="margin-right: 10px;">Se considera un estudiante</label>
-                                <div class="form-check" id="estudiante">
-                                    <input type="radio" required [(ngModel)]="pedagogico.cod_consideracion" name="opadi" id="exc" value="1">
-                                    <label class="form-check-label" for="exc">Excelente</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi" id="mb" value="2">
-                                    <label class="form-check-label" for="mb">Muy bueno</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi" id="b" value="3">
-                                    <label class="form-check-label" for="b">Bueno</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" [(ngModel)]="pedagogico.cod_consideracion" name="opadi" id="reg" value="4">
-                                    <label class="form-check-label" for="reg">Regular</label>
-                                </div>
+                            <div class="form-group col-md-7">
+                                <label for="estudiant" style="margin-right: 10px;">Se considera un estudiante</label>
+                                <select id="estudiant" class="form-control" required [(ngModel)]="pedagogico.cod_consideracion" [ngModelOptions]="{standalone: true}" >
+                                    <option selected value="">- Seleccione -</option>
+                                    <option *ngFor="let x of listado_consideracion" [value]="x.cod_consideracion">{{x.descripcion}}</option>
+                                  </select>
                             </div>
                         </div>
                         <div class="form-group">

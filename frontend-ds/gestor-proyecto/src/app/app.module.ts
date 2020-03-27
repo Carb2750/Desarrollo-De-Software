@@ -22,7 +22,6 @@ import { GetEstudioComponent } from './views/get_frontend/get_estudio.components
 import { GetDocumentoComponent } from './views/get_frontend/get_documentos.components';
 import { GetModalidadComponent } from './views/get_frontend/get_modalidad.components';
 import { GetEmocionalComponent } from './views/get_frontend/get_emocional.components';
-//import { GetFichaDocumentoComponent } from './views/get_frontend/get_fichadocumentos.components';
 import { GetRelacionAmistosaComponent } from './views/get_frontend/get_relacionamistosa.components';
 import { GetRelacionSocialComponent } from './views/get_frontend/get_relacionsocial.components';
 import { GetRendimientoComponent } from './views/get_frontend/get_rendimiento.components';
@@ -33,6 +32,8 @@ import { GetPersonalesComponent } from './views/get_frontend/get_personales.comp
 import { GetViveComponent } from './views/get_frontend/get_vive.components';
 import { GetAlumnosComponent } from './views/get_frontend/get_alumno.components';
 import { GetFichasComponent } from './views/get_frontend/get_fichas.components';
+import { GetFichaDocumentoComponent } from './views/get_frontend/get_fichadocumentos.components';
+import { GetDetalletransComponent } from './views/get_frontend/get_alumnostrastornos.components';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 
@@ -67,7 +68,9 @@ import {FormsModule} from '@angular/forms';
     GetPersonalesComponent,
     GetViveComponent,
     GetAlumnosComponent,
-    GetFichasComponent
+    GetFichasComponent,
+    GetDetalletransComponent,
+    GetFichaDocumentoComponent
     
   ],
   imports: [

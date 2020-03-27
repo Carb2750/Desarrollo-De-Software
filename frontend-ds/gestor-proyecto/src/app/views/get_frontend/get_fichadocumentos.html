@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .mar3{
+            margin-left: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div  style="margin-right: 25px;"  class="mar3 text-center">
+        <h1 class="text-success"> Mantenimiento Detalle de Ficha Documentos </h1>
+    
+   
+            <table  class="table table-hover table-striped table-info text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Id del Alumno</th>
+                    <th>Documento</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let x of listado_detallesficha">
+                    <td>{{x.codigo_detalles}}</td>
+                    <td>{{x.id_alumno}}</td>
+                    <td>{{x.descrip_doc}}</td>
+                    <td><button (click)="pass_code(x.codigo_detalles)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
+                    <td><button (click)="delete_fichadocumento(x.codigo_detalles)" class="btn btn-danger">Borrar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    
+
+
+    
+    <button  style="margin-bottom: 10px;" (click)="toggleShow()" class="mar3 btn btn-primary">Nuevo registro</button>
+    <div *ngIf="isShown" class="row container-fluid"  id="divshow">
+        <div class="container-md border rounded border-primary" style="margin-bottom: 10px;">
+            <div class="container-md">
+                <form action="/" enctype="multipart/form-data"  method="post" ngNativeValidate #form>
+                    <div class="form-row">
+                        <div class="form-group offset-md-3 col-md-6">
+                            <label for="alu">Id del Alumno</label>
+                            <select id="alu" class="form-control" required [(ngModel)]="fichadocumento.num_ficha" [ngModelOptions]="{standalone: true}" >
+                              <option selected value="">- Seleccione -</option>
+                              <option *ngFor="let x of listado_codigo_alumnos" [value]="x.codigo_ficha">{{x.id_alumno}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group offset-sm-3 col-md-3">
+                                <div class="form-check ">
+                                <input class="form-check-input" type="checkbox" id="cv" value="1" [(ngModel)]="fichadocumento.tipo_documento" [ngModelOptions]="{standalone: true}"> 
+                                <label class="form-check-label" for="cv">Curriculum Vitae</label>
+                              </div>
+                              <div class="form-check ">
+                                <input class="form-check-input" type="checkbox" id="tit"  value="2" [(ngModel)]="fichadocumento2.tipo_documento" [ngModelOptions]="{standalone: true}">
+                                <label class="form-check-label" for="tit">Titulo</label>
+                              </div>
+                              <div class="form-check ">
+                                <input class="form-check-input" type="checkbox" id="diplo" value="4" [(ngModel)]="fichadocumento4.tipo_documento" [ngModelOptions]="{standalone: true}"> 
+                                <label class="form-check-label" for="diplo">Diploma</label>
+                              </div>
+                              <div class="form-check  ">
+                                <input class="form-check-input" type="checkbox" id="part"  value="5" [(ngModel)]="fichadocumento5.tipo_documento" [ngModelOptions]="{standalone: true}">
+                                <label class="form-check-label" for="part">Partida Nacimiento</label>
+                              </div>
+                              <div class="form-check ">
+                                <input class="form-check-input" type="checkbox" id="pasp" value="6" [(ngModel)]="fichadocumento6.tipo_documento" [ngModelOptions]="{standalone: true}"> 
+                                <label class="form-check-label" for="pasp">Pasaporte</label>
+                              </div>
+                              <div class="form-check  ">
+                                <input class="form-check-input" type="checkbox" id="cali"  value="7" [(ngModel)]="fichadocumento7.tipo_documento" [ngModelOptions]="{standalone: true}">
+                                <label class="form-check-label" for="cali">Calificaciones de años anteriores</label>
+                              </div>
+                              <div class="form-check ">
+                                <input class="form-check-input" type="checkbox" id="idpad" value="8" [(ngModel)]="fichadocumento8.tipo_documento" [ngModelOptions]="{standalone: true}"> 
+                                <label class="form-check-label" for="idpad">Identificacion de los padres</label>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="offset-md-4">
+                        <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;"
+                        (click)="revisar31()? fichadocumento.tipo_documento='1': fichadocumento.tipo_documento=null" (click)="revisar32()? fichadocumento2.tipo_documento='2': fichadocumento2.tipo_documento=null" 
+                        (click)="revisar34()? fichadocumento4.tipo_documento='4': fichadocumento4.tipo_documento=null" (click)="revisar35()? fichadocumento5.tipo_documento='5': fichadocumento5.tipo_documento=null" 
+                        (click)="revisar36()? fichadocumento6.tipo_documento='6': fichadocumento6.tipo_documento=null" (click)="revisar37()? fichadocumento7.tipo_documento='7': fichadocumento7.tipo_documento=null" 
+                        (click)="revisar38()? fichadocumento8.tipo_documento='8': fichadocumento8.tipo_documento=null" 
+                        (click)="form.checkValidity()?  insert_fichadocumento() : null" (click)="form.checkValidity()?  insert_fichadocumento2() : null" (click)="form.checkValidity()?   insert_fichadocumento4() : null"
+                        (click)="form.checkValidity()?  insert_fichadocumento5() : null" (click)="form.checkValidity()?  insert_fichadocumento6() : null" (click)="form.checkValidity()?  insert_fichadocumento7() : null" 
+                        (click)="form.checkValidity()?  insert_fichadocumento8() : null"
+                        class="btn btn-primary">Insertar</button>
+                        <button style="margin-top: 5px; margin-left: 140px; margin-bottom: 10px;" (click)="toggleShow()"  class="btn btn-secondary">Esconder</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Actualización</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-md">
+                    <div class="container-md">
+                        <form ngNativeValidate #form1>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="alum">Id del Alumno</label>
+                                    <select id="alum" class="form-control" required [(ngModel)]="fichadocumento.num_ficha" [ngModelOptions]="{standalone: true}" >
+                                      <option selected value="">- Seleccione -</option>
+                                      <option *ngFor="let x of listado_codigo_alumnos" [value]="x.codigo_ficha">{{x.id_alumno}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="docum">Documentos</label>
+                                    <select id="docum" class="form-control" required [(ngModel)]="fichadocumento.tipo_documento" [ngModelOptions]="{standalone: true}" >
+                                      <option selected value="">- Seleccione -</option>
+                                      <option *ngFor="let x of listado_codigo_documentos" [value]="x.tipo_documento">{{x.descrip_doc}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="submit" (click)="form1.checkValidity()? update_fichadocumento() : null"  class="btn btn-primary">Actualizar</button>
+              </div>
+          </div>
+        </div>
+      </div>
+
+</body>
+</html>
