@@ -465,4 +465,41 @@ export class AppService{
         ficha.num_ficha = load.num_ficha
         return this.httpClient.put(this.endPoint + "/update_ficha", ficha, {params: load, responseType: 'json'});
     }
+
+    get_alumnostranstornos():Observable<any>{
+        return this.httpClient.get(this.endPoint + "/get_alumnotranstorno", {responseType: 'json'});
+    }
+
+
+    insert_alumnostranstornos(load):Observable<any>{
+        return this.httpClient.post(this.endPoint + "/insert_alumnotranstorno", load, { responseType: 'json' });
+    }
+
+    delete_alumnostranstornos(load):Observable<any>{
+        return this.httpClient.delete(this.endPoint + "/delete_alumnotranstorno", {params:load, responseType: 'json' });
+    }
+
+    update_alumnostranstornos(load, detalle):Observable<any> {
+        detalle.codigo_detalle = load.codigo_detalle
+        return this.httpClient.put(this.endPoint + "/update_alumnotranstorno", detalle, {params: load, responseType: 'json'});
+    }
+
+
+    get_fichadocumentos():Observable<any>{
+        return this.httpClient.get(this.endPoint + "/get_fichadocumentos", {responseType: 'json'});
+    }
+
+
+    insert_fichadocumentos(load):Observable<any>{
+        return this.httpClient.post(this.endPoint + "/insert_fichadocumentos", load, { responseType: 'json' });
+    }
+
+    delete_fichadocumentos(load):Observable<any>{
+        return this.httpClient.delete(this.endPoint + "/delete_fichadocumentos", {params:load, responseType: 'json' });
+    }
+
+    update_fichadocumentos(load, detalle):Observable<any> {
+        detalle.codigo_detalles = load.codigo_detalles
+        return this.httpClient.put(this.endPoint + "/update_fichadocumentos", detalle, {params: load, responseType: 'json'});
+    }
 }

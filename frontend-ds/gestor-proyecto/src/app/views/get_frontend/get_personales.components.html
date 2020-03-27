@@ -82,7 +82,7 @@
                                Si escoge la opción "Otro", especifique en el espacio proporcionado
                               </small>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label for="otro1">Especificación</label>
                             <input type="text" id="otro1" class="form-control" [(ngModel)]="personal.obs_residencias" [ngModelOptions]="{standalone: true}">
                         </div>
@@ -95,9 +95,9 @@
                               <option *ngFor="let x of listado_codigo_amistosa" [value]="x.cod_relaciones_amistosas">{{x.descripcion}}</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label for="por">Explique porque</label>
-                            <textarea cols="4" rows="4" type="text" id="por"  class="form-control" [(ngModel)]="personal.obs_relaciones_amistosas" [ngModelOptions]="{standalone: true}"></textarea>
+                            <textarea cols="6" rows="4" type="text" id="por"  class="form-control" [(ngModel)]="personal.obs_relaciones_amistosas" [ngModelOptions]="{standalone: true}"></textarea>
                         </div>
                     </div>
                     <div class="form-row" style="margin-top: 40px;">
@@ -124,7 +124,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group offset-md-3 col-md-6">
                             <label for="noviazgo">Tiene novio</label>
                             <input type="text" id="noviazgo" class="form-control" required [(ngModel)]="personal.obs_noviazgos" [ngModelOptions]="{standalone: true}">
                             <small id="helper2" class="form-text text-muted">
@@ -133,7 +133,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-5">
+                        <div class="form-group offset-md-1 col-md-5">
                             <label for="deporte">Que actividad deportiva le gusta?</label>
                             <select id="deporte" class="form-control" required [(ngModel)]="personal.cod_act_deportiva" [ngModelOptions]="{standalone: true}" >
                               <option selected value="">- Seleccione -</option>
@@ -143,13 +143,13 @@
                                Si escoge la opción "Otro", especifique en el espacio proporcionado
                               </small>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group  col-md-5">
                             <label for="otro2">Otro deporte</label>
                             <input type="text" id="otro2" class="form-control" [(ngModel)]="personal.obs_actividades_deportivas" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-5">
+                        <div class="form-group offset-md-1 col-md-5">
                             <label for="arte">Participa en alguna actividad artística?</label>
                             <select id="arte" class="form-control" required [(ngModel)]="personal.cod_act_artistica" [ngModelOptions]="{standalone: true}" >
                               <option selected value="">- Seleccione -</option>
@@ -159,7 +159,7 @@
                                Si escoge la opción "Otro", especifique en el espacio proporcionado
                               </small>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-5">
                             <label for="otro3">Otra arte</label>
                             <input type="text" id="otro3"  class="form-control" [(ngModel)]="personal.obs_actividades_artisticas" [ngModelOptions]="{standalone: true}">
                         </div>
@@ -182,7 +182,7 @@
                         </div>
                     </div>
                     <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="form.checkValidity()? insert_personal() : null" class="btn btn-primary">Insertar</button>
-                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="toggleShow()" class="btn btn-primary">Esconder</button>
+                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="toggleShow()" class="btn btn-secondary">Esconder</button>
                 </form>
             </div>
         </div>
@@ -228,7 +228,7 @@
                             <textarea cols="4" rows="4" type="text" id="porq"  class="form-control" [(ngModel)]="personal.obs_relaciones_amistosas" [ngModelOptions]="{standalone: true}"></textarea>
                         </div>
                         <div class="form-row">
-                             <div class="form-group col-md-6">
+                             <div class="form-group col-md-12">
                                 <label for="rss">Como es en las relaciones sociales</label>
                                 <select id="rss" class="form-control" required [(ngModel)]="personal.cod_relaciones_sociales" [ngModelOptions]="{standalone: true}" >
                                   <option selected value="">- Seleccione -</option>
@@ -253,7 +253,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <label for="noviazg">Tiene novio</label>
                                 <input type="text" id="noviazg" class="form-control" required [(ngModel)]="personal.obs_noviazgos" [ngModelOptions]="{standalone: true}">
                                 <small id="helper7" class="form-text text-muted">
@@ -294,7 +294,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <label for="reli">Qué religion práctica?</label>
                                 <input type="text" id="reli"  class="form-control" required [(ngModel)]="personal.obs_religion" [ngModelOptions]="{standalone: true}">
                             </div>

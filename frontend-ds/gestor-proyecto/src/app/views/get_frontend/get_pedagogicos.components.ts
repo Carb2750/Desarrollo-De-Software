@@ -11,6 +11,11 @@ import swal from 'sweetalert2';
 export class GetPedagogicosComponent implements OnInit{
     public listado_pedagogicos:any[];
     public listado_codigo: any[];
+    public listado_rendimiento: any[];
+    public listado_dificultad: any[];
+    public listado_facilidad: any[];
+    public listado_estudio: any[];
+    public listado_consideracion: any[];
 
     constructor(public service:AppService) {
         this.listado_pedagogicos = [];
@@ -37,6 +42,11 @@ export class GetPedagogicosComponent implements OnInit{
     ngOnInit(){
         this.get_pedagogicos();
         this.get_codigos();
+        this.get_rendimiento();
+        this.get_dificultad();
+        this.get_facilidad();
+        this.get_estudio();
+        this.get_consideracion();
     }
 
     get_pedagogicos() {
@@ -74,6 +84,76 @@ export class GetPedagogicosComponent implements OnInit{
             },
             () => {
                 this.listado_codigo = response;
+                console.log(response);
+            }
+        )
+    }
+
+    get_rendimiento() {
+        var response;
+        this.service.get_rendimientoacademico().subscribe(
+            data => response = data,
+            err => {
+                this.listado_rendimiento = [];
+            },
+            () => {
+                this.listado_rendimiento = response;
+                console.log(response);
+            }
+        )
+    }
+
+    get_dificultad() {
+        var response;
+        this.service.get_dificultades().subscribe(
+            data => response = data,
+            err => {
+                this.listado_dificultad = [];
+            },
+            () => {
+                this.listado_dificultad = response;
+                console.log(response);
+            }
+        )
+    }
+
+    get_facilidad() {
+        var response;
+        this.service.get_facilidades().subscribe(
+            data => response = data,
+            err => {
+                this.listado_facilidad = [];
+            },
+            () => {
+                this.listado_facilidad = response;
+                console.log(response);
+            }
+        )
+    }
+
+    get_estudio() {
+        var response;
+        this.service.get_estudios().subscribe(
+            data => response = data,
+            err => {
+                this.listado_estudio = [];
+            },
+            () => {
+                this.listado_estudio = response;
+                console.log(response);
+            }
+        )
+    }
+
+    get_consideracion() {
+        var response;
+        this.service.get_consideraciones().subscribe(
+            data => response = data,
+            err => {
+                this.listado_consideracion = [];
+            },
+            () => {
+                this.listado_consideracion = response;
                 console.log(response);
             }
         )

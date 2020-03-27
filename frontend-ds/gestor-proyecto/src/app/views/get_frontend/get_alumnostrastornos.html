@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .mar3{
+            margin-left: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div  style="margin-right: 25px;"  class="mar3 text-center">
+        <h1 class="text-success"> Mantenimiento Detalle de Alumnos Trastornos </h1>
+    
+   
+            <table  class="table table-hover table-striped table-info text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Id del Alumno</th>
+                    <th>Trastorno</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let x of listado_detalles">
+                    <td>{{x.codigo_detalle}}</td>
+                    <td>{{x.id_alumno}}</td>
+                    <td>{{x.descripcion}}</td>
+                    <td><button (click)="pass_code(x.codigo_detalle)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
+                    <td><button (click)="delete_detalletrans(x.codigo_detalle)" class="btn btn-danger">Borrar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    
+
+
+    
+    <button  style="margin-bottom: 10px;" (click)="toggleShow()" class="mar3 btn btn-primary">Nuevo registro</button>
+    <div *ngIf="isShown" class="row container-fluid"  id="divshow">
+        <div class="container-md border rounded border-primary" style="margin-bottom: 10px;">
+            <div class="container-md">
+                <form action="/" enctype="multipart/form-data"  method="post" ngNativeValidate #form>
+                    <div class="form-row">
+                        <div class="form-group offset-md-3 col-md-6">
+                            <label for="alu">Id del Alumno</label>
+                            <select id="alu" class="form-control" required [(ngModel)]="detalletrans.codigo_expediente" [ngModelOptions]="{standalone: true}" >
+                              <option selected value="">- Seleccione -</option>
+                              <option *ngFor="let x of listado_codigo_alumnos" [value]="x.codigo_expediente">{{x.id_alumno}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group offset-sm-3 col-md-3">
+                                <div class="form-check ">
+                                <input class="form-check-input" type="checkbox" id="is" value="1" [(ngModel)]="detalletrans.codigo_trans" [ngModelOptions]="{standalone: true}"> 
+                                <label class="form-check-label" for="is">Ideas Suicidas</label>
+                              </div>
+                              <div class="form-check ">
+                                <input class="form-check-input" type="checkbox" id="taq"  value="2" [(ngModel)]="detalletrans2.codigo_trans" [ngModelOptions]="{standalone: true}">
+                                <label class="form-check-label" for="taq">Taquicardia</label>
+                              </div>
+                              <div class="form-check ">
+                                <input class="form-check-input" type="checkbox" id="bajo" value="3" [(ngModel)]="detalletrans3.codigo_trans" [ngModelOptions]="{standalone: true}"> 
+                                <label class="form-check-label" for="bajo">Bajo Rendimiento Academico</label>
+                              </div>
+                              <div class="form-check  ">
+                                <input class="form-check-input" type="checkbox" id="alt"  value="4" [(ngModel)]="detalletrans4.codigo_trans" [ngModelOptions]="{standalone: true}">
+                                <label class="form-check-label" for="alt">Alteraciones Menstruales</label>
+                              </div>
+                              <div class="form-check ">
+                                <input class="form-check-input" type="checkbox" id="cig" value="5" [(ngModel)]="detalletrans5.codigo_trans" [ngModelOptions]="{standalone: true}"> 
+                                <label class="form-check-label" for="cig">Adicciones a cigarro - alcohol</label>
+                              </div>
+                              <div class="form-check  ">
+                                <input class="form-check-input" type="checkbox" id="drog"  value="6" [(ngModel)]="detalletrans6.codigo_trans" [ngModelOptions]="{standalone: true}">
+                                <label class="form-check-label" for="drog">Otras drogas</label>
+                              </div>
+                              <div class="form-check ">
+                                <input class="form-check-input" type="checkbox" id="psi" value="7" [(ngModel)]="detalletrans7.codigo_trans" [ngModelOptions]="{standalone: true}"> 
+                                <label class="form-check-label" for="psi">Enfermedades psiquiátricas</label>
+                              </div>
+                              <div class="form-check  ">
+                                <input class="form-check-input" type="checkbox" id="vom"  value="8" [(ngModel)]="detalletrans8.codigo_trans" [ngModelOptions]="{standalone: true}">
+                                <label class="form-check-label" for="vom">Vomitos</label>
+                              </div>
+                              <div class="form-check ">
+                                <input class="form-check-input" type="checkbox" id="con" value="9" [(ngModel)]="detalletrans9.codigo_trans" [ngModelOptions]="{standalone: true}"> 
+                                <label class="form-check-label" for="con">Trastornos de conciencia</label>
+                              </div>
+                              <div class="form-check  ">
+                                <input class="form-check-input" type="checkbox" id="ins"  value="10" [(ngModel)]="detalletrans10.codigo_trans" [ngModelOptions]="{standalone: true}">
+                                <label class="form-check-label" for="ins">Insomnio</label>
+                              </div>
+                              <div class="form-check  ">
+                                <input class="form-check-input" type="checkbox" id="alim"  value="11" [(ngModel)]="detalletrans11.codigo_trans" [ngModelOptions]="{standalone: true}">
+                                <label class="form-check-label" for="alim">Trastornos alimenticios</label>
+                              </div>
+                        </div>
+                        <div class="form-group  col-md-3">
+                            <div class="form-check ">
+                            <input class="form-check-input" type="checkbox" id="desm" value="12" [(ngModel)]="detalletrans12.codigo_trans" [ngModelOptions]="{standalone: true}"> 
+                            <label class="form-check-label" for="desm">Desmayos</label>
+                          </div>
+                          <div class="form-check ">
+                            <input class="form-check-input" type="checkbox" id="memoria"  value="13" [(ngModel)]="detalletrans13.codigo_trans" [ngModelOptions]="{standalone: true}">
+                            <label class="form-check-label" for="memoria">Trastornos de memoria</label>
+                          </div>
+                          <div class="form-check ">
+                            <input class="form-check-input" type="checkbox" id="concen" value="14" [(ngModel)]="detalletrans14.codigo_trans" [ngModelOptions]="{standalone: true}"> 
+                            <label class="form-check-label" for="concen">Problemas de concentración</label>
+                          </div>
+                          <div class="form-check  ">
+                            <input class="form-check-input" type="checkbox" id="pesa"  value="15" [(ngModel)]="detalletrans15.codigo_trans" [ngModelOptions]="{standalone: true}">
+                            <label class="form-check-label" for="pesa">Pesadillas</label>
+                          </div>
+                          <div class="form-check ">
+                            <input class="form-check-input" type="checkbox" id="cefa" value="16" [(ngModel)]="detalletrans16.codigo_trans" [ngModelOptions]="{standalone: true}"> 
+                            <label class="form-check-label" for="cefa">Cefaleas (dolor de cabeza)</label>
+                          </div>
+                          <div class="form-check  ">
+                            <input class="form-check-input" type="checkbox" id="indi"  value="17" [(ngModel)]="detalletrans17.codigo_trans" [ngModelOptions]="{standalone: true}">
+                            <label class="form-check-label" for="indi">Indisciplina</label>
+                          </div>
+                          <div class="form-check ">
+                            <input class="form-check-input" type="checkbox" id="mare" value="18" [(ngModel)]="detalletrans18.codigo_trans" [ngModelOptions]="{standalone: true}"> 
+                            <label class="form-check-label" for="mare">Mareos</label>
+                          </div>
+                          <div class="form-check  ">
+                            <input class="form-check-input" type="checkbox" id="sudo"  value="19" [(ngModel)]="detalletrans19.codigo_trans" [ngModelOptions]="{standalone: true}">
+                            <label class="form-check-label" for="sudo">Sudoración</label>
+                          </div>
+                          <div class="form-check ">
+                            <input class="form-check-input" type="checkbox" id="aten" value="20" [(ngModel)]="detalletrans20.codigo_trans" [ngModelOptions]="{standalone: true}"> 
+                            <label class="form-check-label" for="aten">Falta de atención</label>
+                          </div>
+                          <div class="form-check  ">
+                            <input class="form-check-input" type="checkbox" id="depre"  value="21" [(ngModel)]="detalletrans21.codigo_trans" [ngModelOptions]="{standalone: true}">
+                            <label class="form-check-label" for="depre">Depresión</label>
+                          </div>
+                          <div class="form-check  ">
+                            <input class="form-check-input" type="checkbox" id="viol"  value="22" [(ngModel)]="detalletrans22.codigo_trans" [ngModelOptions]="{standalone: true}">
+                            <label class="form-check-label" for="viol">Uso de violencia</label>
+                          </div>
+                    </div>
+                    </div>
+                    <div class="offset-md-4">
+                        <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;"(click)="revisar1()? detalletrans.codigo_trans='1': detalletrans.codigo_trans=null" (click)="revisar2()? detalletrans2.codigo_trans='2': detalletrans2.codigo_trans=null" (click)="revisar3()? detalletrans3.codigo_trans='3': detalletrans3.codigo_trans=null"
+                        (click)="revisar4()? detalletrans4.codigo_trans='4': detalletrans4.codigo_trans=null" (click)="revisar5()? detalletrans5.codigo_trans='5': detalletrans5.codigo_trans=null" (click)="revisar6()? detalletrans6.codigo_trans='6': detalletrans6.codigo_trans=null" 
+                        (click)="revisar7()? detalletrans7.codigo_trans='7': detalletrans7.codigo_trans=null" (click)="revisar8()? detalletrans8.codigo_trans='8': detalletrans8.codigo_trans=null" (click)="revisar9()? detalletrans9.codigo_trans='9': detalletrans9.codigo_trans=null" 
+                        (click)="revisar10()? detalletrans10.codigo_trans='10': detalletrans10.codigo_trans=null" (click)="revisar11()? detalletrans11.codigo_trans='11': detalletrans11.codigo_trans=null" (click)="revisar12()? detalletrans12.codigo_trans='12': detalletrans12.codigo_trans=null" 
+                        (click)="revisar13()? detalletrans13.codigo_trans='13': detalletrans13.codigo_trans=null" (click)="revisar14()? detalletrans14.codigo_trans='14': detalletrans14.codigo_trans=null" (click)="revisar15()? detalletrans15.codigo_trans='15': detalletrans15.codigo_trans=null"
+                        (click)="revisar16()? detalletrans16.codigo_trans='16': detalletrans16.codigo_trans=null" (click)="revisar17()? detalletrans17.codigo_trans='17': detalletrans17.codigo_trans=null" (click)="revisar18()? detalletrans18.codigo_trans='18': detalletrans18.codigo_trans=null"
+                        (click)="revisar19()? detalletrans19.codigo_trans='19': detalletrans19.codigo_trans=null" (click)="revisar20()? detalletrans20.codigo_trans='20': detalletrans20.codigo_trans=null" (click)="revisar21()? detalletrans21.codigo_trans='21': detalletrans21.codigo_trans=null"
+                        (click)="revisar22()? detalletrans22.codigo_trans='22': detalletrans22.codigo_trans=null"
+                        (click)="form.checkValidity()?  insert_detalletrans() : null" (click)="form.checkValidity()?  insert_detalletrans2() : null" (click)="form.checkValidity()?  insert_detalletrans3() : null" (click)="form.checkValidity()?  insert_detalletrans4() : null"
+                        (click)="form.checkValidity()?  insert_detalletrans5() : null" (click)="form.checkValidity()?  insert_detalletrans6() : null" (click)="form.checkValidity()?  insert_detalletrans7() : null" (click)="form.checkValidity()?  insert_detalletrans8() : null"
+                        (click)="form.checkValidity()?  insert_detalletrans9() : null" (click)="form.checkValidity()?  insert_detalletrans10() : null" (click)="form.checkValidity()?  insert_detalletrans11() : null" (click)="form.checkValidity()?  insert_detalletrans12() : null"
+                        (click)="form.checkValidity()?  insert_detalletrans13() : null" (click)="form.checkValidity()?  insert_detalletrans14() : null" (click)="form.checkValidity()?  insert_detalletrans15() : null" (click)="form.checkValidity()?  insert_detalletrans16() : null"
+                        (click)="form.checkValidity()?  insert_detalletrans17() : null" (click)="form.checkValidity()?  insert_detalletrans18() : null" (click)="form.checkValidity()?  insert_detalletrans19() : null" (click)="form.checkValidity()?  insert_detalletrans20() : null"
+                        (click)="form.checkValidity()?  insert_detalletrans21() : null" (click)="form.checkValidity()?  insert_detalletrans22() : null" 
+                        class="btn btn-primary">Insertar</button>
+                        <button style="margin-top: 5px; margin-left: 140px; margin-bottom: 10px;" (click)="toggleShow()"  class="btn btn-secondary">Esconder</button>
+                    </div>
+                   
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Actualización</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-md">
+                    <div class="container-md">
+                        <form ngNativeValidate #form1>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="alum">Id del Alumno</label>
+                                    <select id="alum" class="form-control" required [(ngModel)]="detalletrans.codigo_expediente" [ngModelOptions]="{standalone: true}" >
+                                      <option selected value="">- Seleccione -</option>
+                                      <option *ngFor="let x of listado_codigo_alumnos" [value]="x.codigo_expediente">{{x.id_alumno}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="tras">Trastorno</label>
+                                    <select id="tras" class="form-control" required [(ngModel)]="detalletrans.codigo_trans" [ngModelOptions]="{standalone: true}" >
+                                      <option selected value="">- Seleccione -</option>
+                                      <option *ngFor="let x of listado_codigo_trastornos" [value]="x.codigo_trans">{{x.descripcion}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="submit" (click)="form1.checkValidity()? update_detalletrans() : null"  class="btn btn-primary">Actualizar</button>
+              </div>
+          </div>
+        </div>
+      </div>
+
+</body>
+</html>
