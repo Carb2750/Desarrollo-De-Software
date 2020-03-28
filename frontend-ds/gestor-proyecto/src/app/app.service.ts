@@ -502,4 +502,13 @@ export class AppService{
         detalle.codigo_detalles = load.codigo_detalles
         return this.httpClient.put(this.endPoint + "/update_fichadocumentos", detalle, {params: load, responseType: 'json'});
     }
+
+
+    login(payload):Observable<any>{
+        return this.httpClient.post(this.endPoint + "/login", payload, { responseType: 'json' });
+    }
+
+    set_session(token){
+        localStorage.setItem("Intae", JSON.stringify(token));
+    }
 }

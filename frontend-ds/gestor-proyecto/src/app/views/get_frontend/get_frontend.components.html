@@ -19,7 +19,6 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Usuario</th>
-                    <th>Contraseña</th>
                     <th>Correo</th>
                     <th>Tipo</th>
                     <th></th>
@@ -31,7 +30,6 @@
                     <td>{{x.nombre}}</td>
                     <td>{{x.apellido}}</td>
                     <td>{{x.usuario}}</td>
-                    <td>{{x.pass}}</td>
                     <td>{{x.correo}}</td>
                     <td>{{x.tipo}}</td>
                     <td><button (click)="pass_code(x.codigo)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
@@ -67,13 +65,13 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="cont">Contraseña</label>
-                            <input type="text" id="cont" class="form-control" required [(ngModel)]="usuario.pass" [ngModelOptions]="{standalone: true}">
+                            <input type="password" id="cont" class="form-control" required [(ngModel)]="usuario.pass" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="cor">Correo</label>
-                            <input type="text" id="cor" class="form-control" required [(ngModel)]="usuario.correo" [ngModelOptions]="{standalone: true}">
+                            <input type="email" id="cor" class="form-control" required [(ngModel)]="usuario.correo" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="usuario" style="margin-right: 10px;">Tipo de Usuario</label>
@@ -126,7 +124,7 @@
                         </div>
                         <div class="form-group">
                             <label for="cor">Correo</label>
-                            <input type="text" id="cor" class="form-control" required [(ngModel)]="usuario.correo" [ngModelOptions]="{standalone: true}">
+                            <input type="email" id="cor" class="form-control" required [(ngModel)]="usuario.correo" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group">
                             <label for="usuario" style="margin-right: 10px;">Tipo de Usuario</label>

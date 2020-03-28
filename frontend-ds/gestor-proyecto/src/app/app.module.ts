@@ -6,8 +6,6 @@ import { AppComponent } from './app.component';
 import {AppService} from './app.service'
 
 import { GetFrontendComponent } from './views/get_frontend/get_frontend.components';
-import { GetFichaCompletaComponent } from './views/get_frontend/get_fichacompleta.components';
-import { GetRegistroComponent } from './views/get_frontend/get_registro.components';
 import { GetCiudadComponent } from './views/get_frontend/get_ciudad.components';
 import { GetDeporteComponent } from './views/get_frontend/get_deportes.components';
 import { GetArteComponent } from './views/get_frontend/get_artes.components';
@@ -34,6 +32,9 @@ import { GetAlumnosComponent } from './views/get_frontend/get_alumno.components'
 import { GetFichasComponent } from './views/get_frontend/get_fichas.components';
 import { GetFichaDocumentoComponent } from './views/get_frontend/get_fichadocumentos.components';
 import { GetDetalletransComponent } from './views/get_frontend/get_alumnostrastornos.components';
+import { FormularioComponent } from './views/get_frontend/formulario.components';
+import { LoginComponent } from './views/get_frontend/login.components';
+import { MenuComponent } from './views/get_frontend/menu.components';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 
@@ -42,8 +43,6 @@ import {FormsModule} from '@angular/forms';
   declarations: [
     AppComponent,
     GetFrontendComponent,
-    GetFichaCompletaComponent,
-    GetRegistroComponent,
     GetCiudadComponent,
     GetDeporteComponent,
     GetArteComponent,
@@ -58,7 +57,6 @@ import {FormsModule} from '@angular/forms';
     GetDocumentoComponent,
     GetModalidadComponent,
     GetEmocionalComponent,
-    //GetFichaDocumentoComponent
     GetRelacionAmistosaComponent,
     GetRelacionSocialComponent,
     GetRendimientoComponent,
@@ -70,7 +68,10 @@ import {FormsModule} from '@angular/forms';
     GetAlumnosComponent,
     GetFichasComponent,
     GetDetalletransComponent,
-    GetFichaDocumentoComponent
+    GetFichaDocumentoComponent,
+    FormularioComponent,
+    LoginComponent,
+    MenuComponent
     
   ],
   imports: [
