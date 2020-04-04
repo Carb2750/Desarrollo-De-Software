@@ -2,8 +2,6 @@ import {NgModule, Component} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import { GetFrontendComponent } from './views/get_frontend/get_frontend.components';
-import { GetFichaCompletaComponent } from './views/get_frontend/get_fichacompleta.components';
-import { GetRegistroComponent } from './views/get_frontend/get_registro.components';
 import { GetCiudadComponent } from './views/get_frontend/get_ciudad.components';
 import { GetDeporteComponent } from './views/get_frontend/get_deportes.components';
 import { GetArteComponent } from './views/get_frontend/get_artes.components';
@@ -18,7 +16,6 @@ import { GetEstudioComponent } from './views/get_frontend/get_estudio.components
 import { GetDocumentoComponent } from './views/get_frontend/get_documentos.components';
 import { GetModalidadComponent } from './views/get_frontend/get_modalidad.components';
 import { GetEmocionalComponent } from './views/get_frontend/get_emocional.components';
-//import { GetFichaDocumentoComponent } from './views/get_frontend/get_fichadocumentos.components';
 import { GetRelacionAmistosaComponent } from './views/get_frontend/get_relacionamistosa.components';
 import { GetRelacionSocialComponent } from './views/get_frontend/get_relacionsocial.components';
 import { GetRendimientoComponent } from './views/get_frontend/get_rendimiento.components';
@@ -31,18 +28,15 @@ import { GetAlumnosComponent } from './views/get_frontend/get_alumno.components'
 import { GetFichasComponent } from './views/get_frontend/get_fichas.components';
 import { GetDetalletransComponent } from './views/get_frontend/get_alumnostrastornos.components';
 import { GetFichaDocumentoComponent } from './views/get_frontend/get_fichadocumentos.components';
+import { FormularioComponent } from './views/get_frontend/formulario.components';
+import { GreenBullet} from './views/get_frontend/formulario.components';
+import { RedBullet } from './views/get_frontend/get_alumno.components';
+import { LoginComponent } from './views/get_frontend/login.components';
+import { MenuComponent } from './views/get_frontend/menu.components';
 const routes: Routes = [
     {
         path: 'listado_usuarios',
         component: GetFrontendComponent
-    },
-    {
-        path: 'listado_ficha',
-        component: GetFichaCompletaComponent
-    },
-    {
-        path: 'registro',
-        component: GetRegistroComponent
     },
     {
         path: 'ciudades',
@@ -99,12 +93,7 @@ const routes: Routes = [
     {
         path: 'problemas_emocionales',
         component: GetEmocionalComponent
-    }/*,
-    {
-        path: 'ficha_documentos',
-        component: GetFichaDocumentoComponent
-    }*/
-    ,
+    },
     {
         path: 'relaciones_amistosas',
         component: GetRelacionAmistosaComponent
@@ -152,6 +141,18 @@ const routes: Routes = [
     {
         path: 'ficha_documentos',
         component: GetFichaDocumentoComponent
+    },
+    {
+        path: 'registro',
+        component: FormularioComponent
+    },
+    {
+        path: 'ingreso',
+        component: LoginComponent
+    },
+    {
+        path: 'menu',
+        component: MenuComponent
     }
 ];
 

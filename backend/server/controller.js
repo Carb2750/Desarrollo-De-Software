@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const http = require('http');
 var mysql = require('mysql');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const secret_key = process.env.SECRET_KEY || "prew";
 
 
 var con = mysql.createPool({
@@ -38,8 +41,8 @@ router.get('/get_usuario', (req, res, next) => {
     });
 });
 
-router.post('/insert_usuario', (req, res, next) => {
-    var query = 'INSERT INTO `intae`.`usuarios` (`nombre`, `apellido`, `usuario`, `pass`, `correo`, `tipo`) VALUES (?,?,?,?,?,?)';
+/*router.post('/insert_usuario', (req, res, next) => {
+    var query = 'INSERT INTO `intae`.`usuarios` (`nombre`, `apellido`, `usuario`, `pass`, `correo`, `tipo`) VALUES (?,?,?,md5(?),?,?)';
     var values = [req.body.nombre,
                 req.body.apellido,
                 req.body.usuario,
@@ -53,7 +56,66 @@ router.post('/insert_usuario', (req, res, next) => {
             res.status(200).json(result);
         }
     });
+});*/
+
+
+
+router.post('/insert_usuario', (req, res, next) => {
+    var user = {
+        nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        usuario: req.body.usuario,
+        pass: req.body.pass,
+        correo: req.body.correo,
+        tipo: req.body.tipo
+    };
+
+    const create_user = (user) =>{
+        var query = 'INSERT INTO `usuarios` (`nombre`, `apellido`, `usuario`, `pass`, `correo`, `tipo`) VALUES (?)';
+        con.query(query, [Object.values(user)], (err, result, fields) => {
+            if(err) {
+                console.log(err);
+                res.status(500).send();
+            } else {
+                res.status(200).send();
+            }
+        });
+    };
+    bcrypt.hash(user.pass,10).then((hashedPassword) => {
+        user.pass = hashedPassword;
+        create_user(user);
+    });
 });
+
+
+router.post('/login',(req,res,next) =>{
+    var user = {
+        usuario: req.body.usuario,
+        pass: req.body.pass
+    };
+    const get_token = (user) =>{
+        var query = "SELECT `usuario`, `pass` FROM `usuarios` where `usuario` = ? and `tipo` = 'Administrador'";
+        con.query(query, [user.usuario], (err,result,fields) =>{
+            if(err || result.length == 0){
+                console.log(err);
+                res.status(400).json({message:"Usuario o Contraseña Incorrectos"});
+            }else{
+                bcrypt.compare(user.pass,result[0].PASSWORD, (error, isMatch) =>{
+                    if(isMatch){
+                        var token = jwt.sign({userId: result[0].id}, secret_key);
+                        res.status(200).json({token});
+                    }else if(error){
+                        res.status(200).json(error);
+                    }else{
+                        res.status(400).json({message: "Usuario o Contraseña Incorrectos"});
+                    }
+                });
+            }
+        });
+    }
+    get_token(user);
+});
+
 
 router.put('/update_usuario', (req, res, next) => {
     var query = 'update usuarios set nombre = ?, apellido = ?, usuario = ?, pass = ?, correo = ?, tipo = ? where codigo = ?';
@@ -1303,7 +1365,7 @@ router.post('/insert_estudioconstante', (req, res, next) => {
 
 
 router.get('/get_fichacompleta', (req, res, next) => {
-    var query = 'select `alumnos datos`.`id_alumno` as  `id_alumno`, `alumnos datos`.`codigo_expediente` as `codigo_expediente`, `alumnos datos`.`fecha_expediente` as `fecha_expediente`,  `alumnos datos`.`nombre_alumno` as `nombre_alumno`,`alumnos datos`.`apellido_alumno` as `apellido_alumno`,`alumnos datos`.`fecha_nacimiento` as `fecha_nacimiento`,`alumnos datos`.`sexo` as `sexo`, `curso`.`desc_curso` as `desc_curso`, `seccion`.`desc_seccion` as `desc_seccion`, `modalidad`.`desc_modadlidad` as `desc_modadlidad`, `jornada`.`desc_jornada` as `desc_jornada`,`ficha`.`anio` as `anio`, `alumnos datos`.`nombre_padre` as `nombre_padre`,`alumnos datos`.`tel_padre` as `tel_padre`, `alumnos datos`.`nombre_madre` as `nombre_madre`, `alumnos datos`.`tel_madre` as `tel_madre`, `alumnos datos`.`tel_casa` as `tel_casa`, `alumnos datos`.`tel_trabajo` as `tel_trabajo`, `alumnos datos`.`correo` as `correo`, `alumnos datos`.`residencia_actual` as `residencia_actual`,`ficha`.`comparte_hogar` as  `comparte_hogar`, `ficha`.`obs_inst_proced` as `obs_inst_proced`, `ficha`.`indice_acad` as `indice_acad`, `ficha`.`obs_repite_curso` as `obs_repite_curso`, `ficha`.`obs_materia_restrada` as `obs_materia_restrada`, `ficha`.`obs_beca` as `obs_beca`,`ficha`.`num_emergencia` as `num_emergencia`, `ficha`.`motivacion_ingreso` as `motivacion_ingreso`, `ficha`.`observaciones` as `observaciones` from `alumnos datos` join `ficha` on `alumnos datos`.`codigo_ficha` = `ficha`.`num_ficha` join `seccion` on `ficha`.`cod_seccion` = `seccion`.`cod_seccion` join `curso` on `ficha`.`cod_curso` = `curso`.`cod_curso` join `modalidad` on `ficha`.`cod_modalidad` = `modalidad`.`cod_modalidad` join `jornada` on `ficha`.`cod_jornada` = `jornada`.`cod_jornada` join `ciudad` on `ficha`.`cod_ciudad` = `ciudad`.`cod_ciudad` where id_alumno = ?';
+    var query = 'select `alumnos datos`.`id_alumno` as  `id_alumno`, `alumnos datos`.`codigo_expediente` as `codigo_expediente`, `alumnos datos`.`fecha_expediente` as `fecha_expediente`,  `alumnos datos`.`nombre_alumno` as `nombre_alumno`,`alumnos datos`.`apellido_alumno` as `apellido_alumno`,`alumnos datos`.`fecha_nacimiento` as `fecha_nacimiento`,`alumnos datos`.`sexo` as `sexo`, `curso`.`desc_curso` as `desc_curso`, `seccion`.`desc_seccion` as `desc_seccion`, `modalidad`.`desc_modadlidad` as `desc_modadlidad`, `jornada`.`desc_jornada` as `desc_jornada`,`ficha`.`anio` as `anio`, `alumnos datos`.`nombre_padre` as `nombre_padre`,`alumnos datos`.`tel_padre` as `tel_padre`, `alumnos datos`.`nombre_madre` as `nombre_madre`, `alumnos datos`.`tel_madre` as `tel_madre`, `alumnos datos`.`tel_casa` as `tel_casa`, `alumnos datos`.`tel_trabajo` as `tel_trabajo`, `alumnos datos`.`correo` as `correo`, `alumnos datos`.`residencia_actual` as `residencia_actual`,`ficha`.`comparte_hogar` as  `comparte_hogar`, `ficha`.`obs_inst_proced` as `obs_inst_proced`, `ficha`.`indice_acad` as `indice_acad`, `ficha`.`obs_repite_curso` as `obs_repite_curso`, `ficha`.`obs_materia_restrada` as `obs_materia_restrada`, `ficha`.`obs_beca` as `obs_beca`,`ficha`.`num_emergencia` as `num_emergencia`, `ficha`.`observaciones` as `observaciones` from `alumnos datos` join `ficha` on `alumnos datos`.`codigo_ficha` = `ficha`.`num_ficha` join `seccion` on `ficha`.`cod_seccion` = `seccion`.`cod_seccion` join `curso` on `ficha`.`cod_curso` = `curso`.`cod_curso` join `modalidad` on `ficha`.`cod_modalidad` = `modalidad`.`cod_modalidad` join `jornada` on `ficha`.`cod_jornada` = `jornada`.`cod_jornada` join `ciudad` on `ficha`.`cod_ciudad` = `ciudad`.`cod_ciudad` where id_alumno = ?';
     var values = [req.query.id_alumno];
     con.query(query, values, (err, result, fields) => {
         if(err) {
@@ -1332,7 +1394,7 @@ router.get('/get_registrocompleto', (req, res, next) => {
 
 
 router.get('/get_alumno', (req, res, next) => {
-    var query = 'select `id_alumno` as `id_alumno`, `codigo_expediente` as `codigo_expediente`, `fecha_expediente` as `fecha_expediente`, `nombre_alumno` as `nombre_alumno`, `segundo_nombre` as `segundo_nombre`, `apellido_alumno` as `apellido_alumno`, `segundo_apellido` as `segundo_apellido`, DATE_FORMAT(FROM_DAYS(DATEDIFF(now(),`fecha_nacimiento`)), "%Y")+0 AS Edad , `fecha_nacimiento` as `fecha_nacimiento`, `sexo` as `sexo`,`nacionalidad` as `nacionalidad`, `correo` as `correo`, `lugar_procedencia` as `lugar_procedencia`, `residencia_actual` as `residencia_actual`, `tel_celular` as `tel_celular`, `tel_casa` as `tel_casa`, `tel_trabajo` as `tel_trabajo`, `nombre_padre` as `nombre_padre`, `tel_padre` as `tel_padre`, `ocupacion_padre` as `ocupacion_padre`, `nombre_madre` as `nombre_madre`, `tel_madre` as `tel_madre`, `ocupacion_madre` as `ocupacion_madre`, `aspectos_pedagogicos` as `aspectos_pedagogicos`, `cod_aspectos_personal` as `cod_aspectos_personal`, `codigo_ficha` as `codigo_ficha` from `alumnos datos`';
+    var query = 'select `id_alumno` as `id_alumno`, `expedientes`.`codigo_expediente` as `codigo_expediente`, `expedientes`.`fecha_expediente` as `fecha_expediente`, `nombre_alumno` as `nombre_alumno`, `segundo_nombre` as `segundo_nombre`, `apellido_alumno` as `apellido_alumno`, `segundo_apellido` as `segundo_apellido`, DATE_FORMAT(FROM_DAYS(DATEDIFF(now(),`fecha_nacimiento`)), "%Y")+0 AS Edad , `fecha_nacimiento` as `fecha_nacimiento`, `sexo` as `sexo`,`nacionalidad` as `nacionalidad`, `correo` as `correo`, `lugar_procedencia` as `lugar_procedencia`, `residencia_actual` as `residencia_actual`, `tel_celular` as `tel_celular`, `tel_casa` as `tel_casa`, `tel_trabajo` as `tel_trabajo`, `nombre_padre` as `nombre_padre`, `tel_padre` as `tel_padre`, `ocupacion_padre` as `ocupacion_padre`, `nombre_madre` as `nombre_madre`, `tel_madre` as `tel_madre`, `ocupacion_madre` as `ocupacion_madre`, `aspectos_pedagogicos` as `aspectos_pedagogicos`, `cod_aspectos_personal` as `cod_aspectos_personal`, `codigo_ficha` as `codigo_ficha` from `alumnos datos` join `expedientes` on `alumnos datos`.`codigo_expediente` = `expedientes`.`codigo_expediente`';
     con.query(query, (err, result, fields) => {
         if(err) {
             next(err);
@@ -1380,12 +1442,13 @@ router.put('/update_alumno', (req, res, next) => {
         });
 
 router.post('/insert_alumno', (req, res, next) => {
-    var query = 'INSERT INTO `alumnos datos` (`id_alumno`, `nombre_alumno`, `segundo_nombre`, `apellido_alumno`, `segundo_apellido`, `fecha_nacimiento`, `sexo`, `nacionalidad`, `lugar_procedencia`, `residencia_actual`, `nombre_padre`, `tel_padre`, `ocupacion_padre`, `nombre_madre`, `tel_madre`, `ocupacion_madre`, `aspectos_pedagogicos`, `cod_aspectos_personal`, `tel_celular`, `tel_casa`, `tel_trabajo`, `correo`, `codigo_ficha`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    var query = 'INSERT INTO `alumnos datos` (`id_alumno`, `nombre_alumno`, `segundo_nombre`, `apellido_alumno`, `segundo_apellido`,`codigo_expediente`, `fecha_nacimiento`, `sexo`, `nacionalidad`, `lugar_procedencia`, `residencia_actual`, `nombre_padre`, `tel_padre`, `ocupacion_padre`, `nombre_madre`, `tel_madre`, `ocupacion_madre`, `aspectos_pedagogicos`, `cod_aspectos_personal`, `tel_celular`, `tel_casa`, `tel_trabajo`, `correo`, `codigo_ficha`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
     var values = [req.body.id_alumno,
                 req.body.nombre_alumno,
                 req.body.segundo_nombre,
                 req.body.apellido_alumno,
                 req.body.segundo_apellido,
+                req.body.codigo_expediente,
                 req.body.fecha_nacimiento,
                 req.body.sexo,
                 req.body.nacionalidad,
@@ -1579,5 +1642,61 @@ router.post('/insert_fichadocumentos', (req, res, next) => {
             }
         });
     });
+
+router.get('/get_ultimopersonal', (req, res, next) => {
+    var query = 'SELECT max(`cod_aspectos_personal`) as `cod_aspectos_personal`FROM `aspectos personales`';
+    con.query(query, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.get('/get_ultimopedagogico', (req, res, next) => {
+    var query = 'SELECT max(`codigo_pedagogicos`) as `aspectos_pedagogicos` FROM `aspectos pedagogicos`';
+    con.query(query, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.get('/get_ultimoexpediente', (req, res, next) => {
+    var query = 'SELECT max(`codigo_expediente`) as `codigo_expediente` FROM `expedientes`';
+    con.query(query, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.get('/get_ultimaficha', (req, res, next) => {
+    var query = 'SELECT max(`num_ficha`) as `codigo_ficha`FROM `ficha`';
+    con.query(query, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.post('/insert_expediente', (req, res, next) => {
+    var query = 'INSERT INTO `expedientes` VALUES ()';
+    con.query(query, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
 
 module.exports = router;

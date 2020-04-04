@@ -502,4 +502,33 @@ export class AppService{
         detalle.codigo_detalles = load.codigo_detalles
         return this.httpClient.put(this.endPoint + "/update_fichadocumentos", detalle, {params: load, responseType: 'json'});
     }
+
+
+    login(payload):Observable<any>{
+        return this.httpClient.post(this.endPoint + "/login", payload, { responseType: 'json' });
+    }
+
+    set_session(token){
+        localStorage.setItem("Intae", JSON.stringify(token));
+    }
+
+    get_ultimopersonal():Observable<any>{
+        return this.httpClient.get(this.endPoint + "/get_ultimopersonal", {responseType: 'json'});
+    }
+
+    get_ultimopedagogico():Observable<any>{
+        return this.httpClient.get(this.endPoint + "/get_ultimopedagogico", {responseType: 'json'});
+    }
+
+    get_ultimoexpediente():Observable<any>{
+        return this.httpClient.get(this.endPoint + "/get_ultimoexpediente", {responseType: 'json'});
+    }
+
+    get_ultimaficha():Observable<any>{
+        return this.httpClient.get(this.endPoint + "/get_ultimaficha", {responseType: 'json'});
+    }
+
+    insert_expediente():Observable<any>{
+        return this.httpClient.post(this.endPoint + "/insert_expediente",{ responseType: 'json' });
+    }
 }
