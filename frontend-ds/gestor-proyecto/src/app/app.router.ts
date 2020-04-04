@@ -29,6 +29,8 @@ import { GetFichasComponent } from './views/get_frontend/get_fichas.components';
 import { GetDetalletransComponent } from './views/get_frontend/get_alumnostrastornos.components';
 import { GetFichaDocumentoComponent } from './views/get_frontend/get_fichadocumentos.components';
 import { FormularioComponent } from './views/get_frontend/formulario.components';
+import { GreenBullet} from './views/get_frontend/formulario.components';
+import { RedBullet } from './views/get_frontend/get_alumno.components';
 import { LoginComponent } from './views/get_frontend/login.components';
 import { MenuComponent } from './views/get_frontend/menu.components';
 const routes: Routes = [

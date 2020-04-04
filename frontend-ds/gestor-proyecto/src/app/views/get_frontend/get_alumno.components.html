@@ -94,7 +94,7 @@
                     <div class="form-row">
                         <div class="form-group offset-md-3 col-md-6">
                             <label for="identidad">No. de Identidad</label>
-                            <input type="text" id="identidad" class="form-control" required [(ngModel)]="alumno.id_alumno" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="identidad" class="form-control"  minlength="13" maxlength="13" required [(ngModel)]="alumno.id_alumno" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                     <div class="form-row">
@@ -208,7 +208,9 @@
                             <input type="text" id="fic"  class="form-control" required [(ngModel)]="alumno.codigo_ficha" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
-                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="form.checkValidity()? insert_alumno() : null" class="btn btn-primary">Insertar</button>
+                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit"
+                    (click)="form.checkValidity()? insert_expediente() : null" 
+                    (click)="form.checkValidity()? insert_alumno() : null" class="btn btn-primary">Insertar</button>
                     <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="toggleShow()" class="btn btn-secondary">Esconder</button>
                 </form>
             </div>
@@ -231,7 +233,7 @@
                     <form action="/" enctype="multipart/form-data" method="put" ngNativeValidate #form1>
                         <div class="form-row">
                             <label for="identidad">No. de Identidad</label>
-                            <input type="text" id="identidad" class="form-control" required [(ngModel)]="alumno.id_alumno" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="identidad" class="form-control"  minlength="13" maxlength="13" required [(ngModel)]="alumno.id_alumno" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-row">
                             <label for="nombres">Nombres</label>

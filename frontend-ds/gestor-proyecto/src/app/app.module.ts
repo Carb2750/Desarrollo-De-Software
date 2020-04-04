@@ -33,6 +33,8 @@ import { GetFichasComponent } from './views/get_frontend/get_fichas.components';
 import { GetFichaDocumentoComponent } from './views/get_frontend/get_fichadocumentos.components';
 import { GetDetalletransComponent } from './views/get_frontend/get_alumnostrastornos.components';
 import { FormularioComponent } from './views/get_frontend/formulario.components';
+import { GreenBullet } from './views/get_frontend/formulario.components';
+import { RedBullet } from './views/get_frontend/get_alumno.components';
 import { LoginComponent } from './views/get_frontend/login.components';
 import { MenuComponent } from './views/get_frontend/menu.components';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
@@ -66,10 +68,12 @@ import {FormsModule} from '@angular/forms';
     GetPersonalesComponent,
     GetViveComponent,
     GetAlumnosComponent,
+    RedBullet,
     GetFichasComponent,
     GetDetalletransComponent,
     GetFichaDocumentoComponent,
     FormularioComponent,
+    GreenBullet,
     LoginComponent,
     MenuComponent
     

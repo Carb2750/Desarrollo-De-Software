@@ -12,12 +12,14 @@
         <div class="container-md border rounded border-primary" style="margin-bottom: 10px; padding: 10px 5px;">
             <div class="container-md">
                 <form action="/" enctype="multipart/form-data" method="post" ngNativeValidate #form>
+                    <div  *ngIf="isShown">
+
                     <fieldset>
                         <legend>Datos Generales</legend>
                         <div class="form-row">
                             <div class="form-group offset-md-3 col-md-6">
                                 <label for="identidad">No. de Identidad</label>
-                                <input type="text" id="identidad" class="form-control" required [(ngModel)]="alumno.id_alumno" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="identidad" class="form-control" minlength="13" maxlength="13" required [(ngModel)]="alumno.id_alumno" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
@@ -244,9 +246,17 @@
                                 <label for="obs">Observaciones</label>
                                 <textarea cols="8" rows="6" type="text" id="obs"  class="form-control" [(ngModel)]="ficha.observaciones" [ngModelOptions]="{standalone: true}"></textarea>
                             </div>
+                        </div> 
+                        <div class="form-row">
+                            <div class="form-group  offset-md-5 offset-sm-4 offset-xs-6">
+                                <button *ngIf="isShown5" style="margin-top: 15px; margin-left: 14px; margin-bottom: 20px;" (click)="toggleShow()"  class="btn btn-secondary">Siguiente</button>
+                            </div>
                         </div>
+                    
+                    
                     </fieldset>
-                    <fieldset>
+                    </div>
+                    <fieldset *ngIf="isShown2">
                         <legend>Aspectos Pedagógicos</legend>
                         <div style="margin-top: 8px;" class="form-group">
                             <label for="motivos">Motivos para elegir esta institución</label>
@@ -324,8 +334,14 @@
                             </div>
     
                         </div>
+                        <div class="form-row">
+                            <div class="form-group  offset-md-5 offset-sm-4 offset-xs-6">
+                                <button *ngIf="isShown6" style="margin-top: 15px; margin-left: 14px; margin-bottom: 20px;" (click)="toggleShow2()"  class="btn btn-secondary">Siguiente</button>
+                            </div>
+                        </div>
+                       
                     </fieldset>
-                    <fieldset>
+                    <fieldset *ngIf="isShown3">
                         <legend>Aspectos Personales</legend>
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -437,8 +453,14 @@
                                 <input type="text" id="ayuda" placeholder="Papá, Mamá, amigo, etc." class="form-control" required [(ngModel)]="personal.obs_ayudas" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
+                        <div class="form-row">
+                            <div class="form-group  offset-md-5 offset-sm-4 offset-xs-6">
+                                <button *ngIf="isShown7" style="margin-top: 15px; margin-left: 14px; margin-bottom: 20px;" (click)="toggleShow3()"  class="btn btn-secondary">Siguiente</button>
+                            </div>
+                        </div>
+                        
                     </fieldset>
-                    <fieldset>
+                    <fieldset *ngIf="isShown4">
                         <legend>Trastornos Sintomáticos</legend>
                         <label for="" class="offset-sm-3">A presentado alguno de estos problemas?</label>
                         <div class="form-row">
@@ -535,12 +557,27 @@
                               </div>
                         </div>
                         </div>
+                        <div class="form-row">
+                            <div class="form-group  offset-md-5 offset-sm-4 offset-xs-6">
+                                <button *ngIf="isShown8" style="margin-top: 15px; margin-left: 14px; margin-bottom: 20px;" (click)="toggleShow4()"  class="btn btn-secondary">Revisar</button>
+                            </div>
+                        </div>
+                        
                     </fieldset>
                     <div class="form-row">
                         <div class="form-group offset-md-5 offset-sm-4 offset-xs-6">
-                            <button style="margin-top: 5px; margin-left: 40px; margin-bottom: 10px;" type="submit"
+                            <button *ngIf="isShown9" style="margin-top: 5px; margin-left: 40px; margin-bottom: 10px;" type="submit"
+                            (click)="form.checkValidity()? insert_expediente() : null"
                             (click)="form.checkValidity()? insert_personal() : null" (click)="form.checkValidity()? insert_pedagogico() : null" 
-                            (click)="form.checkValidity()? insert_ficha() : null" (click)="form.checkValidity()? insert_alumno() : null" 
+                            (click)="form.checkValidity()? insert_ficha() : null" 
+                            (click)="form.checkValidity()? insert_alumno() : null" 
+                            (click)="revisar31()? fichadocumento.tipo_documento='1': fichadocumento.tipo_documento=null" (click)="revisar32()? fichadocumento2.tipo_documento='2': fichadocumento2.tipo_documento=null" 
+                            (click)="revisar34()? fichadocumento4.tipo_documento='4': fichadocumento4.tipo_documento=null" (click)="revisar35()? fichadocumento5.tipo_documento='5': fichadocumento5.tipo_documento=null" 
+                            (click)="revisar36()? fichadocumento6.tipo_documento='6': fichadocumento6.tipo_documento=null" (click)="revisar37()? fichadocumento7.tipo_documento='7': fichadocumento7.tipo_documento=null" 
+                            (click)="revisar38()? fichadocumento8.tipo_documento='8': fichadocumento8.tipo_documento=null" 
+                            (click)="form.checkValidity()?  insert_fichadocumento() : null" (click)="form.checkValidity()?  insert_fichadocumento2() : null" (click)="form.checkValidity()?   insert_fichadocumento4() : null"
+                            (click)="form.checkValidity()?  insert_fichadocumento5() : null" (click)="form.checkValidity()?  insert_fichadocumento6() : null" (click)="form.checkValidity()?  insert_fichadocumento7() : null" 
+                            (click)="form.checkValidity()?  insert_fichadocumento8() : null"
                             (click)="revisar1()? detalletrans.codigo_trans='1': detalletrans.codigo_trans=null" (click)="revisar2()? detalletrans2.codigo_trans='2': detalletrans2.codigo_trans=null" (click)="revisar3()? detalletrans3.codigo_trans='3': detalletrans3.codigo_trans=null"
                             (click)="revisar4()? detalletrans4.codigo_trans='4': detalletrans4.codigo_trans=null" (click)="revisar5()? detalletrans5.codigo_trans='5': detalletrans5.codigo_trans=null" (click)="revisar6()? detalletrans6.codigo_trans='6': detalletrans6.codigo_trans=null" 
                             (click)="revisar7()? detalletrans7.codigo_trans='7': detalletrans7.codigo_trans=null" (click)="revisar8()? detalletrans8.codigo_trans='8': detalletrans8.codigo_trans=null" (click)="revisar9()? detalletrans9.codigo_trans='9': detalletrans9.codigo_trans=null" 
@@ -555,13 +592,6 @@
                             (click)="form.checkValidity()?  insert_detalletrans13() : null" (click)="form.checkValidity()?  insert_detalletrans14() : null" (click)="form.checkValidity()?  insert_detalletrans15() : null" (click)="form.checkValidity()?  insert_detalletrans16() : null"
                             (click)="form.checkValidity()?  insert_detalletrans17() : null" (click)="form.checkValidity()?  insert_detalletrans18() : null" (click)="form.checkValidity()?  insert_detalletrans19() : null" (click)="form.checkValidity()?  insert_detalletrans20() : null"
                             (click)="form.checkValidity()?  insert_detalletrans21() : null" (click)="form.checkValidity()?  insert_detalletrans22() : null" 
-                            (click)="revisar31()? fichadocumento.tipo_documento='1': fichadocumento.tipo_documento=null" (click)="revisar32()? fichadocumento2.tipo_documento='2': fichadocumento2.tipo_documento=null" 
-                            (click)="revisar34()? fichadocumento4.tipo_documento='4': fichadocumento4.tipo_documento=null" (click)="revisar35()? fichadocumento5.tipo_documento='5': fichadocumento5.tipo_documento=null" 
-                            (click)="revisar36()? fichadocumento6.tipo_documento='6': fichadocumento6.tipo_documento=null" (click)="revisar37()? fichadocumento7.tipo_documento='7': fichadocumento7.tipo_documento=null" 
-                            (click)="revisar38()? fichadocumento8.tipo_documento='8': fichadocumento8.tipo_documento=null" 
-                            (click)="form.checkValidity()?  insert_fichadocumento() : null" (click)="form.checkValidity()?  insert_fichadocumento2() : null" (click)="form.checkValidity()?   insert_fichadocumento4() : null"
-                            (click)="form.checkValidity()?  insert_fichadocumento5() : null" (click)="form.checkValidity()?  insert_fichadocumento6() : null" (click)="form.checkValidity()?  insert_fichadocumento7() : null" 
-                            (click)="form.checkValidity()?  insert_fichadocumento8() : null"
                             class="btn btn-primary ">Registrar</button>
                         </div>
                     </div>

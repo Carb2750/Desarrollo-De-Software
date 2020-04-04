@@ -3,12 +3,37 @@ import {Router} from '@angular/router';
 import { AppService } from 'src/app/app.service';
 import swal from 'sweetalert2';
 
+
+
+@Component({
+    selector: 'demo',
+    template:`
+        <h2>Hi, demo !!</h2>
+    `
+})
+
+export class GreenBullet
+{
+    static codigo_expediente:number = 0;
+    static cod_aspectos_personal: number = 0;
+    static aspectos_pedagogicos: number = 0;
+    static codigo_ficha: number = 0;
+    get codigo_expediente(): number { return GreenBullet.codigo_expediente; }
+    set codigo_expediente(val: number) { GreenBullet.codigo_expediente = val; }
+    get cod_aspectos_personal(): number { return GreenBullet.cod_aspectos_personal; }
+    set cod_aspectos_personal(val: number) { GreenBullet.cod_aspectos_personal = val; }
+    get aspectos_pedagogicos(): number { return GreenBullet.aspectos_pedagogicos; }
+    set aspectos_pedagogicos(val: number) { GreenBullet.aspectos_pedagogicos = val; }
+    get codigo_ficha(): number { return GreenBullet.codigo_ficha; }
+    set codigo_ficha(val: number) { GreenBullet.codigo_ficha = val; }
+}
+
 @Component({
     selector: 'get_frontend',
     templateUrl: './formulario.components.html'
 })
-
 export class FormularioComponent implements OnInit{
+    
     
 
     constructor(public service:AppService) {
@@ -18,39 +43,13 @@ export class FormularioComponent implements OnInit{
         this.listado_pedagogicos = [];
     }
 
+    
+
+    
 
     public listado_fichas:any[];
-    public listado_fichas1:any[];
-    public listado_fichas2:any[];
-    public listado_fichas4:any[];
-    public listado_fichas5:any[];
-    public listado_fichas6:any[];
-    public listado_fichas7:any[];
-    public listado_fichas8:any[];
     public listado_alumno:any[];
-    public listado_alumno1:any[];
-    public listado_alumno2:any[];
-    public listado_alumno3:any[];
-    public listado_alumno4:any[];
-    public listado_alumno5:any[];
-    public listado_alumno6:any[];
-    public listado_alumno7:any[];
-    public listado_alumno8:any[];
-    public listado_alumno9:any[];
-    public listado_alumno10:any[];
-    public listado_alumno11:any[];
-    public listado_alumno12:any[];
-    public listado_alumno13:any[];
-    public listado_alumno14:any[];
-    public listado_alumno15:any[];
-    public listado_alumno16:any[];
-    public listado_alumno17:any[];
-    public listado_alumno18:any[];
-    public listado_alumno19:any[];
-    public listado_alumno20:any[];
-    public listado_alumno21:any[];
-    public listado_alumno22:any[];
-    public listado_personales:any[];
+    public listado_personales:Object[];
     public listado_pedagogicos:any[];
     public listado_codigo_curso: any[];
     public listado_codigo_seccion: any[];
@@ -70,10 +69,7 @@ export class FormularioComponent implements OnInit{
     public listado_facilidad: any[];
     public listado_estudio: any[];
     public listado_consideracion: any[];
-
-    public numero1;
-    public numero2;
-    public numero3;
+    public puta;
 
     public alumno = {
         id_alumno:"",
@@ -81,6 +77,7 @@ export class FormularioComponent implements OnInit{
         segundo_nombre:"",
         apellido_alumno:"",
         segundo_apellido:"",
+        codigo_expediente:Number(),
         fecha_nacimiento:"",
         sexo:"",
         nacionalidad:"",
@@ -318,6 +315,8 @@ export class FormularioComponent implements OnInit{
             isChecked = false;
         }
         return isChecked;
+
+        
     }
 
     revisar5(){
@@ -640,11 +639,11 @@ export class FormularioComponent implements OnInit{
         this.get_codigos_deportes();
         this.get_codigos_artes();
         this.get_codigos_problemas();
+        
     }
 
     get_codigos_curso() {
         var response;
-        var hola;
         this.service.get_cursos().subscribe(
             data => response = data,
             err => {
@@ -652,11 +651,9 @@ export class FormularioComponent implements OnInit{
             },
             () => {
                 this.listado_codigo_curso = response;
-                console.log(response);
+                
             }
         )
-        
-
     }
 
 
@@ -669,7 +666,7 @@ export class FormularioComponent implements OnInit{
             },
             () => {
                 this.listado_codigo_seccion = response;
-                console.log(response);
+                
             }
         )
     }
@@ -683,7 +680,7 @@ export class FormularioComponent implements OnInit{
             },
             () => {
                 this.listado_codigo_modalidad = response;
-                console.log(response);
+                
             }
         )
     }
@@ -697,7 +694,7 @@ export class FormularioComponent implements OnInit{
             },
             () => {
                 this.listado_codigo_jornada = response;
-                console.log(response);
+                
             }
         )
     }
@@ -711,7 +708,7 @@ export class FormularioComponent implements OnInit{
             },
             () => {
                 this.listado_codigo_ciudad = response;
-                console.log(response);
+                
             }
         )
     }
@@ -725,7 +722,7 @@ export class FormularioComponent implements OnInit{
             },
             () => {
                 this.listado_codigo_convive = response;
-                console.log(response);
+                
             }
         )
 
@@ -743,7 +740,7 @@ export class FormularioComponent implements OnInit{
             },
             () => {
                 this.listado_codigo_sociales = response;
-                console.log(response);
+                
             }
         )
     }
@@ -757,7 +754,7 @@ export class FormularioComponent implements OnInit{
             },
             () => {
                 this.listado_codigo_amistosa = response;
-                console.log(response);
+                
             }
         )
     }
@@ -771,7 +768,7 @@ export class FormularioComponent implements OnInit{
             },
             () => {
                 this.listado_codigo_amigos = response;
-                console.log(response);
+                
             }
         )
     }
@@ -785,7 +782,7 @@ export class FormularioComponent implements OnInit{
             },
             () => {
                 this.listado_codigo_deportes = response;
-                console.log(response);
+                
             }
         )
     }
@@ -799,7 +796,7 @@ export class FormularioComponent implements OnInit{
             },
             () => {
                 this.listado_codigo_artes = response;
-                console.log(response);
+                
             }
         )
     }
@@ -813,7 +810,7 @@ export class FormularioComponent implements OnInit{
             },
             () => {
                 this.listado_codigo_problemas = response;
-                console.log(response);
+                
             }
         )
     }
@@ -827,7 +824,7 @@ export class FormularioComponent implements OnInit{
             },
             () => {
                 this.listado_codigo = response;
-                console.log(response);
+                
             }
         )
     }
@@ -841,7 +838,7 @@ export class FormularioComponent implements OnInit{
             },
             () => {
                 this.listado_rendimiento = response;
-                console.log(response);
+                
             }
         )
     }
@@ -855,7 +852,7 @@ export class FormularioComponent implements OnInit{
             },
             () => {
                 this.listado_dificultad = response;
-                console.log(response);
+                
             }
         )
     }
@@ -869,7 +866,7 @@ export class FormularioComponent implements OnInit{
             },
             () => {
                 this.listado_facilidad = response;
-                console.log(response);
+                
             }
         )
     }
@@ -883,7 +880,7 @@ export class FormularioComponent implements OnInit{
             },
             () => {
                 this.listado_estudio = response;
-                console.log(response);
+                
             }
         )
     }
@@ -897,99 +894,135 @@ export class FormularioComponent implements OnInit{
             },
             () => {
                 this.listado_consideracion = response;
-                console.log(response);
+                
             }
         )
     }
     
-    insert_alumno(){
-        var response,response1,response2,response3;
-    
-        this.service.get_ficha().subscribe(
+    insert_expediente(){
+        var response;
+        this.service.insert_expediente().subscribe(
+        data => response = data,
+        err => {
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
+        },
+        ()=> {
+            swal.fire({
+                title: 'Mejor amigo agregado exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+        );
+    }
+
+    insert_alumno() {
+        var response,response1, response2,response3,response4;
+        var personal = new GreenBullet();
+        var pedagogico = new GreenBullet();
+        var ficha = new GreenBullet();
+        var expediente = new GreenBullet();
+        this.service.get_ultimopersonal().subscribe(
             data => response = data,
             err => {
-                this.listado_fichas = [];
+                this.listado_personales = [];
             },
             () => {
-                this.listado_fichas = response;
-                console.log(response);
-                this.alumno.codigo_ficha = this.listado_fichas.length+1;
-                this.service.get_personales().subscribe(
+                this.listado_personales = response;
+                personal.cod_aspectos_personal=Number(response[0].cod_aspectos_personal)+1;
+                this.service.get_ultimopedagogico().subscribe(
                     data => response1 = data,
                     err => {
-                        this.listado_personales = [];
+                        this.listado_pedagogicos = [];
                     },
                     () => {
-                        this.listado_personales = response1;
-                        console.log(response1);
-                        this.alumno.cod_aspectos_personal = this.listado_personales.length;
-                        this.service.get_pedagogicos().subscribe(
+                        this.listado_pedagogicos = response1;
+                        pedagogico.aspectos_pedagogicos=Number(response1[0].aspectos_pedagogicos)+1;
+                        this.service.get_ultimaficha().subscribe(
                             data => response2 = data,
                             err => {
-                                this.listado_pedagogicos = [];
+                                this.listado_fichas = [];
                             },
                             () => {
-                                this.listado_pedagogicos = response2;
-                                console.log(response2);
-                                this.alumno.aspectos_pedagogicos = this.listado_pedagogicos.length;
-                                this.service.insert_alumno(this.alumno).subscribe(
+                                this.listado_fichas = response2;
+                                ficha.codigo_ficha = Number(response2[0].codigo_ficha);
+                                this.service.get_ultimoexpediente().subscribe(
                                     data => response3 = data,
                                     err => {
-                                        console.log(response3);
-                                        swal.fire({
-                                            icon: 'error',
-                                            title: 'Oops...',
-                                            text: 'Algo salio mal!',
-                                        })
+                                        
                                     },
                                     ()=> {
-                                        this.alumno = {
-                                            id_alumno:"",
-                                            nombre_alumno:"",
-                                            segundo_nombre:"",
-                                            apellido_alumno:"",
-                                            segundo_apellido:"",
-                                            fecha_nacimiento:"",
-                                            sexo:"",
-                                            nacionalidad:"",
-                                            lugar_procedencia:"",
-                                            residencia_actual:"",
-                                            nombre_padre:"",
-                                            tel_padre:"",
-                                            ocupacion_padre:"",
-                                            nombre_madre:"",
-                                            tel_madre:"",
-                                            ocupacion_madre:"",
-                                            aspectos_pedagogicos:Number(""),
-                                            cod_aspectos_personal:Number(""),
-                                            tel_celular:"",
-                                            tel_casa:"",
-                                            tel_trabajo:"",
-                                            correo:"",
-                                            codigo_ficha:Number("")
-                                        }
-                                        swal.fire({
-                                            title: 'Registro creado exitosamente!',
-                                            icon: 'success',
-                                            showConfirmButton: false,
-                                            timer: 1500
-                                        })
+                                        expediente.codigo_expediente=Number(response3[0].codigo_expediente);
+                                        this.alumno.codigo_ficha=ficha.codigo_ficha;
+                                        this.alumno.cod_aspectos_personal=personal.cod_aspectos_personal;
+                                        this.alumno.aspectos_pedagogicos=pedagogico.aspectos_pedagogicos;
+                                        this.alumno.codigo_expediente=expediente.codigo_expediente;           
+                                        this.service.insert_alumno(this.alumno).subscribe(
+                                            data => response4 = data,
+                                            err => {
+                                                console.log(response4);
+                                                swal.fire({
+                                                    icon: 'error',
+                                                    title: 'Oops...',
+                                                    text: 'Algo salio mal!',
+                                                })
+                                            },
+                                            ()=> {
+                                                this.alumno = {
+                                                    id_alumno:"",
+                                                    nombre_alumno:"",
+                                                    segundo_nombre:"",
+                                                    apellido_alumno:"",
+                                                    segundo_apellido:"",
+                                                    codigo_expediente:Number(),
+                                                    fecha_nacimiento:"",
+                                                    sexo:"",
+                                                    nacionalidad:"",
+                                                    lugar_procedencia:"",
+                                                    residencia_actual:"",
+                                                    nombre_padre:"",
+                                                    tel_padre:"",
+                                                    ocupacion_padre:"",
+                                                    nombre_madre:"",
+                                                    tel_madre:"",
+                                                    ocupacion_madre:"",
+                                                    aspectos_pedagogicos:Number(""),
+                                                    cod_aspectos_personal:Number(""),
+                                                    tel_celular:"",
+                                                    tel_casa:"",
+                                                    tel_trabajo:"",
+                                                    correo:"",
+                                                    codigo_ficha:Number("")
+                                                }
+                                                swal.fire({
+                                                    title: 'Registro creado exitosamente!',
+                                                    icon: 'success',
+                                                    showConfirmButton: false,
+                                                    timer: 1500
+                                                })
+                                            }
+                                        );
                                     }
                                 );
                             }
                         );
                     }
                 );
-            }
+            } 
         );
     }
-
+    
     insert_ficha(){
         var response;
         this.service.insert_ficha(this.ficha).subscribe(
         data => response = data,
         err => {
-            console.log(response);
+            
             swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -1029,7 +1062,7 @@ export class FormularioComponent implements OnInit{
         this.service.insert_personales(this.personal).subscribe(
         data => response = data,
         err => {
-            console.log(response);
+            
             swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -1101,21 +1134,25 @@ export class FormularioComponent implements OnInit{
     }
 
     insert_detalletrans(){
-        var response;
-        
+        var response, response1;
+        var expediente = new GreenBullet();
         if(this.detalletrans.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno1 = [];
+                   
                 },
                 () => {
-                    this.listado_alumno1 = response;
                     console.log(response);
-                    this.detalletrans.codigo_expediente = this.listado_alumno1.length+1;
+                    expediente.codigo_expediente=Number(response[0].codigo_expediente)+1;
+                    this.detalletrans.codigo_expediente = expediente.codigo_expediente;
+                    this.detalletrans = {
+                        codigo_expediente:expediente.codigo_expediente,
+                        codigo_trans:this.detalletrans.codigo_trans
+                    }
                     this.service.insert_alumnostranstornos(this.detalletrans).subscribe(
-                        data => response = data,
+                        data => response1 = data,
                         err => {
                             swal.fire({
                                 icon: 'error',
@@ -1147,21 +1184,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans2(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans2 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans2.codigo_trans
         }
         if(this.detalletrans2.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno2 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno2 = response;
-                    console.log(response);
-                    this.detalletrans2.codigo_expediente = this.listado_alumno2.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans2.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans2).subscribe(
                         data => response = data,
                         err => {
@@ -1194,21 +1232,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans3(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans3 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans3.codigo_trans
         }
         if(this.detalletrans3.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno3 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno3 = response;
-                    console.log(response);
-                    this.detalletrans3.codigo_expediente = this.listado_alumno3.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans3.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans3).subscribe(
                         data => response = data,
                         err => {
@@ -1241,21 +1280,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans4(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans4 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans4.codigo_trans
         }
         if(this.detalletrans4.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno4 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno4 = response;
-                    console.log(response);
-                    this.detalletrans4.codigo_expediente = this.listado_alumno4.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans4.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans4).subscribe(
                         data => response = data,
                         err => {
@@ -1286,23 +1326,25 @@ export class FormularioComponent implements OnInit{
         
     }
 
+    
     insert_detalletrans5(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans5 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans5.codigo_trans
         }
         if(this.detalletrans5.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno5 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno5 = response;
-                    console.log(response);
-                    this.detalletrans5.codigo_expediente = this.listado_alumno5.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans5.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans5).subscribe(
                         data => response = data,
                         err => {
@@ -1335,21 +1377,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans6(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans6 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans6.codigo_trans
         }
         if(this.detalletrans6.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno6 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno6 = response;
-                    console.log(response);
-                    this.detalletrans6.codigo_expediente = this.listado_alumno6.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans6.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans6).subscribe(
                         data => response = data,
                         err => {
@@ -1382,21 +1425,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans7(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans7 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans7.codigo_trans
         }
         if(this.detalletrans7.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno7 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno7 = response;
-                    console.log(response);
-                    this.detalletrans7.codigo_expediente = this.listado_alumno7.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans7.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans7).subscribe(
                         data => response = data,
                         err => {
@@ -1429,21 +1473,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans8(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans8 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans8.codigo_trans
         }
         if(this.detalletrans8.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno8 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno8 = response;
-                    console.log(response);
-                    this.detalletrans8.codigo_expediente = this.listado_alumno8.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans8.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans8).subscribe(
                         data => response = data,
                         err => {
@@ -1476,21 +1521,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans9(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans9 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans9.codigo_trans
         }
         if(this.detalletrans9.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno9 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno9 = response;
-                    console.log(response);
-                    this.detalletrans9.codigo_expediente = this.listado_alumno9.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans9.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans9).subscribe(
                         data => response = data,
                         err => {
@@ -1523,21 +1569,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans10(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans10 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans10.codigo_trans
         }
         if(this.detalletrans10.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno10 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno10 = response;
-                    console.log(response);
-                    this.detalletrans10.codigo_expediente = this.listado_alumno10.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans10.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans10).subscribe(
                         data => response = data,
                         err => {
@@ -1570,21 +1617,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans11(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans11 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans11.codigo_trans
         }
         if(this.detalletrans11.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno11 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno11 = response;
-                    console.log(response);
-                    this.detalletrans11.codigo_expediente = this.listado_alumno11.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans11.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans11).subscribe(
                         data => response = data,
                         err => {
@@ -1617,21 +1665,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans12(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans12 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans12.codigo_trans
         }
         if(this.detalletrans12.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno12 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno12 = response;
-                    console.log(response);
-                    this.detalletrans12.codigo_expediente = this.listado_alumno12.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans12.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans12).subscribe(
                         data => response = data,
                         err => {
@@ -1664,21 +1713,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans13(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans13 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans13.codigo_trans
         }
         if(this.detalletrans13.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno13 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno13 = response;
-                    console.log(response);
-                    this.detalletrans13.codigo_expediente = this.listado_alumno13.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans13.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans13).subscribe(
                         data => response = data,
                         err => {
@@ -1711,21 +1761,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans14(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans14 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans14.codigo_trans
         }
         if(this.detalletrans14.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno14 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno14 = response;
-                    console.log(response);
-                    this.detalletrans14.codigo_expediente = this.listado_alumno14.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans14.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans14).subscribe(
                         data => response = data,
                         err => {
@@ -1758,21 +1809,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans15(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans15 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans15.codigo_trans
         }
         if(this.detalletrans15.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno15 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno15 = response;
-                    console.log(response);
-                    this.detalletrans15.codigo_expediente = this.listado_alumno15.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans15.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans15).subscribe(
                         data => response = data,
                         err => {
@@ -1805,21 +1857,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans16(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans16 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans16.codigo_trans
         }
         if(this.detalletrans16.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno16 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno16 = response;
-                    console.log(response);
-                    this.detalletrans16.codigo_expediente = this.listado_alumno16.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans16.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans16).subscribe(
                         data => response = data,
                         err => {
@@ -1852,21 +1905,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans17(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans17 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans17.codigo_trans
         }
         if(this.detalletrans17.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno17 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno17 = response;
-                    console.log(response);
-                    this.detalletrans17.codigo_expediente = this.listado_alumno17.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans17.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans17).subscribe(
                         data => response = data,
                         err => {
@@ -1899,21 +1953,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans18(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans18 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans18.codigo_trans
         }
         if(this.detalletrans18.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno18 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno18 = response;
-                    console.log(response);
-                    this.detalletrans18.codigo_expediente = this.listado_alumno18.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans18.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans18).subscribe(
                         data => response = data,
                         err => {
@@ -1946,21 +2001,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans19(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans19 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans19.codigo_trans
         }
         if(this.detalletrans19.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno19 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno19 = response;
-                    console.log(response);
-                    this.detalletrans19.codigo_expediente = this.listado_alumno19.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans19.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans19).subscribe(
                         data => response = data,
                         err => {
@@ -1993,21 +2049,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans20(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans20 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans20.codigo_trans
         }
         if(this.detalletrans20.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno20 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno20 = response;
-                    console.log(response);
-                    this.detalletrans20.codigo_expediente = this.listado_alumno20.length+1
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans20.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans20).subscribe(
                         data => response = data,
                         err => {
@@ -2040,21 +2097,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans21(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans21 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans21.codigo_trans
         }
         if(this.detalletrans21.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno21 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno21 = response;
-                    console.log(response);
-                    this.detalletrans21.codigo_expediente = this.listado_alumno21.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans21.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans21).subscribe(
                         data => response = data,
                         err => {
@@ -2087,21 +2145,22 @@ export class FormularioComponent implements OnInit{
 
     insert_detalletrans22(){
         var response;
+        var alumno = new GreenBullet();
         this.detalletrans22 = {
             codigo_expediente:this.detalletrans.codigo_expediente,
             codigo_trans:this.detalletrans22.codigo_trans
         }
         if(this.detalletrans22.codigo_trans==null){   
         }else{
-            this.service.get_alumno().subscribe(
+            this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno22 = [];
+                    this.listado_alumno = [];
                 },
                 () => {
-                    this.listado_alumno22 = response;
-                    console.log(response);
-                    this.detalletrans22.codigo_expediente = this.listado_alumno22.length+1;
+                    this.listado_alumno = response;
+                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
+                    this.detalletrans22.codigo_expediente = alumno.codigo_expediente;
                     this.service.insert_alumnostranstornos(this.detalletrans22).subscribe(
                         data => response = data,
                         err => {
@@ -2134,17 +2193,22 @@ export class FormularioComponent implements OnInit{
 
     insert_fichadocumento(){
         var response;
+        var ficha = new GreenBullet();
+        this.fichadocumento = {
+            num_ficha:this.fichadocumento.num_ficha,
+            tipo_documento:this.fichadocumento.tipo_documento
+        }
         if(this.fichadocumento.tipo_documento==null){   
         }else{
-            this.service.get_ficha().subscribe(
+            this.service.get_ultimaficha().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_fichas1 = [];
+                    this.listado_fichas = [];
                 },
                 () => {
-                    this.listado_fichas1 = response;
-                    console.log(response);
-                    this.fichadocumento.num_ficha = this.listado_fichas1.length+1;
+                    this.listado_fichas = response;
+                    ficha.codigo_ficha=Number(response[0].codigo_ficha)+1;
+                    this.fichadocumento.num_ficha = ficha.codigo_ficha;
                     this.service.insert_fichadocumentos(this.fichadocumento).subscribe(
                         data => response = data,
                         err => {
@@ -2179,21 +2243,22 @@ export class FormularioComponent implements OnInit{
 
     insert_fichadocumento2(){
         var response;
+        var ficha = new GreenBullet();
         this.fichadocumento2 = {
             num_ficha:this.fichadocumento.num_ficha,
             tipo_documento:this.fichadocumento2.tipo_documento
         }
         if(this.fichadocumento2.tipo_documento==null){   
         }else{
-            this.service.get_ficha().subscribe(
+            this.service.get_ultimaficha().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_fichas2 = [];
+                    this.listado_fichas = [];
                 },
                 () => {
-                    this.listado_fichas2 = response;
-                    console.log(response);
-                    this.fichadocumento2.num_ficha = this.listado_fichas2.length+1;
+                    this.listado_fichas = response;
+                    ficha.codigo_ficha=Number(response[0].codigo_ficha)+1;
+                    this.fichadocumento2.num_ficha = ficha.codigo_ficha;
                     this.service.insert_fichadocumentos(this.fichadocumento2).subscribe(
                         data => response = data,
                         err => {
@@ -2229,21 +2294,22 @@ export class FormularioComponent implements OnInit{
 
     insert_fichadocumento4(){
         var response;
+        var ficha = new GreenBullet();
         this.fichadocumento4 = {
             num_ficha:this.fichadocumento.num_ficha,
             tipo_documento:this.fichadocumento4.tipo_documento
         }
         if(this.fichadocumento4.tipo_documento==null){   
         }else{
-            this.service.get_ficha().subscribe(
+            this.service.get_ultimaficha().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_fichas4 = [];
+                    this.listado_fichas = [];
                 },
                 () => {
-                    this.listado_fichas4 = response;
-                    console.log(response);
-                    this.fichadocumento4.num_ficha = this.listado_fichas4.length+1;
+                    this.listado_fichas = response;
+                    ficha.codigo_ficha=Number(response[0].codigo_ficha)+1;
+                    this.fichadocumento4.num_ficha = ficha.codigo_ficha;
                     this.service.insert_fichadocumentos(this.fichadocumento4).subscribe(
                         data => response = data,
                         err => {
@@ -2277,21 +2343,22 @@ export class FormularioComponent implements OnInit{
 
     insert_fichadocumento5(){
         var response;
+        var ficha = new GreenBullet();
         this.fichadocumento5 = {
             num_ficha:this.fichadocumento.num_ficha,
             tipo_documento:this.fichadocumento5.tipo_documento
         }
         if(this.fichadocumento5.tipo_documento==null){   
         }else{
-            this.service.get_ficha().subscribe(
+            this.service.get_ultimaficha().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_fichas5 = [];
+                    this.listado_fichas = [];
                 },
                 () => {
-                    this.listado_fichas5 = response;
-                    console.log(response);
-                    this.fichadocumento5.num_ficha = this.listado_fichas5.length+1;
+                    this.listado_fichas = response;
+                    ficha.codigo_ficha=Number(response[0].codigo_ficha)+1;
+                    this.fichadocumento5.num_ficha = ficha.codigo_ficha;
                     this.service.insert_fichadocumentos(this.fichadocumento5).subscribe(
                         data => response = data,
                         err => {
@@ -2325,21 +2392,22 @@ export class FormularioComponent implements OnInit{
 
     insert_fichadocumento6(){
         var response;
+        var ficha = new GreenBullet();
         this.fichadocumento6 = {
             num_ficha:this.fichadocumento.num_ficha,
             tipo_documento:this.fichadocumento6.tipo_documento
         }
         if(this.fichadocumento6.tipo_documento==null){   
         }else{
-            this.service.get_ficha().subscribe(
+            this.service.get_ultimaficha().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_fichas6 = [];
+                    this.listado_fichas = [];
                 },
                 () => {
-                    this.listado_fichas6 = response;
-                    console.log(response);
-                    this.fichadocumento6.num_ficha = this.listado_fichas6.length+1;
+                    this.listado_fichas = response;
+                    ficha.codigo_ficha=Number(response[0].codigo_ficha)+1;
+                    this.fichadocumento6.num_ficha = ficha.codigo_ficha;
                     this.service.insert_fichadocumentos(this.fichadocumento6).subscribe(
                         data => response = data,
                         err => {
@@ -2373,21 +2441,22 @@ export class FormularioComponent implements OnInit{
 
     insert_fichadocumento7(){
         var response;
+        var ficha = new GreenBullet();
         this.fichadocumento7 = {
             num_ficha:this.fichadocumento.num_ficha,
             tipo_documento:this.fichadocumento7.tipo_documento
         }
         if(this.fichadocumento7.tipo_documento==null){   
         }else{
-            this.service.get_ficha().subscribe(
+            this.service.get_ultimaficha().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_fichas7 = [];
+                    this.listado_fichas = [];
                 },
                 () => {
-                    this.listado_fichas7 = response;
-                    console.log(response);
-                    this.fichadocumento7.num_ficha = this.listado_fichas7.length+1;
+                    this.listado_fichas = response;
+                    ficha.codigo_ficha=Number(response[0].codigo_ficha)+1;
+                    this.fichadocumento7.num_ficha = ficha.codigo_ficha;
                     this.service.insert_fichadocumentos(this.fichadocumento7).subscribe(
                         data => response = data,
                         err => {
@@ -2421,21 +2490,22 @@ export class FormularioComponent implements OnInit{
 
     insert_fichadocumento8(){
         var response;
+        var ficha = new GreenBullet();
         this.fichadocumento8 = {
             num_ficha:this.fichadocumento.num_ficha,
             tipo_documento:this.fichadocumento8.tipo_documento
         }
         if(this.fichadocumento8.tipo_documento==null){   
         }else{
-            this.service.get_ficha().subscribe(
+            this.service.get_ultimaficha().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_fichas8 = [];
+                    this.listado_fichas = [];
                 },
                 () => {
-                    this.listado_fichas8 = response;
-                    console.log(response);
-                    this.fichadocumento8.num_ficha = this.listado_fichas8.length+1;
+                    this.listado_fichas = response;
+                    ficha.codigo_ficha=Number(response[0].codigo_ficha)+1;
+                    this.fichadocumento8.num_ficha = ficha.codigo_ficha;
                     this.service.insert_fichadocumentos(this.fichadocumento8).subscribe(
                         data => response = data,
                         err => {
@@ -2465,5 +2535,53 @@ export class FormularioComponent implements OnInit{
             
         }
         
+    }
+
+    isShown: boolean = true ; // hidden by default
+    isShown2: boolean = false ; // hidden by default
+    isShown3: boolean = false ; // hidden by default
+    isShown4: boolean = false ; // hidden by default
+    isShown5: boolean = true ; // hidden by default
+    isShown6: boolean = false ; // hidden by default
+    isShown7: boolean = false ; // hidden by default
+    isShown8: boolean = false ; // hidden by default
+    isShown9: boolean = false ; // hidden by default
+    toggleShow() {
+    window.scrollTo(0,0);
+    this.isShown = ! this.isShown;
+    this.isShown5 = ! this.isShown5;
+    this.isShown2 = ! this.isShown2;
+    this.isShown6 = ! this.isShown6;
+
+    }
+
+    toggleShow2() {
+    window.scrollTo(0,0);
+    this.isShown2 = ! this.isShown2;
+    this.isShown6 = ! this.isShown6;
+    this.isShown3 = ! this.isShown3;
+    this.isShown7 = ! this.isShown7;
+
+    }
+    
+    toggleShow3() {
+    window.scrollTo(0,0);
+    this.isShown3 = ! this.isShown3;
+    this.isShown7 = ! this.isShown7;
+    this.isShown4 = ! this.isShown4;
+    this.isShown8 = ! this.isShown8;
+
+    }
+
+    toggleShow4() {
+        window.scrollTo(0,0);
+        this.isShown = ! this.isShown;
+        this.isShown2 = ! this.isShown2;
+        this.isShown3 = ! this.isShown3;
+        this.isShown5 = false;
+        this.isShown6 = false;
+        this.isShown7 = false;
+        this.isShown8 = ! this.isShown8;
+        this.isShown9 = ! this.isShown9;
     }
 }

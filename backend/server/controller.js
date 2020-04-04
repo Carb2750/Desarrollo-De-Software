@@ -1394,7 +1394,7 @@ router.get('/get_registrocompleto', (req, res, next) => {
 
 
 router.get('/get_alumno', (req, res, next) => {
-    var query = 'select `id_alumno` as `id_alumno`, `codigo_expediente` as `codigo_expediente`, `fecha_expediente` as `fecha_expediente`, `nombre_alumno` as `nombre_alumno`, `segundo_nombre` as `segundo_nombre`, `apellido_alumno` as `apellido_alumno`, `segundo_apellido` as `segundo_apellido`, DATE_FORMAT(FROM_DAYS(DATEDIFF(now(),`fecha_nacimiento`)), "%Y")+0 AS Edad , `fecha_nacimiento` as `fecha_nacimiento`, `sexo` as `sexo`,`nacionalidad` as `nacionalidad`, `correo` as `correo`, `lugar_procedencia` as `lugar_procedencia`, `residencia_actual` as `residencia_actual`, `tel_celular` as `tel_celular`, `tel_casa` as `tel_casa`, `tel_trabajo` as `tel_trabajo`, `nombre_padre` as `nombre_padre`, `tel_padre` as `tel_padre`, `ocupacion_padre` as `ocupacion_padre`, `nombre_madre` as `nombre_madre`, `tel_madre` as `tel_madre`, `ocupacion_madre` as `ocupacion_madre`, `aspectos_pedagogicos` as `aspectos_pedagogicos`, `cod_aspectos_personal` as `cod_aspectos_personal`, `codigo_ficha` as `codigo_ficha` from `alumnos datos`';
+    var query = 'select `id_alumno` as `id_alumno`, `expedientes`.`codigo_expediente` as `codigo_expediente`, `expedientes`.`fecha_expediente` as `fecha_expediente`, `nombre_alumno` as `nombre_alumno`, `segundo_nombre` as `segundo_nombre`, `apellido_alumno` as `apellido_alumno`, `segundo_apellido` as `segundo_apellido`, DATE_FORMAT(FROM_DAYS(DATEDIFF(now(),`fecha_nacimiento`)), "%Y")+0 AS Edad , `fecha_nacimiento` as `fecha_nacimiento`, `sexo` as `sexo`,`nacionalidad` as `nacionalidad`, `correo` as `correo`, `lugar_procedencia` as `lugar_procedencia`, `residencia_actual` as `residencia_actual`, `tel_celular` as `tel_celular`, `tel_casa` as `tel_casa`, `tel_trabajo` as `tel_trabajo`, `nombre_padre` as `nombre_padre`, `tel_padre` as `tel_padre`, `ocupacion_padre` as `ocupacion_padre`, `nombre_madre` as `nombre_madre`, `tel_madre` as `tel_madre`, `ocupacion_madre` as `ocupacion_madre`, `aspectos_pedagogicos` as `aspectos_pedagogicos`, `cod_aspectos_personal` as `cod_aspectos_personal`, `codigo_ficha` as `codigo_ficha` from `alumnos datos` join `expedientes` on `alumnos datos`.`codigo_expediente` = `expedientes`.`codigo_expediente`';
     con.query(query, (err, result, fields) => {
         if(err) {
             next(err);
@@ -1442,12 +1442,13 @@ router.put('/update_alumno', (req, res, next) => {
         });
 
 router.post('/insert_alumno', (req, res, next) => {
-    var query = 'INSERT INTO `alumnos datos` (`id_alumno`, `nombre_alumno`, `segundo_nombre`, `apellido_alumno`, `segundo_apellido`, `fecha_nacimiento`, `sexo`, `nacionalidad`, `lugar_procedencia`, `residencia_actual`, `nombre_padre`, `tel_padre`, `ocupacion_padre`, `nombre_madre`, `tel_madre`, `ocupacion_madre`, `aspectos_pedagogicos`, `cod_aspectos_personal`, `tel_celular`, `tel_casa`, `tel_trabajo`, `correo`, `codigo_ficha`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    var query = 'INSERT INTO `alumnos datos` (`id_alumno`, `nombre_alumno`, `segundo_nombre`, `apellido_alumno`, `segundo_apellido`,`codigo_expediente`, `fecha_nacimiento`, `sexo`, `nacionalidad`, `lugar_procedencia`, `residencia_actual`, `nombre_padre`, `tel_padre`, `ocupacion_padre`, `nombre_madre`, `tel_madre`, `ocupacion_madre`, `aspectos_pedagogicos`, `cod_aspectos_personal`, `tel_celular`, `tel_casa`, `tel_trabajo`, `correo`, `codigo_ficha`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
     var values = [req.body.id_alumno,
                 req.body.nombre_alumno,
                 req.body.segundo_nombre,
                 req.body.apellido_alumno,
                 req.body.segundo_apellido,
+                req.body.codigo_expediente,
                 req.body.fecha_nacimiento,
                 req.body.sexo,
                 req.body.nacionalidad,
@@ -1641,5 +1642,61 @@ router.post('/insert_fichadocumentos', (req, res, next) => {
             }
         });
     });
+
+router.get('/get_ultimopersonal', (req, res, next) => {
+    var query = 'SELECT max(`cod_aspectos_personal`) as `cod_aspectos_personal`FROM `aspectos personales`';
+    con.query(query, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.get('/get_ultimopedagogico', (req, res, next) => {
+    var query = 'SELECT max(`codigo_pedagogicos`) as `aspectos_pedagogicos` FROM `aspectos pedagogicos`';
+    con.query(query, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.get('/get_ultimoexpediente', (req, res, next) => {
+    var query = 'SELECT max(`codigo_expediente`) as `codigo_expediente` FROM `expedientes`';
+    con.query(query, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.get('/get_ultimaficha', (req, res, next) => {
+    var query = 'SELECT max(`num_ficha`) as `codigo_ficha`FROM `ficha`';
+    con.query(query, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.post('/insert_expediente', (req, res, next) => {
+    var query = 'INSERT INTO `expedientes` VALUES ()';
+    con.query(query, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
 
 module.exports = router;
