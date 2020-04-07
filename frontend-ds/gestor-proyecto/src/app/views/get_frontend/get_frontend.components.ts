@@ -16,9 +16,25 @@ export class GetFrontendComponent implements OnInit{
     }
 
     public id;
+    public nombre;
+    public apellido;
+    public usuario1;
+    public pass;
+    public correo;
+    public tipo;
     
 
     public usuario = {
+        nombre:"",
+        apellido:"",
+        usuario:"",
+        pass:"",
+        correo:"",
+        tipo:""
+    
+    }
+
+    public usuario2 = {
         nombre:"",
         apellido:"",
         usuario:"",
@@ -133,12 +149,31 @@ export class GetFrontendComponent implements OnInit{
 
 
     update_usuario(){
+
         console.log("Registro a editar: " + this.id);
         var response;
         var load={
             codigo:this.id
         };
-
+        this.usuario2=this.usuario;
+        if(this.usuario2.nombre==""){
+            this.usuario2.nombre=this.nombre;
+        }
+        if(this.usuario2.apellido==""){
+            this.usuario2.apellido=this.apellido;
+        }
+        if(this.usuario2.usuario==""){
+            this.usuario2.usuario=this.usuario1;
+        }
+        if(this.usuario2.pass==""){
+            this.usuario2.pass=this.pass;
+        }
+        if(this.usuario2.correo==""){
+            this.usuario2.correo=this.correo;
+        }
+        if(this.usuario2.tipo==""){
+            this.usuario2.tipo=this.tipo;
+        }
 
         this.service.update_usuario(load, this.usuario).subscribe(
         data => response = data,
@@ -170,8 +205,14 @@ export class GetFrontendComponent implements OnInit{
         
     }
 
-    pass_code(id) {
+    pass_code(id,nombre,apellido,usuario,pass,correo,tipo) {
         this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.usuario1 = usuario;
+        this.pass = pass;
+        this.correo = correo;
+        this.tipo = tipo;
     }
 
     

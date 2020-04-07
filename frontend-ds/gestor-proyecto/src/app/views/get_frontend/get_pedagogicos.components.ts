@@ -23,8 +23,35 @@ export class GetPedagogicosComponent implements OnInit{
 
     public id;
     
+    public motivos;
+    public sexto_grado_cursado;
+    public ubicacion_centro_anterior;
+    public codigo_escuela;
+    public codigo_rendimiento;
+    public cod_asignatura_dificultad;
+    public cod_asignatura_facilidad;
+    public codigo_estudio;
+    public cod_consideracion;
+    public obs_reportes;
+    public obs_expulsion;
+    public obs_reprobado;
 
     public pedagogico = {
+        motivos:"",
+        sexto_grado_cursado:"",
+        ubicacion_centro_anterior:"",
+        codigo_escuela:"",
+        codigo_rendimiento:"",
+        cod_asignatura_dificultad:"",
+        cod_asignatura_facilidad:"",
+        codigo_estudio:"",
+        cod_consideracion:"",
+        obs_reportes:"",
+        obs_expulsion:"",
+        obs_reprobado:""
+    }
+
+    public pedagogico2 = {
         motivos:"",
         sexto_grado_cursado:"",
         ubicacion_centro_anterior:"",
@@ -246,9 +273,44 @@ export class GetPedagogicosComponent implements OnInit{
         var load={
             codigo_pedagogicos:this.id
         };
-
-
-        this.service.update_pedagogico(load, this.pedagogico).subscribe(
+        this.pedagogico2=this.pedagogico;
+        if(this.pedagogico2.motivos==""){
+            this.pedagogico2.motivos=this.motivos;
+        }
+        if(this.pedagogico2.sexto_grado_cursado==""){
+            this.pedagogico2.sexto_grado_cursado=this.sexto_grado_cursado;
+        }
+        if(this.pedagogico2.ubicacion_centro_anterior==""){
+            this.pedagogico2.ubicacion_centro_anterior=this.ubicacion_centro_anterior;
+        }
+        if(this.pedagogico2.cod_asignatura_dificultad==""){
+            this.pedagogico2.cod_asignatura_dificultad=this.cod_asignatura_dificultad;
+        }
+        if(this.pedagogico2.cod_asignatura_facilidad==""){
+            this.pedagogico2.cod_asignatura_facilidad=this.cod_asignatura_facilidad;
+        }
+        if(this.pedagogico2.cod_consideracion==""){
+            this.pedagogico2.cod_consideracion=this.cod_consideracion;
+        }
+        if(this.pedagogico2.codigo_escuela==""){
+            this.pedagogico2.codigo_escuela=this.codigo_escuela;
+        }
+        if(this.pedagogico2.codigo_estudio==""){
+            this.pedagogico2.codigo_estudio=this.codigo_estudio;
+        }
+        if(this.pedagogico2.codigo_rendimiento==""){
+            this.pedagogico2.codigo_rendimiento=this.codigo_rendimiento;
+        }
+        if(this.pedagogico2.obs_expulsion==""){
+            this.pedagogico2.obs_expulsion=this.obs_expulsion;
+        }
+        if(this.pedagogico2.obs_reportes==""){
+            this.pedagogico2.obs_reportes=this.obs_reportes;
+        }
+        if(this.pedagogico2.obs_reprobado==""){
+            this.pedagogico2.obs_reprobado=this.obs_reprobado;
+        }
+        this.service.update_pedagogico(load, this.pedagogico2).subscribe(
         data => response = data,
         err => {
             swal.fire({
@@ -284,8 +346,20 @@ export class GetPedagogicosComponent implements OnInit{
         
     }
 
-    pass_code(id) {
+    pass_code(id, motivos, sexto_grado_cursado, ubicacion_centro_anterior, codigo_escuela, codigo_rendimiento, cod_asignatura_dificultad, cod_asignatura_facilidad, codigo_estudio, cod_consideracion, obs_reportes, obs_expulsion, obs_reprobado) {
         this.id = id;
+        this.motivos = motivos;
+        this.sexto_grado_cursado = sexto_grado_cursado;
+        this.ubicacion_centro_anterior = ubicacion_centro_anterior;
+        this.codigo_escuela = codigo_escuela;
+        this.codigo_rendimiento = codigo_rendimiento;
+        this.cod_asignatura_dificultad = cod_asignatura_dificultad;
+        this.cod_asignatura_facilidad = cod_asignatura_facilidad;
+        this.codigo_estudio = codigo_estudio;
+        this.cod_consideracion = cod_consideracion;
+        this.obs_reportes = obs_reportes;
+        this.obs_expulsion = obs_expulsion;
+        this.obs_reprobado = obs_reprobado;
     }
 
     isShown: boolean = false ; // hidden by default

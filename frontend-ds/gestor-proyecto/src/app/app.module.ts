@@ -36,9 +36,15 @@ import { FormularioComponent } from './views/get_frontend/formulario.components'
 import { GreenBullet } from './views/get_frontend/formulario.components';
 import { RedBullet } from './views/get_frontend/get_alumno.components';
 import { LoginComponent } from './views/get_frontend/login.components';
+import { InformacionFichaComponent } from './views/get_frontend/informacionficha.components';
+import { BlueBullet } from './views/get_frontend/informacionficha.components';
+import { InformacionRegistroComponent } from './views/get_frontend/informacionregistro.components';
+import { YellowBullet } from './views/get_frontend/informacionregistro.components';
+import { GetSeguimientosComponent } from './views/get_frontend/seguimientos.components';
 import { MenuComponent } from './views/get_frontend/menu.components';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -75,7 +81,12 @@ import {FormsModule} from '@angular/forms';
     FormularioComponent,
     GreenBullet,
     LoginComponent,
-    MenuComponent
+    MenuComponent,
+    InformacionFichaComponent,
+    BlueBullet,
+    InformacionRegistroComponent,
+    YellowBullet,
+    GetSeguimientosComponent
     
   ],
   imports: [
@@ -86,7 +97,8 @@ import {FormsModule} from '@angular/forms';
   ],
   providers: [
     AppService,
-    Title
+    Title,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

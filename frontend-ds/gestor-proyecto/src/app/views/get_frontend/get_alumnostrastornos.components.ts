@@ -114,6 +114,28 @@ export class GetDetalletransComponent implements OnInit{
         codigo_trans:""
     }
 
+    public detalletrans23 = {
+        codigo_expediente:"",
+        codigo_trans:""
+    }
+    public detalletrans24 = {
+        codigo_expediente:"",
+        codigo_trans:""
+    }
+    public detalletrans25 = {
+        codigo_expediente:"",
+        codigo_trans:""
+    }
+    public detalletrans26 = {
+        codigo_expediente:"",
+        codigo_trans:""
+    }
+
+    public detalletrans27 = {
+        codigo_expediente:"",
+        codigo_trans:""
+    }
+
     revisar1(){
         var element = <HTMLInputElement> document.getElementById("is");
         var isChecked = element.checked;
@@ -368,6 +390,66 @@ export class GetDetalletransComponent implements OnInit{
 
     revisar22(){
         var element = <HTMLInputElement> document.getElementById("viol");
+        var isChecked = element.checked;
+        if(isChecked){
+            isChecked = true;
+        }
+        else{
+            isChecked = false;
+        }
+        return isChecked;
+    }
+
+    revisar23(){
+        var element = <HTMLInputElement> document.getElementById("cast");
+        var isChecked = element.checked;
+        if(isChecked){
+            isChecked = true;
+        }
+        else{
+            isChecked = false;
+        }
+        return isChecked;
+    }
+
+    revisar24(){
+        var element = <HTMLInputElement> document.getElementById("ffuertes");
+        var isChecked = element.checked;
+        if(isChecked){
+            isChecked = true;
+        }
+        else{
+            isChecked = false;
+        }
+        return isChecked;
+    }
+
+    revisar25(){
+        var element = <HTMLInputElement> document.getElementById("abuso");
+        var isChecked = element.checked;
+        if(isChecked){
+            isChecked = true;
+        }
+        else{
+            isChecked = false;
+        }
+        return isChecked;
+    }
+
+    revisar26(){
+        var element = <HTMLInputElement> document.getElementById("muerte");
+        var isChecked = element.checked;
+        if(isChecked){
+            isChecked = true;
+        }
+        else{
+            isChecked = false;
+        }
+        return isChecked;
+    }
+
+    revisar27(){
+        var element = <HTMLInputElement> document.getElementById("panico");
         var isChecked = element.checked;
         if(isChecked){
             isChecked = true;
@@ -1185,6 +1267,181 @@ export class GetDetalletransComponent implements OnInit{
                 },
                 ()=> {
                     this.detalletrans22={
+                        codigo_expediente:"",
+                        codigo_trans:""
+                    }
+                    swal.fire({
+                        title: 'Datos guardados exitosamente!',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                this.get_detalletranses();
+                }
+            );
+        }
+        
+    }
+
+    insert_detalletrans23(){
+        var response;
+        this.detalletrans23 = {
+            codigo_expediente:this.detalletrans.codigo_expediente,
+            codigo_trans:this.detalletrans23.codigo_trans
+        }
+        if(this.detalletrans23.codigo_trans==null){   
+        }else{
+            this.service.insert_alumnostranstornos(this.detalletrans23).subscribe(
+                data => response = data,
+                err => {
+                    swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salio mal!',
+                    })
+                },
+                ()=> {
+                    this.detalletrans23={
+                        codigo_expediente:"",
+                        codigo_trans:""
+                    }
+                    swal.fire({
+                        title: 'Datos guardados exitosamente!',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                this.get_detalletranses();
+                }
+            );
+        }
+        
+    }
+
+    insert_detalletrans24(){
+        var response;
+        this.detalletrans24 = {
+            codigo_expediente:this.detalletrans.codigo_expediente,
+            codigo_trans:this.detalletrans24.codigo_trans
+        }
+        if(this.detalletrans24.codigo_trans==null){   
+        }else{
+            this.service.insert_alumnostranstornos(this.detalletrans24).subscribe(
+                data => response = data,
+                err => {
+                    swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salio mal!',
+                    })
+                },
+                ()=> {
+                    this.detalletrans24={
+                        codigo_expediente:"",
+                        codigo_trans:""
+                    }
+                    swal.fire({
+                        title: 'Datos guardados exitosamente!',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                this.get_detalletranses();
+                }
+            );
+        }
+        
+    }
+
+    insert_detalletrans25(){
+        var response;
+        this.detalletrans25 = {
+            codigo_expediente:this.detalletrans.codigo_expediente,
+            codigo_trans:this.detalletrans25.codigo_trans
+        }
+        if(this.detalletrans25.codigo_trans==null){   
+        }else{
+            this.service.insert_alumnostranstornos(this.detalletrans25).subscribe(
+                data => response = data,
+                err => {
+                    swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salio mal!',
+                    })
+                },
+                ()=> {
+                    this.detalletrans25={
+                        codigo_expediente:"",
+                        codigo_trans:""
+                    }
+                    swal.fire({
+                        title: 'Datos guardados exitosamente!',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                this.get_detalletranses();
+                }
+            );
+        }
+        
+    }
+
+    insert_detalletrans26(){
+        var response;
+        this.detalletrans26 = {
+            codigo_expediente:this.detalletrans.codigo_expediente,
+            codigo_trans:this.detalletrans26.codigo_trans
+        }
+        if(this.detalletrans26.codigo_trans==null){   
+        }else{
+            this.service.insert_alumnostranstornos(this.detalletrans26).subscribe(
+                data => response = data,
+                err => {
+                    swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salio mal!',
+                    })
+                },
+                ()=> {
+                    this.detalletrans26={
+                        codigo_expediente:"",
+                        codigo_trans:""
+                    }
+                    swal.fire({
+                        title: 'Datos guardados exitosamente!',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                this.get_detalletranses();
+                }
+            );
+        }
+        
+    }
+
+    insert_detalletrans27(){
+        var response;
+        this.detalletrans27 = {
+            codigo_expediente:this.detalletrans.codigo_expediente,
+            codigo_trans:this.detalletrans27.codigo_trans
+        }
+        if(this.detalletrans27.codigo_trans==null){   
+        }else{
+            this.service.insert_alumnostranstornos(this.detalletrans27).subscribe(
+                data => response = data,
+                err => {
+                    swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salio mal!',
+                    })
+                },
+                ()=> {
+                    this.detalletrans27={
                         codigo_expediente:"",
                         codigo_trans:""
                     }

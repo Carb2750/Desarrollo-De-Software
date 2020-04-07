@@ -32,7 +32,7 @@
                     <td>{{x.usuario}}</td>
                     <td>{{x.correo}}</td>
                     <td>{{x.tipo}}</td>
-                    <td><button (click)="pass_code(x.codigo)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
+                    <td><button (click)="pass_code(x.codigo,x.nombre,x.apellido,x.usuario,x.pass,x.correo,x.tipo)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
                     <td><button (click)="delete_usuario(x.codigo)" class="btn btn-danger">Borrar</button></td>
                 </tr>
             </tbody>
@@ -93,7 +93,7 @@
     </div>
     
 
-  <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade" id="staticBackdrop"  tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -108,28 +108,28 @@
                     <form action="/" enctype="multipart/form-data" method="put" ngNativeValidate #form1>
                         <div class="form-group">
                             <label for="nom">Nombre</label>
-                            <input type="text" id="nom" class="form-control" required [(ngModel)]="usuario.nombre" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="nom" class="form-control"  [(ngModel)]="usuario.nombre" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group">
                             <label for="apell">Apellido</label>
-                            <input type="text" id="apell" class="form-control" required [(ngModel)]="usuario.apellido" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="apell" class="form-control"  [(ngModel)]="usuario.apellido" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group">
                             <label for="usu">Usuario</label>
-                            <input type="text" id="usu" class="form-control" required [(ngModel)]="usuario.usuario" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="usu" class="form-control"  [(ngModel)]="usuario.usuario" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group">
                             <label for="cont">Contraseña</label>
-                            <input type="password" id="cont" class="form-control" required [(ngModel)]="usuario.pass" [ngModelOptions]="{standalone: true}">
+                            <input type="password" id="cont" class="form-control"  [(ngModel)]="usuario.pass" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group">
                             <label for="cor">Correo</label>
-                            <input type="email" id="cor" class="form-control" required [(ngModel)]="usuario.correo" [ngModelOptions]="{standalone: true}">
+                            <input type="email" id="cor" class="form-control"  [(ngModel)]="usuario.correo" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group">
                             <label for="usuario" style="margin-right: 10px;">Tipo de Usuario</label>
                             <div class="form-check form-check-inline" id="rendimiento">
-                                <input type="radio" required [(ngModel)]="usuario.tipo" name="optadio" id="ms" value="Administrador">
+                                <input type="radio"  [(ngModel)]="usuario.tipo" name="optadio" id="ms" value="Administrador">
                                 <label class="form-check-label" for="ms">Administrador</label>
                             </div>
                             <div class="form-check form-check-inline">

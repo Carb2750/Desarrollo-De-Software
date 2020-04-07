@@ -23,9 +23,40 @@ export class GetPersonalesComponent implements OnInit{
     }
 
     public id;
-    
+    public codigo_convive;
+    public obs_residencias;
+    public cod_relaciones_sociales;
+    public cod_relaciones_amistosas;
+    public obs_relaciones_amistosas;
+    public obs_noviazgos;
+    public cod_mejor_amigo;
+    public obs_mejor_amigo;
+    public cod_act_deportiva;
+    public obs_actividades_deportivas;
+    public cod_act_artistica;
+    public obs_actividades_artisticas;
+    public obs_religion;
+    public cod_problema_emocional;
+    public obs_ayudas;
 
     public personal = {
+        codigo_convive:"",
+        obs_residencias:"",
+        cod_relaciones_sociales:"",
+        cod_relaciones_amistosas:"",
+        obs_relaciones_amistosas:"",
+        obs_noviazgos:"",
+        cod_mejor_amigo:"",
+        obs_mejor_amigo:"",
+        cod_act_deportiva:"",
+        obs_actividades_deportivas:"",
+        cod_act_artistica:"",
+        obs_actividades_artisticas:"",
+        obs_religion:"",
+        cod_problema_emocional:"",
+        obs_ayudas:""
+    }
+    public personal2 = {
         codigo_convive:"",
         obs_residencias:"",
         cod_relaciones_sociales:"",
@@ -270,6 +301,52 @@ export class GetPersonalesComponent implements OnInit{
         var load={
             cod_aspectos_personal:this.id
         };
+        this.personal2=this.personal;
+        if(this.personal2.codigo_convive==""){
+            this.personal2.codigo_convive=this.codigo_convive;
+        }
+        if(this.personal2.obs_residencias==""){
+            this.personal2.obs_residencias=this.obs_residencias;
+        }
+        if(this.personal2.cod_relaciones_sociales==""){
+            this.personal2.cod_relaciones_sociales=this.cod_relaciones_sociales;
+        }
+        if(this.personal2.cod_relaciones_amistosas==""){
+            this.personal2.cod_relaciones_amistosas=this.cod_relaciones_amistosas;
+        }
+        if(this.personal2.obs_relaciones_amistosas==""){
+            this.personal2.obs_relaciones_amistosas=this.obs_relaciones_amistosas;
+        }
+        if(this.personal2.obs_noviazgos==""){
+            this.personal2.obs_noviazgos=this.obs_noviazgos;
+        }
+        if(this.personal2.cod_mejor_amigo==""){
+            this.personal2.cod_mejor_amigo=this.cod_mejor_amigo;
+        }
+        if(this.personal2.obs_mejor_amigo==""){
+            this.personal2.obs_mejor_amigo=this.obs_mejor_amigo;
+        }
+        if(this.personal2.cod_act_deportiva==""){
+            this.personal2.cod_act_deportiva=this.cod_act_deportiva;
+        }
+        if(this.personal2.obs_actividades_deportivas==""){
+            this.personal2.obs_actividades_deportivas=this.obs_actividades_deportivas;
+        }
+        if(this.personal2.cod_act_artistica==""){
+            this.personal2.cod_act_artistica=this.cod_act_artistica;
+        }
+        if(this.personal2.obs_actividades_artisticas==""){
+            this.personal2.obs_actividades_artisticas=this.obs_actividades_artisticas;
+        }
+        if(this.personal2.obs_religion==""){
+            this.personal2.obs_religion=this.obs_religion;
+        }
+        if(this.personal2.cod_problema_emocional==""){
+            this.personal2.cod_problema_emocional=this.cod_problema_emocional;
+        }
+        if(this.personal2.obs_ayudas==""){
+            this.personal2.obs_ayudas=this.obs_ayudas;
+        }
         this.service.update_personales(load, this.personal).subscribe(
         data => response = data,
         err => {
@@ -309,8 +386,23 @@ export class GetPersonalesComponent implements OnInit{
         
     }
 
-    pass_code(id) {
+    pass_code(id, codigo_convive, obs_residencias, cod_relaciones_sociales, cod_relaciones_amistosas, obs_relaciones_amistosas, obs_noviazgos, cod_mejor_amigo, obs_mejor_amigo, cod_act_deportiva, obs_actividades_deportivas, cod_act_artistica, obs_actividades_artisticas, obs_religion, cod_problema_emocional, obs_ayudas) {
         this.id = id;
+        this.codigo_convive = codigo_convive;
+        this.obs_residencias = obs_residencias;
+        this.cod_relaciones_sociales = cod_relaciones_sociales;
+        this.cod_relaciones_amistosas = cod_relaciones_amistosas;
+        this.obs_relaciones_amistosas = obs_relaciones_amistosas;
+        this.obs_noviazgos = obs_noviazgos;
+        this.cod_mejor_amigo = cod_mejor_amigo;
+        this.obs_mejor_amigo = obs_mejor_amigo;
+        this.cod_act_deportiva = cod_act_deportiva;
+        this.obs_actividades_deportivas = obs_actividades_deportivas;
+        this.cod_act_artistica = cod_act_artistica;
+        this.obs_actividades_artisticas = obs_actividades_artisticas;
+        this.obs_religion = obs_religion;
+        this.cod_problema_emocional = cod_problema_emocional;
+        this.obs_ayudas = obs_ayudas;
     }
 
     isShown: boolean = false ; // hidden by default
