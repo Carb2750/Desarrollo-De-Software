@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams, HttpUrlEncodingCodec,HttpParameterCodec} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 @Injectable()
@@ -490,12 +490,41 @@ export class AppService{
     }
 
 
-    login(payload):Observable<any>{
-        return this.httpClient.post(this.endPoint + "/login", payload, { responseType: 'json' });
+    get_headers(){
+        var headers = new HttpHeaders({
+            'Authorization':'Token' + this.get_session().token
+        });
+        return headers;
+    }
+
+    login(load):Observable<any>{
+        return this.httpClient.post(this.endPoint + "/login", load, { responseType: 'json' });
     }
 
     set_session(token){
         localStorage.setItem("Intae", JSON.stringify(token));
+    }
+
+    set_usuariologueado(user){
+        localStorage.setItem("loggedUser",JSON.stringify(user));
+    }
+
+    get_usuariologueado(){
+        if(localStorage.getItem("loggedUser"))
+        return JSON.parse(localStorage.getItem("loggedUser"));
+    }
+
+    get_session(){
+        if(localStorage.getItem("Intae") && JSON.parse(localStorage.getItem("Intae")).token){
+            return JSON.parse(localStorage.getItem("Intae"));
+        }else{
+            return false;
+        }
+    }
+
+    reset_session(){
+        localStorage.removeItem("Intae");
+        localStorage.removeItem("loggedUser");
     }
 
     get_ultimopersonal():Observable<any>{

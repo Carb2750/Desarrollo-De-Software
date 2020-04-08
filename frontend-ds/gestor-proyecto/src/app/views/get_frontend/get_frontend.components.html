@@ -20,7 +20,6 @@
                     <th>Apellido</th>
                     <th>Usuario</th>
                     <th>Correo</th>
-                    <th>Tipo</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -31,8 +30,7 @@
                     <td>{{x.apellido}}</td>
                     <td>{{x.usuario}}</td>
                     <td>{{x.correo}}</td>
-                    <td>{{x.tipo}}</td>
-                    <td><button (click)="pass_code(x.codigo,x.nombre,x.apellido,x.usuario,x.pass,x.correo,x.tipo)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
+                    <td><button (click)="pass_code(x.codigo,x.nombre,x.apellido,x.usuario,x.pass,x.correo)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
                     <td><button (click)="delete_usuario(x.codigo)" class="btn btn-danger">Borrar</button></td>
                 </tr>
             </tbody>
@@ -72,17 +70,6 @@
                         <div class="form-group col-md-6">
                             <label for="cor">Correo</label>
                             <input type="email" id="cor" class="form-control" required [(ngModel)]="usuario.correo" [ngModelOptions]="{standalone: true}">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="usuario" style="margin-right: 10px;">Tipo de Usuario</label>
-                            <div class="form-check" id="rendimiento">
-                                <input type="radio" required [(ngModel)]="usuario.tipo" name="optadio" id="ms" value="Administrador">
-                                <label class="form-check-label" for="ms">Administrador</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="radio"  [(ngModel)]="usuario.tipo" name="optadio" id="com" value="Comun">
-                                <label class="form-check-label" for="com">Comun</label>
-                            </div>
                         </div>
                     </div>
                     <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" (click)="form.checkValidity()? insert_usuario() : null" class="btn btn-primary">Insertar Usuario</button>
@@ -125,17 +112,6 @@
                         <div class="form-group">
                             <label for="cor">Correo</label>
                             <input type="email" id="cor" class="form-control"  [(ngModel)]="usuario.correo" [ngModelOptions]="{standalone: true}">
-                        </div>
-                        <div class="form-group">
-                            <label for="usuario" style="margin-right: 10px;">Tipo de Usuario</label>
-                            <div class="form-check form-check-inline" id="rendimiento">
-                                <input type="radio"  [(ngModel)]="usuario.tipo" name="optadio" id="ms" value="Administrador">
-                                <label class="form-check-label" for="ms">Administrador</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio"  [(ngModel)]="usuario.tipo" name="optadio" id="com" value="Comun">
-                                <label class="form-check-label" for="com">Comun</label>
-                            </div>
                         </div>
                     </form>
                 </div>
