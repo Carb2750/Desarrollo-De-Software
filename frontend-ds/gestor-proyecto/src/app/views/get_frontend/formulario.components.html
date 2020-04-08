@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 <body>
     <header style="text-align: center;">
@@ -15,11 +16,11 @@
                     <div  *ngIf="isShown">
 
                     <fieldset>
-                        <legend>Datos Generales</legend>
+                        <legend>I. Datos Generales</legend>
                         <div class="form-row">
                             <div class="form-group offset-md-3 col-md-6">
                                 <label for="identidad">No. de Identidad</label>
-                                <input type="text" id="identidad" class="form-control" minlength="13" maxlength="13" required [(ngModel)]="alumno.id_alumno" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="identidad" class="form-control" minlength=13 maxlength=13  required [(ngModel)]="alumno.id_alumno" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
@@ -69,11 +70,15 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4">
                                 <label for="proce">Lugar de Procedencia</label>
                                 <textarea cols="6" rows="3" type="text" id="proce"  class="form-control" [(ngModel)]="alumno.lugar_procedencia" [ngModelOptions]="{standalone: true}"></textarea>
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4">
+                                <label for="resial">Residencia Actual del Alumno</label>
+                                <textarea cols="6" rows="3" type="text" id="resial"  class="form-control" [(ngModel)]="alumno.residencial_actual_alumno" [ngModelOptions]="{standalone: true}"></textarea>
+                            </div>
+                            <div class="form-group col-md-4">
                                 <label for="resi">Residencia Actual de los Padres</label>
                                 <textarea cols="6" rows="3" type="text" id="resi"  class="form-control" [(ngModel)]="alumno.residencia_actual" [ngModelOptions]="{standalone: true}"></textarea>
                             </div>
@@ -159,9 +164,6 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            
-                        </div>
-                        <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="anio">Año de Ingreso</label>
                                 <input type="text" id="anio" class="form-control" required [(ngModel)]="ficha.anio" [ngModelOptions]="{standalone: true}">
@@ -172,7 +174,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="ind">Indice Academico</label>
-                                <input type="number" id="ind" min="0" max="100" setp="1" class="form-control" max-length=3 required [(ngModel)]="ficha.indice_acad" [ngModelOptions]="{standalone: true}">
+                                <input type="number" id="ind" min=0 max=100  setp="1" class="form-control" minlength=1  maxlength=3 required [(ngModel)]="ficha.indice_acad" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
@@ -249,6 +251,7 @@
                         </div> 
                         <div class="form-row">
                             <div class="form-group  offset-md-5 offset-sm-4 offset-xs-6">
+                                
                                 <button *ngIf="isShown5" style="margin-top: 15px; margin-left: 14px; margin-bottom: 20px;" (click)="toggleShow()"  class="btn btn-secondary">Siguiente</button>
                             </div>
                         </div>
@@ -257,7 +260,7 @@
                     </fieldset>
                     </div>
                     <fieldset *ngIf="isShown2">
-                        <legend>Aspectos Pedagógicos</legend>
+                        <legend>II. Aspectos Pedagógicos</legend>
                         <div style="margin-top: 8px;" class="form-group">
                             <label for="motivos">Motivos para elegir esta institución</label>
                             <textarea cols="8" rows="6" type="text" id="motivos" class="form-control" required [(ngModel)]="pedagogico.motivos" [ngModelOptions]="{standalone: true}"></textarea>
@@ -265,11 +268,11 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="sexto">Donde Curso Sexto Grado</label>
+                                <label for="sexto">Centro educativo donde curso sexto grado</label>
                                 <input type="text" id="sexto"  class="form-control" required [(ngModel)]="pedagogico.sexto_grado_cursado" [ngModelOptions]="{standalone: true}">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="ubicacion">Ubicación del Centro Académico Anterior</label>
+                                <label for="ubicacion">Ubicación del centro académico</label>
                                 <input type="text" id="ubicacion" class="form-control" required [(ngModel)]="pedagogico.ubicacion_centro_anterior" [ngModelOptions]="{standalone: true}">
                             </div>
                             <div class="form-group col-md-4" >
@@ -289,14 +292,14 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="dificultad" style="margin-right: 10px;">Asignatura que presenta dificultad</label>
+                                <label for="dificultad" style="margin-right: 10px;">Asignatura que presenta mayor dificultad</label>
                                 <select id="dificultad" class="form-control" required [(ngModel)]="pedagogico.cod_asignatura_dificultad" [ngModelOptions]="{standalone: true}" >
                                     <option selected value="">- Seleccione -</option>
                                     <option *ngFor="let x of listado_dificultad" [value]="x.cod_asignatura_dificultad">{{x.descripcion}}</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="facilidad" style="margin-right: 10px;">Asignatura que se le facilita</label>
+                                <label for="facilidad" style="margin-right: 10px;">Asignatura que se le facilita más</label>
                                 <select id="facilidad" class="form-control" required [(ngModel)]="pedagogico.cod_asignatura_facilidad" [ngModelOptions]="{standalone: true}" >
                                     <option selected value="">- Seleccione -</option>
                                     <option *ngFor="let x of listado_facilidad" [value]="x.cod_asignatura_facilidad">{{x.descripcion}}</option>
@@ -321,6 +324,10 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
+                                <label for="repro">¿Ha reprobado o repetido alguna clase o curso?</label>
+                                <textarea cols="5" rows="5" type="text" id="repro" placeholder="En caso de ser si, escriba cual(es), de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_reprobado" [ngModelOptions]="{standalone: true}"></textarea>
+                            </div>
+                            <div class="form-group col-md-4">
                                 <label for="repor">¿Ha sido reportado?</label>
                                 <textarea cols="5" rows="5" type="text" id="repor" placeholder="En caso de ser si, escriba porque, de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_reportes" [ngModelOptions]="{standalone: true}"></textarea>
                             </div>
@@ -328,21 +335,17 @@
                                 <label for="expu">¿Ha sido expulsado?</label>
                                 <textarea cols="5" rows="5" type="text" id="expu" placeholder="En caso de ser si, escriba porque, de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_expulsion" [ngModelOptions]="{standalone: true}"></textarea>
                             </div>
-                            <div class="form-group col-md-4">
-                                <label for="repro">¿Ha reprobado alguna clase?</label>
-                                <textarea cols="5" rows="5" type="text" id="repro" placeholder="En caso de ser si, escriba cual(es), de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_reprobado" [ngModelOptions]="{standalone: true}"></textarea>
-                            </div>
-    
                         </div>
                         <div class="form-row">
                             <div class="form-group  offset-md-5 offset-sm-4 offset-xs-6">
+                                <button *ngIf="isShown10" style="margin-top: 15px; margin-left: 14px; margin-bottom: 20px;" (click)="toggleatras()"  class="btn btn-secondary">Atras</button>
                                 <button *ngIf="isShown6" style="margin-top: 15px; margin-left: 14px; margin-bottom: 20px;" (click)="toggleShow2()"  class="btn btn-secondary">Siguiente</button>
                             </div>
                         </div>
                        
                     </fieldset>
                     <fieldset *ngIf="isShown3">
-                        <legend>Aspectos Personales</legend>
+                        <legend>III. Aspecto Personal y Social</legend>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="vive">Con quien vive actualmente</label>
@@ -355,7 +358,7 @@
                                   </small>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="otro1">Especificación</label>
+                                <label for="otro1">Especificación de con quien vive</label>
                                 <input type="text" id="otro1" class="form-control" [(ngModel)]="personal.obs_residencias" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
@@ -373,8 +376,8 @@
                             </div>
                         </div>
                         <div class="form-row" style="margin-top: 40px;">
-                            <div class="form-group col-md-3">
-                                <label for="rs">Como es en las relaciones sociales</label>
+                            <div class="form-group col-md-4">
+                                <label for="rs">Como se considera en las relaciones sociales</label>
                                 <select id="rs" class="form-control" required [(ngModel)]="personal.cod_relaciones_sociales" [ngModelOptions]="{standalone: true}" >
                                   <option selected value="">- Seleccione -</option>
                                   <option *ngFor="let x of listado_codigo_sociales" [value]="x.cod_relaciones_sociales">{{x.descripcion}}</option>
@@ -390,7 +393,7 @@
                                     Si escoge la opción "Otro", especifique en el espacio proporcionado
                                    </small>
                             </div>
-                            <div class="form-group col-md-5">
+                            <div class="form-group col-md-4">
                                 <label for="amigo">Especificación Mejor Amigo</label>
                                 <input type="text" id="amigo" class="form-control"  [(ngModel)]="personal.obs_mejor_amigo" [ngModelOptions]="{standalone: true}">
                             </div>
@@ -442,7 +445,7 @@
                                 <input type="text" id="rel"  class="form-control" required [(ngModel)]="personal.obs_religion" [ngModelOptions]="{standalone: true}">
                             </div>
                             <div class="form-group col-md-5">
-                                <label for="emo">Ha vivido o vives algún problema emocional?</label>
+                                <label for="emo">Ha vivido o vives alguno de estos problemas emocionales?</label>
                                 <select id="emo" class="form-control" required [(ngModel)]="personal.cod_problema_emocional" [ngModelOptions]="{standalone: true}" >
                                   <option selected value="">- Seleccione -</option>
                                   <option *ngFor="let x of listado_codigo_problemas" [value]="x.cod_problema_emocional">{{x.descripcion}}</option>
@@ -455,16 +458,18 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group  offset-md-5 offset-sm-4 offset-xs-6">
+                                <button *ngIf="isShown11" style="margin-top: 15px; margin-left: 14px; margin-bottom: 20px;" (click)="toggleatras2()"  class="btn btn-secondary">Atras</button>
                                 <button *ngIf="isShown7" style="margin-top: 15px; margin-left: 14px; margin-bottom: 20px;" (click)="toggleShow3()"  class="btn btn-secondary">Siguiente</button>
                             </div>
                         </div>
                         
                     </fieldset>
                     <fieldset *ngIf="isShown4">
-                        <legend>Trastornos Sintomáticos</legend>
-                        <label for="" class="offset-sm-3">A presentado alguno de estos problemas?</label>
+                        <legend>IV. Trastornos Sintomáticos</legend>
+                        <label for="" class="offset-sm-1 col-md-4" style="padding: 0%;">A presentado alguno de estos problemas? </label>
+                        <label for="" class="offset-sm-3 col-md-4" style="padding: 0%;">Antecedentes de experiencias traumáticas </label>
                         <div class="form-row">
-                            <div class="form-group offset-sm-3 col-md-3">
+                            <div class="form-group offset-md-1 col-md-3">
                                     <div class="form-check ">
                                     <input class="form-check-input" type="checkbox" id="is" value="1" [(ngModel)]="detalletrans.codigo_trans" [ngModelOptions]="{standalone: true}"> 
                                     <label class="form-check-label" for="is">Ideas Suicidas</label>
@@ -556,9 +561,32 @@
                                 <label class="form-check-label" for="viol">Uso de violencia</label>
                               </div>
                         </div>
+                        <div class="form-group  offset-md-1 col-md-3" id="hola">
+                            <div class="form-check ">
+                              <input class="form-check-input" type="checkbox" id="cast" value="23" [(ngModel)]="detalletrans23.codigo_trans" [ngModelOptions]="{standalone: true}"> 
+                              <label class="form-check-label" for="cast">Castigos traumáticos</label>
+                            </div>
+                            <div class="form-check ">
+                              <input class="form-check-input" type="checkbox" id="ffuertes"  value="24" [(ngModel)]="detalletrans24.codigo_trans" [ngModelOptions]="{standalone: true}">
+                              <label class="form-check-label" for="ffuertes">Físicos fuertes</label>
+                            </div>
+                            <div class="form-check ">
+                              <input class="form-check-input" type="checkbox" id="abuso" value="25" [(ngModel)]="detalletrans25.codigo_trans" [ngModelOptions]="{standalone: true}"> 
+                              <label class="form-check-label" for="abuso">Algún tipo de abuso</label>
+                            </div>
+                            <div class="form-check  ">
+                              <input class="form-check-input" type="checkbox" id="muerte"  value="26" [(ngModel)]="detalletrans26.codigo_trans" [ngModelOptions]="{standalone: true}">
+                              <label class="form-check-label" for="muerte">Peligro de muerte</label>
+                            </div>
+                            <div class="form-check ">
+                              <input class="form-check-input" type="checkbox" id="panico" value="27" [(ngModel)]="detalletrans27.codigo_trans" [ngModelOptions]="{standalone: true}"> 
+                              <label class="form-check-label" for="panico">Situación de pánico</label>
+                            </div>
+                          </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group  offset-md-5 offset-sm-4 offset-xs-6">
+                                <button *ngIf="isShown12" style="margin-top: 15px; margin-left: 14px; margin-bottom: 20px;" (click)="toggleatras3()"  class="btn btn-secondary">Atras</button>
                                 <button *ngIf="isShown8" style="margin-top: 15px; margin-left: 14px; margin-bottom: 20px;" (click)="toggleShow4()"  class="btn btn-secondary">Revisar</button>
                             </div>
                         </div>
@@ -585,13 +613,16 @@
                             (click)="revisar13()? detalletrans13.codigo_trans='13': detalletrans13.codigo_trans=null" (click)="revisar14()? detalletrans14.codigo_trans='14': detalletrans14.codigo_trans=null" (click)="revisar15()? detalletrans15.codigo_trans='15': detalletrans15.codigo_trans=null"
                             (click)="revisar16()? detalletrans16.codigo_trans='16': detalletrans16.codigo_trans=null" (click)="revisar17()? detalletrans17.codigo_trans='17': detalletrans17.codigo_trans=null" (click)="revisar18()? detalletrans18.codigo_trans='18': detalletrans18.codigo_trans=null"
                             (click)="revisar19()? detalletrans19.codigo_trans='19': detalletrans19.codigo_trans=null" (click)="revisar20()? detalletrans20.codigo_trans='20': detalletrans20.codigo_trans=null" (click)="revisar21()? detalletrans21.codigo_trans='21': detalletrans21.codigo_trans=null"
-                            (click)="revisar22()? detalletrans22.codigo_trans='22': detalletrans22.codigo_trans=null"
+                            (click)="revisar22()? detalletrans22.codigo_trans='22': detalletrans22.codigo_trans=null" (click)="revisar23()? detalletrans23.codigo_trans='23': detalletrans23.codigo_trans=null" (click)="revisar24()? detalletrans24.codigo_trans='24': detalletrans24.codigo_trans=null"
+                            (click)="revisar25()? detalletrans25.codigo_trans='25': detalletrans25.codigo_trans=null" (click)="revisar26()? detalletrans26.codigo_trans='26': detalletrans26.codigo_trans=null" (click)="revisar27()? detalletrans27.codigo_trans='27': detalletrans27.codigo_trans=null"
                             (click)="form.checkValidity()?  insert_detalletrans() : null" (click)="form.checkValidity()?  insert_detalletrans2() : null" (click)="form.checkValidity()?  insert_detalletrans3() : null" (click)="form.checkValidity()?  insert_detalletrans4() : null"
                             (click)="form.checkValidity()?  insert_detalletrans5() : null" (click)="form.checkValidity()?  insert_detalletrans6() : null" (click)="form.checkValidity()?  insert_detalletrans7() : null" (click)="form.checkValidity()?  insert_detalletrans8() : null"
                             (click)="form.checkValidity()?  insert_detalletrans9() : null" (click)="form.checkValidity()?  insert_detalletrans10() : null" (click)="form.checkValidity()?  insert_detalletrans11() : null" (click)="form.checkValidity()?  insert_detalletrans12() : null"
                             (click)="form.checkValidity()?  insert_detalletrans13() : null" (click)="form.checkValidity()?  insert_detalletrans14() : null" (click)="form.checkValidity()?  insert_detalletrans15() : null" (click)="form.checkValidity()?  insert_detalletrans16() : null"
                             (click)="form.checkValidity()?  insert_detalletrans17() : null" (click)="form.checkValidity()?  insert_detalletrans18() : null" (click)="form.checkValidity()?  insert_detalletrans19() : null" (click)="form.checkValidity()?  insert_detalletrans20() : null"
-                            (click)="form.checkValidity()?  insert_detalletrans21() : null" (click)="form.checkValidity()?  insert_detalletrans22() : null" 
+                            (click)="form.checkValidity()?  insert_detalletrans21() : null" (click)="form.checkValidity()?  insert_detalletrans22() : null" (click)="form.checkValidity()?  insert_detalletrans23() : null" (click)="form.checkValidity()?  insert_detalletrans24() : null"
+                            (click)="form.checkValidity()?  insert_detalletrans25() : null" (click)="form.checkValidity()?  insert_detalletrans26() : null" (click)="form.checkValidity()?  insert_detalletrans27() : null"
+                            (click)="form.checkValidity()? reload() : null"
                             class="btn btn-primary ">Registrar</button>
                         </div>
                     </div>

@@ -26,21 +26,7 @@ export class AppService{
     update_usuario(load, usuario):Observable<any> {
         usuario.codigo = load.codigo
         return this.httpClient.put(this.endPoint + "/update_usuario", usuario, {params: load, responseType: 'json'});
-    }
-
-    get_fichacompleta(load):Observable<any>{
-        return this.httpClient.get(this.endPoint + "/get_fichacompleta", {params: load, responseType: 'json'});
-    }
-    
-    get_registro(load):Observable<any>{
-        return this.httpClient.get(this.endPoint + "/get_registrocompleto", {params: load, responseType: 'json'});
-    }
-
-    get_transtornos1(load):Observable<any>{
-        return this.httpClient.get(this.endPoint + "/get_alumnos_transtornos", {params: load, responseType: 'json'});
-    }
-
-
+    }    
 
     get_ciudades():Observable<any>{
         return this.httpClient.get(this.endPoint + "/get_ciudad", {responseType: 'json'});
@@ -530,5 +516,39 @@ export class AppService{
 
     insert_expediente():Observable<any>{
         return this.httpClient.post(this.endPoint + "/insert_expediente",{ responseType: 'json' });
+    }
+
+    get_fichacompleta(load):Observable<any>{
+        return this.httpClient.get(this.endPoint + "/get_fichacompleta", {params: load, responseType: 'json'});
+    }
+
+    get_completefichadoc(load):Observable<any>{
+        return this.httpClient.get(this.endPoint + "/get_fichadocumentos2", {params: load, responseType: 'json'});
+    }
+
+    get_registrocompleto(load):Observable<any>{
+        return this.httpClient.get(this.endPoint + "/get_registrocompleto", {params: load, responseType: 'json'});
+    }
+
+    get_completealumnotrastornos(load):Observable<any>{
+        return this.httpClient.get(this.endPoint + "/get_alumnostrastornos2", {params: load, responseType: 'json'});
+    }
+
+    get_seguimiento():Observable<any>{
+        return this.httpClient.get(this.endPoint + "/get_seguimiento", {responseType: 'json'});
+    }
+
+
+    insert_seguimiento(load):Observable<any>{
+        return this.httpClient.post(this.endPoint + "/insert_seguimiento", load, { responseType: 'json' });
+    }
+
+    delete_seguimiento(load):Observable<any>{
+        return this.httpClient.delete(this.endPoint + "/delete_seguimiento", {params:load, responseType: 'json' });
+    }
+
+    update_seguimiento(load, sesion):Observable<any> {
+        sesion.codigo_sesion = load.codigo_sesion
+        return this.httpClient.put(this.endPoint + "/update_seguimiento", sesion, {params: load, responseType: 'json'});
     }
 }

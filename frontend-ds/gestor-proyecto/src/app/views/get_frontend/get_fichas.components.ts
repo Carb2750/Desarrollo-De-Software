@@ -22,8 +22,40 @@ export class GetFichasComponent implements OnInit{
 
     public id;
     
+    public cod_curso;
+    public cod_seccion;
+    public cod_modalidad;
+    public cod_jornada;
+    public cod_ciudad;
+    public anio;
+    public obs_inst_proced;
+    public indice_acad;
+    public obs_repite_curso;
+    public obs_materia_restrada;
+    public obs_beca;
+    public contacto_emergencia;
+    public num_emergencia;
+    public observaciones;
+    public motivacion_ingreso;
 
     public ficha = {
+        cod_curso:"",
+        cod_seccion:"",
+        cod_modalidad:"",
+        cod_jornada:"",
+        cod_ciudad:"",
+        anio:"",
+        obs_inst_proced:"",
+        indice_acad:"",
+        obs_repite_curso:"",
+        obs_materia_restrada:"",
+        obs_beca:"",
+        contacto_emergencia:"",
+        num_emergencia:"",
+        observaciones:"",
+        motivacion_ingreso:""
+    }
+    public ficha2 = {
         cod_curso:"",
         cod_seccion:"",
         cod_modalidad:"",
@@ -238,6 +270,52 @@ export class GetFichasComponent implements OnInit{
         var load={
             num_ficha:this.id
         };
+        this.ficha2=this.ficha;
+        if(this.ficha2.cod_curso==""){
+            this.ficha2.cod_curso=this.cod_curso;
+        }
+        if(this.ficha2.cod_seccion==""){
+            this.ficha2.cod_seccion=this.cod_seccion;
+        }
+        if(this.ficha2.cod_modalidad==""){
+            this.ficha2.cod_modalidad=this.cod_modalidad;
+        }
+        if(this.ficha2.cod_jornada==""){
+            this.ficha2.cod_jornada=this.cod_jornada;
+        }
+        if(this.ficha2.cod_ciudad==""){
+            this.ficha2.cod_ciudad=this.cod_ciudad;
+        }
+        if(this.ficha2.anio==""){
+            this.ficha2.anio=this.anio;
+        }
+        if(this.ficha2.obs_inst_proced==""){
+            this.ficha2.obs_inst_proced=this.obs_inst_proced;
+        }
+        if(this.ficha2.indice_acad==""){
+            this.ficha2.indice_acad=this.indice_acad;
+        }
+        if(this.ficha2.obs_repite_curso==""){
+            this.ficha2.obs_repite_curso=this.obs_repite_curso;
+        }
+        if(this.ficha2.obs_materia_restrada==""){
+            this.ficha2.obs_materia_restrada=this.obs_materia_restrada;
+        }
+        if(this.ficha2.obs_beca==""){
+            this.ficha2.obs_beca=this.obs_beca;
+        }
+        if(this.ficha2.contacto_emergencia==""){
+            this.ficha2.contacto_emergencia=this.contacto_emergencia;
+        }
+        if(this.ficha2.num_emergencia==""){
+            this.ficha2.num_emergencia=this.num_emergencia;
+        }
+        if(this.ficha2.observaciones==""){
+            this.ficha2.observaciones=this.observaciones;
+        }
+        if(this.ficha2.motivacion_ingreso==""){
+            this.ficha2.motivacion_ingreso=this.motivacion_ingreso;
+        }
         this.service.update_ficha(load, this.ficha).subscribe(
         data => response = data,
         err => {
@@ -277,8 +355,23 @@ export class GetFichasComponent implements OnInit{
         
     }
 
-    pass_code(id) {
+    pass_code(id,cod_curso,cod_seccion,cod_modalidad,cod_jornada,cod_ciudad,anio,obs_inst_proced,indice_acad,obs_repite_curso,obs_materia_restrada,obs_beca,contacto_emergencia,num_emergencia,observaciones,motivacion_ingreso) {
         this.id = id;
+        this.cod_curso = cod_curso;
+        this.cod_seccion = cod_seccion;
+        this.cod_modalidad = cod_modalidad;
+        this.cod_jornada = cod_jornada;
+        this.cod_ciudad = cod_ciudad;
+        this.anio = anio;
+        this.obs_inst_proced = obs_inst_proced;
+        this.indice_acad = indice_acad;
+        this.obs_repite_curso = obs_repite_curso;
+        this.obs_materia_restrada = obs_materia_restrada;
+        this.obs_beca = obs_beca;
+        this.contacto_emergencia = contacto_emergencia;
+        this.num_emergencia = num_emergencia;
+        this.observaciones = observaciones;
+        this.motivacion_ingreso = motivacion_ingreso;
     }
 
     isShown: boolean = false ; // hidden by default

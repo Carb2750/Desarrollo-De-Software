@@ -224,7 +224,7 @@ router.put('/update_aspectospersonales', (req, res, next) => {
 });
 
 router.get('/get_aspectospersonales', (req, res, next) => {
-    var query = 'select `aspectos personales`.`cod_aspectos_personal` as `cod_aspectos_personal`,`convive`.`descripcion` as `descripcion_convive`,`aspectos personales`.`obs_residencias` as `obs_residencias`,`relaciones sociales`.`descripcion` as `descripcion_social`,`relaciones amistosas`.`descripcion` as `descripcion_amistosa`,`aspectos personales`.`obs_relaciones_amistosas` as `obs_relaciones_amistosas`,`aspectos personales`.`obs_noviazgos` as `obs_noviazgos`,`mejores_amigos`.`descripcion` as `descripcion_mejor`, `aspectos personales`.`obs_mejor_amigo` as `obs_mejor_amigo`,`actividades_deportivas`.`descripcion` as `descripcion_deportiva`,`aspectos personales`.`obs_actividades_deportivas` as `obs_actividades_deportivas`,`actividades_artisticas`.`descripcion` as `descripcion_artistica`,`aspectos personales`.`obs_actividades_artisticas` as `obs_actividades_artisticas`,`aspectos personales`.`obs_religion` as `obs_religion`,`problemas emocionales`.`descripcion` as `descripcion_emocional`,`aspectos personales`.`obs_ayudas` as `obs_ayudas`  from `aspectos personales` join `convive` on `aspectos personales`.`codigo_convive` = `convive`.`codigo_convive`  join `relaciones sociales` on `aspectos personales`.`cod_relaciones_sociales` = `relaciones sociales`.`cod_relaciones_sociales` join `relaciones amistosas` on `aspectos personales`.`cod_relaciones_amistosas` = `relaciones amistosas`.`cod_relaciones_amistosas` join `mejores_amigos` on `aspectos personales`.`cod_mejor_amigo` = `mejores_amigos`.`cod_mejor_amigo` join `actividades_deportivas` on `aspectos personales`.`cod_act_deportiva` = `actividades_deportivas`.`cod_act_deportiva` join `actividades_artisticas` on `aspectos personales`.`cod_act_artistica` = `actividades_artisticas`.`cod_act_artistica` join `problemas emocionales` on `aspectos personales`.`cod_problema_emocional` = `problemas emocionales`.`cod_problema_emocional`';
+    var query = 'select `aspectos personales`.`cod_aspectos_personal` as `cod_aspectos_personal`,`convive`.`descripcion` as `descripcion_convive`,`aspectos personales`.`obs_residencias` as `obs_residencias`,`relaciones sociales`.`descripcion` as `descripcion_social`,`relaciones amistosas`.`descripcion` as `descripcion_amistosa`,`aspectos personales`.`obs_relaciones_amistosas` as `obs_relaciones_amistosas`,`aspectos personales`.`obs_noviazgos` as `obs_noviazgos`,`mejores_amigos`.`descripcion` as `descripcion_mejor`, `aspectos personales`.`obs_mejor_amigo` as `obs_mejor_amigo`,`actividades_deportivas`.`descripcion` as `descripcion_deportiva`,`aspectos personales`.`obs_actividades_deportivas` as `obs_actividades_deportivas`,`actividades_artisticas`.`descripcion` as `descripcion_artistica`,`aspectos personales`.`obs_actividades_artisticas` as `obs_actividades_artisticas`,`aspectos personales`.`obs_religion` as `obs_religion`,`problemas emocionales`.`descripcion` as `descripcion_emocional`,`aspectos personales`.`obs_ayudas` as `obs_ayudas`,`convive`.`codigo_convive` as `codigo_convive`,`relaciones sociales`.`cod_relaciones_sociales` as `cod_relaciones_sociales`, `relaciones amistosas`.`cod_relaciones_amistosas` as `cod_relaciones_amistosas`, `mejores_amigos`.`cod_mejor_amigo` as `cod_mejor_amigo`, `actividades_deportivas`.`cod_act_deportiva` as `cod_act_deportiva`,`actividades_artisticas`.`cod_act_artistica` as `cod_act_artistica`, `problemas emocionales`.`cod_problema_emocional` as `cod_problema_emocional` from `aspectos personales` join `convive` on `aspectos personales`.`codigo_convive` = `convive`.`codigo_convive`  join `relaciones sociales` on `aspectos personales`.`cod_relaciones_sociales` = `relaciones sociales`.`cod_relaciones_sociales` join `relaciones amistosas` on `aspectos personales`.`cod_relaciones_amistosas` = `relaciones amistosas`.`cod_relaciones_amistosas` join `mejores_amigos` on `aspectos personales`.`cod_mejor_amigo` = `mejores_amigos`.`cod_mejor_amigo` join `actividades_deportivas` on `aspectos personales`.`cod_act_deportiva` = `actividades_deportivas`.`cod_act_deportiva` join `actividades_artisticas` on `aspectos personales`.`cod_act_artistica` = `actividades_artisticas`.`cod_act_artistica` join `problemas emocionales` on `aspectos personales`.`cod_problema_emocional` = `problemas emocionales`.`cod_problema_emocional` order by `aspectos personales`.`cod_aspectos_personal`';
     con.query(query, (err, result, fields) => { 
         if(err) {
             next(err);
@@ -296,7 +296,7 @@ router.delete('/delete_aspectospedagogicos', (req, res, next) => {
 
 
 router.get('/get_aspectospedagogicos', (req, res, next) => {
-    var query = 'select `aspectos pedagogicos`.`codigo_pedagogicos` as `codigo_pedagogicos`, `aspectos pedagogicos`.`motivos` as `motivos`, `aspectos pedagogicos`.`sexto_grado_cursado` as `sexto_grado_cursado`, `aspectos pedagogicos`.`ubicacion_centro_anterior` as `ubicacion_centro_anterior`,`tipo escuela`.`descripcion` as `descripcion`, `rendimiento academico`.`descripcion` as `descripcion_rendimiento`, `asignatura dificultad`.`descripcion` as `descripcion_dificil`, `asignatura facilidad`.`descripcion` as `descripcion_facil`, `estudio constante`.`descripcion` as `descripcion_estudio`,`consideracion estudio`.`descripcion` as `descripcion_consideracion`,`aspectos pedagogicos`.`obs_reprobado` as `obs_reprobado`, `aspectos pedagogicos`.`obs_reportes` as `obs_reportes`,`aspectos pedagogicos`.`obs_expulsion` as `obs_expulsion` from `aspectos pedagogicos` join `tipo escuela` on `aspectos pedagogicos`.`codigo_escuela` = `tipo escuela`.`codigo_escuela` join `rendimiento academico` on `aspectos pedagogicos`.`codigo_rendimiento` = `rendimiento academico`.`codigo_rendimiento` join `asignatura dificultad` on `aspectos pedagogicos`.`cod_asignatura_dificultad` = `asignatura dificultad`.`cod_asignatura_dificultad` join `asignatura facilidad` on `aspectos pedagogicos`.`cod_asignatura_facilidad` = `asignatura facilidad`.`cod_asignatura_facilidad` join `estudio constante` on `aspectos pedagogicos`.`codigo_estudio` = `estudio constante`.`codigo_estudio` join `consideracion estudio` on `aspectos pedagogicos`.`cod_consideracion` = `consideracion estudio`.`cod_consideracion` ';
+    var query = 'select `aspectos pedagogicos`.`codigo_pedagogicos` as `codigo_pedagogicos`, `aspectos pedagogicos`.`motivos` as `motivos`, `aspectos pedagogicos`.`sexto_grado_cursado` as `sexto_grado_cursado`, `aspectos pedagogicos`.`ubicacion_centro_anterior` as `ubicacion_centro_anterior`,`tipo escuela`.`descripcion` as `descripcion`, `rendimiento academico`.`descripcion` as `descripcion_rendimiento`, `asignatura dificultad`.`descripcion` as `descripcion_dificil`, `asignatura facilidad`.`descripcion` as `descripcion_facil`, `estudio constante`.`descripcion` as `descripcion_estudio`,`consideracion estudio`.`descripcion` as `descripcion_consideracion`,`aspectos pedagogicos`.`obs_reprobado` as `obs_reprobado`, `aspectos pedagogicos`.`obs_reportes` as `obs_reportes`,`aspectos pedagogicos`.`obs_expulsion` as `obs_expulsion`, `tipo escuela`.`codigo_escuela` as `codigo_escuela`, `asignatura dificultad`.`cod_asignatura_dificultad` as `cod_asignatura_dificultad`, `asignatura facilidad`.`cod_asignatura_facilidad` as `cod_asignatura_facilidad`, `rendimiento academico`.`codigo_rendimiento` as `codigo_rendimiento`, `estudio constante`.`codigo_estudio` as `codigo_estudio`, `consideracion estudio`.`cod_consideracion` as `cod_consideracion` from `aspectos pedagogicos` join `tipo escuela` on `aspectos pedagogicos`.`codigo_escuela` = `tipo escuela`.`codigo_escuela` join `rendimiento academico` on `aspectos pedagogicos`.`codigo_rendimiento` = `rendimiento academico`.`codigo_rendimiento` join `asignatura dificultad` on `aspectos pedagogicos`.`cod_asignatura_dificultad` = `asignatura dificultad`.`cod_asignatura_dificultad` join `asignatura facilidad` on `aspectos pedagogicos`.`cod_asignatura_facilidad` = `asignatura facilidad`.`cod_asignatura_facilidad` join `estudio constante` on `aspectos pedagogicos`.`codigo_estudio` = `estudio constante`.`codigo_estudio` join `consideracion estudio` on `aspectos pedagogicos`.`cod_consideracion` = `consideracion estudio`.`cod_consideracion` order by `aspectos pedagogicos`.`codigo_pedagogicos`';
     con.query(query, (err, result, fields) => {
         if(err) {
             next(err);
@@ -308,7 +308,7 @@ router.get('/get_aspectospedagogicos', (req, res, next) => {
 
 
 router.get('/get_ficha', (req, res, next) => {
-    var query = 'select `ficha`.`num_ficha` as `num_ficha`, `curso`.`desc_curso` as `desc_curso`, `seccion`.`desc_seccion` as `desc_seccion`, `modalidad`.`desc_modadlidad` as `desc_modadlidad`, `jornada`.`desc_jornada` as `desc_jornada`,`ciudad`.`nom_ciudad` as `nom_ciudad`, `ficha`.`anio` as `anio`, `ficha`.`obs_inst_proced` as `obs_inst_proced`, `ficha`.`indice_acad` as `indice_acad`, `ficha`.`obs_repite_curso` as `obs_repite_curso`, `ficha`.`obs_materia_restrada` as `obs_materia_restrada`, `ficha`.`obs_beca` as `obs_beca`, `ficha`.`contacto_emergencia` as `contacto_emergencia`, `ficha`.`num_emergencia` as `num_emergencia`, `ficha`.`observaciones` as `observaciones` from `ficha` join `seccion` on `ficha`.`cod_seccion` = `seccion`.`cod_seccion` join `curso` on `ficha`.`cod_curso` = `curso`.`cod_curso` join `modalidad` on `ficha`.`cod_modalidad` = `modalidad`.`cod_modalidad` join `jornada` on `ficha`.`cod_jornada` = `jornada`.`cod_jornada` join `ciudad` on `ficha`.`cod_ciudad` = `ciudad`.`cod_ciudad`';
+    var query = 'select `ficha`.`num_ficha` as `num_ficha`, `curso`.`desc_curso` as `desc_curso`, `seccion`.`desc_seccion` as `desc_seccion`, `modalidad`.`desc_modadlidad` as `desc_modadlidad`, `jornada`.`desc_jornada` as `desc_jornada`,`ciudad`.`nom_ciudad` as `nom_ciudad`, `ficha`.`anio` as `anio`, `ficha`.`obs_inst_proced` as `obs_inst_proced`, `ficha`.`indice_acad` as `indice_acad`, `ficha`.`obs_repite_curso` as `obs_repite_curso`, `ficha`.`obs_materia_restrada` as `obs_materia_restrada`, `ficha`.`obs_beca` as `obs_beca`, `ficha`.`contacto_emergencia` as `contacto_emergencia`, `ficha`.`num_emergencia` as `num_emergencia`, `ficha`.`observaciones` as `observaciones`,`curso`.`cod_curso` as `cod_curso`, `seccion`.`cod_seccion` as `cod_seccion`, `modalidad`.`cod_modalidad` as `cod_modalidad`, `jornada`.`cod_jornada` as `cod_jornada`, `ciudad`.`cod_ciudad` as `cod_ciudad`  from `ficha` join `seccion` on `ficha`.`cod_seccion` = `seccion`.`cod_seccion` join `curso` on `ficha`.`cod_curso` = `curso`.`cod_curso` join `modalidad` on `ficha`.`cod_modalidad` = `modalidad`.`cod_modalidad` join `jornada` on `ficha`.`cod_jornada` = `jornada`.`cod_jornada` join `ciudad` on `ficha`.`cod_ciudad` = `ciudad`.`cod_ciudad` order by `ficha`.`num_ficha`';
     con.query(query, (err, result, fields) => {
         if(err) {
             next(err);
@@ -1365,7 +1365,7 @@ router.post('/insert_estudioconstante', (req, res, next) => {
 
 
 router.get('/get_fichacompleta', (req, res, next) => {
-    var query = 'select `alumnos datos`.`id_alumno` as  `id_alumno`, `alumnos datos`.`codigo_expediente` as `codigo_expediente`, `alumnos datos`.`fecha_expediente` as `fecha_expediente`,  `alumnos datos`.`nombre_alumno` as `nombre_alumno`,`alumnos datos`.`apellido_alumno` as `apellido_alumno`,`alumnos datos`.`fecha_nacimiento` as `fecha_nacimiento`,`alumnos datos`.`sexo` as `sexo`, `curso`.`desc_curso` as `desc_curso`, `seccion`.`desc_seccion` as `desc_seccion`, `modalidad`.`desc_modadlidad` as `desc_modadlidad`, `jornada`.`desc_jornada` as `desc_jornada`,`ficha`.`anio` as `anio`, `alumnos datos`.`nombre_padre` as `nombre_padre`,`alumnos datos`.`tel_padre` as `tel_padre`, `alumnos datos`.`nombre_madre` as `nombre_madre`, `alumnos datos`.`tel_madre` as `tel_madre`, `alumnos datos`.`tel_casa` as `tel_casa`, `alumnos datos`.`tel_trabajo` as `tel_trabajo`, `alumnos datos`.`correo` as `correo`, `alumnos datos`.`residencia_actual` as `residencia_actual`,`ficha`.`comparte_hogar` as  `comparte_hogar`, `ficha`.`obs_inst_proced` as `obs_inst_proced`, `ficha`.`indice_acad` as `indice_acad`, `ficha`.`obs_repite_curso` as `obs_repite_curso`, `ficha`.`obs_materia_restrada` as `obs_materia_restrada`, `ficha`.`obs_beca` as `obs_beca`,`ficha`.`num_emergencia` as `num_emergencia`, `ficha`.`observaciones` as `observaciones` from `alumnos datos` join `ficha` on `alumnos datos`.`codigo_ficha` = `ficha`.`num_ficha` join `seccion` on `ficha`.`cod_seccion` = `seccion`.`cod_seccion` join `curso` on `ficha`.`cod_curso` = `curso`.`cod_curso` join `modalidad` on `ficha`.`cod_modalidad` = `modalidad`.`cod_modalidad` join `jornada` on `ficha`.`cod_jornada` = `jornada`.`cod_jornada` join `ciudad` on `ficha`.`cod_ciudad` = `ciudad`.`cod_ciudad` where id_alumno = ?';
+    var query = 'select concat_ws(" ",`alumnos datos`.`nombre_alumno`,`alumnos datos`.`segundo_nombre`,`alumnos datos`.`apellido_alumno`,`alumnos datos`.`segundo_apellido`) as `nombre_completo`, `alumnos datos`.`id_alumno` as `id_alumno`, `ciudad`.`nom_ciudad` as `ciudad_nacimiento`, `alumnos datos`.`fecha_nacimiento` as `fecha_nacimiento`, DATE_FORMAT(FROM_DAYS(DATEDIFF(now(),`alumnos datos`.`fecha_nacimiento`)), "%Y")+0 AS `edad`, `alumnos datos`.`sexo` as `sexo`, `curso`.`desc_curso` as `desc_curso`,`seccion`.`desc_seccion` as `desc_seccion`, `modalidad`.`desc_modadlidad` as `desc_modadlidad`, `jornada`.`desc_jornada` as `desc_jornada`, `ficha`.`anio` as `anio`, concat_ws(" ", `alumnos datos`.`nombre_padre`,"," , `alumnos datos`.`nombre_madre`) as `encargados`, `alumnos datos`.`residencia_actual` as `residencia_actual`, `alumnos datos`.`tel_celular` as `tel_celular`, `alumnos datos`.`tel_casa` as `tel_casa`, `alumnos datos`.`tel_trabajo` as `tel_trabajo`, `alumnos datos`.`correo` as `correo`, `convive`.`descripcion` as `descripcion_convive`, `ficha`.`obs_inst_proced` as `obs_inst_proced`,`ficha`.`indice_acad` as `indice_acad`, `ficha`.`obs_repite_curso` as `obs_repite_curso`, `ficha`.`obs_materia_restrada` as `obs_materia_restrada`,  `ficha`.`obs_beca` as `obs_beca`, `ficha`.`contacto_emergencia` as `contacto_emergencia`, `ficha`.`num_emergencia` as `num_emergencia`, `aspectos pedagogicos`.`motivos` as `motivos`, `ficha`.`observaciones` as `observaciones`, `alumnos datos`.`codigo_ficha` as `num_ficha` from `alumnos datos` join `ficha` on `alumnos datos`.`codigo_ficha` = `ficha`.`num_ficha` join `ciudad` on `ficha`.`cod_ciudad` = `ciudad`.`cod_ciudad` join `curso` on `ficha`.`cod_curso` = `curso`.`cod_curso` join `seccion` on `ficha`.`cod_seccion` = `seccion`.`cod_seccion` join `modalidad` on `ficha`.`cod_modalidad` = `modalidad`.`cod_modalidad` join `jornada` on `ficha`.`cod_jornada` = `jornada`.`cod_jornada` join `aspectos personales` on `alumnos datos`.`cod_aspectos_personal` = `aspectos personales`.`cod_aspectos_personal` join `aspectos pedagogicos` on `alumnos datos`.`aspectos_pedagogicos` = `aspectos pedagogicos`.`codigo_pedagogicos` join `convive` on `aspectos personales`.`codigo_convive` = `convive`.`codigo_convive` where `id_alumno`=?';
     var values = [req.query.id_alumno];
     con.query(query, values, (err, result, fields) => {
         if(err) {
@@ -1378,7 +1378,7 @@ router.get('/get_fichacompleta', (req, res, next) => {
 
 
 router.get('/get_registrocompleto', (req, res, next) => {
-    var query = 'select `alumnos datos`.`id_alumno` as  `id_alumno`, `alumnos datos`.`codigo_expediente` as `codigo_expediente`, `alumnos datos`.`fecha_expediente` as `fecha_expediente`,  `alumnos datos`.`nombre_alumno` as `nombre_alumno`,`alumnos datos`.`apellido_alumno` as `apellido_alumno`,`alumnos datos`.`nacionalidad` as `nacionalidad`, `alumnos datos`.`lugar_procedencia` as `lugar_procedencia`, `alumnos datos`.`residencia_actual` as `residencia_actual`, `alumnos datos`.`nombre_padre` as `nombre_padre`,`alumnos datos`.`tel_padre` as `tel_padre`,`alumnos datos`.`ocupacion_padre` as `ocupacion_padre`, `alumnos datos`.`nombre_madre` as `nombre_madre`, `alumnos datos`.`tel_madre` as `tel_madre`, `alumnos datos`.`ocupacion_madre` as `ocupacion_madre`,`aspectos pedagogicos`.`motivos` as `motivos`, `aspectos pedagogicos`.`sexto_grado_cursado` as `sexto_grado_cursado`, `aspectos pedagogicos`.`ubicacion_centro_anterior` as `ubicacion_centro_anterior`,`tipo escuela`.`descripcion` as `descripcion_escuela`, `rendimiento academico`.`descripcion` as `descripcion_rendimiento`, `asignatura dificultad`.`descripcion` as `descripcion_dificultad`, `asignatura facilidad`.`descripcion` as `descripcion_facilidad`,`aspectos pedagogicos`.`obs_reprobado` as `obs_reprobado`,`estudio constante`.`descripcion` as `descripcion_constante`,`consideracion estudio`.`descripcion` as `descripcion_estudio`, `aspectos pedagogicos`.`obs_reportes` as `obs_reportes`,`aspectos pedagogicos`.`obs_expulsion` as `obs_expulsion`,`aspectos personales`.`obs_residencias` as `obs_residencias`,`relaciones sociales`.`descripcion` as `descripcion_sociales`,`relaciones amistosas`.`descripcion` as `descripcion_amistosas`,`aspectos personales`.`obs_relaciones_amistosas` as `obs_relaciones_amistosas`,`aspectos personales`.`obs_noviazgos` as `obs_noviazgos`,`mejores_amigos`.`descripcion` as `descripcion_amigos`,`actividades_deportivas`.`descripcion` as `descripcion_deportivas`,`aspectos personales`.`obs_actividades_deportivas` as `obs_actividades_deportivas`,`actividades_artisticas`.`descripcion` as `descripcion_artisticas`,`aspectos personales`.`obs_actividades_artisticas` as `obs_actividades_artisticas`,`aspectos personales`.`obs_religion` as `obs_religion`,`problemas emocionales`.`descripcion` as `descripcion`,`aspectos personales`.`obs_ayudas` as `obs_ayudas` from `alumnos datos` join `aspectos personales` on `alumnos datos`.`cod_aspectos_personal` = `aspectos personales`.`cod_aspectos_personal` join `aspectos pedagogicos` on `alumnos datos`.`aspectos_pedagogicos` = `aspectos pedagogicos`.`codigo_pedagogicos` join `relaciones sociales` on `aspectos personales`.`cod_relaciones_sociales` = `relaciones sociales`.`cod_relaciones_sociales` join `relaciones amistosas` on `aspectos personales`.`cod_relaciones_amistosas` = `relaciones amistosas`.`cod_relaciones_amistosas` join `mejores_amigos` on `aspectos personales`.`cod_mejor_amigo` = `mejores_amigos`.`cod_mejor_amigo` join `actividades_deportivas` on `aspectos personales`.`cod_act_deportiva` = `actividades_deportivas`.`cod_act_deportiva` join `actividades_artisticas` on `aspectos personales`.`cod_act_artistica` = `actividades_artisticas`.`cod_act_artistica` join `problemas emocionales` on `aspectos personales`.`cod_problema_emocional` = `problemas emocionales`.`cod_problema_emocional` join `tipo escuela` on `aspectos pedagogicos`.`codigo_escuela` = `tipo escuela`.`codigo_escuela` join `rendimiento academico` on `aspectos pedagogicos`.`codigo_rendimiento` = `rendimiento academico`.`codigo_rendimiento` join `asignatura dificultad` on `aspectos pedagogicos`.`cod_asignatura_dificultad` = `asignatura dificultad`.`cod_asignatura_dificultad` join `asignatura facilidad` on `aspectos pedagogicos`.`cod_asignatura_facilidad` = `asignatura facilidad`.`cod_asignatura_facilidad` join `estudio constante` on `aspectos pedagogicos`.`codigo_estudio` = `estudio constante`.`codigo_estudio` join `consideracion estudio` on `aspectos pedagogicos`.`cod_consideracion` = `consideracion estudio`.`cod_consideracion` where id_alumno = ?';
+    var query = 'select concat_ws(" ",`alumnos datos`.`nombre_alumno`,`alumnos datos`.`segundo_nombre`,`alumnos datos`.`apellido_alumno`,`alumnos datos`.`segundo_apellido`) as `nombre_completo`, `alumnos datos`.`nacionalidad` as `nacionalidad`,  `alumnos datos`.`lugar_procedencia` as `lugar_procedencia`, `alumnos datos`.`residencial_actual_alumno` as `residencia_actual_alumno`, `expedientes`.`fecha_expediente` as `fecha_expediente`, `alumnos datos`.`nombre_padre` as `nombre_padre`, `alumnos datos`.`tel_padre` as `tel_padre`, `alumnos datos`.`ocupacion_padre` as `ocupacion_padre`, `alumnos datos`.`nombre_madre` as `nombre_madre`, `alumnos datos`.`tel_madre` as `tel_madre`, `alumnos datos`.`ocupacion_madre` as `ocupacion_madre`, `aspectos pedagogicos`.`motivos` as `motivos`, `aspectos pedagogicos`.`sexto_grado_cursado` as `sexto_grado_cursado`, `aspectos pedagogicos`.`ubicacion_centro_anterior` as `ubicacion_centro_anterior`, `tipo escuela`.`descripcion` as `descripcion_escuela`, `rendimiento academico`.`descripcion` as `descripcion_rendimiento`, `asignatura dificultad`.`descripcion` as `descripcion_dificultad`,  `asignatura facilidad`.`descripcion` as `descripcion_facilidad`, `estudio constante`.`descripcion` as `descripcion_estudio`, `consideracion estudio`.`descripcion` as `descripcion_consideracion`, `aspectos pedagogicos`.`obs_reprobado` as `obs_reprobado`, `aspectos pedagogicos`.`obs_reportes` as `obs_reportes`,`aspectos pedagogicos`.`obs_expulsion` as `obs_expulsion` , `convive`.`descripcion` as `descripcion_convive`, `aspectos personales`.`obs_residencias` as `obs_residencias`, `relaciones sociales`.`descripcion` as `descripcion_social`,`aspectos personales`.`obs_noviazgos` as `obs_noviazgos`, `relaciones amistosas`.`descripcion` as `descripcion_amistad`, `aspectos personales`.`obs_relaciones_amistosas` as `obs_relaciones_amistosas`, `mejores_amigos`.`descripcion` as `descripcion_amigo`,`aspectos personales`.`obs_mejor_amigo` as `obs_mejor_amigo`,`actividades_deportivas`.`descripcion` as `descripcion_deporte`, `aspectos personales`.`obs_actividades_deportivas` as `obs_actividades_deportivas`, `actividades_artisticas`.`descripcion` as `descripcion_arte`, `aspectos personales`.`obs_actividades_artisticas`, `aspectos personales`.`obs_religion` as `obs_religion`, `problemas emocionales`.`descripcion` as `descripcion_problema`, `aspectos personales`.`obs_ayudas` as `obs_ayudas`,`alumnos datos`.`codigo_expediente` as `codigo_expediente`  from `alumnos datos`  join `expedientes` on `alumnos datos`.`codigo_expediente` = `expedientes`.`codigo_expediente` join `aspectos pedagogicos` on `alumnos datos`.`aspectos_pedagogicos` = `aspectos pedagogicos`.`codigo_pedagogicos` join `tipo escuela` on `aspectos pedagogicos`.`codigo_escuela` = `tipo escuela`.`codigo_escuela` join `rendimiento academico` on `aspectos pedagogicos`.`codigo_rendimiento` = `rendimiento academico`.`codigo_rendimiento` join `asignatura dificultad` on `aspectos pedagogicos`.`cod_asignatura_dificultad` = `asignatura dificultad`.`cod_asignatura_dificultad` join `asignatura facilidad` on `aspectos pedagogicos`.`cod_asignatura_facilidad` = `asignatura facilidad`.`cod_asignatura_facilidad` join `estudio constante` on `aspectos pedagogicos`.`codigo_estudio` = `estudio constante`.`codigo_estudio` join `consideracion estudio` on `aspectos pedagogicos`.`cod_consideracion` = `consideracion estudio`.`cod_consideracion` join `aspectos personales` on `alumnos datos`.`cod_aspectos_personal` = `aspectos personales`.`cod_aspectos_personal` join `convive` on `aspectos personales`.`codigo_convive` = `convive`.`codigo_convive` join `relaciones sociales` on `aspectos personales`.`cod_relaciones_sociales` = `relaciones sociales`.`cod_relaciones_sociales` join `relaciones amistosas` on `aspectos personales`.`cod_relaciones_amistosas` = `relaciones amistosas`.`cod_relaciones_amistosas` join `mejores_amigos` on `aspectos personales`.`cod_mejor_amigo` = `mejores_amigos`.`cod_mejor_amigo` join `actividades_deportivas` on `aspectos personales`.`cod_act_deportiva` = `actividades_deportivas`.`cod_act_deportiva` join `actividades_artisticas` on `aspectos personales`.`cod_act_artistica` = `actividades_artisticas`.`cod_act_artistica` join `problemas emocionales` on `aspectos personales`.`cod_problema_emocional` = `problemas emocionales`.`cod_problema_emocional` where `id_alumno`=?';
     var values = [req.query.id_alumno];
     con.query(query, values, (err, result, fields) => {
         if(err) {
@@ -1394,7 +1394,7 @@ router.get('/get_registrocompleto', (req, res, next) => {
 
 
 router.get('/get_alumno', (req, res, next) => {
-    var query = 'select `id_alumno` as `id_alumno`, `expedientes`.`codigo_expediente` as `codigo_expediente`, `expedientes`.`fecha_expediente` as `fecha_expediente`, `nombre_alumno` as `nombre_alumno`, `segundo_nombre` as `segundo_nombre`, `apellido_alumno` as `apellido_alumno`, `segundo_apellido` as `segundo_apellido`, DATE_FORMAT(FROM_DAYS(DATEDIFF(now(),`fecha_nacimiento`)), "%Y")+0 AS Edad , `fecha_nacimiento` as `fecha_nacimiento`, `sexo` as `sexo`,`nacionalidad` as `nacionalidad`, `correo` as `correo`, `lugar_procedencia` as `lugar_procedencia`, `residencia_actual` as `residencia_actual`, `tel_celular` as `tel_celular`, `tel_casa` as `tel_casa`, `tel_trabajo` as `tel_trabajo`, `nombre_padre` as `nombre_padre`, `tel_padre` as `tel_padre`, `ocupacion_padre` as `ocupacion_padre`, `nombre_madre` as `nombre_madre`, `tel_madre` as `tel_madre`, `ocupacion_madre` as `ocupacion_madre`, `aspectos_pedagogicos` as `aspectos_pedagogicos`, `cod_aspectos_personal` as `cod_aspectos_personal`, `codigo_ficha` as `codigo_ficha` from `alumnos datos` join `expedientes` on `alumnos datos`.`codigo_expediente` = `expedientes`.`codigo_expediente`';
+    var query = 'select `id_alumno` as `id_alumno`, `expedientes`.`codigo_expediente` as `codigo_expediente`, `expedientes`.`fecha_expediente` as `fecha_expediente`, `nombre_alumno` as `nombre_alumno`, `segundo_nombre` as `segundo_nombre`, `apellido_alumno` as `apellido_alumno`, `segundo_apellido` as `segundo_apellido`, DATE_FORMAT(FROM_DAYS(DATEDIFF(now(),`fecha_nacimiento`)), "%Y")+0 AS Edad , `fecha_nacimiento` as `fecha_nacimiento`, `sexo` as `sexo`,`nacionalidad` as `nacionalidad`, `correo` as `correo`, `lugar_procedencia` as `lugar_procedencia`, `residencial_actual_alumno` as `residencial_actual_alumno`,`residencia_actual` as `residencia_actual`, `tel_celular` as `tel_celular`, `tel_casa` as `tel_casa`, `tel_trabajo` as `tel_trabajo`, `nombre_padre` as `nombre_padre`, `tel_padre` as `tel_padre`, `ocupacion_padre` as `ocupacion_padre`, `nombre_madre` as `nombre_madre`, `tel_madre` as `tel_madre`, `ocupacion_madre` as `ocupacion_madre`, `aspectos_pedagogicos` as `aspectos_pedagogicos`, `cod_aspectos_personal` as `cod_aspectos_personal`, `codigo_ficha` as `codigo_ficha` from `alumnos datos` join `expedientes` on `alumnos datos`.`codigo_expediente` = `expedientes`.`codigo_expediente` order by `alumnos datos`.`codigo_expediente`';
     con.query(query, (err, result, fields) => {
         if(err) {
             next(err);
@@ -1408,7 +1408,7 @@ router.get('/get_alumno', (req, res, next) => {
 
 
 router.put('/update_alumno', (req, res, next) => {
-            var query = 'update `alumnos datos` set nombre_alumno=?,segundo_nombre=?,apellido_alumno=?,segundo_apellido=?,fecha_nacimiento=?,sexo=?,nacionalidad=?,lugar_procedencia=?,residencia_actual=?,nombre_padre=?,tel_padre=?,ocupacion_padre=?,nombre_madre=?,tel_madre=?,ocupacion_madre=?,aspectos_pedagogicos=?,cod_aspectos_personal=?,tel_celular=?,tel_casa=?,tel_trabajo=?,correo=?,codigo_ficha=? where id_alumno=?';
+            var query = 'update `alumnos datos` set nombre_alumno=?,segundo_nombre=?,apellido_alumno=?,segundo_apellido=?,fecha_nacimiento=?,sexo=?,nacionalidad=?,lugar_procedencia=?,residencial_actual_alumno=?,residencia_actual=?,nombre_padre=?,tel_padre=?,ocupacion_padre=?,nombre_madre=?,tel_madre=?,ocupacion_madre=?,aspectos_pedagogicos=?,cod_aspectos_personal=?,tel_celular=?,tel_casa=?,tel_trabajo=?,correo=?,codigo_ficha=? where id_alumno=?';
             var values = [req.body.nombre_alumno,
                 req.body.segundo_nombre,
                 req.body.apellido_alumno,
@@ -1417,6 +1417,7 @@ router.put('/update_alumno', (req, res, next) => {
                 req.body.sexo,
                 req.body.nacionalidad,
                 req.body.lugar_procedencia,
+                req.body.residencial_actual_alumno,
                 req.body.residencia_actual,
                 req.body.nombre_padre,
                 req.body.tel_padre,
@@ -1442,7 +1443,7 @@ router.put('/update_alumno', (req, res, next) => {
         });
 
 router.post('/insert_alumno', (req, res, next) => {
-    var query = 'INSERT INTO `alumnos datos` (`id_alumno`, `nombre_alumno`, `segundo_nombre`, `apellido_alumno`, `segundo_apellido`,`codigo_expediente`, `fecha_nacimiento`, `sexo`, `nacionalidad`, `lugar_procedencia`, `residencia_actual`, `nombre_padre`, `tel_padre`, `ocupacion_padre`, `nombre_madre`, `tel_madre`, `ocupacion_madre`, `aspectos_pedagogicos`, `cod_aspectos_personal`, `tel_celular`, `tel_casa`, `tel_trabajo`, `correo`, `codigo_ficha`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    var query = 'INSERT INTO `alumnos datos` (`id_alumno`, `nombre_alumno`, `segundo_nombre`, `apellido_alumno`, `segundo_apellido`,`codigo_expediente`, `fecha_nacimiento`, `sexo`, `nacionalidad`, `lugar_procedencia`,`residencial_actual_alumno`, `residencia_actual`, `nombre_padre`, `tel_padre`, `ocupacion_padre`, `nombre_madre`, `tel_madre`, `ocupacion_madre`, `aspectos_pedagogicos`, `cod_aspectos_personal`, `tel_celular`, `tel_casa`, `tel_trabajo`, `correo`, `codigo_ficha`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
     var values = [req.body.id_alumno,
                 req.body.nombre_alumno,
                 req.body.segundo_nombre,
@@ -1453,6 +1454,7 @@ router.post('/insert_alumno', (req, res, next) => {
                 req.body.sexo,
                 req.body.nacionalidad,
                 req.body.lugar_procedencia,
+                req.body.residencial_actual_alumno,
                 req.body.residencia_actual,
                 req.body.nombre_padre,
                 req.body.tel_padre,
@@ -1539,7 +1541,7 @@ router.delete('/delete_convive', (req, res, next) => {
     });
 
 router.get('/get_alumnotranstorno', (req, res, next) => {
-    var query = 'select  `alumnos_transtornos`.`codigo_detalle` as `codigo_detalle`,`alumnos datos`.`id_alumno` as `id_alumno`, `transtornos`.`descripcion` as `descripcion` from `alumnos_transtornos` join `alumnos datos` on `alumnos datos`.`codigo_expediente` = `alumnos_transtornos`.`codigo_expediente` join `transtornos` on `transtornos`.`codigo_trans` = `alumnos_transtornos`.`codigo_trans` order by `codigo_detalle`';
+    var query = 'select  `alumnos_transtornos`.`codigo_detalle` as `codigo_detalle`,`alumnos datos`.`id_alumno` as `id_alumno`, `transtornos`.`descripcion` as `descripcion`  from `alumnos_transtornos`  join `expedientes` on `alumnos_transtornos`.`codigo_expediente` = `expedientes`.`codigo_expediente` join `alumnos datos` on `alumnos datos`.`codigo_expediente` = `expedientes`.`codigo_expediente`  join `transtornos` on `transtornos`.`codigo_trans` = `alumnos_transtornos`.`codigo_trans`  order by `codigo_detalle`';
     con.query(query, (err, result, fields) => {
         if(err) {
             next(err);
@@ -1698,5 +1700,85 @@ router.post('/insert_expediente', (req, res, next) => {
     });
 });
 
+
+router.get('/get_fichadocumentos2', (req, res, next) => {
+    var query = 'SELECT `documentos`.`descrip_doc` as `descrip_doc` FROM `ficha_documentos` join `documentos` on `ficha_documentos`.`tipo_documento` = `documentos`.`tipo_documento` WHERE `num_ficha`=?';
+    var values = [req.query.num_ficha];
+    con.query(query, values, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.get('/get_alumnostrastornos2', (req, res, next) => {
+    var query = 'select `transtornos`.`descripcion` as `descripcion`, `transtornos`.`codigo_trans` as `codigo_trans` from `alumnos_transtornos` join `expedientes` on `alumnos_transtornos`.`codigo_expediente` = `expedientes`.`codigo_expediente`join `alumnos datos` on `alumnos datos`.`codigo_expediente` = `expedientes`.`codigo_expediente` join `transtornos` on `transtornos`.`codigo_trans` = `alumnos_transtornos`.`codigo_trans` WHERE `alumnos_transtornos`.`codigo_expediente`= ? order by `alumnos_transtornos`.`codigo_expediente` , `alumnos_transtornos`.`codigo_trans`';
+    var values = [req.query.codigo_expediente];
+    con.query(query, values, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.get('/get_seguimiento', (req, res, next) => {
+    var query = 'select `seguimientos`.`codigo_sesion` as `codigo_sesion`,`seguimientos`.`fecha_sesion` as `fecha_sesion`,`seguimientos`.`motivo_sesion` as `motivo_sesion`, concat_ws(" ", `usuarios`.`nombre`, `usuarios`.`apellido`) as `nombre`,concat_ws(" ",`alumnos datos`.`nombre_alumno`,`alumnos datos`.`segundo_nombre`,`alumnos datos`.`apellido_alumno`,`alumnos datos`.`segundo_apellido`) as `nombre_alumno`, `seguimientos`.`codigo_expediente` as `codigo_expediente`, `usuarios`.`codigo` as `codigo_usuario` from `seguimientos` join `usuarios` on `seguimientos`.`codigo_usuario` = `usuarios`.`codigo` join `expedientes` on `seguimientos`.`codigo_expediente` = `expedientes`.`codigo_expediente` join `alumnos datos` on `alumnos datos`.`codigo_expediente` = `expedientes`.`codigo_expediente`  order by `seguimientos`.`codigo_sesion`';
+    con.query(query, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+
+router.put('/update_seguimiento', (req, res, next) => {
+    var query = 'UPDATE `intae`.`seguimientos` SET `codigo_usuario` = ?, `codigo_expediente` = ?, `motivo_sesion` = ? WHERE `codigo_sesion` = ?';
+    var values = [req.body.codigo_usuario,
+                    req.body.codigo_expediente,
+                    req.body.motivo_sesion,
+                    req.body.codigo_sesion];
+    con.query(query, values, (err, result, fields) => {
+        if(err) {
+           next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.delete('/delete_seguimiento', (req, res, next) => {
+    var query = 'DELETE FROM `seguimientos` WHERE `codigo_sesion` = ?';
+    var values = [req.query.codigo_sesion];
+    con.query(query, values, (err, result, fields) => {
+        if(err) {
+           next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+
+
+
+router.post('/insert_seguimiento', (req, res, next) => {
+    var query = 'INSERT INTO `seguimientos` (`codigo_usuario`, `codigo_expediente`, `motivo_sesion`) VALUES (?, ?, ?)';
+    var values = [req.body.codigo_usuario,
+                    req.body.codigo_expediente,
+                    req.body.motivo_sesion];
+    con.query(query, values, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
 
 module.exports = router;

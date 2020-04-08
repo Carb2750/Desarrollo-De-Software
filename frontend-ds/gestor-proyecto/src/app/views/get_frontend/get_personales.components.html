@@ -55,7 +55,7 @@
                     <td>{{x.obs_religion}}</td>
                     <td>{{x.descripcion_emocional}}</td>
                     <td>{{x.obs_ayudas}}</td>                   
-                    <td><button (click)="pass_code(x.cod_aspectos_personal)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
+                    <td><button (click)="pass_code(x.cod_aspectos_personal, x.codigo_convive, x.obs_residencias, x.cod_relaciones_sociales, x.cod_relaciones_amistosas, x.obs_relaciones_amistosas, x.obs_noviazgos, x.cod_mejor_amigo, x.obs_mejor_amigo, x.cod_act_deportiva, x.obs_actividades_deportivas, x.cod_act_artistica, x.obs_actividades_artisticas, x.obs_religion, x.cod_problema_emocional, x.obs_ayudas)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
                     <td><button (click)="delete_personal(x.cod_aspectos_personal)" class="btn btn-danger">Borrar</button></td>
                 </tr>
             </tbody>
@@ -189,7 +189,7 @@
     </div>
     
 
-  <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade" id="staticBackdrop" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -204,7 +204,7 @@
                     <form action="/" enctype="multipart/form-data" method="put" ngNativeValidate #form1>
                         <div class="form-group">
                             <label for="viv">Con quien vive actualmente</label>
-                            <select id="viv" class="form-control" required [(ngModel)]="personal.codigo_convive" [ngModelOptions]="{standalone: true}" >
+                            <select id="viv" class="form-control"  [(ngModel)]="personal.codigo_convive" [ngModelOptions]="{standalone: true}" >
                                 <option selected value="">- Seleccione -</option>
                                 <option *ngFor="let x of listado_codigo_convive" [value]="x.codigo_convive">{{x.descripcion}}</option>
                             </select>
@@ -218,7 +218,7 @@
                         </div>
                         <div class="form-group">
                             <label for="ras">Situación actual de las relaciones amistosas con las personas que vive</label>
-                            <select id="ras" class="form-control" required [(ngModel)]="personal.cod_relaciones_amistosas" [ngModelOptions]="{standalone: true}" >
+                            <select id="ras" class="form-control"  [(ngModel)]="personal.cod_relaciones_amistosas" [ngModelOptions]="{standalone: true}" >
                               <option selected value="">- Seleccione -</option>
                               <option *ngFor="let x of listado_codigo_amistosa" [value]="x.cod_relaciones_amistosas">{{x.descripcion}}</option>
                             </select>
@@ -230,7 +230,7 @@
                         <div class="form-row">
                              <div class="form-group col-md-12">
                                 <label for="rss">Como es en las relaciones sociales</label>
-                                <select id="rss" class="form-control" required [(ngModel)]="personal.cod_relaciones_sociales" [ngModelOptions]="{standalone: true}" >
+                                <select id="rss" class="form-control"  [(ngModel)]="personal.cod_relaciones_sociales" [ngModelOptions]="{standalone: true}" >
                                   <option selected value="">- Seleccione -</option>
                                   <option *ngFor="let x of listado_codigo_sociales" [value]="x.cod_relaciones_sociales">{{x.descripcion}}</option>
                                 </select>
@@ -239,7 +239,7 @@
                         <div class="form-row" style="margin-top: 40px;">
                             <div class="form-group col-md-6">
                                 <label for="mas">¿Quien es su mejor amigo?</label>
-                                <select id="mas" class="form-control" required [(ngModel)]="personal.cod_mejor_amigo" [ngModelOptions]="{standalone: true}" >
+                                <select id="mas" class="form-control"  [(ngModel)]="personal.cod_mejor_amigo" [ngModelOptions]="{standalone: true}" >
                                   <option selected value="">- Seleccione -</option>
                                   <option *ngFor="let x of listado_codigo_amigos" [value]="x.cod_mejor_amigo">{{x.descripcion}}</option>
                                 </select>
@@ -255,7 +255,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="noviazg">Tiene novio</label>
-                                <input type="text" id="noviazg" class="form-control" required [(ngModel)]="personal.obs_noviazgos" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="noviazg" class="form-control"  [(ngModel)]="personal.obs_noviazgos" [ngModelOptions]="{standalone: true}">
                                 <small id="helper7" class="form-text text-muted">
                                     Si tiene,también escriba la frecuencia con la que se ven
                                 </small>
@@ -264,7 +264,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-8">
                                 <label for="deport">Que actividad deportiva le gusta?</label>
-                                <select id="deport" class="form-control" required [(ngModel)]="personal.cod_act_deportiva" [ngModelOptions]="{standalone: true}" >
+                                <select id="deport" class="form-control"  [(ngModel)]="personal.cod_act_deportiva" [ngModelOptions]="{standalone: true}" >
                                   <option selected value="">- Seleccione -</option>
                                   <option *ngFor="let x of listado_codigo_deportes" [value]="x.cod_act_deportiva">{{x.descripcion}}</option>
                                 </select>
@@ -280,7 +280,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-8">
                                 <label for="art">Participa en alguna actividad artística?</label>
-                                <select id="art" class="form-control" required [(ngModel)]="personal.cod_act_artistica" [ngModelOptions]="{standalone: true}" >
+                                <select id="art" class="form-control"  [(ngModel)]="personal.cod_act_artistica" [ngModelOptions]="{standalone: true}" >
                                   <option selected value="">- Seleccione -</option>
                                   <option *ngFor="let x of listado_codigo_artes" [value]="x.cod_act_artistica">{{x.descripcion}}</option>
                                 </select>
@@ -296,20 +296,20 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="reli">Qué religion práctica?</label>
-                                <input type="text" id="reli"  class="form-control" required [(ngModel)]="personal.obs_religion" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="reli"  class="form-control"  [(ngModel)]="personal.obs_religion" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="emo">Ha vivido o vives algún problema emocional?</label>
-                                <select id="emo" class="form-control" required [(ngModel)]="personal.cod_problema_emocional" [ngModelOptions]="{standalone: true}" >
+                                <select id="emo" class="form-control"  [(ngModel)]="personal.cod_problema_emocional" [ngModelOptions]="{standalone: true}" >
                                   <option selected value="">- Seleccione -</option>
                                   <option *ngFor="let x of listado_codigo_problemas" [value]="x.cod_problema_emocional">{{x.descripcion}}</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="ayud">A quien acudes cuando tienes problemas?</label>
-                                <input type="text" id="ayud" placeholder="Padres, amigo, etc." class="form-control" required [(ngModel)]="personal.obs_ayudas" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="ayud" placeholder="Padres, amigo, etc." class="form-control"  [(ngModel)]="personal.obs_ayudas" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                     </form>

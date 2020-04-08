@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group offset-sm-3 col-md-3">
+                        <div class="form-group offset-md-2 col-md-3">
                                 <div class="form-check ">
                                 <input class="form-check-input" type="checkbox" id="is" value="1" [(ngModel)]="detalletrans.codigo_trans" [ngModelOptions]="{standalone: true}"> 
                                 <label class="form-check-label" for="is">Ideas Suicidas</label>
@@ -147,6 +147,28 @@
                             <label class="form-check-label" for="viol">Uso de violencia</label>
                           </div>
                     </div>
+                    <div class="form-group  col-md-3">
+                      <div class="form-check ">
+                        <input class="form-check-input" type="checkbox" id="cast" value="23" [(ngModel)]="detalletrans23.codigo_trans" [ngModelOptions]="{standalone: true}"> 
+                        <label class="form-check-label" for="cast">Castigos traumáticos</label>
+                      </div>
+                      <div class="form-check ">
+                        <input class="form-check-input" type="checkbox" id="ffuertes"  value="24" [(ngModel)]="detalletrans24.codigo_trans" [ngModelOptions]="{standalone: true}">
+                        <label class="form-check-label" for="ffuertes">Físicos fuertes</label>
+                      </div>
+                      <div class="form-check ">
+                        <input class="form-check-input" type="checkbox" id="abuso" value="25" [(ngModel)]="detalletrans25.codigo_trans" [ngModelOptions]="{standalone: true}"> 
+                        <label class="form-check-label" for="abuso">Algún tipo de abuso</label>
+                      </div>
+                      <div class="form-check  ">
+                        <input class="form-check-input" type="checkbox" id="muerte"  value="26" [(ngModel)]="detalletrans26.codigo_trans" [ngModelOptions]="{standalone: true}">
+                        <label class="form-check-label" for="muerte">Peligro de muerte</label>
+                      </div>
+                      <div class="form-check ">
+                        <input class="form-check-input" type="checkbox" id="panico" value="27" [(ngModel)]="detalletrans27.codigo_trans" [ngModelOptions]="{standalone: true}"> 
+                        <label class="form-check-label" for="panico">Situación de pánico</label>
+                      </div>
+                    </div>
                     </div>
                     <div class="offset-md-4">
                         <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;"(click)="revisar1()? detalletrans.codigo_trans='1': detalletrans.codigo_trans=null" (click)="revisar2()? detalletrans2.codigo_trans='2': detalletrans2.codigo_trans=null" (click)="revisar3()? detalletrans3.codigo_trans='3': detalletrans3.codigo_trans=null"
@@ -156,13 +178,15 @@
                         (click)="revisar13()? detalletrans13.codigo_trans='13': detalletrans13.codigo_trans=null" (click)="revisar14()? detalletrans14.codigo_trans='14': detalletrans14.codigo_trans=null" (click)="revisar15()? detalletrans15.codigo_trans='15': detalletrans15.codigo_trans=null"
                         (click)="revisar16()? detalletrans16.codigo_trans='16': detalletrans16.codigo_trans=null" (click)="revisar17()? detalletrans17.codigo_trans='17': detalletrans17.codigo_trans=null" (click)="revisar18()? detalletrans18.codigo_trans='18': detalletrans18.codigo_trans=null"
                         (click)="revisar19()? detalletrans19.codigo_trans='19': detalletrans19.codigo_trans=null" (click)="revisar20()? detalletrans20.codigo_trans='20': detalletrans20.codigo_trans=null" (click)="revisar21()? detalletrans21.codigo_trans='21': detalletrans21.codigo_trans=null"
-                        (click)="revisar22()? detalletrans22.codigo_trans='22': detalletrans22.codigo_trans=null"
+                        (click)="revisar22()? detalletrans22.codigo_trans='22': detalletrans22.codigo_trans=null" (click)="revisar23()? detalletrans23.codigo_trans='23': detalletrans23.codigo_trans=null" (click)="revisar24()? detalletrans24.codigo_trans='24': detalletrans24.codigo_trans=null"
+                        (click)="revisar25()? detalletrans25.codigo_trans='25': detalletrans25.codigo_trans=null" (click)="revisar26()? detalletrans26.codigo_trans='26': detalletrans26.codigo_trans=null" (click)="revisar27()? detalletrans27.codigo_trans='27': detalletrans27.codigo_trans=null"
                         (click)="form.checkValidity()?  insert_detalletrans() : null" (click)="form.checkValidity()?  insert_detalletrans2() : null" (click)="form.checkValidity()?  insert_detalletrans3() : null" (click)="form.checkValidity()?  insert_detalletrans4() : null"
                         (click)="form.checkValidity()?  insert_detalletrans5() : null" (click)="form.checkValidity()?  insert_detalletrans6() : null" (click)="form.checkValidity()?  insert_detalletrans7() : null" (click)="form.checkValidity()?  insert_detalletrans8() : null"
                         (click)="form.checkValidity()?  insert_detalletrans9() : null" (click)="form.checkValidity()?  insert_detalletrans10() : null" (click)="form.checkValidity()?  insert_detalletrans11() : null" (click)="form.checkValidity()?  insert_detalletrans12() : null"
                         (click)="form.checkValidity()?  insert_detalletrans13() : null" (click)="form.checkValidity()?  insert_detalletrans14() : null" (click)="form.checkValidity()?  insert_detalletrans15() : null" (click)="form.checkValidity()?  insert_detalletrans16() : null"
                         (click)="form.checkValidity()?  insert_detalletrans17() : null" (click)="form.checkValidity()?  insert_detalletrans18() : null" (click)="form.checkValidity()?  insert_detalletrans19() : null" (click)="form.checkValidity()?  insert_detalletrans20() : null"
-                        (click)="form.checkValidity()?  insert_detalletrans21() : null" (click)="form.checkValidity()?  insert_detalletrans22() : null" 
+                        (click)="form.checkValidity()?  insert_detalletrans21() : null" (click)="form.checkValidity()?  insert_detalletrans22() : null" (click)="form.checkValidity()?  insert_detalletrans23() : null" (click)="form.checkValidity()?  insert_detalletrans24() : null"
+                        (click)="form.checkValidity()?  insert_detalletrans25() : null" (click)="form.checkValidity()?  insert_detalletrans26() : null" (click)="form.checkValidity()?  insert_detalletrans27() : null"
                         class="btn btn-primary">Insertar</button>
                         <button style="margin-top: 5px; margin-left: 140px; margin-bottom: 10px;" (click)="toggleShow()"  class="btn btn-secondary">Esconder</button>
                     </div>
@@ -173,7 +197,7 @@
     </div>
     
 
-    <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="staticBackdrop"  tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
           <div class="modal-content">
             <div class="modal-header">

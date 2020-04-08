@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        textarea{
+            border: 1px solid #17a2b8;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <header style="text-align: center;">
+        <h1>Ficha de Alumno</h1>
+    </header>
+    <main>
+        <form action="/" enctype="multipart/form-data" method="post" ngNativeValidate #form>
+            <div class="form-row">
+                <div class="form-group  offset-md-4 col-md-4">
+                    <label for="iden">Alumno</label>
+                    <select id="iden" class="form-control" required [(ngModel)]="alumno.id_alumno" [ngModelOptions]="{standalone: true}" >
+                      <option selected value="">- Seleccione -</option>
+                      <option *ngFor="let x of listado_alumno" [value]="x.id_alumno">{{x.id_alumno}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group  offset-md-4 offset-sm-4 offset-xs-6 ">
+                    <button  style="margin-top: 15px; margin-bottom: 20px;" (click)="form.checkValidity()?  get_ficha() : null" (click)="isShown? toggleShow2() : null"  (click)="form.checkValidity()? toggleShow() : null" class="btn btn-secondary btn-block">Buscar</button>
+                </div>
+            </div>
+        </form>
+        <div *ngIf="isShown" class="container-md border rounded border-primary" style="margin-bottom: 10px; padding: 10px 5px;">
+            <div class="container-md"  *ngFor="let x of listado_registro">
+                
+                    
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="nombres">Nombre del alumno</label>
+                                <p id="nombres">{{x.nombre_completo}}</p>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="identidad">No. de Identidad</label>
+                                <p id="identidad">{{x.id_alumno}}</p>
+                            </div>
+                        </div>
+                        <div class="form-row" >
+                            <div class="form-group  col-md-4">
+                                <label for="ciu">Ciudad de Nacimiento</label>
+                                <p id="ciud">{{x.ciudad_nacimiento}}</p>
+                            </div>
+                            <div class="form-group  col-md-4">
+                                <label for="na">Fecha de Nacimiento</label>
+                                <p id="na">{{x.fecha_nacimiento}}</p>
+                            </div>
+                            <div class="form-group col-md-2" >
+                                <label for="ed" style="margin-right: 10px;">Edad</label>
+                                <p id="ed">{{x.edad}}</p>
+                            </div>
+                            <div class="form-group col-md-2" >
+                                <label for="sexo" style="margin-right: 10px;">Sexo</label>
+                                <p id="sexo">{{x.sexo}}</p>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group offset-md-1 col-md-2">
+                                <label for="curso">Curso</label>
+                                <p id="curso">{{x.desc_curso}}</p>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="sec">Sección</label>
+                                <p id="sec">{{x.desc_seccion}}</p>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="mod">Modalidad</label>
+                                <p id="mod">{{x.desc_modadlidad}}</p>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group offset-md-2 col-md-4">
+                                <label for="jor">Jornada</label>
+                                <p id="jor">{{x.desc_jornada}}</p>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="anio">Año de Ingreso</label>
+                                <p id="anio">{{x.anio}}</p>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group offset-md-1 col-md-10">
+                                <label for="nomp">Nombre de los Padres o Encargados</label>
+                                <p id="nopm">{{x.encargados}}</p>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="resi">Residencia Actual de los Padres</label>
+                                <p id="resi">{{x.residencia_actual}}</p>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="telc">Teléfono Celular</label>
+                                <p id="telc">{{x.tel_celular}}</p>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="telca">Teléfono Casa</label>
+                                <p id="telca">{{x.tel_casa}}</p>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="telt">Teléfono de Trabajo</label>
+                                <p id="telt">{{x.tel_trabajo}}</p>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group offset-md-3 col-md-6">
+                                <label for="correo">Correo Electrónico</label>
+                                <p id="correo">{{x.correo}}</p>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group offset-md-3 col-md-6">
+                                <label for="vive">Con quien vive actualmente</label>
+                                <p id="vive">{{x.descripcion_convive}}</p>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group offset-md-1 col-md-6">
+                                <label for="proce">Instituto de Procedencia</label>
+                                <p id="proce">{{x.obs_inst_proced}}</p>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="ind">Índice Académico</label>
+                                <p id="ind">{{x.indice_acad}}</p>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="repcurso">Repite Curso</label>
+                                <textarea disabled cols="4" rows="4" type="text" id="repcurso" class="form-control">{{x.obs_repite_curso}}</textarea>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="matre">Lleva materia retrasada</label>
+                                <textarea disabled cols="4" rows="4" type="text" id="matre" class="form-control" >{{x.obs_materia_restrada}}</textarea>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="beca">Tiene Beca</label>
+                                <textarea disabled cols="4" rows="4" type="text" id="beca"  class="form-control">{{x.obs_beca}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group offset-md-2 col-md-4" style="margin-top: 10px; margin-bottom: 10px;">
+                               <label for="emer">Contacto de Emergencia</label>
+                               <p id="emer">{{x.contacto_emergencia}}</p>
+                            </div>
+                            <div class="form-group col-md-4" style="margin-top: 10px; margin-bottom: 10px;">
+                                <label for="emer1">Teléfono de Emergencia</label>
+                                <p id="emer1">{{x.num_emergencia}}</p>
+                             </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div style="margin-top: 8px;" class="form-group">
+                                    <label for="motivos">Motivos para elegir esta institución</label>
+                                    <textarea disabled cols="8" rows="6" type="text" id="motivos" class="form-control" >{{x.motivos}}</textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                        <label for="documentospresenta">Documentos que presenta</label>
+                        <div class="form-row"  *ngFor="let x of listado_documentos">
+                            <div class="form-group offset-md-3 col-md-6">
+                                    <ul id="documentospresenta">
+                                        <li> {{x.descrip_doc}}</li>
+                                    </ul>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="obs">Observaciones</label>
+                                <textarea disabled cols="8" rows="6" type="text" id="obs"  class="form-control">{{x.observaciones}}</textarea>
+                            </div>
+                        </div> 
+                        <div class="form-row">
+                            <div class="form-group  offset-md-5 offset-sm-4 offset-xs-6 ">
+                                <button  style="margin-top: 15px; margin-bottom: 20px;"  (click)="toggleShow()"  class="btn btn-secondary btn-block">Esconder</button>
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+
+
+

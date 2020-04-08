@@ -25,14 +25,19 @@ import { GetPedagogicosComponent } from './views/get_frontend/get_pedagogicos.co
 import { GetPersonalesComponent } from './views/get_frontend/get_personales.components';
 import { GetViveComponent } from './views/get_frontend/get_vive.components';
 import { GetAlumnosComponent } from './views/get_frontend/get_alumno.components';
+import { RedBullet } from './views/get_frontend/get_alumno.components';
 import { GetFichasComponent } from './views/get_frontend/get_fichas.components';
 import { GetDetalletransComponent } from './views/get_frontend/get_alumnostrastornos.components';
 import { GetFichaDocumentoComponent } from './views/get_frontend/get_fichadocumentos.components';
 import { FormularioComponent } from './views/get_frontend/formulario.components';
 import { GreenBullet} from './views/get_frontend/formulario.components';
-import { RedBullet } from './views/get_frontend/get_alumno.components';
 import { LoginComponent } from './views/get_frontend/login.components';
 import { MenuComponent } from './views/get_frontend/menu.components';
+import { InformacionFichaComponent } from './views/get_frontend/informacionficha.components';
+import { BlueBullet } from './views/get_frontend/informacionficha.components';
+import { InformacionRegistroComponent } from './views/get_frontend/informacionregistro.components';
+import { YellowBullet } from './views/get_frontend/informacionregistro.components';
+import { GetSeguimientosComponent } from './views/get_frontend/seguimientos.components';
 const routes: Routes = [
     {
         path: 'listado_usuarios',
@@ -153,6 +158,18 @@ const routes: Routes = [
     {
         path: 'menu',
         component: MenuComponent
+    },
+    {
+        path: 'ficha_completa',
+        component: InformacionFichaComponent
+    },
+    {
+        path: 'hoja_registro',
+        component: InformacionRegistroComponent
+    },
+    {
+        path: 'seguimientos',
+        component: GetSeguimientosComponent
     }
 ];
 

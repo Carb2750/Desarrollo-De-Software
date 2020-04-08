@@ -53,7 +53,7 @@
                     <td>{{x.contacto_emergencia}}</td>
                     <td>{{x.num_emergencia}}</td>
                     <td>{{x.observaciones}}</td>
-                    <td><button (click)="pass_code(x.num_ficha)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
+                    <td><button (click)="pass_code(x.num_ficha,x.cod_curso,x.cod_seccion,x.cod_modalidad,x.cod_jornada,x.cod_ciudad,x.anio,x.obs_inst_proced,x.indice_acad,x.obs_repite_curso,x.obs_materia_restrada,x.obs_beca,x.contacto_emergencia,x.num_emergencia,x.observaciones,x.motivacion_ingreso)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
                     <td><button (click)="delete_ficha(x.num_ficha)" class="btn btn-danger">Borrar</button></td>
                 </tr>
             </tbody>
@@ -170,7 +170,7 @@
     </div>
     
 
-  <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade" id="staticBackdrop"  tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -186,21 +186,21 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="curs">Curso</label>
-                                <select id="curs" class="form-control" required [(ngModel)]="ficha.cod_curso" [ngModelOptions]="{standalone: true}" >
+                                <select id="curs" class="form-control"  [(ngModel)]="ficha.cod_curso" [ngModelOptions]="{standalone: true}" >
                                   <option selected value="">Seleccione</option>
                                   <option *ngFor="let x of listado_codigo_curso" [value]="x.cod_curso">{{x.desc_curso}}</option>
                                 </select>
                             </div>
                             <div class="form-group  col-md-4">
                                 <label for="secc">Sección</label>
-                                <select id="secc" class="form-control" required [(ngModel)]="ficha.cod_seccion" [ngModelOptions]="{standalone: true}" >
+                                <select id="secc" class="form-control"  [(ngModel)]="ficha.cod_seccion" [ngModelOptions]="{standalone: true}" >
                                   <option selected value="">Seleccione</option>
                                   <option *ngFor="let x of listado_codigo_seccion" [value]="x.cod_seccion">{{x.desc_seccion}}</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="jorn">Jornada</label>
-                                <select id="jorn" class="form-control" required [(ngModel)]="ficha.cod_jornada" [ngModelOptions]="{standalone: true}" >
+                                <select id="jorn" class="form-control"  [(ngModel)]="ficha.cod_jornada" [ngModelOptions]="{standalone: true}" >
                                   <option selected value="">Seleccione</option>
                                   <option *ngFor="let x of listado_codigo_jornada" [value]="x.cod_jornada">{{x.desc_jornada}}</option>
                                 </select>
@@ -209,7 +209,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="moda">Modalidad</label>
-                                <select id="moda" class="form-control" required [(ngModel)]="ficha.cod_modalidad" [ngModelOptions]="{standalone: true}" >
+                                <select id="moda" class="form-control"  [(ngModel)]="ficha.cod_modalidad" [ngModelOptions]="{standalone: true}" >
                                   <option selected value="">- Seleccione -</option>
                                   <option *ngFor="let x of listado_codigo_modalidad" [value]="x.cod_modalidad">{{x.desc_modadlidad}}</option>
                                 </select>
@@ -218,7 +218,7 @@
                         <div class="form-row">
                             <div class="form-group offset-md-3 col-md-6">
                                 <label for="ciud">Ciudad de Nacimiento</label>
-                                <select id="ciud" class="form-control" required [(ngModel)]="ficha.cod_ciudad" [ngModelOptions]="{standalone: true}" >
+                                <select id="ciud" class="form-control"  [(ngModel)]="ficha.cod_ciudad" [ngModelOptions]="{standalone: true}" >
                                   <option selected value="">- Seleccione -</option>
                                   <option *ngFor="let x of listado_codigo_ciudad" [value]="x.cod_ciudad">{{x.nom_ciudad}}</option>
                                 </select>
@@ -227,23 +227,23 @@
                         <div class="form-row">
                             <div class="form-group offset-md-1 col-md-5">
                                 <label for="ani">Año de Ingreso</label>
-                                <input type="text" id="ani" class="form-control" required [(ngModel)]="ficha.anio" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="ani" class="form-control"  [(ngModel)]="ficha.anio" [ngModelOptions]="{standalone: true}">
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="in">Indice Academico</label>
-                                <input type="number" id="in" min="0" max="100" setp="1" max-length=3 class="form-control" required [(ngModel)]="ficha.indice_acad" [ngModelOptions]="{standalone: true}">
+                                <input type="number" id="in" min="0" max="100" setp="1" max-length=3 class="form-control"  [(ngModel)]="ficha.indice_acad" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="proc">Instituto de Procedencia</label>
-                                <input type="text" id="proc" class="form-control" required [(ngModel)]="ficha.obs_inst_proced" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="proc" class="form-control"  [(ngModel)]="ficha.obs_inst_proced" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="repcurs">Repite Curso</label>
-                                <textarea cols="4" rows="3" type="text" id="repcurs" placeholder="Sí o No" class="form-control" required [(ngModel)]="ficha.obs_repite_curso" [ngModelOptions]="{standalone: true}"></textarea>
+                                <textarea cols="4" rows="3" type="text" id="repcurs" placeholder="Sí o No" class="form-control"  [(ngModel)]="ficha.obs_repite_curso" [ngModelOptions]="{standalone: true}"></textarea>
                                 <small id="helper4" class="form-text text-muted">
                                    Si su respuesta es sí, escriba cual
                                    </small>
@@ -252,7 +252,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="bec">Tiene Beca</label>
-                                <textarea cols="4" rows="3" type="text" id="bec"  class="form-control" placeholder="Sí o No" required [(ngModel)]="ficha.obs_beca" [ngModelOptions]="{standalone: true}"></textarea>
+                                <textarea cols="4" rows="3" type="text" id="bec"  class="form-control" placeholder="Sí o No"  [(ngModel)]="ficha.obs_beca" [ngModelOptions]="{standalone: true}"></textarea>
                                 <small id="helper6" class="form-text text-muted">
                                    Si su respuesta es sí, escriba cual
                                    </small>
@@ -261,7 +261,7 @@
                         <div clas="form-row">
                             <div class="form-group col-md-12" style="padding: 0%;">
                                 <label for="matr">Lleva materia retrasada</label>
-                                <textarea cols="4" rows="3" type="text" id="matr" placeholder="Sí o No" class="form-control" required [(ngModel)]="ficha.obs_materia_restrada" [ngModelOptions]="{standalone: true}"></textarea>
+                                <textarea cols="4" rows="3" type="text" id="matr" placeholder="Sí o No" class="form-control"  [(ngModel)]="ficha.obs_materia_restrada" [ngModelOptions]="{standalone: true}"></textarea>
                                 <small id="helper5" class="form-text text-muted">
                                    Si su respuesta es sí, escriba cual
                                    </small>
@@ -272,8 +272,8 @@
                                 <div class="input-group-prepend">
                                   <span class="input-group-text">Contacto de Emergencia</span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Nombre" required [(ngModel)]="ficha.contacto_emergencia" [ngModelOptions]="{standalone: true}">
-                                <input type="text"  class="form-control" placeholder="Teléfono" required [(ngModel)]="ficha.num_emergencia" [ngModelOptions]="{standalone: true}">
+                                <input type="text" class="form-control" placeholder="Nombre"  [(ngModel)]="ficha.contacto_emergencia" [ngModelOptions]="{standalone: true}">
+                                <input type="text"  class="form-control" placeholder="Teléfono"  [(ngModel)]="ficha.num_emergencia" [ngModelOptions]="{standalone: true}">
                               </div>
                         </div>
                         <div class="form-row">

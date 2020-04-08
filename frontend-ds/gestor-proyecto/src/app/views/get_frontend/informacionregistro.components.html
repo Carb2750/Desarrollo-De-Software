@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        textarea{
+            border: 1px solid #17a2b8;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <header style="text-align: center;">
+        <h1>Hoja Registro de Alumno</h1>
+    </header>
+    <main>
+        <form action="/" enctype="multipart/form-data" method="post" ngNativeValidate #form>
+            <div class="form-row">
+                <div class="form-group  offset-md-4 col-md-4">
+                    <label for="iden">Alumno</label>
+                    <select id="iden" class="form-control" required [(ngModel)]="alumno.id_alumno" [ngModelOptions]="{standalone: true}" >
+                      <option selected value="">- Seleccione -</option>
+                      <option *ngFor="let x of listado_alumno" [value]="x.id_alumno">{{x.id_alumno}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group  offset-md-4 offset-sm-4 offset-xs-6 ">
+                    <button  style="margin-top: 15px; margin-bottom: 20px;" (click)="form.checkValidity()?  get_registro() : null" (click)="isShown? toggleShow2() : null"  (click)="form.checkValidity()? toggleShow() : null" class="btn btn-secondary btn-block">Buscar</button>
+                </div>
+            </div>
+        </form>
+        <div *ngIf="isShown" class="container-md border rounded border-primary" style="margin-bottom: 10px; padding: 10px 5px;">
+            <div class="container-md"  *ngFor="let x of listado_registro">
+                <fieldset>
+                    <legend>I. Datos Generales</legend>
+                    <div class="form-row">
+                        <div class="form-group offset-md-4 col-md-4">
+                            <label for="fecha">Fecha de Apertura del Registro</label>
+                            <p id="fecha">{{x.fecha_expediente}}</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group offset-md-2 col-md-5">
+                            <label for="nombres">Nombre del alumno</label>
+                            <p id="nombres">{{x.nombre_completo}}</p>
+                        </div>
+                        <div class="form-group  col-md-3">
+                            <label for="naci">Nacionalidad</label>
+                            <p id="naci">{{x.nacionalidad}}</p>
+                        </div>
+                    </div>
+                    <div class="form-row" style="margin-top: 15px; margin-bottom: 15px;">
+                        <div class="form-group offset-md-1 col-md-5">
+                            <label for="proce">Lugar de Procedencia</label>
+                            <textarea disabled cols="4" rows="4" type="text" id="proce" class="form-control" >{{x.lugar_procedencia}}</textarea>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="resi">Residencia Actual</label>
+                            <textarea disabled cols="4" rows="4" type="text" id="resi"  class="form-control">{{x.residencia_actual_alumno}}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group offset-md-2 col-md-4">
+                            <label for="nomp">Nombre del Padre</label>
+                            <p id="nomp">{{x.nombre_padre}}</p>
+                        </div>
+                        <div class="form-group col-md-2" >
+                            <label for="telp" style="margin-right: 10px;">Teléfono</label>
+                            <p id="telp">{{x.tel_padre}}</p>
+                        </div>
+                        <div class="form-group col-md-2" >
+                            <label for="ocupp" style="margin-right: 10px;">Ocupación</label>
+                            <p id="ocupp">{{x.ocupacion_padre}}</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group offset-md-2 col-md-4">
+                            <label for="nomm">Nombre de la Madre</label>
+                            <p id="nomm">{{x.nombre_madre}}</p>
+                        </div>
+                        <div class="form-group col-md-2" >
+                            <label for="telm" style="margin-right: 10px;">Teléfono</label>
+                            <p id="telm">{{x.tel_madre}}</p>
+                        </div>
+                        <div class="form-group col-md-2" >
+                            <label for="ocupm" style="margin-right: 10px;">Ocupación</label>
+                            <p id="ocupm">{{x.ocupacion_madre}}</p>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>II. Aspectos Pedagógicos</legend>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <div style="margin-top: 8px;" class="form-group">
+                                <label for="motivos">Motivos para elegir esta institución</label>
+                                <textarea disabled cols="8" rows="6" type="text" id="motivos" class="form-control" >{{x.motivos}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="sexto">Centro educativo donde curso sexto grado</label>
+                            <p id="sexto">{{x.sexto_grado_cursado}}</p>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="ubicacion">Ubicación del centro académico</label>
+                            <p id="ubicacion">{{x.ubicacion_centro_anterior}}</p>
+                        </div>
+                        <div class="form-group col-md-4" >
+                            <label for="escuela">Tipo de Escuela de la que proviene</label>
+                            <p id="escuela">{{x.descripcion_escuela}}</p>
+                          </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="rendimiento" style="margin-right: 10px;">Rendimiento Academico</label>
+                        <p id="rendimiento">{{x.descripcion_rendimiento}}</p>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="dificultad" style="margin-right: 10px;">Asignatura que presenta mayor dificultad</label>
+                            <p id="dificultad">{{x.descripcion_dificultad}}</p>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="facilidad" style="margin-right: 10px;">Asignatura que se le facilita más</label>
+                            <p id="facilidad">{{x.descripcion_facilidad}}</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="estudio" style="margin-right: 10px;">Forma de Estudio</label>
+                            <p id="estudio">{{x.descripcion_estudio}}</p>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="estudiante" style="margin-right: 10px;">Se considera un estudiante</label>
+                            <p id="estudiante">{{x.descripcion_consideracion}}</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="repro">¿Ha reprobado o repetido alguna clase o curso?</label>
+                            <textarea disabled cols="5" rows="5" type="text" id="repro" class="form-control">{{x.obs_reprobado}}</textarea>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="repor">¿Ha sido reportado?</label>
+                            <textarea disabled cols="5" rows="5" type="text" id="repor"  class="form-control">{{x.obs_reportes}}</textarea>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="expu">¿Ha sido expulsado?</label>
+                            <textarea disabled cols="5" rows="5" type="text" id="expu"  class="form-control">{{x.obs_expulsion}}</textarea>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>III. Aspecto Personal y Social</legend>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="vive">Con quien vive actualmente</label>
+                            <p id="vive">{{x.descripcion_convive}}</p>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="otro1">Especificación de con quien vive</label>
+                            <p id="otro1">{{x.obs_residencias}}</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="ra">Situación actual de las relaciones amistosas con las personas que vive</label>
+                            <p id="ra">{{x.descripcion_amistad}}</p>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="por">Explique porque</label>
+                            <textarea disabled cols="6" rows="4" type="text" id="por"  class="form-control">{{x.obs_relaciones_amistosas}}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group offset-md-3 col-md-6">
+                            <label for="noviazgo">Tiene novio</label>
+                            <p id="noviazgo">{{x.obs_noviazgos}}</p>
+                        </div>
+                    </div>
+                    <div class="form-row" style="margin-top: 40px;">
+                        <div class="form-group col-md-4">
+                            <label for="rs">Como se considera en las relaciones sociales</label>
+                            <p id="rs">{{x.descripcion_social}}</p>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="ma">¿Quien es su mejor amigo?</label>
+                            <p id="ma">{{x.descripcion_amigo}}</p>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="amigo">Especificación Mejor Amigo</label>
+                            <p id="amigo">{{x.obs_mejor_amigo}}</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group offset-md-1 col-md-5">
+                            <label for="deporte">Que actividad deportiva le gusta?</label>
+                            <p id="deporte">{{x.descripcion_deporte}}</p>
+                        </div>
+                        <div class="form-group  col-md-5">
+                            <label for="otro2">Otro deporte</label>
+                            <p id="otro2">{{x.obs_actividades_deportivas}}</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group offset-md-1 col-md-5">
+                            <label for="arte">Participa en alguna actividad artística?</label>
+                            <p id="arte">{{x.descripcion_arte}}</p>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="otro3">Otra arte</label>
+                            <p id="otro3">{{x.obs_actividades_artisticas}}</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="rel">Qué religion práctica?</label>
+                            <p id="rel">{{x.obs_religion}}</p>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="emo">Ha vivido o vive algún problema emocional?</label>
+                            <p id="emo">{{x.descripcion_problema}}</p>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="ayuda">A quien acude cuando tienes problemas?</label>
+                            <p id="ayuda">{{x.obs_ayudas}}</p>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>IV. Trastornos Sintomáticos</legend>
+                    <label for="alumnotrastorno">A presentado alguno de estos problemas</label>
+                        <div class="form-group offset-md-3 col-md-6">
+                                <ul id="alumnotrastorno" >
+                                    <li *ngFor="let x of listado_detalle2"> {{x.descripcion}}</li>
+                                </ul>
+                        </div>
+                    <label *ngIf="isShown3" for="aver" >Antecedentes de experiencias traumáticas</label>
+                    <div class="form-group offset-md-3 col-md-6">
+                            <ul id="aver" *ngIf="isShown4">
+                                <li *ngFor="let x of listado_detalle">{{x.descripcion}}</li>
+                            </ul>
+                    </div>
+                </fieldset>
+                <div class="form-row">
+                    <div class="form-group  offset-md-5 offset-sm-4 offset-xs-6 ">
+                        <button  style="margin-top: 15px; margin-bottom: 20px;"  (click)="toggleShow()"  class="btn btn-secondary btn-block">Esconder</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+
+
+

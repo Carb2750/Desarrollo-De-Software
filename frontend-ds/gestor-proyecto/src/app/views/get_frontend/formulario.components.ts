@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { AppService } from 'src/app/app.service';
 import swal from 'sweetalert2';
+import { timer } from 'rxjs';
 
 
 
@@ -69,7 +70,7 @@ export class FormularioComponent implements OnInit{
     public listado_facilidad: any[];
     public listado_estudio: any[];
     public listado_consideracion: any[];
-    public puta;
+
 
     public alumno = {
         id_alumno:"",
@@ -77,11 +78,12 @@ export class FormularioComponent implements OnInit{
         segundo_nombre:"",
         apellido_alumno:"",
         segundo_apellido:"",
-        codigo_expediente:Number(),
+        codigo_expediente:Number(""),
         fecha_nacimiento:"",
         sexo:"",
         nacionalidad:"",
         lugar_procedencia:"",
+        residencial_actual_alumno:"",
         residencia_actual:"",
         nombre_padre:"",
         tel_padre:"",
@@ -235,6 +237,27 @@ export class FormularioComponent implements OnInit{
     }
 
     public detalletrans22 = {
+        codigo_expediente:Number(""),
+        codigo_trans:""
+    }
+    public detalletrans23 = {
+        codigo_expediente:Number(""),
+        codigo_trans:""
+    }
+    public detalletrans24 = {
+        codigo_expediente:Number(""),
+        codigo_trans:""
+    }
+    public detalletrans25 = {
+        codigo_expediente:Number(""),
+        codigo_trans:""
+    }
+    public detalletrans26 = {
+        codigo_expediente:Number(""),
+        codigo_trans:""
+    }
+
+    public detalletrans27 = {
         codigo_expediente:Number(""),
         codigo_trans:""
     }
@@ -525,6 +548,66 @@ export class FormularioComponent implements OnInit{
 
     revisar22(){
         var element = <HTMLInputElement> document.getElementById("viol");
+        var isChecked = element.checked;
+        if(isChecked){
+            isChecked = true;
+        }
+        else{
+            isChecked = false;
+        }
+        return isChecked;
+    }
+
+    revisar23(){
+        var element = <HTMLInputElement> document.getElementById("cast");
+        var isChecked = element.checked;
+        if(isChecked){
+            isChecked = true;
+        }
+        else{
+            isChecked = false;
+        }
+        return isChecked;
+    }
+
+    revisar24(){
+        var element = <HTMLInputElement> document.getElementById("ffuertes");
+        var isChecked = element.checked;
+        if(isChecked){
+            isChecked = true;
+        }
+        else{
+            isChecked = false;
+        }
+        return isChecked;
+    }
+
+    revisar25(){
+        var element = <HTMLInputElement> document.getElementById("abuso");
+        var isChecked = element.checked;
+        if(isChecked){
+            isChecked = true;
+        }
+        else{
+            isChecked = false;
+        }
+        return isChecked;
+    }
+
+    revisar26(){
+        var element = <HTMLInputElement> document.getElementById("muerte");
+        var isChecked = element.checked;
+        if(isChecked){
+            isChecked = true;
+        }
+        else{
+            isChecked = false;
+        }
+        return isChecked;
+    }
+
+    revisar27(){
+        var element = <HTMLInputElement> document.getElementById("panico");
         var isChecked = element.checked;
         if(isChecked){
             isChecked = true;
@@ -942,7 +1025,7 @@ export class FormularioComponent implements OnInit{
                     },
                     () => {
                         this.listado_pedagogicos = response1;
-                        pedagogico.aspectos_pedagogicos=Number(response1[0].aspectos_pedagogicos)+1;
+                        pedagogico.aspectos_pedagogicos=personal.cod_aspectos_personal;
                         this.service.get_ultimaficha().subscribe(
                             data => response2 = data,
                             err => {
@@ -984,6 +1067,7 @@ export class FormularioComponent implements OnInit{
                                                     sexo:"",
                                                     nacionalidad:"",
                                                     lugar_procedencia:"",
+                                                    residencial_actual_alumno:"",
                                                     residencia_actual:"",
                                                     nombre_padre:"",
                                                     tel_padre:"",
@@ -1183,1010 +1267,1459 @@ export class FormularioComponent implements OnInit{
 
 
     insert_detalletrans2(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans2 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans2.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans2.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans2.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans2).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans2={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans2.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans2 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans2.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans2).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans2={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
         }
         
     }
 
     insert_detalletrans3(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans3 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans3.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans3.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans3.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans3).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans3={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans3.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans3 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans3.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans3).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans3={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
         }
         
     }
 
     insert_detalletrans4(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans4 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans4.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans4.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans4.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans4).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans4={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans4.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans4 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans4.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans4).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans4={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
         }
         
     }
 
     
     insert_detalletrans5(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans5 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans5.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans5.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans5.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans5).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans5={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans5.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans5 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans5.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans5).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans5={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
         }
         
     }
 
     insert_detalletrans6(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans6 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans6.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans6.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans6.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans6).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans6={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans6.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans6 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans6.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans6).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans6={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
         }
         
     }
 
     insert_detalletrans7(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans7 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans7.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans7.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans7.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans7).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans7={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans7.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans7 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans7.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans7).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans7={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
         }
         
     }
 
     insert_detalletrans8(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans8 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans8.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans8.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans8.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans8).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans8={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans8.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans8 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans8.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans8).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans8={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
         }
         
     }
 
     insert_detalletrans9(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans9 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans9.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans9.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans9.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans9).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans9={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans9.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans9 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans9.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans9).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans9={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
         }
         
-    }
+    } 
+    
 
     insert_detalletrans10(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans10 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans10.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans10.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans10.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans10).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans10={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans10.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans10 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans10.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans10).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans10={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
         }
         
     }
 
     insert_detalletrans11(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans11 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans11.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans11.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans11.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans11).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans11={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans11.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans11 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans11.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans11).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans11={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
         }
         
     }
-
+    
     insert_detalletrans12(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans12 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans12.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans12.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans12.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans12).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans12={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans12.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans12 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans12.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans12).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans12={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
-        }  
+           
+        }
         
     }
 
     insert_detalletrans13(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans13 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans13.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans13.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans13.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans13).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans13={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans13.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans13 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans13.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans13).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans13={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
         }
         
     }
 
     insert_detalletrans14(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans14 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans14.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans14.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans14.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans14).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans14={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans14.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans14 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans14.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans14).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans14={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
         }
         
     }
 
     insert_detalletrans15(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans15 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans15.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans15.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans15.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans15).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans15={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans15.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans15 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans15.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans15).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans15={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
         }
         
     }
 
     insert_detalletrans16(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans16 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans16.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans16.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans16.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans16).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans16={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans16.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans16 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans16.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans16).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans16={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
         }
         
     }
 
     insert_detalletrans17(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans17 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans17.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans17.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans17.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans17).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans17={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans17.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans17 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans17.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans17).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans17={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
         }
         
     }
 
     insert_detalletrans18(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans18 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans18.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans18.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans18.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans18).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans18={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans18.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans18 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans18.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans18).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans18={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
         }
         
     }
 
     insert_detalletrans19(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans19 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans19.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans19.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans19.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans19).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans19={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans19.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans19 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans19.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans19).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans19={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
         }
         
     }
 
     insert_detalletrans20(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans20 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans20.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans20.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans20.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans20).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans20={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans20.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans20 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans20.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans20).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans20={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
         }
         
     }
 
     insert_detalletrans21(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans21 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans21.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans21.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans21.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans21).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans21={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans21.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans21 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans21.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans21).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans21={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
         }
         
     }
 
     insert_detalletrans22(){
-        var response;
-        var alumno = new GreenBullet();
-        this.detalletrans22 = {
-            codigo_expediente:this.detalletrans.codigo_expediente,
-            codigo_trans:this.detalletrans22.codigo_trans
-        }
+        var response, response1, response2;
+        var expediente = new GreenBullet();
         if(this.detalletrans22.codigo_trans==null){   
         }else{
             this.service.get_ultimoexpediente().subscribe(
                 data => response = data,
                 err => {
-                    this.listado_alumno = [];
+                   
                 },
                 () => {
-                    this.listado_alumno = response;
-                    alumno.codigo_expediente=Number(response[0].codigo_expediente);
-                    this.detalletrans22.codigo_expediente = alumno.codigo_expediente;
-                    this.service.insert_alumnostranstornos(this.detalletrans22).subscribe(
-                        data => response = data,
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
                         err => {
-                            swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Algo salio mal!',
-                            })
+                           
                         },
-                        ()=> {
-                            this.detalletrans22={
-                                codigo_expediente:Number(""),
-                                codigo_trans:""
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans22.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans22 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans22.codigo_trans
                             }
-                            swal.fire({
-                                title: 'Datos guardados exitosamente!',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                            this.service.insert_alumnostranstornos(this.detalletrans22).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans22={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
                         }
                     );
                     
                 }
             );
-            
+           
+        }
+        
+    }
+
+    insert_detalletrans23(){
+        var response, response1, response2;
+        var expediente = new GreenBullet();
+        if(this.detalletrans23.codigo_trans==null){   
+        }else{
+            this.service.get_ultimoexpediente().subscribe(
+                data => response = data,
+                err => {
+                   
+                },
+                () => {
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
+                        err => {
+                           
+                        },
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans23.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans23 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans23.codigo_trans
+                            }
+                            this.service.insert_alumnostranstornos(this.detalletrans23).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans23={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
+                        }
+                    );
+                    
+                }
+            );
+           
+        }
+        
+    }
+
+    insert_detalletrans24(){
+        var response, response1, response2;
+        var expediente = new GreenBullet();
+        if(this.detalletrans24.codigo_trans==null){   
+        }else{
+            this.service.get_ultimoexpediente().subscribe(
+                data => response = data,
+                err => {
+                   
+                },
+                () => {
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
+                        err => {
+                           
+                        },
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans24.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans24 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans24.codigo_trans
+                            }
+                            this.service.insert_alumnostranstornos(this.detalletrans24).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans24={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
+                        }
+                    );
+                    
+                }
+            );
+           
+        }
+        
+    }
+
+    insert_detalletrans25(){
+        var response, response1, response2;
+        var expediente = new GreenBullet();
+        if(this.detalletrans25.codigo_trans==null){   
+        }else{
+            this.service.get_ultimoexpediente().subscribe(
+                data => response = data,
+                err => {
+                   
+                },
+                () => {
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
+                        err => {
+                           
+                        },
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans25.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans25 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans25.codigo_trans
+                            }
+                            this.service.insert_alumnostranstornos(this.detalletrans25).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans25={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
+                        }
+                    );
+                    
+                }
+            );
+           
+        }
+        
+    }
+
+    insert_detalletrans26(){
+        var response, response1, response2;
+        var expediente = new GreenBullet();
+        if(this.detalletrans26.codigo_trans==null){   
+        }else{
+            this.service.get_ultimoexpediente().subscribe(
+                data => response = data,
+                err => {
+                   
+                },
+                () => {
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
+                        err => {
+                           
+                        },
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans26.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans26 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans26.codigo_trans
+                            }
+                            this.service.insert_alumnostranstornos(this.detalletrans26).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans26={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
+                        }
+                    );
+                    
+                }
+            );
+           
+        }
+        
+    }
+
+    insert_detalletrans27(){
+        var response, response1, response2;
+        var expediente = new GreenBullet();
+        if(this.detalletrans27.codigo_trans==null){   
+        }else{
+            this.service.get_ultimoexpediente().subscribe(
+                data => response = data,
+                err => {
+                   
+                },
+                () => {
+                    this.service.get_ultimoexpediente().subscribe(
+                        data => response1 = data,
+                        err => {
+                           
+                        },
+                        () => {
+                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            this.detalletrans27.codigo_expediente = expediente.codigo_expediente;
+                            this.detalletrans27 = {
+                                codigo_expediente:expediente.codigo_expediente,
+                                codigo_trans:this.detalletrans27.codigo_trans
+                            }
+                            this.service.insert_alumnostranstornos(this.detalletrans27).subscribe(
+                                data => response2 = data,
+                                err => {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Algo salio mal!',
+                                    })
+                                },
+                                ()=> {
+                                    this.detalletrans27={
+                                        codigo_expediente:Number(""),
+                                        codigo_trans:""
+                                    }
+                                    swal.fire({
+                                        title: 'Datos guardados exitosamente!',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            );
+                            
+                        }
+                    );
+                    
+                }
+            );
+           
         }
         
     }
@@ -2546,31 +3079,35 @@ export class FormularioComponent implements OnInit{
     isShown7: boolean = false ; // hidden by default
     isShown8: boolean = false ; // hidden by default
     isShown9: boolean = false ; // hidden by default
+    isShown10: boolean = false ; // hidden by default
+    isShown11: boolean = false ; // hidden by default
+    isShown12: boolean = false ; // hidden by default
     toggleShow() {
-    window.scrollTo(0,0);
-    this.isShown = ! this.isShown;
-    this.isShown5 = ! this.isShown5;
-    this.isShown2 = ! this.isShown2;
-    this.isShown6 = ! this.isShown6;
-
+        window.scrollTo(0,0);
+        this.isShown = ! this.isShown;
+        this.isShown5 = ! this.isShown5;
+        this.isShown2 = ! this.isShown2;
+        this.isShown6 = ! this.isShown6;
+        this.isShown10 = true;
+        
     }
 
     toggleShow2() {
-    window.scrollTo(0,0);
-    this.isShown2 = ! this.isShown2;
-    this.isShown6 = ! this.isShown6;
-    this.isShown3 = ! this.isShown3;
-    this.isShown7 = ! this.isShown7;
-
+        window.scrollTo(0,0);
+        this.isShown2 = ! this.isShown2;
+        this.isShown6 = ! this.isShown6;
+        this.isShown3 = ! this.isShown3;
+        this.isShown7 = ! this.isShown7;
+        this.isShown11 = true;
     }
     
     toggleShow3() {
-    window.scrollTo(0,0);
-    this.isShown3 = ! this.isShown3;
-    this.isShown7 = ! this.isShown7;
-    this.isShown4 = ! this.isShown4;
-    this.isShown8 = ! this.isShown8;
-
+        window.scrollTo(0,0);
+        this.isShown3 = ! this.isShown3;
+        this.isShown7 = ! this.isShown7;
+        this.isShown4 = ! this.isShown4;
+        this.isShown8 = ! this.isShown8;
+        this.isShown12 = true;
     }
 
     toggleShow4() {
@@ -2583,5 +3120,42 @@ export class FormularioComponent implements OnInit{
         this.isShown7 = false;
         this.isShown8 = ! this.isShown8;
         this.isShown9 = ! this.isShown9;
+        this.isShown10 = false;
+        this.isShown11= false;
+        this.isShown12= false;
+    }
+
+    toggleatras() {
+        window.scrollTo(0,0);
+        this.isShown = true;
+        this.isShown5 = true;
+        this.isShown2 = false;
+        this.isShown6 = false;
+        this.isShown10 = false;
+        
+    }
+    toggleatras2() {
+        window.scrollTo(0,0);
+        this.isShown2 = true;
+        this.isShown6 = true;
+        this.isShown3 = false;
+        this.isShown7 = false;
+        this.isShown11 = false;
+        
+    }
+
+    toggleatras3() {
+        window.scrollTo(0,0);
+        this.isShown3 = true;
+        this.isShown7 = true;
+        this.isShown4 = false;
+        this.isShown8 = false;
+        this.isShown12 = false;
+        
+    }
+
+
+    reload(){
+        setTimeout(location.reload.bind(location), 4000);
     }
 }
