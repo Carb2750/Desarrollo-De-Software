@@ -43,6 +43,7 @@ export class LoginComponent implements OnDestroy{
                 usuario:this.login_data.usuario,
                 pass:this.login_data.pass
             };
+            console.log(load);
             this.service.login(load).subscribe(
                 data => response = data,
                 err =>{
@@ -63,8 +64,9 @@ export class LoginComponent implements OnDestroy{
                 () => {
                     try{
                         if(response){
+                            this.service.set_usuariologueado(this.login_data.usuario);
                             this.service.set_session(response);
-                            this.router.navigateByUrl('/listado_usuarios');
+                            this.router.navigateByUrl('/menu');
                         }else{
                             swal.fire({
                                 icon: 'error',

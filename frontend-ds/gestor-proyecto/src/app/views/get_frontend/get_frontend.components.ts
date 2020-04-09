@@ -21,7 +21,6 @@ export class GetFrontendComponent implements OnInit{
     public usuario1;
     public pass;
     public correo;
-    public tipo;
     
 
     public usuario = {
@@ -30,7 +29,6 @@ export class GetFrontendComponent implements OnInit{
         usuario:"",
         pass:"",
         correo:"",
-        tipo:""
     
     }
 
@@ -39,9 +37,7 @@ export class GetFrontendComponent implements OnInit{
         apellido:"",
         usuario:"",
         pass:"",
-        correo:"",
-        tipo:""
-    
+        correo:"",    
     }
 
     ngOnInit(){
@@ -91,8 +87,7 @@ export class GetFrontendComponent implements OnInit{
                 apellido:"",
                 usuario:"",
                 pass:"",
-                correo: "",
-                tipo:""
+                correo: ""
             }
             swal.fire({
                 title: 'Usuario agregado exitosamente!',
@@ -171,9 +166,7 @@ export class GetFrontendComponent implements OnInit{
         if(this.usuario2.correo==""){
             this.usuario2.correo=this.correo;
         }
-        if(this.usuario2.tipo==""){
-            this.usuario2.tipo=this.tipo;
-        }
+
 
         this.service.update_usuario(load, this.usuario).subscribe(
         data => response = data,
@@ -190,8 +183,7 @@ export class GetFrontendComponent implements OnInit{
                 apellido:"",
                 usuario:"",
                 pass:"",
-                correo: "",
-                tipo:""
+                correo: ""
             };
             swal.fire({
                 title: 'Usuario actualizado exitosamente!',
@@ -205,14 +197,13 @@ export class GetFrontendComponent implements OnInit{
         
     }
 
-    pass_code(id,nombre,apellido,usuario,pass,correo,tipo) {
+    pass_code(id,nombre,apellido,usuario,pass,correo) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.usuario1 = usuario;
         this.pass = pass;
         this.correo = correo;
-        this.tipo = tipo;
     }
 
     

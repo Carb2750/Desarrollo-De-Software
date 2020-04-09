@@ -41,22 +41,6 @@ router.get('/get_usuario', (req, res, next) => {
     });
 });
 
-/*router.post('/insert_usuario', (req, res, next) => {
-    var query = 'INSERT INTO `intae`.`usuarios` (`nombre`, `apellido`, `usuario`, `pass`, `correo`, `tipo`) VALUES (?,?,?,md5(?),?,?)';
-    var values = [req.body.nombre,
-                req.body.apellido,
-                req.body.usuario,
-                req.body.pass,
-                req.body.correo,
-                req.body.tipo];
-    con.query(query, values, (err, result, fields) => {
-        if(err) {
-            next(err);
-        } else {
-            res.status(200).json(result);
-        }
-    });
-});*/
 
 
 
@@ -67,11 +51,10 @@ router.post('/insert_usuario', (req, res, next) => {
         usuario: req.body.usuario,
         pass: req.body.pass,
         correo: req.body.correo,
-        tipo: req.body.tipo
     };
 
     const create_user = (user) =>{
-        var query = 'INSERT INTO `usuarios` (`nombre`, `apellido`, `usuario`, `pass`, `correo`, `tipo`) VALUES (?)';
+        var query = 'INSERT INTO `usuarios` (`nombre`, `apellido`, `usuario`, `pass`, `correo`) VALUES (?)';
         con.query(query, [Object.values(user)], (err, result, fields) => {
             if(err) {
                 console.log(err);
@@ -94,18 +77,18 @@ router.post('/login',(req,res,next) =>{
         pass: req.body.pass
     };
     const get_token = (user) =>{
-        var query = "SELECT `usuario`, `pass` FROM `usuarios` where `usuario` = ? and `tipo` = 'Administrador'";
+        var query = "SELECT `usuario`, `pass` FROM `usuarios` where `usuario` = ?  ";
         con.query(query, [user.usuario], (err,result,fields) =>{
             if(err || result.length == 0){
                 console.log(err);
                 res.status(400).json({message:"Usuario o Contraseña Incorrectos"});
             }else{
-                bcrypt.compare(user.pass,result[0].PASSWORD, (error, isMatch) =>{
+                bcrypt.compare(user.pass,result[0].pass, (error, isMatch) =>{
                     if(isMatch){
-                        var token = jwt.sign({userId: result[0].id}, secret_key);
+                        var token = jwt.sign({userId: result[0].usuario}, secret_key);
                         res.status(200).json({token});
                     }else if(error){
-                        res.status(200).json(error);
+                        res.status(400).json(error);
                     }else{
                         res.status(400).json({message: "Usuario o Contraseña Incorrectos"});
                     }
@@ -118,13 +101,12 @@ router.post('/login',(req,res,next) =>{
 
 
 router.put('/update_usuario', (req, res, next) => {
-    var query = 'update usuarios set nombre = ?, apellido = ?, usuario = ?, pass = ?, correo = ?, tipo = ? where codigo = ?';
+    var query = 'update usuarios set nombre = ?, apellido = ?, usuario = ?, pass = ?, correo = ? where codigo = ?';
     var values = [req.body.nombre,
                 req.body.apellido,
                 req.body.usuario,
                 req.body.pass,
                 req.body.correo,
-                req.body.tipo,
                 req.body.codigo];
     con.query(query, values, (err, result, fields) => {
         if(err) {

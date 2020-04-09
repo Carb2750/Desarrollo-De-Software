@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-4 col-sm-4 col-xs-12"></div>
             <div class="col-md-4 col-sm-4 col-xs-12">
-                <form class="form-container" #login_Form="ngForm"  novalidate="novalidate" autocomplete="off">
+                <form class="form-container" #login_form="ngForm"  novalidate="novalidate" autocomplete="off">
                     <h1 class="color">Acceso INTAE</h1>
                     <div class="form-group">
                       <label for="usuario" class="color">Usuario</label>
@@ -21,12 +21,12 @@
                             class="form-control form-control-lg inverse-mode login-input" 
                             placeholder="Usuario"
                             id="usuario" 
-                            name="username"
-                            #username="ngModel"
+                            name="usuario"
+                            #usuario="ngModel"
                             [(ngModel)]="login_data.usuario"
                             required="true">
-                            <p *ngIf="username.errors && username.errors.required&& submitted" 
-                       class="login-error-text"><i class="fa fa-exclamation-circle login-error-icon"></i>
+                            <p *ngIf="usuario.errors && usuario.errors.required&& submitted" 
+                       class="login-error-text" style="border: none;color: white;"><i class="fa fa-exclamation-circle login-error-icon"></i>
                         El usuario es requerido</p>
                     </div>
                     <div class="form-group">
@@ -35,14 +35,21 @@
                               class="form-control form-control-lg inverse-mode login-input" 
                               id="contra"
                               placeholder="Contraseña"
-                              name="password" required
-                              #password="ngModel"
+                              name="pass" required
+                              #pass="ngModel"
                               [(ngModel)]="login_data.pass"
                               pattern="[0-9|a-z|A-Z|_]+"
-                              minlength="6"
-                              maxlength="32">
+                              minlength=1
+                              maxlength=32>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block" (click)="login()">Ingresar</button>
+                    <div class="login-buttons">
+                        <button type="submit" class="btn btn-primary btn-block" (click)="login()"
+                        [disabled]=loading>
+                        <span *ngIf="!loading"><i class="fa fa-sign-in-alt"></i>Conectarse</span>
+                        <span *ngIf="loading"><i class="fa fa-sign-in-alt"></i>Conectando...</span>
+                        </button>
+                    </div>
+                    <br>
                   </form>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-12"></div>
