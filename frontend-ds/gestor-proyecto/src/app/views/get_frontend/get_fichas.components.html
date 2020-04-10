@@ -3,70 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .mar3{
-            margin-left: 25px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.6/css/mdb.min.css" rel="stylesheet">
 </head>
 <body>
-    <div style="margin-right: 25px;" class="mar3 text-center">
-        <h1 class="text-success"> Mantenimiento Fichas </h1>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark scrolling-navbar">
+            <div class="container">
+                <a class="navbar-brand disabled" href="#">INTAE</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" (click)="menu()">Inicio </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" (click)="registro()">Registro </a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Busquedas </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" (click)="ficha_completa()">Ficha Completa</a>
+                      <a class="dropdown-item" (click)="hoja_registro()">Hoja Registro</a>
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Mantenimientos </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" (click)="alumnos()">Alumnos Datos</a></li>
+                      <li><a class="dropdown-item" (click)="alumnos_trastornos()">Alumnos Trastornos</a></li>
+                      <li><a class="dropdown-item" (click)="artes()">Artes</a></li>
+                      <li><a class="dropdown-item" (click)="asignatura_dificultad()">Asigatura Dificultad</a></li>
+                      <li><a class="dropdown-item" (click)="asignatura_facilidad()">Asigatura Facilidad</a></li>
+                      <li><a class="dropdown-item" (click)="aspectos_pedagogicos()">Aspectos Pedagógicos</a></li>
+                      <li><a class="dropdown-item" (click)="aspectos_personales()">Aspectos Personales</a></li>
+                      <li><a class="dropdown-item" (click)="ciudades()">Ciudades</a></li>              
+                      <li><a class="dropdown-item" (click)="consideracion()">Consideración Estudios</a></li>
+                      <li><a class="dropdown-item" (click)="vive()">Convive</a></li>
+                      <li><a class="dropdown-item" (click)="cursos()">Cursos</a></li>
+                      <li><a class="dropdown-item" (click)="deportes()">Deportes</a></li>
+                      <li><a class="dropdown-item" (click)="documentos()">Documentos</a></li>
+                      <li><a class="dropdown-item" (click)="estudio_constante()">Estudio Constante</a></li>
+                      <li><a class="dropdown-item" (click)="fichas()">Fichas</a></li>
+                      <li><a class="dropdown-item" (click)="ficha_documentos()">Fichas Documentos</a></li>
+                      <li><a class="dropdown-item" (click)="jornadas()">Jornadas</a></li>
+                      <li><a class="dropdown-item" (click)="mejor_amigo()">Mejores Amigos</a></li>
+                      <li><a class="dropdown-item" (click)="modalidades()">Modalidades</a></li>
+                      <li><a class="dropdown-item" (click)="relaciones_amistosas()">Relaciones Amistosas</a></li>
+                      <li><a class="dropdown-item" (click)="relaciones_sociales()">Relaciones Sociales</a></li>
+                      <li><a class="dropdown-item" (click)="rendimiento_academico()">Rendimiento Académico</a></li>
+                      <li><a class="dropdown-item" (click)="problemas_emocionales()">Problemas Emocionales</a></li>
+                      <li><a class="dropdown-item" (click)="secciones()">Secciones</a></li>
+                      <li><a class="dropdown-item" (click)="seguimientos()">Seguimientos</a></li>
+                      <li><a class="dropdown-item" (click)="tipo_escuela()">Tipo Escuela</a></li>
+                      <li><a class="dropdown-item" (click)="trastornos()">Trastornos</a></li>
+                      <li><a class="dropdown-item" (click)="listado_usuarioss()">Usuarios</a></li>
+                    </ul>
+                    <li class="nav-item">
+                      <a class="nav-link" (click)="salir()">Cerrar Sesión</a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav nav-flex-icons">
+                    <li class="nav-item">
+                      <a href="https://www.facebook.com" class="nav-link">
+                        <img alt="Siguenos en Facebook" src="https://lh6.googleusercontent.com/-CYt37hfDnQ8/T3nNydojf_I/AAAAAAAAAr0/P5OtlZxV4rk/s32/facebook32.png" width=32 height=32  />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+          </nav>
+    </header>
+    <div  class=" text-center">
+        <h1 class="text-success mar4"> Mantenimiento Fichas </h1>
     
-           
-            <table style="margin-right: 25px;"  class="table table-hover table-striped table-info text-center">
-            <thead class="thead-dark">
-                <tr>
-                    <th>No. de Ficha</th>
-                    <th>Curso</th>
-                    <th>Sección</th>
-                    <th>Modalidad</th>
-                    <th>Jornada</th>
-                    <th>Ciudad de Nacimiento</th>
-                    <th>Año de Ingreso</th>
-                    <th>Instituto de Procedencia</th>
-                    <th>Indice Academico</th>
-                    <th>Repite Curso</th>
-                    <th>Materia Retrasada</th>
-                    <th>Becas</th>
-                    <th>Contacto de Emergencia</th>
-                    <th>Número de Emergencia</th>
-                    <th>Observaciones</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let x of listado_fichas">
-                    <td>{{x.num_ficha}}</td>
-                    <td>{{x.desc_curso}}</td>
-                    <td>{{x.desc_seccion}}</td>
-                    <td>{{x.desc_modadlidad}}</td>
-                    <td>{{x.desc_jornada}}</td>
-                    <td>{{x.nom_ciudad}}</td>
-                    <td>{{x.anio}}</td>
-                    <td>{{x.obs_inst_proced}}</td>
-                    <td>{{x.indice_acad}}</td>
-                    <td>{{x.obs_repite_curso}}</td>
-                    <td>{{x.obs_materia_restrada}}</td>
-                    <td>{{x.obs_beca}}</td>
-                    <td>{{x.contacto_emergencia}}</td>
-                    <td>{{x.num_emergencia}}</td>
-                    <td>{{x.observaciones}}</td>
-                    <td><button (click)="pass_code(x.num_ficha,x.cod_curso,x.cod_seccion,x.cod_modalidad,x.cod_jornada,x.cod_ciudad,x.anio,x.obs_inst_proced,x.indice_acad,x.obs_repite_curso,x.obs_materia_restrada,x.obs_beca,x.contacto_emergencia,x.num_emergencia,x.observaciones,x.motivacion_ingreso)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
-                    <td><button (click)="delete_ficha(x.num_ficha)" class="btn btn-danger">Borrar</button></td>
-                </tr>
-            </tbody>
-        </table>
+           <div class="aver4">
+            <table   class="table table-hover table-striped table-info text-center">
+              <thead class="thead-dark">
+                  <tr>
+                      <th>No. de Ficha</th>
+                      <th>Curso</th>
+                      <th>Sección</th>
+                      <th>Modalidad</th>
+                      <th>Jornada</th>
+                      <th>Ciudad de Nacimiento</th>
+                      <th>Año de Ingreso</th>
+                      <th>Instituto de Procedencia</th>
+                      <th>Índice Académico</th>
+                      <th>Repite Curso</th>
+                      <th>Materia Retrasada</th>
+                      <th>Becas</th>
+                      <th>Contacto de Emergencia</th>
+                      <th>Número de Emergencia</th>
+                      <th>Observaciones</th>
+                      <th></th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let x of listado_fichas">
+                      <td>{{x.num_ficha}}</td>
+                      <td>{{x.desc_curso}}</td>
+                      <td>{{x.desc_seccion}}</td>
+                      <td>{{x.desc_modadlidad}}</td>
+                      <td>{{x.desc_jornada}}</td>
+                      <td>{{x.nom_ciudad}}</td>
+                      <td>{{x.anio}}</td>
+                      <td>{{x.obs_inst_proced}}</td>
+                      <td>{{x.indice_acad}}</td>
+                      <td>{{x.obs_repite_curso}}</td>
+                      <td>{{x.obs_materia_restrada}}</td>
+                      <td>{{x.obs_beca}}</td>
+                      <td>{{x.contacto_emergencia}}</td>
+                      <td>{{x.num_emergencia}}</td>
+                      <td>{{x.observaciones}}</td>
+                      <td><button (click)="pass_code(x.num_ficha,x.cod_curso,x.cod_seccion,x.cod_modalidad,x.cod_jornada,x.cod_ciudad,x.anio,x.obs_inst_proced,x.indice_acad,x.obs_repite_curso,x.obs_materia_restrada,x.obs_beca,x.contacto_emergencia,x.num_emergencia,x.observaciones,x.motivacion_ingreso)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
+                      <td><button (click)="delete_ficha(x.num_ficha)" class="btn btn-danger">Borrar</button></td>
+                  </tr>
+              </tbody>
+          </table>
+           </div>
+            
     </div>
 
     
 
 
+    <div class="aligncenter">
+        <button (click)="toggleShow()" class="mar3 btn btn-primary" >Nuevo Registro</button>
+    </div>
     
-    <button (click)="toggleShow()" class="mar3 btn btn-primary" style="margin-bottom: 10px;">Nuevo Registro</button>
-    <div *ngIf="isShown" class="row container-fluid"  id="divshow" style="margin-bottom: 10px;" >
-        <div class="container-md border rounded border-primary">
+    <div *ngIf="isShown" class="center aligncenter container-fluid"  id="divshow"  >
+        <div class="container-md border rounded border-primary mar1">
             <div class="container-md">
                 <form action="/" enctype="multipart/form-data" method="post" ngNativeValidate #form>
                     <div class="form-row">
@@ -113,14 +186,14 @@
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <label for="anio">Año de Ingreso</label>
-                            <input type="text" id="anio" class="form-control" required [(ngModel)]="ficha.anio" [ngModelOptions]="{standalone: true}">
+                            <input type="number" id="anio" class="form-control" minlength=4 maxlength=4 max=2100 min=1978 onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required [(ngModel)]="ficha.anio" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="proce">Instituto de Procedencia</label>
-                            <input type="text" id="proce" class="form-control" required [(ngModel)]="ficha.obs_inst_proced" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="proce" class="form-control" required onkeyup="this.value=this.value.replace(/[^a-z,\sA-Z0-9ñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="ficha.obs_inst_proced" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="ind">Indice Academico</label>
+                            <label for="ind">Índice Académico</label>
                             <input type="number" id="ind" min="0" max="100" setp="1" class="form-control" max-length=3 required [(ngModel)]="ficha.indice_acad" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
@@ -148,12 +221,12 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="input-group" style="margin-top: 10px; margin-bottom: 10px;">
+                        <div class="input-group mar7">
                             <div class="input-group-prepend">
                               <span class="input-group-text">Contacto de Emergencia</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Nombre" required [(ngModel)]="ficha.contacto_emergencia" [ngModelOptions]="{standalone: true}">
-                            <input type="text"  class="form-control" placeholder="Teléfono" required [(ngModel)]="ficha.num_emergencia" [ngModelOptions]="{standalone: true}">
+                            <input type="text" class="form-control" placeholder="Nombre" onkeyup="this.value=this.value.replace(/[^a-z\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" required [(ngModel)]="ficha.contacto_emergencia" [ngModelOptions]="{standalone: true}">
+                            <input type="text"  class="form-control" placeholder="Teléfono"  min-length=8 max-length=8 onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required [(ngModel)]="ficha.num_emergencia" [ngModelOptions]="{standalone: true}">
                           </div>
                     </div>
                     <div class="form-row">
@@ -162,8 +235,8 @@
                             <textarea cols="8" rows="6" type="text" id="obs"  class="form-control" [(ngModel)]="ficha.observaciones" [ngModelOptions]="{standalone: true}"></textarea>
                         </div>
                     </div>
-                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="form.checkValidity()? insert_ficha() : null" class="btn btn-primary">Insertar</button>
-                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="toggleShow()" class="btn btn-secondary">Esconder</button>
+                    <button  type="submit" (click)="form.checkValidity()? insert_ficha() : null" class="btn btn-primary mar12">Insertar</button>
+                    <button  type="submit" (click)="toggleShow()" class="btn btn-secondary mar12">Esconder</button>
                 </form>
             </div>
         </div>
@@ -227,17 +300,17 @@
                         <div class="form-row">
                             <div class="form-group offset-md-1 col-md-5">
                                 <label for="ani">Año de Ingreso</label>
-                                <input type="text" id="ani" class="form-control"  [(ngModel)]="ficha.anio" [ngModelOptions]="{standalone: true}">
+                                <input type="number" id="ani" class="form-control" minlength=4 maxlength=4 max=2080 min=1978 onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="ficha.anio" [ngModelOptions]="{standalone: true}">
                             </div>
                             <div class="form-group col-md-5">
-                                <label for="in">Indice Academico</label>
+                                <label for="in">Índice Académico</label>
                                 <input type="number" id="in" min="0" max="100" setp="1" max-length=3 class="form-control"  [(ngModel)]="ficha.indice_acad" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="proc">Instituto de Procedencia</label>
-                                <input type="text" id="proc" class="form-control"  [(ngModel)]="ficha.obs_inst_proced" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="proc" class="form-control"  onkeyup="this.value=this.value.replace(/[^a-z,\sA-Z0-9ñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="ficha.obs_inst_proced" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
@@ -259,7 +332,7 @@
                             </div>
                         </div>
                         <div clas="form-row">
-                            <div class="form-group col-md-12" style="padding: 0%;">
+                            <div class="form-group col-md-12 pad">
                                 <label for="matr">Lleva materia retrasada</label>
                                 <textarea cols="4" rows="3" type="text" id="matr" placeholder="Sí o No" class="form-control"  [(ngModel)]="ficha.obs_materia_restrada" [ngModelOptions]="{standalone: true}"></textarea>
                                 <small id="helper5" class="form-text text-muted">
@@ -268,12 +341,12 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="input-group" style="margin-top: 10px; margin-bottom: 10px;">
+                            <div class="input-group mar7">
                                 <div class="input-group-prepend">
                                   <span class="input-group-text">Contacto de Emergencia</span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Nombre"  [(ngModel)]="ficha.contacto_emergencia" [ngModelOptions]="{standalone: true}">
-                                <input type="text"  class="form-control" placeholder="Teléfono"  [(ngModel)]="ficha.num_emergencia" [ngModelOptions]="{standalone: true}">
+                              <input type="text" class="form-control" placeholder="Nombre" onkeyup="this.value=this.value.replace(/[^a-zsA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="ficha.contacto_emergencia" [ngModelOptions]="{standalone: true}">
+                                <input type="text"  class="form-control" placeholder="Teléfono"  min-length=8 max-length=8 onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"[(ngModel)]="ficha.num_emergencia" [ngModelOptions]="{standalone: true}">
                               </div>
                         </div>
                         <div class="form-row">

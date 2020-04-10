@@ -3,72 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .mar3{
-            margin-left: 25px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.6/css/mdb.min.css" rel="stylesheet">
 </head>
 <body>
-    <div style="margin-right: 25px;" class="mar3 text-center">
-        <h1 class="text-success"> Mantenimiento Aspectos Personales </h1>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark scrolling-navbar">
+            <div class="container">
+                <a class="navbar-brand disabled" href="#">INTAE</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" (click)="menu()">Inicio </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" (click)="registro()">Registro </a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Busquedas </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" (click)="ficha_completa()">Ficha Completa</a>
+                      <a class="dropdown-item" (click)="hoja_registro()">Hoja Registro</a>
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Mantenimientos </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" (click)="alumnos()">Alumnos Datos</a></li>
+                      <li><a class="dropdown-item" (click)="alumnos_trastornos()">Alumnos Trastornos</a></li>
+                      <li><a class="dropdown-item" (click)="artes()">Artes</a></li>
+                      <li><a class="dropdown-item" (click)="asignatura_dificultad()">Asigatura Dificultad</a></li>
+                      <li><a class="dropdown-item" (click)="asignatura_facilidad()">Asigatura Facilidad</a></li>
+                      <li><a class="dropdown-item" (click)="aspectos_pedagogicos()">Aspectos Pedagógicos</a></li>
+                      <li><a class="dropdown-item" (click)="aspectos_personales()">Aspectos Personales</a></li>
+                      <li><a class="dropdown-item" (click)="ciudades()">Ciudades</a></li>              
+                      <li><a class="dropdown-item" (click)="consideracion()">Consideración Estudios</a></li>
+                      <li><a class="dropdown-item" (click)="vive()">Convive</a></li>
+                      <li><a class="dropdown-item" (click)="cursos()">Cursos</a></li>
+                      <li><a class="dropdown-item" (click)="deportes()">Deportes</a></li>
+                      <li><a class="dropdown-item" (click)="documentos()">Documentos</a></li>
+                      <li><a class="dropdown-item" (click)="estudio_constante()">Estudio Constante</a></li>
+                      <li><a class="dropdown-item" (click)="fichas()">Fichas</a></li>
+                      <li><a class="dropdown-item" (click)="ficha_documentos()">Fichas Documentos</a></li>
+                      <li><a class="dropdown-item" (click)="jornadas()">Jornadas</a></li>
+                      <li><a class="dropdown-item" (click)="mejor_amigo()">Mejores Amigos</a></li>
+                      <li><a class="dropdown-item" (click)="modalidades()">Modalidades</a></li>
+                      <li><a class="dropdown-item" (click)="relaciones_amistosas()">Relaciones Amistosas</a></li>
+                      <li><a class="dropdown-item" (click)="relaciones_sociales()">Relaciones Sociales</a></li>
+                      <li><a class="dropdown-item" (click)="rendimiento_academico()">Rendimiento Académico</a></li>
+                      <li><a class="dropdown-item" (click)="problemas_emocionales()">Problemas Emocionales</a></li>
+                      <li><a class="dropdown-item" (click)="secciones()">Secciones</a></li>
+                      <li><a class="dropdown-item" (click)="seguimientos()">Seguimientos</a></li>
+                      <li><a class="dropdown-item" (click)="tipo_escuela()">Tipo Escuela</a></li>
+                      <li><a class="dropdown-item" (click)="trastornos()">Trastornos</a></li>
+                      <li><a class="dropdown-item" (click)="listado_usuarioss()">Usuarios</a></li>
+                    </ul>
+                    <li class="nav-item">
+                      <a class="nav-link" (click)="salir()">Cerrar Sesión</a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav nav-flex-icons">
+                    <li class="nav-item">
+                      <a href="https://www.facebook.com" class="nav-link">
+                        <img alt="Siguenos en Facebook" src="https://lh6.googleusercontent.com/-CYt37hfDnQ8/T3nNydojf_I/AAAAAAAAAr0/P5OtlZxV4rk/s32/facebook32.png" width=32 height=32  />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+          </nav>
+    </header>
+    <div  class="text-center">
+        <h1 class="text-success mar4"> Mantenimiento Aspectos Personales </h1>
     
-           
-            <table style="margin-right: 25px;"  class="table table-hover table-striped table-info text-center">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Codigo</th>
-                    <th>Vive con</th>
-                    <th>Otro residente</th>
-                    <th>Sociabilidad</th>
-                    <th>Relación con quien vive</th>
-                    <th>Observación</th>
-                    <th>Noviazgo</th>
-                    <th>Mejor Amigo</th>
-                    <th>Otro Mejor Amigo</th>
-                    <th>Actividad Deportiva</th>
-                    <th>Otro Deporte</th>
-                    <th>Actividad Artistica</th>
-                    <th>Otra Arte</th>
-                    <th>Religion</th>
-                    <th>Problema Emocional</th>
-                    <th>Ayuda</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let x of listado_personales">
-                    <td>{{x.cod_aspectos_personal}}</td>
-                    <td>{{x.descripcion_convive}}</td>
-                    <td>{{x.obs_residencias}}</td>
-                    <td>{{x.descripcion_social}}</td>
-                    <td>{{x.descripcion_amistosa}}</td>
-                    <td>{{x.obs_relaciones_amistosas}}</td>
-                    <td>{{x.obs_noviazgos}}</td>
-                    <td>{{x.descripcion_mejor}}</td>
-                    <td>{{x.obs_mejor_amigo}}</td>
-                    <td>{{x.descripcion_deportiva}}</td>
-                    <td>{{x.obs_actividades_deportivas}}</td>
-                    <td>{{x.descripcion_artistica}}</td>
-                    <td>{{x.obs_actividades_artisticas}}</td>
-                    <td>{{x.obs_religion}}</td>
-                    <td>{{x.descripcion_emocional}}</td>
-                    <td>{{x.obs_ayudas}}</td>                   
-                    <td><button (click)="pass_code(x.cod_aspectos_personal, x.codigo_convive, x.obs_residencias, x.cod_relaciones_sociales, x.cod_relaciones_amistosas, x.obs_relaciones_amistosas, x.obs_noviazgos, x.cod_mejor_amigo, x.obs_mejor_amigo, x.cod_act_deportiva, x.obs_actividades_deportivas, x.cod_act_artistica, x.obs_actividades_artisticas, x.obs_religion, x.cod_problema_emocional, x.obs_ayudas)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
-                    <td><button (click)="delete_personal(x.cod_aspectos_personal)" class="btn btn-danger">Borrar</button></td>
-                </tr>
-            </tbody>
-        </table>
+           <div class="aver4">
+            <table   class="table table-hover table-striped table-info text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Vive con</th>
+                        <th>Otro residente</th>
+                        <th>Sociabilidad</th>
+                        <th>Relación con quien vive</th>
+                        <th>Observación</th>
+                        <th>Noviazgo</th>
+                        <th>Mejor Amigo</th>
+                        <th>Otro Mejor Amigo</th>
+                        <th>Actividad Deportiva</th>
+                        <th>Otro Deporte</th>
+                        <th>Actividad Artistica</th>
+                        <th>Otra Arte</th>
+                        <th>Religion</th>
+                        <th>Problema Emocional</th>
+                        <th>Ayuda</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of listado_personales">
+                        <td>{{x.cod_aspectos_personal}}</td>
+                        <td>{{x.descripcion_convive}}</td>
+                        <td>{{x.obs_residencias}}</td>
+                        <td>{{x.descripcion_social}}</td>
+                        <td>{{x.descripcion_amistosa}}</td>
+                        <td>{{x.obs_relaciones_amistosas}}</td>
+                        <td>{{x.obs_noviazgos}}</td>
+                        <td>{{x.descripcion_mejor}}</td>
+                        <td>{{x.obs_mejor_amigo}}</td>
+                        <td>{{x.descripcion_deportiva}}</td>
+                        <td>{{x.obs_actividades_deportivas}}</td>
+                        <td>{{x.descripcion_artistica}}</td>
+                        <td>{{x.obs_actividades_artisticas}}</td>
+                        <td>{{x.obs_religion}}</td>
+                        <td>{{x.descripcion_emocional}}</td>
+                        <td>{{x.obs_ayudas}}</td>                   
+                        <td><button (click)="pass_code(x.cod_aspectos_personal, x.codigo_convive, x.obs_residencias, x.cod_relaciones_sociales, x.cod_relaciones_amistosas, x.obs_relaciones_amistosas, x.obs_noviazgos, x.cod_mejor_amigo, x.obs_mejor_amigo, x.cod_act_deportiva, x.obs_actividades_deportivas, x.cod_act_artistica, x.obs_actividades_artisticas, x.obs_religion, x.cod_problema_emocional, x.obs_ayudas)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
+                        <td><button (click)="delete_personal(x.cod_aspectos_personal)" class="btn btn-danger">Borrar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+           </div>
+            
     </div>
 
     
 
 
     
-    <button (click)="toggleShow()" class="mar3 btn btn-primary" style="margin-bottom: 10px;">Nuevo Registro</button>
-    <div *ngIf="isShown" class="row container-fluid"  id="divshow" style="margin-bottom: 10px;" >
-        <div class="container-md border rounded border-primary">
+    <div class="aligncenter">
+        <button (click)="toggleShow()" class="mar3 btn btn-primary">Nuevo Registro</button>
+    </div>
+    <div *ngIf="isShown" class="center container-fluid aligncenter"  id="divshow" >
+        <div class="container-md border rounded border-primary mar1">
             <div class="container-md">
                 <form action="/" enctype="multipart/form-data" method="post" ngNativeValidate #form>
                     <div class="form-row">
@@ -84,7 +157,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="otro1">Especificación</label>
-                            <input type="text" id="otro1" class="form-control" [(ngModel)]="personal.obs_residencias" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="otro1" class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="personal.obs_residencias" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                     <div class="form-row">
@@ -97,10 +170,10 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="por">Explique porque</label>
-                            <textarea cols="6" rows="4" type="text" id="por"  class="form-control" [(ngModel)]="personal.obs_relaciones_amistosas" [ngModelOptions]="{standalone: true}"></textarea>
+                            <textarea cols="6" rows="4" type="text" id="por"  class="form-control"  [(ngModel)]="personal.obs_relaciones_amistosas" [ngModelOptions]="{standalone: true}"></textarea>
                         </div>
                     </div>
-                    <div class="form-row" style="margin-top: 40px;">
+                    <div class="form-row mar10" >
                         <div class="form-group col-md-3">
                             <label for="rs">Como es en las relaciones sociales</label>
                             <select id="rs" class="form-control" required [(ngModel)]="personal.cod_relaciones_sociales" [ngModelOptions]="{standalone: true}" >
@@ -109,7 +182,7 @@
                             </select>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="ma">¿Quien es su mejor amigo?</label>
+                            <label for="ma">¿Quién es su mejor amigo?</label>
                             <select id="ma" class="form-control" required [(ngModel)]="personal.cod_mejor_amigo" [ngModelOptions]="{standalone: true}" >
                               <option selected value="">- Seleccione -</option>
                               <option *ngFor="let x of listado_codigo_amigos" [value]="x.cod_mejor_amigo">{{x.descripcion}}</option>
@@ -120,13 +193,13 @@
                         </div>
                         <div class="form-group col-md-5">
                             <label for="amigo">Especificación Mejor Amigo</label>
-                            <input type="text" id="amigo" class="form-control"  [(ngModel)]="personal.obs_mejor_amigo" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="amigo" class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');"  [(ngModel)]="personal.obs_mejor_amigo" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group offset-md-3 col-md-6">
                             <label for="noviazgo">Tiene novio</label>
-                            <input type="text" id="noviazgo" class="form-control" required [(ngModel)]="personal.obs_noviazgos" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="noviazgo" class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" required [(ngModel)]="personal.obs_noviazgos" [ngModelOptions]="{standalone: true}">
                             <small id="helper2" class="form-text text-muted">
                                 Si tiene,también escriba la frecuencia con la que se ven
                             </small>
@@ -145,7 +218,7 @@
                         </div>
                         <div class="form-group  col-md-5">
                             <label for="otro2">Otro deporte</label>
-                            <input type="text" id="otro2" class="form-control" [(ngModel)]="personal.obs_actividades_deportivas" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="otro2" class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="personal.obs_actividades_deportivas" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                     <div class="form-row">
@@ -161,13 +234,13 @@
                         </div>
                         <div class="form-group col-md-5">
                             <label for="otro3">Otra arte</label>
-                            <input type="text" id="otro3"  class="form-control" [(ngModel)]="personal.obs_actividades_artisticas" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="otro3"  class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="personal.obs_actividades_artisticas" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <label for="rel">Qué religion práctica?</label>
-                            <input type="text" id="rel"  class="form-control" required [(ngModel)]="personal.obs_religion" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="rel"  class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" required [(ngModel)]="personal.obs_religion" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group col-md-5">
                             <label for="emo">Ha vivido o vives algún problema emocional?</label>
@@ -178,11 +251,11 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="ayuda">A quien acudes cuando tienes problemas?</label>
-                            <input type="text" id="ayuda" placeholder="Papá, Mamá, amigo, etc." class="form-control" required [(ngModel)]="personal.obs_ayudas" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="ayuda" placeholder="Papá, Mamá, amigo, etc." class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" required [(ngModel)]="personal.obs_ayudas" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
-                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="form.checkValidity()? insert_personal() : null" class="btn btn-primary">Insertar</button>
-                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="toggleShow()" class="btn btn-secondary">Esconder</button>
+                    <button  type="submit" (click)="form.checkValidity()? insert_personal() : null" class="btn btn-primary mar12">Insertar</button>
+                    <button  type="submit" (click)="toggleShow()" class="btn btn-secondary mar12">Esconder</button>
                 </form>
             </div>
         </div>
@@ -214,7 +287,7 @@
                         </div>
                         <div class="form-group">
                             <label for="otro1">Especificación</label>
-                            <input type="text" id="otro4" class="form-control" [(ngModel)]="personal.obs_residencias" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="otro4" class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="personal.obs_residencias" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group">
                             <label for="ras">Situación actual de las relaciones amistosas con las personas que vive</label>
@@ -225,7 +298,7 @@
                         </div>
                         <div class="form-group">
                             <label for="porq">Explique porque</label>
-                            <textarea cols="4" rows="4" type="text" id="porq"  class="form-control" [(ngModel)]="personal.obs_relaciones_amistosas" [ngModelOptions]="{standalone: true}"></textarea>
+                            <textarea cols="4" rows="4" type="text" id="porq"  class="form-control"  [(ngModel)]="personal.obs_relaciones_amistosas" [ngModelOptions]="{standalone: true}"></textarea>
                         </div>
                         <div class="form-row">
                              <div class="form-group col-md-12">
@@ -236,7 +309,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-row" style="margin-top: 40px;">
+                        <div class="form-row mar10" >
                             <div class="form-group col-md-6">
                                 <label for="mas">¿Quien es su mejor amigo?</label>
                                 <select id="mas" class="form-control"  [(ngModel)]="personal.cod_mejor_amigo" [ngModelOptions]="{standalone: true}" >
@@ -249,13 +322,13 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="amig">Especificación Mejor Amigo</label>
-                                <input type="text" id="amig" class="form-control"  [(ngModel)]="personal.obs_mejor_amigo" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="amig" class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');"  [(ngModel)]="personal.obs_mejor_amigo" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="noviazg">Tiene novio</label>
-                                <input type="text" id="noviazg" class="form-control"  [(ngModel)]="personal.obs_noviazgos" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="noviazg" class="form-control"  onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="personal.obs_noviazgos" [ngModelOptions]="{standalone: true}">
                                 <small id="helper7" class="form-text text-muted">
                                     Si tiene,también escriba la frecuencia con la que se ven
                                 </small>
@@ -263,7 +336,7 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-8">
-                                <label for="deport">Que actividad deportiva le gusta?</label>
+                                <label for="deport">Qué actividad deportiva le gusta?</label>
                                 <select id="deport" class="form-control"  [(ngModel)]="personal.cod_act_deportiva" [ngModelOptions]="{standalone: true}" >
                                   <option selected value="">- Seleccione -</option>
                                   <option *ngFor="let x of listado_codigo_deportes" [value]="x.cod_act_deportiva">{{x.descripcion}}</option>
@@ -274,7 +347,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="otro2">Otro deporte</label>
-                                <input type="text" id="otro5" class="form-control" [(ngModel)]="personal.obs_actividades_deportivas" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="otro5" class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');"[(ngModel)]="personal.obs_actividades_deportivas" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
@@ -290,13 +363,13 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="otro3"><br>Otra arte</label>
-                                <input type="text" id="otro6"  class="form-control" [(ngModel)]="personal.obs_actividades_artisticas" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="otro6"  class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="personal.obs_actividades_artisticas" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="reli">Qué religion práctica?</label>
-                                <input type="text" id="reli"  class="form-control"  [(ngModel)]="personal.obs_religion" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="reli"  class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="personal.obs_religion" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
@@ -309,7 +382,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="ayud">A quien acudes cuando tienes problemas?</label>
-                                <input type="text" id="ayud" placeholder="Padres, amigo, etc." class="form-control"  [(ngModel)]="personal.obs_ayudas" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="ayud" placeholder="Padres, amigo, etc." class="form-control"  onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="personal.obs_ayudas" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                     </form>

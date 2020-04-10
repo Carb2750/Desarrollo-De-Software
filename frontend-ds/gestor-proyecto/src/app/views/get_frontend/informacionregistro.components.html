@@ -9,11 +9,86 @@
             resize: none;
         }
     </style>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.6/css/mdb.min.css" rel="stylesheet">
 </head>
 <body>
-    <header style="text-align: center;">
-        <h1>Hoja Registro de Alumno</h1>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark scrolling-navbar">
+            <div class="container">
+                <a class="navbar-brand disabled" href="#">INTAE</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" (click)="menu()">Inicio </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" (click)="registro()">Registro </a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Busquedas </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" (click)="ficha_completa()">Ficha Completa</a>
+                      <a class="dropdown-item" (click)="hoja_registro()">Hoja Registro</a>
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Mantenimientos </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" (click)="alumnos()">Alumnos Datos</a></li>
+                      <li><a class="dropdown-item" (click)="alumnos_trastornos()">Alumnos Trastornos</a></li>
+                      <li><a class="dropdown-item" (click)="artes()">Artes</a></li>
+                      <li><a class="dropdown-item" (click)="asignatura_dificultad()">Asigatura Dificultad</a></li>
+                      <li><a class="dropdown-item" (click)="asignatura_facilidad()">Asigatura Facilidad</a></li>
+                      <li><a class="dropdown-item" (click)="aspectos_pedagogicos()">Aspectos Pedagógicos</a></li>
+                      <li><a class="dropdown-item" (click)="aspectos_personales()">Aspectos Personales</a></li>
+                      <li><a class="dropdown-item" (click)="ciudades()">Ciudades</a></li>              
+                      <li><a class="dropdown-item" (click)="consideracion()">Consideración Estudios</a></li>
+                      <li><a class="dropdown-item" (click)="vive()">Convive</a></li>
+                      <li><a class="dropdown-item" (click)="cursos()">Cursos</a></li>
+                      <li><a class="dropdown-item" (click)="deportes()">Deportes</a></li>
+                      <li><a class="dropdown-item" (click)="documentos()">Documentos</a></li>
+                      <li><a class="dropdown-item" (click)="estudio_constante()">Estudio Constante</a></li>
+                      <li><a class="dropdown-item" (click)="fichas()">Fichas</a></li>
+                      <li><a class="dropdown-item" (click)="ficha_documentos()">Fichas Documentos</a></li>
+                      <li><a class="dropdown-item" (click)="jornadas()">Jornadas</a></li>
+                      <li><a class="dropdown-item" (click)="mejor_amigo()">Mejores Amigos</a></li>
+                      <li><a class="dropdown-item" (click)="modalidades()">Modalidades</a></li>
+                      <li><a class="dropdown-item" (click)="relaciones_amistosas()">Relaciones Amistosas</a></li>
+                      <li><a class="dropdown-item" (click)="relaciones_sociales()">Relaciones Sociales</a></li>
+                      <li><a class="dropdown-item" (click)="rendimiento_academico()">Rendimiento Académico</a></li>
+                      <li><a class="dropdown-item" (click)="problemas_emocionales()">Problemas Emocionales</a></li>
+                      <li><a class="dropdown-item" (click)="secciones()">Secciones</a></li>
+                      <li><a class="dropdown-item" (click)="seguimientos()">Seguimientos</a></li>
+                      <li><a class="dropdown-item" (click)="tipo_escuela()">Tipo Escuela</a></li>
+                      <li><a class="dropdown-item" (click)="trastornos()">Trastornos</a></li>
+                      <li><a class="dropdown-item" (click)="listado_usuarioss()">Usuarios</a></li>
+                    </ul>
+                    <li class="nav-item">
+                      <a class="nav-link" (click)="salir()">Cerrar Sesión</a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav nav-flex-icons">
+                    <li class="nav-item">
+                      <a href="https://www.facebook.com" class="nav-link">
+                        <img alt="Siguenos en Facebook" src="https://lh6.googleusercontent.com/-CYt37hfDnQ8/T3nNydojf_I/AAAAAAAAAr0/P5OtlZxV4rk/s32/facebook32.png" width=32 height=32  />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+          </nav>
+          <div class="nose">
+            <h1 class="mar4">Hoja Registro de Alumno</h1>
+        </div>
     </header>
+
     <main>
         <form action="/" enctype="multipart/form-data" method="post" ngNativeValidate #form>
             <div class="form-row">
@@ -25,14 +100,14 @@
                     </select>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group  offset-md-4 offset-sm-4 offset-xs-6 ">
-                    <button  style="margin-top: 15px; margin-bottom: 20px;" (click)="form.checkValidity()?  get_registro() : null" (click)="isShown? toggleShow2() : null"  (click)="form.checkValidity()? toggleShow() : null" class="btn btn-secondary btn-block">Buscar</button>
+
+                <div class="form-group  aligncenter ">
+                    <button   (click)="form.checkValidity()?  get_registro() : null" (click)="isShown? toggleShow2() : null"  (click)="form.checkValidity()? toggleShow() : null" class="btn btn-primary  aver">Buscar</button>
+                    <button  class="btn btn-primary  aver aver1" (click)="exportarpdf()">Generar PDF</button>
                 </div>
-            </div>
         </form>
-        <div *ngIf="isShown" class="container-md border rounded border-primary" style="margin-bottom: 10px; padding: 10px 5px;">
-            <div class="container-md"  *ngFor="let x of listado_registro">
+        <div *ngIf="isShown" class="container-md border rounded border-primary formulario" >
+            <div class="container-md"  *ngFor="let x of listado_registro" id="export" #export>
                 <fieldset>
                     <legend>I. Datos Generales</legend>
                     <div class="form-row">
@@ -51,7 +126,7 @@
                             <p id="naci">{{x.nacionalidad}}</p>
                         </div>
                     </div>
-                    <div class="form-row" style="margin-top: 15px; margin-bottom: 15px;">
+                    <div class="form-row mar5">
                         <div class="form-group offset-md-1 col-md-5">
                             <label for="proce">Lugar de Procedencia</label>
                             <textarea disabled cols="4" rows="4" type="text" id="proce" class="form-control" >{{x.lugar_procedencia}}</textarea>
@@ -67,11 +142,11 @@
                             <p id="nomp">{{x.nombre_padre}}</p>
                         </div>
                         <div class="form-group col-md-2" >
-                            <label for="telp" style="margin-right: 10px;">Teléfono</label>
+                            <label for="telp" class="mar6">Teléfono</label>
                             <p id="telp">{{x.tel_padre}}</p>
                         </div>
                         <div class="form-group col-md-2" >
-                            <label for="ocupp" style="margin-right: 10px;">Ocupación</label>
+                            <label for="ocupp" class="mar6">Ocupación</label>
                             <p id="ocupp">{{x.ocupacion_padre}}</p>
                         </div>
                     </div>
@@ -81,11 +156,11 @@
                             <p id="nomm">{{x.nombre_madre}}</p>
                         </div>
                         <div class="form-group col-md-2" >
-                            <label for="telm" style="margin-right: 10px;">Teléfono</label>
+                            <label for="telm" class="mar6">Teléfono</label>
                             <p id="telm">{{x.tel_madre}}</p>
                         </div>
                         <div class="form-group col-md-2" >
-                            <label for="ocupm" style="margin-right: 10px;">Ocupación</label>
+                            <label for="ocupm" class="mar6">Ocupación</label>
                             <p id="ocupm">{{x.ocupacion_madre}}</p>
                         </div>
                     </div>
@@ -94,7 +169,7 @@
                     <legend>II. Aspectos Pedagógicos</legend>
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <div style="margin-top: 8px;" class="form-group">
+                            <div  class="form-group mar9">
                                 <label for="motivos">Motivos para elegir esta institución</label>
                                 <textarea disabled cols="8" rows="6" type="text" id="motivos" class="form-control" >{{x.motivos}}</textarea>
                             </div>
@@ -115,26 +190,26 @@
                           </div>
                     </div>
                     <div class="form-group">
-                        <label for="rendimiento" style="margin-right: 10px;">Rendimiento Academico</label>
+                        <label for="rendimiento" class="mar6">Rendimiento Académico</label>
                         <p id="rendimiento">{{x.descripcion_rendimiento}}</p>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="dificultad" style="margin-right: 10px;">Asignatura que presenta mayor dificultad</label>
+                            <label for="dificultad" class="mar6">Asignatura que presenta mayor dificultad</label>
                             <p id="dificultad">{{x.descripcion_dificultad}}</p>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="facilidad" style="margin-right: 10px;">Asignatura que se le facilita más</label>
+                            <label for="facilidad" class="mar6">Asignatura que se le facilita más</label>
                             <p id="facilidad">{{x.descripcion_facilidad}}</p>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="estudio" style="margin-right: 10px;">Forma de Estudio</label>
+                            <label for="estudio" class="mar6">Forma de Estudio</label>
                             <p id="estudio">{{x.descripcion_estudio}}</p>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="estudiante" style="margin-right: 10px;">Se considera un estudiante</label>
+                            <label for="estudiante" class="mar6">Se considera un estudiante</label>
                             <p id="estudiante">{{x.descripcion_consideracion}}</p>
                         </div>
                     </div>
@@ -181,13 +256,13 @@
                             <p id="noviazgo">{{x.obs_noviazgos}}</p>
                         </div>
                     </div>
-                    <div class="form-row" style="margin-top: 40px;">
+                    <div class="form-row mar10" >
                         <div class="form-group col-md-4">
                             <label for="rs">Como se considera en las relaciones sociales</label>
                             <p id="rs">{{x.descripcion_social}}</p>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="ma">¿Quien es su mejor amigo?</label>
+                            <label for="ma">¿Quién es su mejor amigo?</label>
                             <p id="ma">{{x.descripcion_amigo}}</p>
                         </div>
                         <div class="form-group col-md-4">
@@ -197,7 +272,7 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group offset-md-1 col-md-5">
-                            <label for="deporte">Que actividad deportiva le gusta?</label>
+                            <label for="deporte">Qué actividad deportiva le gusta?</label>
                             <p id="deporte">{{x.descripcion_deporte}}</p>
                         </div>
                         <div class="form-group  col-md-5">
@@ -225,7 +300,7 @@
                             <p id="emo">{{x.descripcion_problema}}</p>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="ayuda">A quien acude cuando tienes problemas?</label>
+                            <label for="ayuda">A quien acude cuando tiene problemas?</label>
                             <p id="ayuda">{{x.obs_ayudas}}</p>
                         </div>
                     </div>
@@ -245,11 +320,11 @@
                             </ul>
                     </div>
                 </fieldset>
-                <div class="form-row">
-                    <div class="form-group  offset-md-5 offset-sm-4 offset-xs-6 ">
-                        <button  style="margin-top: 15px; margin-bottom: 20px;"  (click)="toggleShow()"  class="btn btn-secondary btn-block">Esconder</button>
+
+                    <div class="form-group  aligncenter ">
+                        <button    (click)="toggleShow()"  class="btn btn-secondary  mar15">Esconder</button>
                     </div>
-                </div>
+                
             </div>
         </div>
     </main>
