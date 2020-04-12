@@ -3,80 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .mar3{
-            margin-left: 25px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.6/css/mdb.min.css" rel="stylesheet">
 </head>
 <body>
-    <div style="margin-right: 25px;" class="mar3 text-center">
-        <h1 class="text-success"> Mantenimiento Aspectos Pedagogicos </h1>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark scrolling-navbar">
+            <div class="container">
+                <a class="navbar-brand disabled" href="#">INTAE</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" (click)="menu()">Inicio </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" (click)="registro()">Registro </a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Busquedas </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" (click)="ficha_completa()">Ficha Completa</a>
+                      <a class="dropdown-item" (click)="hoja_registro()">Hoja Registro</a>
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Mantenimientos </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" (click)="alumnos()">Alumnos Datos</a></li>
+                      <li><a class="dropdown-item" (click)="alumnos_trastornos()">Alumnos Trastornos</a></li>
+                      <li><a class="dropdown-item" (click)="artes()">Artes</a></li>
+                      <li><a class="dropdown-item" (click)="asignatura_dificultad()">Asigatura Dificultad</a></li>
+                      <li><a class="dropdown-item" (click)="asignatura_facilidad()">Asigatura Facilidad</a></li>
+                      <li><a class="dropdown-item" (click)="aspectos_pedagogicos()">Aspectos Pedagógicos</a></li>
+                      <li><a class="dropdown-item" (click)="aspectos_personales()">Aspectos Personales</a></li>
+                      <li><a class="dropdown-item" (click)="ciudades()">Ciudades</a></li>              
+                      <li><a class="dropdown-item" (click)="consideracion()">Consideración Estudios</a></li>
+                      <li><a class="dropdown-item" (click)="vive()">Convive</a></li>
+                      <li><a class="dropdown-item" (click)="cursos()">Cursos</a></li>
+                      <li><a class="dropdown-item" (click)="deportes()">Deportes</a></li>
+                      <li><a class="dropdown-item" (click)="documentos()">Documentos</a></li>
+                      <li><a class="dropdown-item" (click)="estudio_constante()">Estudio Constante</a></li>
+                      <li><a class="dropdown-item" (click)="fichas()">Fichas</a></li>
+                      <li><a class="dropdown-item" (click)="ficha_documentos()">Fichas Documentos</a></li>
+                      <li><a class="dropdown-item" (click)="jornadas()">Jornadas</a></li>
+                      <li><a class="dropdown-item" (click)="mejor_amigo()">Mejores Amigos</a></li>
+                      <li><a class="dropdown-item" (click)="modalidades()">Modalidades</a></li>
+                      <li><a class="dropdown-item" (click)="relaciones_amistosas()">Relaciones Amistosas</a></li>
+                      <li><a class="dropdown-item" (click)="relaciones_sociales()">Relaciones Sociales</a></li>
+                      <li><a class="dropdown-item" (click)="rendimiento_academico()">Rendimiento Académico</a></li>
+                      <li><a class="dropdown-item" (click)="problemas_emocionales()">Problemas Emocionales</a></li>
+                      <li><a class="dropdown-item" (click)="secciones()">Secciones</a></li>
+                      <li><a class="dropdown-item" (click)="seguimientos()">Seguimientos</a></li>
+                      <li><a class="dropdown-item" (click)="tipo_escuela()">Tipo Escuela</a></li>
+                      <li><a class="dropdown-item" (click)="trastornos()">Trastornos</a></li>
+                      <li><a class="dropdown-item" (click)="listado_usuarioss()">Usuarios</a></li>
+                    </ul>
+                    <li class="nav-item">
+                      <a class="nav-link" (click)="salir()">Cerrar Sesión</a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav nav-flex-icons">
+                    <li class="nav-item">
+                      <a href="https://www.facebook.com" class="nav-link">
+                        <img alt="Siguenos en Facebook" src="https://lh6.googleusercontent.com/-CYt37hfDnQ8/T3nNydojf_I/AAAAAAAAAr0/P5OtlZxV4rk/s32/facebook32.png" width=32 height=32  />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+          </nav>
+    </header>
+    <div  class=" text-center">
+        <h1 class="text-success mar4"> Mantenimiento Aspectos Pedagógicos </h1>
     
-           
-            <table style="margin-right: 25px;"  class="table table-hover table-striped table-info text-center">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Codigo</th>
-                    <th>Motivos de Elección</th>
-                    <th>Donde Curso Sexto Grado</th>
-                    <th>Ubicación</th>
-                    
-                    <th>Tipo de Escuela</th>
-                    <th>Rendimiento Academico</th>
-                    <th>Asignatura Dificultad</th>
-                    <th>Asignatura Facilidad</th>
-                    <th>Forma de Estudio</th>
-                    <th>Se Considera un Estudiante</th>
-                    <th>Reprobado algun curso o clase</th>
-                    <th>Reportado</th>
-                    <th>Expulsado</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let x of listado_pedagogicos">
-                    <td>{{x.codigo_pedagogicos}}</td>
-                    <td>{{x.motivos}}</td>
-                    <td>{{x.sexto_grado_cursado}}</td>
-                    <td>{{x.ubicacion_centro_anterior}}</td>
-                    
-                    <td>{{x.descripcion}}</td>
-                    <td>{{x.descripcion_rendimiento}}</td>
-                    <td>{{x.descripcion_dificil}}</td>
-                    <td>{{x.descripcion_facil}}</td>
-                    <td>{{x.descripcion_estudio}}</td>
-                    <td>{{x.descripcion_consideracion}}</td>
-                    <td>{{x.obs_reprobado}}</td>
-                    <td>{{x.obs_reportes}}</td>
-                    <td>{{x.obs_expulsion}}</td>
-                    
-                    <td><button (click)="pass_code(x.codigo_pedagogicos, x.motivos, x.sexto_grado_cursado, x.ubicacion_centro_anterior, x.codigo_escuela, x.codigo_rendimiento, x.cod_asignatura_dificultad, x.cod_asignatura_facilidad, x.codigo_estudio, x.cod_consideracion, x.obs_reportes, x.obs_expulsion, x.obs_reprobado)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
-                    <td><button (click)="delete_pedagogico(x.codigo_pedagogicos)" class="btn btn-danger">Borrar</button></td>
-                </tr>
-            </tbody>
-        </table>
+           <div class="aver4">
+            <table   class="table table-hover table-striped table-info text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Motivos de Elección</th>
+                        <th>Donde Curso Sexto Grado</th>
+                        <th>Ubicación</th>
+                        
+                        <th>Tipo de Escuela</th>
+                        <th>Rendimiento Academico</th>
+                        <th>Asignatura Dificultad</th>
+                        <th>Asignatura Facilidad</th>
+                        <th>Forma de Estudio</th>
+                        <th>Se Considera un Estudiante</th>
+                        <th>Reprobado algun curso o clase</th>
+                        <th>Reportado</th>
+                        <th>Expulsado</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of listado_pedagogicos">
+                        <td>{{x.codigo_pedagogicos}}</td>
+                        <td class="nojo">{{x.motivos}}</td>
+                        <td>{{x.sexto_grado_cursado}}</td>
+                        <td>{{x.ubicacion_centro_anterior}}</td>
+                        
+                        <td>{{x.descripcion}}</td>
+                        <td>{{x.descripcion_rendimiento}}</td>
+                        <td>{{x.descripcion_dificil}}</td>
+                        <td>{{x.descripcion_facil}}</td>
+                        <td>{{x.descripcion_estudio}}</td>
+                        <td>{{x.descripcion_consideracion}}</td>
+                        <td class="nojo">{{x.obs_reprobado}}</td>
+                        <td class="nojo">{{x.obs_reportes}}</td>
+                        <td class="nojo">{{x.obs_expulsion}}</td>
+                        
+                        <td><button (click)="pass_code(x.codigo_pedagogicos, x.motivos, x.sexto_grado_cursado, x.ubicacion_centro_anterior, x.codigo_escuela, x.codigo_rendimiento, x.cod_asignatura_dificultad, x.cod_asignatura_facilidad, x.codigo_estudio, x.cod_consideracion, x.obs_reportes, x.obs_expulsion, x.obs_reprobado)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
+                        <td><button (click)="delete_pedagogico(x.codigo_pedagogicos)" class="btn btn-danger">Borrar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+           </div>
+            
     </div>
 
     
 
 
     
-    <button (click)="toggleShow()" class="mar3 btn btn-primary" style="margin-bottom: 10px;">Nuevo Registro</button>
-    <div *ngIf="isShown" class="row container-fluid"  id="divshow" style="margin-bottom: 10px;" >
-        <div class="container-md border rounded border-primary">
+    <div class="aligncenter">
+        <button (click)="toggleShow()" class="mar3 btn btn-primary" >Nuevo Registro</button>
+    </div>
+    <div *ngIf="isShown" class="center container-fluid aligncenter"  id="divshow"  >
+        <div class="container-md border rounded border-primary mar1">
             <div class="container-md">
                 <form action="/" enctype="multipart/form-data" method="post" ngNativeValidate #form>
-                    <div style="margin-top: 8px;" class="form-group">
+                    <div  class="form-group offset-md-3 col-md-6 mar9">
                         <label for="motivos">Motivos para elegir esta institución</label>
-                        <textarea cols="8" rows="6" type="text" id="motivos" class="form-control" required [(ngModel)]="pedagogico.motivos" [ngModelOptions]="{standalone: true}"></textarea>
+                        <textarea cols="6" rows="2" type="text" id="motivos" class="form-control"   onkeyup="this.value=this.value.replace(/[\n]/g,'');" required [(ngModel)]="pedagogico.motivos" [ngModelOptions]="{standalone: true}"></textarea>
                         
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="sexto">Donde Curso Sexto Grado</label>
-                            <input type="text" id="sexto"  class="form-control" required [(ngModel)]="pedagogico.sexto_grado_cursado" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="sexto"  class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-Z0-9ñÑáéíóúÁÉÍÓÚüÜ]/g,'');" required [(ngModel)]="pedagogico.sexto_grado_cursado" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="ubicacion">Ubicación del Centro Académico</label>
@@ -91,7 +164,7 @@
                           </div>
                     </div>
                     <div class="form-group">
-                        <label for="rendimiento" style="margin-right: 10px;">Rendimiento Academico</label>
+                        <label for="rendimiento" class="mar6">Rendimiento Académico</label>
                         <select id="rendimiento" class="form-control" required [(ngModel)]="pedagogico.codigo_rendimiento" [ngModelOptions]="{standalone: true}" >
                           <option selected value="">- Seleccione -</option>
                           <option *ngFor="let x of listado_rendimiento" [value]="x.codigo_rendimiento">{{x.descripcion}}</option>
@@ -99,14 +172,14 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="dificultad" style="margin-right: 10px;">Asignatura que presenta dificultad</label>
+                            <label for="dificultad" class="mar6">Asignatura que presenta mayor dificultad</label>
                             <select id="dificultad" class="form-control" required [(ngModel)]="pedagogico.cod_asignatura_dificultad" [ngModelOptions]="{standalone: true}" >
                                 <option selected value="">- Seleccione -</option>
                                 <option *ngFor="let x of listado_dificultad" [value]="x.cod_asignatura_dificultad">{{x.descripcion}}</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="facilidad" style="margin-right: 10px;">Asignatura que se le facilita</label>
+                            <label for="facilidad" class="mar6">Asignatura que más se le facilita</label>
                             <select id="facilidad" class="form-control" required [(ngModel)]="pedagogico.cod_asignatura_facilidad" [ngModelOptions]="{standalone: true}" >
                                 <option selected value="">- Seleccione -</option>
                                 <option *ngFor="let x of listado_facilidad" [value]="x.cod_asignatura_facilidad">{{x.descripcion}}</option>
@@ -115,14 +188,14 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="estudio" style="margin-right: 10px;">Forma de Estudio</label>
+                            <label for="estudio" class="mar6">Forma de Estudio</label>
                             <select id="estudio" class="form-control" required [(ngModel)]="pedagogico.codigo_estudio" [ngModelOptions]="{standalone: true}" >
                                 <option selected value="">- Seleccione -</option>
                                 <option *ngFor="let x of listado_estudio" [value]="x.codigo_estudio">{{x.descripcion}}</option>
                               </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="estudiante" style="margin-right: 10px;">Se considera un estudiante</label>
+                            <label for="estudiante" class="mar6">Se considera un estudiante</label>
                             <select id="estudiante" class="form-control" required [(ngModel)]="pedagogico.cod_consideracion" [ngModelOptions]="{standalone: true}" >
                                 <option selected value="">- Seleccione -</option>
                                 <option *ngFor="let x of listado_consideracion" [value]="x.cod_consideracion">{{x.descripcion}}</option>
@@ -132,7 +205,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="repor">¿Ha sido reportado?</label>
-                            <textarea cols="5" rows="5" type="text" id="repor" placeholder="En caso de ser si, escriba porque, de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_reportes" [ngModelOptions]="{standalone: true}"></textarea>
+                            <textarea cols="5" rows="5" type="text" id="repor"  placeholder="En caso de ser si, escriba porque, de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_reportes" [ngModelOptions]="{standalone: true}"></textarea>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="expu">¿Ha sido expulsado?</label>
@@ -144,8 +217,8 @@
                         </div>
 
                     </div>
-                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="form.checkValidity()? insert_pedagogico() : null" class="btn btn-primary">Insertar</button>
-                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="toggleShow()" class="btn btn-secondary">Esconder</button>
+                    <button  type="submit" (click)="form.checkValidity()? insert_pedagogico() : null" class="btn btn-primary mar12">Insertar</button>
+                    <button  type="submit" (click)="toggleShow()" class="btn btn-secondary mar12">Esconder</button>
                 </form>
             </div>
         </div>
@@ -165,14 +238,14 @@
             <div class="container-md">
                 <div class="container-md">
                     <form ngNativeValidate #form1>
-                        <div style="margin-top: 8px;" class="form-group">
+                        <div  class="form-group mar9">
                             <label for="mot">Motivos de Ingreso</label>
-                            <textarea cols="8" rows="6" id="mot" type="text" class="form-control"  [(ngModel)]="pedagogico.motivos" [ngModelOptions]="{standalone: true}"></textarea>
+                            <textarea cols="8" rows="2" id="mot" type="text" class="form-control"  onkeyup="this.value=this.value.replace(/[\n]/g,'');"  [(ngModel)]="pedagogico.motivos" [ngModelOptions]="{standalone: true}"></textarea>
                             
                         </div>
                         <div class="form-group">
                                 <label for="sto">Donde Curso Sexto Grado</label>
-                                <input type="text" id="sto"  class="form-control"  [(ngModel)]="pedagogico.sexto_grado_cursado" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="sto"  class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-Z0-9ñÑáéíóúÁÉÍÓÚüÜ]/g,'');"  [(ngModel)]="pedagogico.sexto_grado_cursado" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group">
                                 <label for="ubica">Ubicación del Centro Académico</label>
@@ -186,7 +259,7 @@
                                 </select>                           
                         </div>
                         <div class="form-group">
-                            <label for="rendimient" style="margin-right: 10px;">Rendimiento Academico</label>
+                            <label for="rendimient" class="mar6">Rendimiento Académico</label>
                             <select id="rendimient" class="form-control"  [(ngModel)]="pedagogico.codigo_rendimiento" [ngModelOptions]="{standalone: true}" >
                                 <option selected value="">- Seleccione -</option>
                                 <option *ngFor="let x of listado_rendimiento" [value]="x.codigo_rendimiento">{{x.descripcion}}</option>
@@ -194,14 +267,14 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="dificulta" style="margin-right: 10px;">Asignatura que presenta dificultad</label>
+                                <label for="dificulta" class="mar6">Asignatura que presenta mayor dificultad</label>
                                 <select id="dificulta" class="form-control"  [(ngModel)]="pedagogico.cod_asignatura_dificultad" [ngModelOptions]="{standalone: true}" >
                                     <option selected value="">- Seleccione -</option>
                                     <option *ngFor="let x of listado_dificultad" [value]="x.cod_asignatura_dificultad">{{x.descripcion}}</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="facilida" style="margin-right: 10px;">Asignatura que se le facilita</label>
+                                <label for="facilida" class="mar6">Asignatura que más se le facilita</label>
                                 <select id="facilida" class="form-control"  [(ngModel)]="pedagogico.cod_asignatura_facilidad" [ngModelOptions]="{standalone: true}" >
                                     <option selected value="">- Seleccione -</option>
                                     <option *ngFor="let x of listado_facilidad" [value]="x.cod_asignatura_facilidad">{{x.descripcion}}</option>
@@ -210,14 +283,14 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-5">
-                                <label for="estudi" style="margin-right: 10px;">Forma de Estudio</label>
+                                <label for="estudi" class="mar6">Forma de Estudio</label>
                                 <select id="estudi" class="form-control"  [(ngModel)]="pedagogico.codigo_estudio" [ngModelOptions]="{standalone: true}" >
                                     <option selected value="">- Seleccione -</option>
                                     <option *ngFor="let x of listado_estudio" [value]="x.codigo_estudio">{{x.descripcion}}</option>
                                   </select>
                             </div>
                             <div class="form-group col-md-7">
-                                <label for="estudiant" style="margin-right: 10px;">Se considera un estudiante</label>
+                                <label for="estudiant" class="mar6">Se considera un estudiante</label>
                                 <select id="estudiant" class="form-control"  [(ngModel)]="pedagogico.cod_consideracion" [ngModelOptions]="{standalone: true}" >
                                     <option selected value="">- Seleccione -</option>
                                     <option *ngFor="let x of listado_consideracion" [value]="x.cod_consideracion">{{x.descripcion}}</option>

@@ -3,127 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .mar3{
-            margin-left: 25px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.6/css/mdb.min.css" rel="stylesheet">
+    
 </head>
 <body>
-    <div style="margin-right: 25px;" class="mar3 text-center">
-        <h1 class="text-success"> Mantenimiento Alumnos </h1>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark scrolling-navbar">
+            <div class="container">
+                <a class="navbar-brand disabled" href="#">INTAE</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" (click)="menu()">Inicio </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" (click)="registro()">Registro </a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Busquedas </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" (click)="ficha_completa()">Ficha Completa</a>
+                      <a class="dropdown-item" (click)="hoja_registro()">Hoja Registro</a>
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Mantenimientos </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" (click)="alumnos()">Alumnos Datos</a></li>
+                      <li><a class="dropdown-item" (click)="alumnos_trastornos()">Alumnos Trastornos</a></li>
+                      <li><a class="dropdown-item" (click)="artes()">Artes</a></li>
+                      <li><a class="dropdown-item" (click)="asignatura_dificultad()">Asigatura Dificultad</a></li>
+                      <li><a class="dropdown-item" (click)="asignatura_facilidad()">Asigatura Facilidad</a></li>
+                      <li><a class="dropdown-item" (click)="aspectos_pedagogicos()">Aspectos Pedagógicos</a></li>
+                      <li><a class="dropdown-item" (click)="aspectos_personales()">Aspectos Personales</a></li>
+                      <li><a class="dropdown-item" (click)="ciudades()">Ciudades</a></li>              
+                      <li><a class="dropdown-item" (click)="consideracion()">Consideración Estudios</a></li>
+                      <li><a class="dropdown-item" (click)="vive()">Convive</a></li>
+                      <li><a class="dropdown-item" (click)="cursos()">Cursos</a></li>
+                      <li><a class="dropdown-item" (click)="deportes()">Deportes</a></li>
+                      <li><a class="dropdown-item" (click)="documentos()">Documentos</a></li>
+                      <li><a class="dropdown-item" (click)="estudio_constante()">Estudio Constante</a></li>
+                      <li><a class="dropdown-item" (click)="fichas()">Fichas</a></li>
+                      <li><a class="dropdown-item" (click)="ficha_documentos()">Fichas Documentos</a></li>
+                      <li><a class="dropdown-item" (click)="jornadas()">Jornadas</a></li>
+                      <li><a class="dropdown-item" (click)="mejor_amigo()">Mejores Amigos</a></li>
+                      <li><a class="dropdown-item" (click)="modalidades()">Modalidades</a></li>
+                      <li><a class="dropdown-item" (click)="relaciones_amistosas()">Relaciones Amistosas</a></li>
+                      <li><a class="dropdown-item" (click)="relaciones_sociales()">Relaciones Sociales</a></li>
+                      <li><a class="dropdown-item" (click)="rendimiento_academico()">Rendimiento Académico</a></li>
+                      <li><a class="dropdown-item" (click)="problemas_emocionales()">Problemas Emocionales</a></li>
+                      <li><a class="dropdown-item" (click)="secciones()">Secciones</a></li>
+                      <li><a class="dropdown-item" (click)="seguimientos()">Seguimientos</a></li>
+                      <li><a class="dropdown-item" (click)="tipo_escuela()">Tipo Escuela</a></li>
+                      <li><a class="dropdown-item" (click)="trastornos()">Trastornos</a></li>
+                      <li><a class="dropdown-item" (click)="listado_usuarioss()">Usuarios</a></li>
+                    </ul>
+                    <li class="nav-item">
+                      <a class="nav-link" (click)="salir()">Cerrar Sesión</a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav nav-flex-icons">
+                    <li class="nav-item">
+                      <a href="https://www.facebook.com" class="nav-link">
+                        <img alt="Siguenos en Facebook" src="https://lh6.googleusercontent.com/-CYt37hfDnQ8/T3nNydojf_I/AAAAAAAAAr0/P5OtlZxV4rk/s32/facebook32.png" width=32 height=32  />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+          </nav>
+    </header>
+    <div  class="text-center">
+        <h1 class="text-success mar4"> Mantenimiento Alumnos </h1>
     
-           
-            <table style="margin-right: 25px;"  class="table table-hover table-striped table-info text-center">
-            <thead class="thead-dark">
-                <tr>
-                    <th>No. de Identidad</th>
-                    <th>Codigo de Expediente</th>
-                    <th>Creación de Expediente</th>
-                    <th>Primer Nombre</th>
-                    <th>Segundo Nombre</th>
-                    <th>Primer Apellido</th>
-                    <th>Segundo Apellido</th>
-                    <th>Edad</th>
-                    <th>Fecha de Nacimiento</th>
-                    <th>Sexo</th>
-                    <th>Nacionalidad</th>
-                    <th>Correo</th>
-                    <th>Lugar de Procedencia</th>
-                    <th>Residencia Actual del Alumno</th>
-                    <th>Residencia Actual de Padres</th>
-                    <th>Teléfono Celular</th>
-                    <th>Teléfono de Casa</th>
-                    <th>Teléfono de Trabajo</th>
-                    <th>Nombre del Padre</th>
-                    <th>Teléfono del Padre</th>
-                    <th>Ocupación del Padre</th>
-                    <th>Nombre de la Madre</th>
-                    <th>Teléfono de la Madre</th>
-                    <th>Ocupación de la Madre</th>
-                    <th>Codigo Pg</th>
-                    <th>Codigo Pr</th>
-                    <th>Codigo F</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let x of listado_alumno">
-                    <td>{{x.id_alumno}}</td>
-                    <td>{{x.codigo_expediente}}</td>
-                    <td>{{x.fecha_expediente}}</td>
-                    <td>{{x.nombre_alumno}}</td>
-                    <td>{{x.segundo_nombre}}</td>
-                    <td>{{x.apellido_alumno}}</td>
-                    <td>{{x.segundo_apellido}}</td>
-                    <td>{{x.Edad}}</td>
-                    <td>{{x.fecha_nacimiento}}</td>
-                    <td>{{x.sexo}}</td>
-                    <td>{{x.nacionalidad}}</td>
-                    <td>{{x.correo}}</td>
-                    <td>{{x.lugar_procedencia}}</td>
-                    <td>{{x.residencial_actual_alumno}}</td>
-                    <td>{{x.residencia_actual}}</td>
-                    <td>{{x.tel_celular}}</td>
-                    <td>{{x.tel_casa}}</td>
-                    <td>{{x.tel_trabajo}}</td>
-                    <td>{{x.nombre_padre}}</td>
-                    <td>{{x.tel_padre}}</td>
-                    <td>{{x.ocupacion_padre}}</td>   
-                    <td>{{x.nombre_madre}}</td>
-                    <td>{{x.tel_madre}}</td>
-                    <td>{{x.ocupacion_madre}}</td>
-                    <td>{{x.aspectos_pedagogicos}}</td>
-                    <td>{{x.cod_aspectos_personal}}</td>                  
-                    <td>{{x.codigo_ficha}}</td>
-                    <td><button (click)="pass_code(x.id_alumno, x.nombre_alumno, x.segundo_nombre, x.apellido_alumno, x.segundo_apellido, x.codigo_expediente, x.fecha_nacimiento, x.sexo, x.nacionalidad, x.lugar_procedencia, x.residencial_actual_alumno, x.residencia_actual, x.nombre_padre, x.tel_padre, x.ocupacion_padre, x.nombre_madre, x.tel_madre, x.ocupacion_madre, x.aspectos_pedagogicos, x.cod_aspectos_personal, x.tel_celular, x.tel_casa, x.tel_trabajo, x.correo, x.codigo_ficha)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
-                    <td><button (click)="delete_alumno(x.id_alumno)" class="btn btn-danger">Borrar</button></td>
-                </tr>
-            </tbody>
-        </table>
+           <div class="aver4">
+            <table   class="table table-hover table-striped table-info text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>No. de Identidad</th>
+                        <th>Creación de Expediente</th>
+                        <th>Primer Nombre</th>
+                        <th>Segundo Nombre</th>
+                        <th>Primer Apellido</th>
+                        <th>Segundo Apellido</th>
+                        <th>Edad</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Sexo</th>
+                        <th>Nacionalidad</th>
+                        <th>Correo</th>
+                        <th>Lugar de Procedencia</th>
+                        <th>Residencia Actual del Alumno</th>
+                        <th>Residencia Actual de Padres</th>
+                        <th>Teléfono Celular</th>
+                        <th>Teléfono de Casa</th>
+                        <th>Teléfono de Trabajo</th>
+                        <th>Nombre del Padre</th>
+                        <th>Teléfono del Padre</th>
+                        <th>Ocupación del Padre</th>
+                        <th>Nombre de la Madre</th>
+                        <th>Teléfono de la Madre</th>
+                        <th>Ocupación de la Madre</th>
+                        <th>Codigo Pg</th>
+                        <th>Codigo Pr</th>
+                        <th>Codigo F</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of listado_alumno">
+                        <td>{{x.id_alumno}}</td>
+                        <td>{{x.fecha_expediente}}</td>
+                        <td>{{x.nombre_alumno}}</td>
+                        <td>{{x.segundo_nombre}}</td>
+                        <td>{{x.apellido_alumno}}</td>
+                        <td>{{x.segundo_apellido}}</td>
+                        <td>{{x.Edad}}</td>
+                        <td>{{x.fecha_nacimiento}}</td>
+                        <td>{{x.sexo}}</td>
+                        <td>{{x.nacionalidad}}</td>
+                        <td>{{x.correo}}</td>
+                        <td>{{x.lugar_procedencia}}</td>
+                        <td>{{x.residencial_actual_alumno}}</td>
+                        <td>{{x.residencia_actual}}</td>
+                        <td>{{x.tel_celular}}</td>
+                        <td>{{x.tel_casa}}</td>
+                        <td>{{x.tel_trabajo}}</td>
+                        <td>{{x.nombre_padre}}</td>
+                        <td>{{x.tel_padre}}</td>
+                        <td>{{x.ocupacion_padre}}</td>   
+                        <td>{{x.nombre_madre}}</td>
+                        <td>{{x.tel_madre}}</td>
+                        <td>{{x.ocupacion_madre}}</td>
+                        <td>{{x.aspectos_pedagogicos}}</td>
+                        <td>{{x.cod_aspectos_personal}}</td>                  
+                        <td>{{x.codigo_ficha}}</td>
+                        <td><button (click)="pass_code(x.id_alumno, x.nombre_alumno, x.segundo_nombre, x.apellido_alumno, x.segundo_apellido, x.codigo_expediente, x.fecha_nacimiento, x.sexo, x.nacionalidad, x.lugar_procedencia, x.residencial_actual_alumno, x.residencia_actual, x.nombre_padre, x.tel_padre, x.ocupacion_padre, x.nombre_madre, x.tel_madre, x.ocupacion_madre, x.aspectos_pedagogicos, x.cod_aspectos_personal, x.tel_celular, x.tel_casa, x.tel_trabajo, x.correo, x.codigo_ficha)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
+                        <td><button (click)="delete_alumno(x.id_alumno,x.cod_aspectos_personal,x.aspectos_pedagogicos,x.codigo_ficha,x.codigo_expediente)" class="btn btn-danger">Borrar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+           </div>
+            
     </div>
 
     
 
 
+    <div class="aligncenter">
+        <button (click)="toggleShow()" class="mar3 btn btn-primary" >Nuevo Registro</button>
+    </div>
     
-    <button (click)="toggleShow()" class="mar3 btn btn-primary" style="margin-bottom: 10px;">Nuevo Registro</button>
-    <div *ngIf="isShown" class="row container-fluid"  id="divshow" style="margin-bottom: 10px;" >
-        <div class="container-md border rounded border-primary">
+    <div *ngIf="isShown" class="center aligncenter container-fluid"  id="divshow"  >
+        <div class="container-md border rounded border-primary mar1">
             <div class="container-md">
                 <form action="/" enctype="multipart/form-data" method="post" ngNativeValidate #form>
                     <div class="form-row">
                         <div class="form-group offset-md-3 col-md-6">
                             <label for="identidad">No. de Identidad</label>
-                            <input type="text" id="identidad" class="form-control"  minlength=13 maxlength=13 required [(ngModel)]="alumno.id_alumno" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="identidad" class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" minlength=13 maxlength=13 required [(ngModel)]="alumno.id_alumno" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="nombres">Nombres</label>
                             <div class="input-group" id="nombres">
-                                <input type="text" placeholder="Primer Nombre" class="form-control" required [(ngModel)]="alumno.nombre_alumno" [ngModelOptions]="{standalone: true}">
-                                <input type="text" placeholder="Segundo Nombre" class="form-control" [(ngModel)]="alumno.segundo_nombre" [ngModelOptions]="{standalone: true}">
+                                <input type="text" placeholder="Primer Nombre" class="form-control" onkeyup="this.value=this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" required [(ngModel)]="alumno.nombre_alumno" [ngModelOptions]="{standalone: true}">
+                                <input type="text" placeholder="Segundo Nombre" class="form-control" onkeyup="this.value=this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="alumno.segundo_nombre" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-group ml-md-auto">
                             <label for="apellidos">Apellidos</label>
                             <div class="input-group" id="apellidos">
-                                <input type="text" placeholder="Primer Apellido" class="form-control" required [(ngModel)]="alumno.apellido_alumno" [ngModelOptions]="{standalone: true}">
-                                <input type="text" placeholder="Segundo Apellido" class="form-control" [(ngModel)]="alumno.segundo_apellido" [ngModelOptions]="{standalone: true}">
+                                <input type="text" placeholder="Primer Apellido" class="form-control" onkeyup="this.value=this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" required [(ngModel)]="alumno.apellido_alumno" [ngModelOptions]="{standalone: true}">
+                                <input type="text" placeholder="Segundo Apellido" class="form-control" onkeyup="this.value=this.value.replace(/[^a-z\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="alumno.segundo_apellido" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                     </div>
-                    <div class="form-row" style="margin-top: 15px; margin-bottom: 15px;">
+                    <div class="form-row mar16" >
                         <div class="form-group offset-md-4 col-md-4">
                                 <label for="na">Fecha de Nacimiento</label>
                                 <input type="date"  id="na" placeholder="Fecha" class="form-control" required [(ngModel)]="alumno.fecha_nacimiento" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6"  style="margin-top: 25px;">
-                            <label for="sexo" style="margin-right: 10px;">Sexo</label>
+                        <div class="form-group col-md-6 mar4" >
+                            <label for="sexo mar6" >Sexo</label>
                             <div class="form-check form-check-inline">
                                 <input type="radio" required [(ngModel)]="alumno.sexo" name="optadio" id="op1" value="Masculino">
                                 <label class="form-check-label" for="op1">Masculino</label>
@@ -135,17 +207,17 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="nac">Nacionalidad</label>
-                            <input type="text" id="nac" class="form-control" required [(ngModel)]="alumno.nacionalidad" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="nac" class="form-control" onkeyup="this.value=this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" required [(ngModel)]="alumno.nacionalidad" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="proce">Lugar de Procedencia</label>
-                            <textarea cols="6" rows="3" type="text" id="proce"  class="form-control" [(ngModel)]="alumno.lugar_procedencia" [ngModelOptions]="{standalone: true}"></textarea>
+                            <textarea cols="6" rows="3" type="text" id="proce"  class="form-control"  [(ngModel)]="alumno.lugar_procedencia" [ngModelOptions]="{standalone: true}"></textarea>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="resial">Residencia Actual del Alumno</label>
-                            <textarea cols="6" rows="3" type="text" id="resial"  class="form-control" [(ngModel)]="alumno.residencial_actual_alumno" [ngModelOptions]="{standalone: true}"></textarea>
+                            <textarea cols="6" rows="3" type="text" id="resial"  class="form-control"  [(ngModel)]="alumno.residencial_actual_alumno" [ngModelOptions]="{standalone: true}"></textarea>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="resi">Residencia Actual de los Padres</label>
@@ -161,63 +233,63 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="telc">Teléfono Celular</label>
-                            <input type="text" id="telc"  class="form-control" [(ngModel)]="alumno.tel_celular" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="telc" maxlength=8 minlength=8 class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"[(ngModel)]="alumno.tel_celular" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="telca">Teléfono Casa</label>
-                            <input type="text" id="telca"  class="form-control" [(ngModel)]="alumno.tel_casa" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="telca"  maxlength=8 minlength=8 class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_casa" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="telt">Teléfono de Trabajo</label>
-                            <input type="text" id="telt"  class="form-control" [(ngModel)]="alumno.tel_trabajo" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="telt"  maxlength=8 minlength=8 class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_trabajo" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                     <div class="form-row">
                         <label for="nomp">Nombre de su Padre o Guardian</label>
-                        <input type="text" id="nomp"  class="form-control" required [(ngModel)]="alumno.nombre_padre" [ngModelOptions]="{standalone: true}">
+                        <input type="text" id="nomp"  class="form-control" onkeyup="this.value=this.value.replace(/[^a-z\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" required [(ngModel)]="alumno.nombre_padre" [ngModelOptions]="{standalone: true}">
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group offset-md-1 col-md-6">
                             <label for="ocupp">Ocupación de su Padre o Guardian</label>
-                            <input type="text" id="ocupp"  class="form-control" required [(ngModel)]="alumno.ocupacion_padre" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="ocupp"  class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" required [(ngModel)]="alumno.ocupacion_padre" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="telp">Teléfono de su Padre o Guardian</label>
-                            <input type="text" id="telp"  class="form-control" required [(ngModel)]="alumno.tel_padre" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="telp"  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9-)(]/g,'');" required [(ngModel)]="alumno.tel_padre" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                     <div class="form-row">
                             <label for="nomm">Nombre de su Madre o Guardian</label>
-                            <input type="text" id="nomm"  class="form-control" [(ngModel)]="alumno.nombre_madre" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="nomm"  class="form-control" onkeyup="this.value=this.value.replace(/[^a-z\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="alumno.nombre_madre" [ngModelOptions]="{standalone: true}">
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group offset-md-1 col-md-6">
                             <label for="ocupm">Ocupación de su Madre o Guardian</label>
-                            <input type="text" id="ocupm"  class="form-control"  [(ngModel)]="alumno.ocupacion_madre" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="ocupm"  class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="alumno.ocupacion_madre" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="telm">Teléfono de su Madre o Guardian</label>
-                            <input type="text" id="telm"  class="form-control"  [(ngModel)]="alumno.tel_madre" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="telm"  class="form-control"   onkeyup="this.value=this.value.replace(/[^0-9-)(]/g,'');" [(ngModel)]="alumno.tel_madre" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="peda">Pedagogicos</label>
-                            <input type="text" id="peda"  class="form-control" required [(ngModel)]="alumno.aspectos_pedagogicos" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="peda"  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required [(ngModel)]="alumno.aspectos_pedagogicos" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="perso">Personal</label>
-                            <input type="text" id="perso"  class="form-control" required [(ngModel)]="alumno.cod_aspectos_personal" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="perso"  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required [(ngModel)]="alumno.cod_aspectos_personal" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="fic">Ficha</label>
-                            <input type="text" id="fic"  class="form-control" required [(ngModel)]="alumno.codigo_ficha" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="fic"  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required [(ngModel)]="alumno.codigo_ficha" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
-                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit"
+                    <button  type="submit"
                     (click)="form.checkValidity()? insert_expediente() : null" 
-                    (click)="form.checkValidity()? insert_alumno() : null" class="btn btn-primary">Insertar</button>
-                    <button style="margin-top: 5px; margin-left: 14px; margin-bottom: 10px;" type="submit" (click)="toggleShow()" class="btn btn-secondary">Esconder</button>
+                    (click)="form.checkValidity()? insert_alumno() : null" class="btn btn-primary mar12">Insertar</button>
+                    <button  type="submit" (click)="toggleShow()" class="btn btn-secondary mar12">Esconder</button>
                 </form>
             </div>
         </div>
@@ -244,15 +316,15 @@
                         <div class="form-row">
                             <label for="nombres">Nombres</label>
                             <div class="input-group" id="nombres">
-                                <input type="text" placeholder="Primer Nombre" class="form-control"  [(ngModel)]="alumno.nombre_alumno" [ngModelOptions]="{standalone: true}">
-                                <input type="text" placeholder="Segundo Nombre" class="form-control" [(ngModel)]="alumno.segundo_nombre" [ngModelOptions]="{standalone: true}">
+                                <input type="text" placeholder="Primer Nombre" class="form-control"  onkeyup="this.value=this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="alumno.nombre_alumno" [ngModelOptions]="{standalone: true}">
+                                <input type="text" placeholder="Segundo Nombre" class="form-control" onkeyup="this.value=this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="alumno.segundo_nombre" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
                             <label for="apellidos">Apellidos</label>
                             <div class="input-group" id="apellidos">
-                                <input type="text" placeholder="Primer Apellido" class="form-control"  [(ngModel)]="alumno.apellido_alumno" [ngModelOptions]="{standalone: true}">
-                                <input type="text" placeholder="Segundo Apellido" class="form-control" [(ngModel)]="alumno.segundo_apellido" [ngModelOptions]="{standalone: true}">
+                                <input type="text" placeholder="Primer Apellido" class="form-control"  onkeyup="this.value=this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="alumno.apellido_alumno" [ngModelOptions]="{standalone: true}">
+                                <input type="text" placeholder="Segundo Apellido" class="form-control" onkeyup="this.value=this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="alumno.segundo_apellido" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
@@ -263,7 +335,7 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="sexo" style="margin-right: 10px;">Sexo</label>
+                                <label for="sexo mar6" >Sexo</label>
                                 <div class="form-check">
                                     <input type="radio"  [(ngModel)]="alumno.sexo" name="optadio" id="op1" value="Masculino">
                                     <label class="form-check-label" for="op1">Masculino</label>
@@ -275,7 +347,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="nac">Nacionalidad</label>
-                                <input type="text" id="nac" class="form-control"  [(ngModel)]="alumno.nacionalidad" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="nac" class="form-control" onkeyup="this.value=this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="alumno.nacionalidad" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
@@ -299,57 +371,57 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="telc">Teléfono Celular</label>
-                                <input type="text" id="telc"  class="form-control" [(ngModel)]="alumno.tel_celular" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="telc" maxlength=8 minlength=8  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_celular" [ngModelOptions]="{standalone: true}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="telca">Teléfono Casa</label>
-                                <input type="text" id="telca"  class="form-control" [(ngModel)]="alumno.tel_casa" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="telca" maxlength=8 minlength=8 class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_casa" [ngModelOptions]="{standalone: true}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="telt">Teléfono Trabajo</label>
-                                <input type="text" id="telt"  class="form-control" [(ngModel)]="alumno.tel_trabajo" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="telt" maxlength=8 minlength=8  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_trabajo" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
                             <label for="nomp">Nombre de su Padre o Guardian</label>
-                            <input type="text" id="nomp"  class="form-control"  [(ngModel)]="alumno.nombre_padre" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="nomp"  class="form-control"  onkeyup="this.value=this.value.replace(/[^a-z\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="alumno.nombre_padre" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="ocupp">Ocupación de su Padre o Guardian</label>
-                                <input type="text" id="ocupp"  class="form-control"  [(ngModel)]="alumno.ocupacion_padre" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="ocupp"  class="form-control"  onkeyup="this.value=this.value.replace(/[^a-z\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="alumno.ocupacion_padre" [ngModelOptions]="{standalone: true}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="telp">Teléfono de su Padre o Guardian</label>
-                                <input type="text" id="telp"  class="form-control"  [(ngModel)]="alumno.tel_padre" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="telp"  class="form-control"  onkeyup="this.value=this.value.replace(/[^0-9-)(]/g,'');" [(ngModel)]="alumno.tel_padre" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
                             <label for="nomm">Nombre de su Madre o Guardian</label>
-                            <input type="text" id="nomm"  class="form-control" [(ngModel)]="alumno.nombre_madre" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="nomm"  class="form-control" onkeyup="this.value=this.value.replace(/[^a-z\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="alumno.nombre_madre" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="ocupm">Ocupación de su Madre o Guardian</label>
-                                <input type="text" id="ocupm"  class="form-control" [(ngModel)]="alumno.ocupacion_madre" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="ocupm"  class="form-control" onkeyup="this.value=this.value.replace(/[^a-z\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" [(ngModel)]="alumno.ocupacion_madre" [ngModelOptions]="{standalone: true}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="telm">Teléfono de su Madre o Guardian</label>
-                                <input type="text" id="telm"  class="form-control" [(ngModel)]="alumno.tel_madre" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="telm"  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9-)(]/g,'');" [(ngModel)]="alumno.tel_madre" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="peda">Pedagogicos</label>
-                                <input type="text" id="peda"  class="form-control"  [(ngModel)]="alumno.aspectos_pedagogicos" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="peda"  class="form-control"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.aspectos_pedagogicos" [ngModelOptions]="{standalone: true}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="perso">Personal</label>
-                                <input type="text" id="perso"  class="form-control"  [(ngModel)]="alumno.cod_aspectos_personal" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="perso"  class="form-control"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.cod_aspectos_personal" [ngModelOptions]="{standalone: true}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="fic">Ficha</label>
-                                <input type="text" id="fic"  class="form-control"  [(ngModel)]="alumno.codigo_ficha" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="fic"  class="form-control"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.codigo_ficha" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                     </form>

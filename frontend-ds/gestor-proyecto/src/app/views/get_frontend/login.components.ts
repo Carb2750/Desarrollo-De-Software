@@ -1,7 +1,7 @@
 import {Component, OnDestroy, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {NgForm, FormControlDirective} from '@angular/forms';
-import { AppService } from 'src/app/app.service';
+import { AppService } from '../../app.service';
 import swal from 'sweetalert2';
 
 @Component({

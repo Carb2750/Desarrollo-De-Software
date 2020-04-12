@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import { AppService } from 'src/app/app.service';
+import { AppService } from '../../app.service';
 import { DatePipe } from '@angular/common';
 import swal from 'sweetalert2';
 import * as moment from 'moment';
@@ -24,7 +24,7 @@ export class RedBullet{
 export class GetAlumnosComponent implements OnInit{
     public listado_alumno:any[];
 
-    constructor(public service:AppService, public datepipe: DatePipe) {
+    constructor(public service:AppService, public datepipe: DatePipe, private router:Router) {
         this.listado_alumno = [];
         this.fecha_nacimiento1 = [];
         this.codigo_expedient1 = [];
@@ -231,12 +231,25 @@ export class GetAlumnosComponent implements OnInit{
     }
 
 
-    delete_alumno(id){
+    delete_alumno(id,cod_aspectos_personal,aspectos_pedagogicos,codigo_ficha,codigo_expediente){
         console.log("Registro a borrar: " + id);
-        var response;
+        var response, response1, response2, response3, response4, response5;
         var load={
-        id_alumno:id
+            id_alumno:id
         }
+        var load1 = {
+            cod_aspectos_personal:cod_aspectos_personal
+        }
+        var load2 = {
+            codigo_pedagogicos:aspectos_pedagogicos
+        }
+        var load3 = {
+            num_ficha:codigo_ficha
+        }
+        var load4 = {
+            codigo_expediente:codigo_expediente
+        }
+        console.log(load,load1,load2,load3,load4);
         swal.fire({
             title: 'Advertencia!',
             text: "Esta seguro desea borrar este registro?",
@@ -258,6 +271,50 @@ export class GetAlumnosComponent implements OnInit{
                         })
                     },
                     ()=> {
+                        this.service.delete_alumnostranstornos2(load4).subscribe(
+                            data => response4 = data,
+                            err => {
+                            },
+                            ()=> {
+                            }
+                        );
+                        this.service.delete_personales(load1).subscribe(
+                            data => response1 = data,
+                            err => {
+                            },
+                            ()=> {
+                            }
+                        );
+                        this.service.delete_pedagogico(load2).subscribe(
+                            data => response2 = data,
+                            err => {
+                            },
+                            ()=> {
+                            }
+                        );
+                        this.service.delete_fichadocumentos2(load3).subscribe(
+                            data => response5 = data,
+                            err => {
+                            },
+                            ()=> {
+                            }
+                        );
+                        this.service.delete_ficha(load3).subscribe(
+                            data => response3 = data,
+                            err => {
+                            },
+                            ()=> {
+                            }
+                        );
+                        this.service.delete_expediente(load4).subscribe(
+                            data => response4 = data,
+                            err => {
+                            },
+                            ()=> {
+                            }
+                        );
+                        
+                        
                         this.get_alumno();
                     }
                     );
@@ -270,9 +327,38 @@ export class GetAlumnosComponent implements OnInit{
           })
         
     }
+    
 
 
 
+
+
+ 
+
+
+    delete_fichadocumento(id){
+        console.log("Registro a borrar: " + id);
+        var response;
+        var load={
+            codigo_detalles:id
+        }
+        swal.fire({
+            title: 'Advertencia!',
+            text: "Esta seguro desea borrar este registro?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.value) {
+
+
+            }
+          })
+        
+    }
 
     update_alumno(){
         console.log("Registro a editar: " + this.id);
@@ -442,6 +528,106 @@ export class GetAlumnosComponent implements OnInit{
 
     this.isShown = ! this.isShown;
 
+    }
+    alumnos(){
+        this.router.navigateByUrl('/alumnos');
+    }
+    alumnos_trastornos(){
+        this.router.navigateByUrl('/alumnos_trastornos');
+    }
+    artes(){
+        this.router.navigateByUrl('/artes');
+    }
+    asignatura_dificultad(){
+        this.router.navigateByUrl('/asignatura_dificultad');
+    }
+    asignatura_facilidad(){
+        this.router.navigateByUrl('/asignatura_facilidad');
+    }
+    aspectos_pedagogicoss(){
+        this.router.navigateByUrl('/aspectos_pedagogicos');
+    }
+    aspectos_personales(){
+        this.router.navigateByUrl('/aspectos_personales');
+    }
+    ciudades(){
+        this.router.navigateByUrl('/ciudades');
+    }
+    consideracion(){
+        this.router.navigateByUrl('/consideracion');
+    }
+    vive(){
+        this.router.navigateByUrl('/vive');
+    }
+    cursos(){
+        this.router.navigateByUrl('/cursos');
+    }
+    deportes(){
+        this.router.navigateByUrl('/deportes');
+    }
+    documentos(){
+        this.router.navigateByUrl('/documentos');
+    }
+    estudio_constante(){
+        this.router.navigateByUrl('/estudio_constante');
+    }
+    fichas(){
+        this.router.navigateByUrl('/fichas');
+    }
+    ficha_completa(){
+        this.router.navigateByUrl('/ficha_completa');
+    }
+    ficha_documentos(){
+        this.router.navigateByUrl('/ficha_documentos');
+    }
+    hoja_registro(){
+        this.router.navigateByUrl('/hoja_registro');
+    }
+    jornadas(){
+        this.router.navigateByUrl('/jornadas');
+    }
+    mejor_amigo(){
+        this.router.navigateByUrl('/mejor_amigo');
+    }
+    menu(){
+        this.router.navigateByUrl('/menu');
+    }
+    modalidades(){
+        this.router.navigateByUrl('/modalidades');
+    }
+    registro(){
+        this.router.navigateByUrl('/registro');
+    }
+    relaciones_amistosas(){
+        this.router.navigateByUrl('/relaciones_amistosas');
+    }
+    relaciones_sociales(){
+        this.router.navigateByUrl('/relaciones_sociales');
+    }
+    rendimiento_academico(){
+        this.router.navigateByUrl('/rendimiento_academico');
+    }
+    problemas_emocionales(){
+        this.router.navigateByUrl('/problemas_emocionales');
+    }
+    secciones(){
+        this.router.navigateByUrl('/secciones');
+    }
+    seguimientos(){
+        this.router.navigateByUrl('/seguimientos');
+    }
+    tipo_escuela(){
+        this.router.navigateByUrl('/tipo_escuela');
+    }
+    trastornos(){
+        this.router.navigateByUrl('/trastornos');
+    }
+    listado_usuarioss(){
+        this.router.navigateByUrl('/listado_usuarios');
+    }
+    salir(){
+        this.service.reset_session();
+        this.router.navigateByUrl('/ingreso');
     }
 
 }

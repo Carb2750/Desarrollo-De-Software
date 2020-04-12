@@ -26,7 +26,11 @@ export class AppService{
     update_usuario(load, usuario):Observable<any> {
         usuario.codigo = load.codigo
         return this.httpClient.put(this.endPoint + "/update_usuario", usuario, {params: load, responseType: 'json'});
-    }    
+    }
+    update_usuario2(load, usuario):Observable<any> {
+        usuario.codigo = load.codigo
+        return this.httpClient.put(this.endPoint + "/update_usuario2", usuario, {params: load, responseType: 'json'});
+    }     
 
     get_ciudades():Observable<any>{
         return this.httpClient.get(this.endPoint + "/get_ciudad", {responseType: 'json'});
@@ -465,6 +469,10 @@ export class AppService{
         return this.httpClient.delete(this.endPoint + "/delete_alumnotranstorno", {params:load, responseType: 'json' });
     }
 
+    delete_alumnostranstornos2(load):Observable<any>{
+        return this.httpClient.delete(this.endPoint + "/delete_alumnotranstorno2", {params:load, responseType: 'json' });
+    }
+
     update_alumnostranstornos(load, detalle):Observable<any> {
         detalle.codigo_detalle = load.codigo_detalle
         return this.httpClient.put(this.endPoint + "/update_alumnotranstorno", detalle, {params: load, responseType: 'json'});
@@ -484,11 +492,18 @@ export class AppService{
         return this.httpClient.delete(this.endPoint + "/delete_fichadocumentos", {params:load, responseType: 'json' });
     }
 
+    delete_fichadocumentos2(load):Observable<any>{
+        return this.httpClient.delete(this.endPoint + "/delete_fichadocumentos2", {params:load, responseType: 'json' });
+    }
+
     update_fichadocumentos(load, detalle):Observable<any> {
         detalle.codigo_detalles = load.codigo_detalles
         return this.httpClient.put(this.endPoint + "/update_fichadocumentos", detalle, {params: load, responseType: 'json'});
     }
 
+    delete_expediente(load):Observable<any>{
+        return this.httpClient.delete(this.endPoint + "/delete_expediente", {params:load, responseType: 'json' });
+    }
 
     get_headers(){
         var headers = new HttpHeaders({
@@ -579,5 +594,9 @@ export class AppService{
     update_seguimiento(load, sesion):Observable<any> {
         sesion.codigo_sesion = load.codigo_sesion
         return this.httpClient.put(this.endPoint + "/update_seguimiento", sesion, {params: load, responseType: 'json'});
+    }
+
+    get_monitoreo(load):Observable<any>{
+        return this.httpClient.get(this.endPoint + "/get_monitoreo", {params: load, responseType: 'json'});
     }
 }
