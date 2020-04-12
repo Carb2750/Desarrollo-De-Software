@@ -88,7 +88,6 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>No. de Identidad</th>
-                        <th>Codigo de Expediente</th>
                         <th>Creación de Expediente</th>
                         <th>Primer Nombre</th>
                         <th>Segundo Nombre</th>
@@ -121,7 +120,6 @@
                 <tbody>
                     <tr *ngFor="let x of listado_alumno">
                         <td>{{x.id_alumno}}</td>
-                        <td>{{x.codigo_expediente}}</td>
                         <td>{{x.fecha_expediente}}</td>
                         <td>{{x.nombre_alumno}}</td>
                         <td>{{x.segundo_nombre}}</td>
@@ -148,7 +146,7 @@
                         <td>{{x.cod_aspectos_personal}}</td>                  
                         <td>{{x.codigo_ficha}}</td>
                         <td><button (click)="pass_code(x.id_alumno, x.nombre_alumno, x.segundo_nombre, x.apellido_alumno, x.segundo_apellido, x.codigo_expediente, x.fecha_nacimiento, x.sexo, x.nacionalidad, x.lugar_procedencia, x.residencial_actual_alumno, x.residencia_actual, x.nombre_padre, x.tel_padre, x.ocupacion_padre, x.nombre_madre, x.tel_madre, x.ocupacion_madre, x.aspectos_pedagogicos, x.cod_aspectos_personal, x.tel_celular, x.tel_casa, x.tel_trabajo, x.correo, x.codigo_ficha)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
-                        <td><button (click)="delete_alumno(x.id_alumno)" class="btn btn-danger">Borrar</button></td>
+                        <td><button (click)="delete_alumno(x.id_alumno,x.cod_aspectos_personal,x.aspectos_pedagogicos,x.codigo_ficha,x.codigo_expediente)" class="btn btn-danger">Borrar</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -164,7 +162,7 @@
     </div>
     
     <div *ngIf="isShown" class="center aligncenter container-fluid"  id="divshow"  >
-        <div class="container-md border rounded border-primary">
+        <div class="container-md border rounded border-primary mar1">
             <div class="container-md">
                 <form action="/" enctype="multipart/form-data" method="post" ngNativeValidate #form>
                     <div class="form-row">
@@ -235,15 +233,15 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="telc">Teléfono Celular</label>
-                            <input type="text" id="telc"  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"[(ngModel)]="alumno.tel_celular" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="telc" maxlength=8 minlength=8 class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"[(ngModel)]="alumno.tel_celular" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="telca">Teléfono Casa</label>
-                            <input type="text" id="telca"  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_casa" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="telca"  maxlength=8 minlength=8 class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_casa" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="telt">Teléfono de Trabajo</label>
-                            <input type="text" id="telt"  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_trabajo" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="telt"  maxlength=8 minlength=8 class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_trabajo" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                     <div class="form-row">
@@ -257,7 +255,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="telp">Teléfono de su Padre o Guardian</label>
-                            <input type="text" id="telp"  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required [(ngModel)]="alumno.tel_padre" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="telp"  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9-)(]/g,'');" required [(ngModel)]="alumno.tel_padre" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                     <div class="form-row">
@@ -271,7 +269,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="telm">Teléfono de su Madre o Guardian</label>
-                            <input type="text" id="telm"  class="form-control"   onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"[(ngModel)]="alumno.tel_madre" [ngModelOptions]="{standalone: true}">
+                            <input type="text" id="telm"  class="form-control"   onkeyup="this.value=this.value.replace(/[^0-9-)(]/g,'');" [(ngModel)]="alumno.tel_madre" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                     <div class="form-row">
@@ -373,15 +371,15 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="telc">Teléfono Celular</label>
-                                <input type="text" id="telc"  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_celular" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="telc" maxlength=8 minlength=8  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_celular" [ngModelOptions]="{standalone: true}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="telca">Teléfono Casa</label>
-                                <input type="text" id="telca" class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_casa" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="telca" maxlength=8 minlength=8 class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_casa" [ngModelOptions]="{standalone: true}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="telt">Teléfono Trabajo</label>
-                                <input type="text" id="telt"  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_trabajo" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="telt" maxlength=8 minlength=8  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_trabajo" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
@@ -395,7 +393,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="telp">Teléfono de su Padre o Guardian</label>
-                                <input type="text" id="telp"  class="form-control"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_padre" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="telp"  class="form-control"  onkeyup="this.value=this.value.replace(/[^0-9-)(]/g,'');" [(ngModel)]="alumno.tel_padre" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
@@ -409,7 +407,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="telm">Teléfono de su Madre o Guardian</label>
-                                <input type="text" id="telm"  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_madre" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="telm"  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9-)(]/g,'');" [(ngModel)]="alumno.tel_madre" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">

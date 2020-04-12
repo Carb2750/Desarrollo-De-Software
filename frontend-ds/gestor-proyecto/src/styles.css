@@ -127,6 +127,130 @@ form h1{
   overflow-x: auto;
 }
 
+.celda{
+  max-width: 200px;
+}
+
+.celda2{
+  max-width: 60px;
+}
+.celda3{
+  padding-right: 0px;
+}
+
+.nojo{
+  white-space: pre-line;
+}
+
+.hero1{
+  background-image: url('../src/image/adult-blur-business-close-up-239548.jpg');
+  background-size: cover;
+  padding-top: 90px;
+  background-attachment: fixed;
+  width: 100%;
+  min-height: 700px;
+  color: #ffffff; 
+  margin: 0px; 
+}
+
+.content-center{
+ max-width: 800px;
+ margin: 0 auto 60px auto;
+ text-align: center;
+}
+.content-h1{
+  font-size: 66px;
+  font-weight: 600;
+  line-height: 80px;
+}
+
+.content-menu-p{
+  border: none;
+  font-size: 18px;
+  color: #ffffff;
+  line-height: 1.8;
+  margin-bottom: 0;
+}
+.topmenu-xs{
+margin-top: 15px;
+}
+.topmenu-sm{
+  margin-top: 30px;
+}
+.topmenu-lg{
+  margin-top: 60px;
+}
+
+.content-h2{
+  font-size: 48px; 
+  margin-bottom: 30px;
+}
+
+.portafolio{
+  padding: 120px 0;
+  
+}
+
+.content-menu-p2{
+  border: none;
+  font-size: 18px;
+  color: black;
+  line-height: 1.8;
+  margin-bottom: 0;
+}
+/*-------------------------------------------------------------Segundo Background----------------------------------------------------------------------------------------------------------*/
+
+.background2{
+  background-image: url('src\image\accomplishment-ceremony-education-graduation-267885.jpg');
+  background-size: cover;
+  padding-top: 90px;
+  background-attachment: fixed;
+  width: 100%;
+  min-height: 600px;
+  color: #ffffff; 
+  margin: 0px;
+} 
+
+  .iconos{
+    fill:white;
+    
+  }
+  .content-li{
+    text-decoration: none;
+  }
+
+
+
+/*-------------------------------------------------------------------Footer------------------------------------------------------------------------------------------------------*/
+.bg-dark{
+  background-color: #1a1a1a !important;
+}
+.footer{
+  width: 100%;
+  height: 80%;
+  padding: 100px 0;
+  margin: 0 0 auto 0;
+  text-align: center;
+  color: #ffffff;
+  padding-left: 410px;
+}
+
+.list-inline .list-inline-item{
+padding: 10px 15px;
+}
+
+.afont{
+  font-size: 40px; color: #ffffff;
+  
+}
+
+.smallcito{
+  padding-right: 430px;
+}
+.centrado{
+  padding-right: 430px;
+}
+
 
 
 

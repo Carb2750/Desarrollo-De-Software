@@ -163,15 +163,15 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="telc">Teléfono Celular</label>
-                                <input type="text" id="telc"  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_celular" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="telc" maxlength=8 minlength=8  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_celular" [ngModelOptions]="{standalone: true}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="telca">Teléfono Casa</label>
-                                <input type="text" id="telca"  class="form-control" [(ngModel)]="alumno.tel_casa" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="telca" maxlength=8 minlength=8  class="form-control" [(ngModel)]="alumno.tel_casa" [ngModelOptions]="{standalone: true}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="telt">Teléfono de Trabajo</label>
-                                <input type="text" id="telt"  class="form-control" [(ngModel)]="alumno.tel_trabajo" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="telt" maxlength=8 minlength=8  class="form-control" [(ngModel)]="alumno.tel_trabajo" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
@@ -185,7 +185,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="telp">Teléfono de su Padre o Guardian</label>
-                                <input type="text" id="telp"  class="form-control"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"required [(ngModel)]="alumno.tel_padre" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="telp"  class="form-control"  onkeyup="this.value=this.value.replace(/[^0-9-)(]/g,'');" required [(ngModel)]="alumno.tel_padre" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
@@ -199,7 +199,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="telm">Teléfono de su Madre o Guardian</label>
-                                <input type="text" id="telm"  class="form-control"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_madre" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="telm"  class="form-control"  onkeyup="this.value=this.value.replace(/[^0-9-)(]/g,'');" [(ngModel)]="alumno.tel_madre" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>  
                         <div class="form-row">
@@ -251,21 +251,21 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="repcurso">Repite Curso</label>
-                                <textarea cols="4" rows="4" type="text" id="repcurso" placeholder="Sí o No" class="form-control" required [(ngModel)]="ficha.obs_repite_curso" [ngModelOptions]="{standalone: true}"></textarea>
+                                <textarea cols="2" rows="4" type="text" id="repcurso" onkeyup="this.value=this.value.replace(/[^a-z\sA-ZñÑáéíóúÁÉÍÓÚüÜ0-9]/g,'');" placeholder="Sí o No" class="form-control" required [(ngModel)]="ficha.obs_repite_curso" [ngModelOptions]="{standalone: true}"></textarea>
                                 <small id="helper1" class="form-text text-muted">
                                    Si su respuesta es sí, escriba cual
                                    </small>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="matre">Lleva materia retrasada</label>
-                                <textarea cols="4" rows="4" type="text" id="matre" placeholder="Sí o No" class="form-control" required [(ngModel)]="ficha.obs_materia_restrada" [ngModelOptions]="{standalone: true}"></textarea>
+                                <textarea cols="2" rows="4" type="text" id="matre" onkeyup="this.value=this.value.replace(/[^a-z\sA-ZñÑáéíóúÁÉÍÓÚüÜ0-9]/g,'');" placeholder="Sí o No" class="form-control" required [(ngModel)]="ficha.obs_materia_restrada" [ngModelOptions]="{standalone: true}"></textarea>
                                 <small id="helper2" class="form-text text-muted">
                                    Si su respuesta es sí, escriba cual
                                    </small>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="beca">Tiene Beca</label>
-                                <textarea cols="4" rows="4" type="text" id="beca"  class="form-control" placeholder="Sí o No" required [(ngModel)]="ficha.obs_beca" [ngModelOptions]="{standalone: true}"></textarea>
+                                <textarea cols="2" rows="4" type="text" id="beca" onkeyup="this.value=this.value.replace(/[^a-z\sA-ZñÑáéíóúÁÉÍÓÚüÜ0-9]/g,'');"  class="form-control" placeholder="Sí o No" required [(ngModel)]="ficha.obs_beca" [ngModelOptions]="{standalone: true}"></textarea>
                                 <small id="helper3" class="form-text text-muted">
                                    Si su respuesta es sí, escriba cual
                                    </small>
@@ -277,7 +277,7 @@
                                   <span class="input-group-text">Contacto de Emergencia</span>
                                 </div>
                                 <input type="text" class="form-control" placeholder="Nombre" onkeyup="this.value=this.value.replace(/[^a-z\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" required [(ngModel)]="ficha.contacto_emergencia" [ngModelOptions]="{standalone: true}">
-                                <input type="text"  class="form-control" placeholder="Teléfono" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required [(ngModel)]="ficha.num_emergencia" [ngModelOptions]="{standalone: true}">
+                                <input type="text"  class="form-control" placeholder="Teléfono" maxlength=8 minlength=8 onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required [(ngModel)]="ficha.num_emergencia" [ngModelOptions]="{standalone: true}">
                               </div>
                         </div>
                         
@@ -332,9 +332,10 @@
                     </div>
                     <fieldset *ngIf="isShown2">
                         <legend>II. Aspectos Pedagógicos</legend>
-                        <div  class="form-group">
+
+                        <div  class="form-group offset-md-3 col-md-6">
                             <label for="motivos">Motivos para elegir esta institución</label>
-                            <textarea cols="8" rows="6" type="text" id="motivos" class="form-control" required [(ngModel)]="pedagogico.motivos" [ngModelOptions]="{standalone: true}"></textarea>
+                            <textarea cols="3" rows="2" type="text" id="motivos" class="form-control" onkeyup="this.value=this.value.replace(/[\n]/g,'');" required [(ngModel)]="pedagogico.motivos" [ngModelOptions]="{standalone: true}"></textarea>
                             
                         </div>
                         <div class="form-row">
@@ -443,7 +444,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="por">Explique porque</label>
-                                <textarea cols="6" rows="4" type="text" id="por"  class="form-control" [(ngModel)]="personal.obs_relaciones_amistosas" [ngModelOptions]="{standalone: true}"></textarea>
+                                <input onkeyup="this.value=this.value.replace(/[^a-z\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" type="text" id="por"  class="form-control" [(ngModel)]="personal.obs_relaciones_amistosas" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row mar10" >

@@ -5,7 +5,7 @@ import { AppService } from '../../app.service';
 import swal from 'sweetalert2';
 
 @Component({
-    selector: 'menu',
+    selector: 'principal',
     templateUrl: './menu.components.html'
 })
 
@@ -102,10 +102,10 @@ export class MenuComponent implements  OnInit{
         this.router.navigateByUrl('/problemas_emocionales');
     }
     secciones(){
-        this.router.navigateByUrl('/seguimientos');
+        this.router.navigateByUrl('/secciones');
     }
     seguimientos(){
-        this.router.navigateByUrl('/secciones');
+        this.router.navigateByUrl('/seguimientos');
     }
     tipo_escuela(){
         this.router.navigateByUrl('/tipo_escuela');

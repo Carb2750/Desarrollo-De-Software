@@ -89,9 +89,9 @@
                         <th>Codigo</th>
                         <th>Vive con</th>
                         <th>Otro residente</th>
-                        <th>Sociabilidad</th>
                         <th>Relación con quien vive</th>
                         <th>Observación</th>
+                        <th>Sociabilidad</th>
                         <th>Noviazgo</th>
                         <th>Mejor Amigo</th>
                         <th>Otro Mejor Amigo</th>
@@ -101,7 +101,7 @@
                         <th>Otra Arte</th>
                         <th>Religion</th>
                         <th>Problema Emocional</th>
-                        <th>Ayuda</th>
+                        <th>Recibe Ayuda de</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -111,9 +111,9 @@
                         <td>{{x.cod_aspectos_personal}}</td>
                         <td>{{x.descripcion_convive}}</td>
                         <td>{{x.obs_residencias}}</td>
-                        <td>{{x.descripcion_social}}</td>
-                        <td>{{x.descripcion_amistosa}}</td>
+                        <td class="nojo">{{x.descripcion_amistosa}}</td>
                         <td>{{x.obs_relaciones_amistosas}}</td>
+                        <td>{{x.descripcion_social}}</td>
                         <td>{{x.obs_noviazgos}}</td>
                         <td>{{x.descripcion_mejor}}</td>
                         <td>{{x.obs_mejor_amigo}}</td>
@@ -170,7 +170,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="por">Explique porque</label>
-                            <textarea cols="6" rows="4" type="text" id="por"  class="form-control"  [(ngModel)]="personal.obs_relaciones_amistosas" [ngModelOptions]="{standalone: true}"></textarea>
+                            <input onkeyup="this.value=this.value.replace(/[^a-z\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" type="text" id="por"  class="form-control" [(ngModel)]="personal.obs_relaciones_amistosas" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                     <div class="form-row mar10" >
@@ -298,7 +298,7 @@
                         </div>
                         <div class="form-group">
                             <label for="porq">Explique porque</label>
-                            <textarea cols="4" rows="4" type="text" id="porq"  class="form-control"  [(ngModel)]="personal.obs_relaciones_amistosas" [ngModelOptions]="{standalone: true}"></textarea>
+                            <input onkeyup="this.value=this.value.replace(/[^a-z\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" type="text" id="por"  class="form-control" [(ngModel)]="personal.obs_relaciones_amistosas" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="form-row">
                              <div class="form-group col-md-12">

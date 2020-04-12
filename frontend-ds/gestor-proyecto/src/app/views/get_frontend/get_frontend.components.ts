@@ -141,6 +141,13 @@ export class GetFrontendComponent implements OnInit{
     }
 
 
+    decision(){
+        if(this.usuario.pass==""){
+            this.update_usuario2();
+        }else{
+            this.update_usuario();
+        }
+    }
 
 
     update_usuario(){
@@ -168,7 +175,61 @@ export class GetFrontendComponent implements OnInit{
         }
 
 
-        this.service.update_usuario(load, this.usuario).subscribe(
+        this.service.update_usuario(load, this.usuario2).subscribe(
+        data => response = data,
+        err => {
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+            })
+        },
+        ()=> {
+            this.usuario={
+                nombre:"",
+                apellido:"",
+                usuario:"",
+                pass:"",
+                correo: ""
+            };
+            swal.fire({
+                title: 'Usuario actualizado exitosamente!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            this.get_usuarios();
+        }
+        );
+        
+    }
+
+    update_usuario2(){
+
+        console.log("Registro a editar: " + this.id);
+        var response;
+        var load={
+            codigo:this.id
+        };
+        this.usuario2=this.usuario;
+        if(this.usuario2.nombre==""){
+            this.usuario2.nombre=this.nombre;
+        }
+        if(this.usuario2.apellido==""){
+            this.usuario2.apellido=this.apellido;
+        }
+        if(this.usuario2.usuario==""){
+            this.usuario2.usuario=this.usuario1;
+        }
+        if(this.usuario2.pass==""){
+            this.usuario2.pass=this.pass;
+        }
+        if(this.usuario2.correo==""){
+            this.usuario2.correo=this.correo;
+        }
+
+
+        this.service.update_usuario2(load, this.usuario2).subscribe(
         data => response = data,
         err => {
             swal.fire({

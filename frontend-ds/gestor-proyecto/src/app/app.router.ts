@@ -156,7 +156,7 @@ const routes: Routes = [
         component: LoginComponent
     },
     {
-        path: 'menu',
+        path: 'principal',
         component: MenuComponent
     },
     {

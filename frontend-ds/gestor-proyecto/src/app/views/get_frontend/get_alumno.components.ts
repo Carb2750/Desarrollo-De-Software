@@ -231,12 +231,25 @@ export class GetAlumnosComponent implements OnInit{
     }
 
 
-    delete_alumno(id){
+    delete_alumno(id,cod_aspectos_personal,aspectos_pedagogicos,codigo_ficha,codigo_expediente){
         console.log("Registro a borrar: " + id);
-        var response;
+        var response, response1, response2, response3, response4, response5;
         var load={
-        id_alumno:id
+            id_alumno:id
         }
+        var load1 = {
+            cod_aspectos_personal:cod_aspectos_personal
+        }
+        var load2 = {
+            codigo_pedagogicos:aspectos_pedagogicos
+        }
+        var load3 = {
+            num_ficha:codigo_ficha
+        }
+        var load4 = {
+            codigo_expediente:codigo_expediente
+        }
+        console.log(load,load1,load2,load3,load4);
         swal.fire({
             title: 'Advertencia!',
             text: "Esta seguro desea borrar este registro?",
@@ -258,6 +271,50 @@ export class GetAlumnosComponent implements OnInit{
                         })
                     },
                     ()=> {
+                        this.service.delete_alumnostranstornos2(load4).subscribe(
+                            data => response4 = data,
+                            err => {
+                            },
+                            ()=> {
+                            }
+                        );
+                        this.service.delete_personales(load1).subscribe(
+                            data => response1 = data,
+                            err => {
+                            },
+                            ()=> {
+                            }
+                        );
+                        this.service.delete_pedagogico(load2).subscribe(
+                            data => response2 = data,
+                            err => {
+                            },
+                            ()=> {
+                            }
+                        );
+                        this.service.delete_fichadocumentos2(load3).subscribe(
+                            data => response5 = data,
+                            err => {
+                            },
+                            ()=> {
+                            }
+                        );
+                        this.service.delete_ficha(load3).subscribe(
+                            data => response3 = data,
+                            err => {
+                            },
+                            ()=> {
+                            }
+                        );
+                        this.service.delete_expediente(load4).subscribe(
+                            data => response4 = data,
+                            err => {
+                            },
+                            ()=> {
+                            }
+                        );
+                        
+                        
                         this.get_alumno();
                     }
                     );
@@ -270,9 +327,38 @@ export class GetAlumnosComponent implements OnInit{
           })
         
     }
+    
 
 
 
+
+
+ 
+
+
+    delete_fichadocumento(id){
+        console.log("Registro a borrar: " + id);
+        var response;
+        var load={
+            codigo_detalles:id
+        }
+        swal.fire({
+            title: 'Advertencia!',
+            text: "Esta seguro desea borrar este registro?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.value) {
+
+
+            }
+          })
+        
+    }
 
     update_alumno(){
         console.log("Registro a editar: " + this.id);

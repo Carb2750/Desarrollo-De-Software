@@ -80,6 +80,7 @@ export class GetSeguimientosComponent implements OnInit{
 
     get_seguimientos() {
         var response;
+        
         this.service.get_seguimiento().subscribe(
             data => response = data,
             err => {
@@ -105,31 +106,47 @@ export class GetSeguimientosComponent implements OnInit{
 
 
     insert_seguimiento(){
-        var response;
-        this.service.insert_seguimiento(this.seguimiento).subscribe(
+        var response, response1;
+        var load={
+            usuario:""
+        }
+        load.usuario=this.service.get_usuariologueado();
+        console.log(load);
+        this.service.get_monitoreo(load).subscribe(
             data => response = data,
             err => {
-                swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Algo salio mal!',
-                })
+                
             },
-            ()=> {
-                this.seguimiento={
-                    codigo_usuario:"",
-                    codigo_expediente:"",
-                    motivo_sesion:""
-                }
-                swal.fire({
-                    title: 'Datos guardados exitosamente!',
-                    icon: 'success',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            this.get_seguimientos();
+            () => {
+                console.log(response);
+                this.seguimiento.codigo_usuario=response[0].codigo;
+                this.service.insert_seguimiento(this.seguimiento).subscribe(
+                    data => response1 = data,
+                    err => {
+                        swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal!',
+                        })
+                    },
+                    ()=> {
+                        this.seguimiento={
+                            codigo_usuario:"",
+                            codigo_expediente:"",
+                            motivo_sesion:""
+                        }
+                        swal.fire({
+                            title: 'Datos guardados exitosamente!',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    this.get_seguimientos();
+                    }
+                ); 
             }
-        ); 
+        );
+        
         
     }
 

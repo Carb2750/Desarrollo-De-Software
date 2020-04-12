@@ -41,7 +41,17 @@ router.get('/get_usuario', (req, res, next) => {
     });
 });
 
-
+router.get('/get_monitoreo', (req, res, next) => {
+    var query = 'select `codigo` as `codigo`, `usuario` as `usuario` from `usuarios` where `usuario` = ? ';
+    var values = [req.query.usuario];
+    con.query(query, values, (err, result, fields) => {
+        if(err) {
+            next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
 
 
 router.post('/insert_usuario', (req, res, next) => {
@@ -100,7 +110,43 @@ router.post('/login',(req,res,next) =>{
 });
 
 
+
 router.put('/update_usuario', (req, res, next) => {
+    var user = {
+        nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        usuario: req.body.usuario,
+        pass: req.body.pass,
+        correo: req.body.correo,
+        codigo: req.body.codigo
+    };
+
+    const update_user = (user) =>{
+        var values = [
+            nombre = user.nombre,
+            apellido = user.apellido,
+            usuario = user.usuario,
+            pass = user.pass,
+            correo = user.correo,
+            codigo = user.codigo
+        ]
+        var query = 'update usuarios set nombre = ?, apellido = ?, usuario = ?, pass = ?, correo = ? where codigo = ?';
+        con.query(query, values, (err, result, fields) => {
+            if(err) {
+                console.log(err);
+                res.status(500).send();
+            } else {
+                res.status(200).send();
+            }
+        });
+    };
+    bcrypt.hash(user.pass,10).then((hashedPassword) => {
+        user.pass = hashedPassword;
+        update_user(user);
+    });
+
+});
+router.put('/update_usuario2', (req, res, next) => {
     var query = 'update usuarios set nombre = ?, apellido = ?, usuario = ?, pass = ?, correo = ? where codigo = ?';
     var values = [req.body.nombre,
                 req.body.apellido,
@@ -108,6 +154,7 @@ router.put('/update_usuario', (req, res, next) => {
                 req.body.pass,
                 req.body.correo,
                 req.body.codigo];
+                
     con.query(query, values, (err, result, fields) => {
         if(err) {
             next(err);
@@ -1347,7 +1394,7 @@ router.post('/insert_estudioconstante', (req, res, next) => {
 
 
 router.get('/get_fichacompleta', (req, res, next) => {
-    var query = 'select concat_ws(" ",`alumnos datos`.`nombre_alumno`,`alumnos datos`.`segundo_nombre`,`alumnos datos`.`apellido_alumno`,`alumnos datos`.`segundo_apellido`) as `nombre_completo`, `alumnos datos`.`id_alumno` as `id_alumno`, `ciudad`.`nom_ciudad` as `ciudad_nacimiento`, `alumnos datos`.`fecha_nacimiento` as `fecha_nacimiento`, DATE_FORMAT(FROM_DAYS(DATEDIFF(now(),`alumnos datos`.`fecha_nacimiento`)), "%Y")+0 AS `edad`, `alumnos datos`.`sexo` as `sexo`, `curso`.`desc_curso` as `desc_curso`,`seccion`.`desc_seccion` as `desc_seccion`, `modalidad`.`desc_modadlidad` as `desc_modadlidad`, `jornada`.`desc_jornada` as `desc_jornada`, `ficha`.`anio` as `anio`, concat_ws(" ", `alumnos datos`.`nombre_padre`,"," , `alumnos datos`.`nombre_madre`) as `encargados`, `alumnos datos`.`residencia_actual` as `residencia_actual`, `alumnos datos`.`tel_celular` as `tel_celular`, `alumnos datos`.`tel_casa` as `tel_casa`, `alumnos datos`.`tel_trabajo` as `tel_trabajo`, `alumnos datos`.`correo` as `correo`, `convive`.`descripcion` as `descripcion_convive`, `ficha`.`obs_inst_proced` as `obs_inst_proced`,`ficha`.`indice_acad` as `indice_acad`, `ficha`.`obs_repite_curso` as `obs_repite_curso`, `ficha`.`obs_materia_restrada` as `obs_materia_restrada`,  `ficha`.`obs_beca` as `obs_beca`, `ficha`.`contacto_emergencia` as `contacto_emergencia`, `ficha`.`num_emergencia` as `num_emergencia`, `aspectos pedagogicos`.`motivos` as `motivos`, `ficha`.`observaciones` as `observaciones`, `alumnos datos`.`codigo_ficha` as `num_ficha` from `alumnos datos` join `ficha` on `alumnos datos`.`codigo_ficha` = `ficha`.`num_ficha` join `ciudad` on `ficha`.`cod_ciudad` = `ciudad`.`cod_ciudad` join `curso` on `ficha`.`cod_curso` = `curso`.`cod_curso` join `seccion` on `ficha`.`cod_seccion` = `seccion`.`cod_seccion` join `modalidad` on `ficha`.`cod_modalidad` = `modalidad`.`cod_modalidad` join `jornada` on `ficha`.`cod_jornada` = `jornada`.`cod_jornada` join `aspectos personales` on `alumnos datos`.`cod_aspectos_personal` = `aspectos personales`.`cod_aspectos_personal` join `aspectos pedagogicos` on `alumnos datos`.`aspectos_pedagogicos` = `aspectos pedagogicos`.`codigo_pedagogicos` join `convive` on `aspectos personales`.`codigo_convive` = `convive`.`codigo_convive` where `id_alumno`=?';
+    var query = 'select `alumnos datos`.`id_alumno` as `id_alumno`,concat_ws(" ",`alumnos datos`.`nombre_alumno`,`alumnos datos`.`segundo_nombre`,`alumnos datos`.`apellido_alumno`,`alumnos datos`.`segundo_apellido`) as `nombre_completo`, `alumnos datos`.`id_alumno` as `id_alumno`, `ciudad`.`nom_ciudad` as `ciudad_nacimiento`, `alumnos datos`.`fecha_nacimiento` as `fecha_nacimiento`, DATE_FORMAT(FROM_DAYS(DATEDIFF(now(),`alumnos datos`.`fecha_nacimiento`)), "%Y")+0 AS `edad`, `alumnos datos`.`sexo` as `sexo`, `curso`.`desc_curso` as `desc_curso`,`seccion`.`desc_seccion` as `desc_seccion`, `modalidad`.`desc_modadlidad` as `desc_modadlidad`, `jornada`.`desc_jornada` as `desc_jornada`, `ficha`.`anio` as `anio`, `alumnos datos`.`nombre_padre` as `nombre_padre`, `alumnos datos`.`nombre_madre` as `nombre_madre`, `alumnos datos`.`residencia_actual` as `residencia_actual`, `alumnos datos`.`tel_celular` as `tel_celular`, `alumnos datos`.`tel_casa` as `tel_casa`, `alumnos datos`.`tel_trabajo` as `tel_trabajo`, `alumnos datos`.`correo` as `correo`, `convive`.`descripcion` as `descripcion_convive`, `ficha`.`obs_inst_proced` as `obs_inst_proced`,`ficha`.`indice_acad` as `indice_acad`, `ficha`.`obs_repite_curso` as `obs_repite_curso`, `ficha`.`obs_materia_restrada` as `obs_materia_restrada`,  `ficha`.`obs_beca` as `obs_beca`, `ficha`.`contacto_emergencia` as `contacto_emergencia`, `ficha`.`num_emergencia` as `num_emergencia`, `aspectos pedagogicos`.`motivos` as `motivos`, `ficha`.`observaciones` as `observaciones`, `alumnos datos`.`codigo_ficha` as `num_ficha` from `alumnos datos` join `ficha` on `alumnos datos`.`codigo_ficha` = `ficha`.`num_ficha` join `ciudad` on `ficha`.`cod_ciudad` = `ciudad`.`cod_ciudad` join `curso` on `ficha`.`cod_curso` = `curso`.`cod_curso` join `seccion` on `ficha`.`cod_seccion` = `seccion`.`cod_seccion` join `modalidad` on `ficha`.`cod_modalidad` = `modalidad`.`cod_modalidad` join `jornada` on `ficha`.`cod_jornada` = `jornada`.`cod_jornada` join `aspectos personales` on `alumnos datos`.`cod_aspectos_personal` = `aspectos personales`.`cod_aspectos_personal` join `aspectos pedagogicos` on `alumnos datos`.`aspectos_pedagogicos` = `aspectos pedagogicos`.`codigo_pedagogicos` join `convive` on `aspectos personales`.`codigo_convive` = `convive`.`codigo_convive` where `id_alumno`=?';
     var values = [req.query.id_alumno];
     con.query(query, values, (err, result, fields) => {
         if(err) {
@@ -1560,6 +1607,18 @@ router.delete('/delete_alumnotranstorno', (req, res, next) => {
         });
     });
 
+router.delete('/delete_alumnotranstorno2', (req, res, next) => {
+    var query = 'DELETE FROM `alumnos_transtornos` WHERE `codigo_expediente` = ?';
+    var values = [req.query.codigo_expediente];
+    con.query(query, values, (err, result, fields) => {
+        if(err) {
+           next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
 
 
 
@@ -1613,6 +1672,18 @@ router.delete('/delete_fichadocumentos', (req, res, next) => {
             }
         });
     });
+
+router.delete('/delete_fichadocumentos2', (req, res, next) => {
+    var query = 'DELETE FROM `ficha_documentos` WHERE `num_ficha` = ?';
+    var values = [req.query.num_ficha];
+    con.query(query, values, (err, result, fields) => {
+        if(err) {
+           next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
 
 router.post('/insert_fichadocumentos', (req, res, next) => {
         var query = 'INSERT INTO `ficha_documentos` (`num_ficha`,`tipo_documento`) VALUES (?,?)';
@@ -1757,6 +1828,18 @@ router.post('/insert_seguimiento', (req, res, next) => {
     con.query(query, values, (err, result, fields) => {
         if(err) {
             next(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.delete('/delete_expediente', (req, res, next) => {
+    var query = 'DELETE FROM `expedientes` WHERE `codigo_expediente` = ?';
+    var values = [req.query.codigo_expediente];
+    con.query(query, values, (err, result, fields) => {
+        if(err) {
+           next(err);
         } else {
             res.status(200).json(result);
         }

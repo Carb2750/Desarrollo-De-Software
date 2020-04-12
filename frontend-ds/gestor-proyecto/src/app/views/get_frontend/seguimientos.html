@@ -9,7 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.6/css/mdb.min.css" rel="stylesheet">
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark scrolling-navbar">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark scrolling-navbar" style="width: 100vw;">
     <div class="container">
         <a class="navbar-brand disabled" href="#">INTAE</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,28 +82,31 @@
     <h1 class="text-success mar4"> Seguimientos </h1>
 
 
+      <div class="aver4" style="width: 100vw;">
         <table  class="table table-hover table-striped table-info text-center">
-        <thead class="thead-dark">
-            <tr>
-                <th>Fecha</th>
-                <th>Motivo de la Sesion</th>
-                <th>Monitoreo</th>
-                <th>Atendido</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let x of listado_seguimientos">
-                <td>{{x.fecha_sesion}}</td>
-                <td>{{x.motivo_sesion}}</td>
-                <td>{{x.nombre}}</td>
-                <td>{{x.nombre_alumno}}</td>
-                <td><button (click)="pass_code(x.codigo_sesion, x.motivo_sesion, x.codigo_usuario, x.codigo_expediente)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
-                <td><button (click)="delete_seguimiento(x.codigo_sesion)" class="btn btn-danger">Borrar</button></td>
-            </tr>
-        </tbody>
-    </table>
+          <thead class="thead-dark">
+              <tr>
+                  <th>Fecha</th>
+                  <th>Motivo de la Sesion</th>
+                  <th>Monitoreo</th>
+                  <th>Atendido</th>
+                  <th></th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let x of listado_seguimientos">
+                  <td>{{x.fecha_sesion}}</td>
+                  <td class="nojo">{{x.motivo_sesion}}</td>
+                  <td>{{x.nombre}}</td>
+                  <td>{{x.nombre_alumno}}</td>
+                  <td><button (click)="pass_code(x.codigo_sesion, x.motivo_sesion, x.codigo_usuario, x.codigo_expediente)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
+                  <td><button (click)="delete_seguimiento(x.codigo_sesion)" class="btn btn-danger">Borrar</button></td>
+              </tr>
+          </tbody>
+      </table>
+      </div>
+        
 </div>
 
 
@@ -112,20 +115,13 @@
 <div class="talvez">
   <button   (click)="toggleShow()" class="btn btn-primary mar1">Nuevo registro</button>
 </div>
-<div class="aligncenter">
-  <div *ngIf="isShown" class="row container-fluid aligncenter"  id="divshow">
+
+  <div *ngIf="isShown" class="center container-fluid aligncenter"  id="divshow">
     <div class="container-md border rounded border-primary mar1" >
         <div class="container-md">
             <form action="/" enctype="multipart/form-data"  method="post" ngNativeValidate #form>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label for="doce">Docente que atiende</label>
-                      <select id="doce" class="form-control" required [(ngModel)]="seguimiento.codigo_usuario" [ngModelOptions]="{standalone: true}" >
-                        <option selected value="">- Seleccione -</option>
-                        <option *ngFor="let x of listado_usuarios" [value]="x.codigo">{{x.nombre}} {{x.apellido}}</option>
-                      </select>
-                  </div>
-                  <div class="form-group  col-md-6">
+                  <div class="form-group offset-md-3 col-md-6">
                     <label for="alu">Id del Alumno</label>
                     <select id="alu" class="form-control" required [(ngModel)]="seguimiento.codigo_expediente" [ngModelOptions]="{standalone: true}" >
                       <option  value="">- Seleccione -</option>
@@ -134,9 +130,9 @@
                 </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-12">
+                    <div class="form-group offset-md-3 col-md-6">
                       <label for="sesion">Motivo de la Sesión</label>
-                      <textarea cols="8" rows="6" type="text" id="sesion"  class="form-control" required [(ngModel)]="seguimiento.motivo_sesion" [ngModelOptions]="{standalone: true}"></textarea>
+                     <textarea cols="8" rows="6" type="text" id="sesion"  class="form-control" required [(ngModel)]="seguimiento.motivo_sesion" [ngModelOptions]="{standalone: true}"></textarea>
                     </div>
                 </div>
                 <div class="">
@@ -148,7 +144,7 @@
         </div>
     </div>
 </div>
-</div>
+
 
 
 
