@@ -57,7 +57,6 @@
                   <li><a class="dropdown-item" (click)="rendimiento_academico()">Rendimiento Académico</a></li>
                   <li><a class="dropdown-item" (click)="problemas_emocionales()">Problemas Emocionales</a></li>
                   <li><a class="dropdown-item" (click)="secciones()">Secciones</a></li>
-                  <li><a class="dropdown-item" (click)="seguimientos()">Seguimientos</a></li>
                   <li><a class="dropdown-item" (click)="tipo_escuela()">Tipo Escuela</a></li>
                   <li><a class="dropdown-item" (click)="trastornos()">Trastornos</a></li>
                   <li><a class="dropdown-item" (click)="listado_usuarioss()">Usuarios</a></li>
@@ -67,13 +66,7 @@
                 </li>
             </ul>
             
-            <ul class="navbar-nav nav-flex-icons">
-                <li class="nav-item">
-                  <a href="https://www.facebook.com" class="nav-link">
-                    <img alt="Siguenos en Facebook" src="https://lh6.googleusercontent.com/-CYt37hfDnQ8/T3nNydojf_I/AAAAAAAAAr0/P5OtlZxV4rk/s32/facebook32.png" width=32 height=32  />
-                  </a>
-                </li>
-              </ul>
+
             </div>
           </div>
       </nav>
@@ -91,7 +84,7 @@
                         <div class="form-row">
                             <div class="form-group offset-md-3 col-md-6">
                                 <label for="identidad">No. de Identidad</label>
-                                <input type="text" id="identidad" class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" minlength=13 maxlength=13  required [(ngModel)]="alumno.id_alumno" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="identidad" class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" minlength=13 maxlength=13  required [(ngModel)]="alumno.id_alumno" [ngModelOptions]="{standalone: true}"  pattern="(01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17|18)([0-9]{11})">
                             </div>
                         </div>
                         <div class="form-row">
@@ -397,15 +390,15 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="repro">¿Ha reprobado o repetido alguna clase o curso?</label>
-                                <textarea cols="5" rows="5" type="text" id="repro" placeholder="En caso de ser si, escriba cual(es), de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_reprobado" [ngModelOptions]="{standalone: true}"></textarea>
+                                <textarea cols="5" rows="5" type="text" id="repro" onkeyup="this.value=this.value.replace(/[\n]/g,'');" placeholder="En caso de ser si, escriba cual(es), de lo contrario escriba no" class="form-control" [(ngModel)]="pedagogico.obs_reprobado" [ngModelOptions]="{standalone: true}"></textarea>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="repor">¿Ha sido reportado?</label>
-                                <textarea cols="5" rows="5" type="text" id="repor" placeholder="En caso de ser si, escriba porque, de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_reportes" [ngModelOptions]="{standalone: true}"></textarea>
+                                <textarea cols="5" rows="5" type="text" id="repor" onkeyup="this.value=this.value.replace(/[\n]/g,'');"  placeholder="En caso de ser si, escriba porque, de lo contrario escriba no" class="form-control" [(ngModel)]="pedagogico.obs_reportes" [ngModelOptions]="{standalone: true}"></textarea>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="expu">¿Ha sido expulsado?</label>
-                                <textarea cols="5" rows="5" type="text" id="expu" placeholder="En caso de ser si, escriba porque, de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_expulsion" [ngModelOptions]="{standalone: true}"></textarea>
+                                <textarea cols="5" rows="5" type="text" id="expu" onkeyup="this.value=this.value.replace(/[\n]/g,'');" placeholder="En caso de ser si, escriba porque, de lo contrario escriba no" class="form-control" [(ngModel)]="pedagogico.obs_expulsion" [ngModelOptions]="{standalone: true}"></textarea>
                             </div>
                         </div>
 

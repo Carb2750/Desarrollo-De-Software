@@ -40,7 +40,6 @@ import { InformacionFichaComponent } from './views/get_frontend/informacionficha
 import { BlueBullet } from './views/get_frontend/informacionficha.components';
 import { InformacionRegistroComponent } from './views/get_frontend/informacionregistro.components';
 import { YellowBullet } from './views/get_frontend/informacionregistro.components';
-import { GetSeguimientosComponent } from './views/get_frontend/seguimientos.components';
 import { MenuComponent } from './views/get_frontend/menu.components';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
@@ -85,8 +84,7 @@ import { DatePipe } from '@angular/common';
     InformacionFichaComponent,
     BlueBullet,
     InformacionRegistroComponent,
-    YellowBullet,
-    GetSeguimientosComponent
+    YellowBullet
     
   ],
   imports: [

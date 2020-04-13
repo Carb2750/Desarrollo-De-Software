@@ -64,7 +64,6 @@
                       <li><a class="dropdown-item" (click)="rendimiento_academico()">Rendimiento Académico</a></li>
                       <li><a class="dropdown-item" (click)="problemas_emocionales()">Problemas Emocionales</a></li>
                       <li><a class="dropdown-item" (click)="secciones()">Secciones</a></li>
-                      <li><a class="dropdown-item" (click)="seguimientos()">Seguimientos</a></li>
                       <li><a class="dropdown-item" (click)="tipo_escuela()">Tipo Escuela</a></li>
                       <li><a class="dropdown-item" (click)="trastornos()">Trastornos</a></li>
                       <li><a class="dropdown-item" (click)="listado_usuarioss()">Usuarios</a></li>
@@ -74,18 +73,11 @@
                     </li>
                 </ul>
                 
-                <ul class="navbar-nav nav-flex-icons">
-                    <li class="nav-item">
-                      <a href="https://www.facebook.com" class="nav-link">
-                        <img alt="Siguenos en Facebook" src="https://lh6.googleusercontent.com/-CYt37hfDnQ8/T3nNydojf_I/AAAAAAAAAr0/P5OtlZxV4rk/s32/facebook32.png" width=32 height=32  />
-                      </a>
-                    </li>
-                  </ul>
                 </div>
               </div>
           </nav>
           <div class="nose">
-            <h1 class="mar4">Hoja Registro de Alumno</h1>
+            <h1 class="mar4">Hoja de Registro de Alumno</h1>
         </div>
     </header>
 
@@ -103,7 +95,7 @@
 
                 <div class="form-group  aligncenter ">
                     <button   (click)="form.checkValidity()?  get_registro() : null" (click)="isShown? toggleShow2() : null"  (click)="form.checkValidity()? toggleShow() : null" class="btn btn-primary  aver">Buscar</button>
-                    <button  class="btn btn-primary  aver aver1" (click)="exportarpdf()">Generar PDF</button>
+                    <button  *ngIf="isShown2" class="btn btn-primary  aver aver1" (click)="downloadpdf()">Generar PDF</button>
                 </div>
         </form>
         <div *ngIf="isShown" class="container-md border rounded border-primary formulario" >
@@ -316,7 +308,7 @@
                     <label *ngIf="isShown3" for="aver" >Antecedentes de experiencias traumáticas</label>
                     <div class="form-group offset-md-3 col-md-6">
                             <ul id="aver" *ngIf="isShown4">
-                                <li *ngFor="let x of listado_detalle">{{x.descripcion}}</li>
+                                <li *ngFor="let x of listado_detalle" >{{x.descripcion}}</li>
                             </ul>
                     </div>
                 </fieldset>

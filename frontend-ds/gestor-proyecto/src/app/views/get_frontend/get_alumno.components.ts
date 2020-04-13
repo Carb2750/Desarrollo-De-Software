@@ -32,6 +32,7 @@ export class GetAlumnosComponent implements OnInit{
     public fecha_nacimiento1=[];
     public codigo_expedient1=[];
     public id;
+    public id_alumno;
     public nombre_alumno;
     public segundo_nombre;
     public apellido_alumno;
@@ -149,7 +150,7 @@ export class GetAlumnosComponent implements OnInit{
         swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Algun campo requerido esta vacio!',
+            text: 'Algun campo no tiene el formato correcto!',
         })
     }
 
@@ -364,9 +365,11 @@ export class GetAlumnosComponent implements OnInit{
         console.log("Registro a editar: " + this.id);
         var response;
         var load={
-            id_alumno:this.id
+            codigo_expediente:this.codigo_expediente
         };
         this.alumno2=this.alumno;
+        this.alumno2.id_alumno=this.alumno.id_alumno;
+        console.log(this.alumno2.id_alumno);
         if(this.alumno2.id_alumno==""){
             this.alumno2.id_alumno=this.id;
         }
@@ -613,9 +616,7 @@ export class GetAlumnosComponent implements OnInit{
     secciones(){
         this.router.navigateByUrl('/secciones');
     }
-    seguimientos(){
-        this.router.navigateByUrl('/seguimientos');
-    }
+
     tipo_escuela(){
         this.router.navigateByUrl('/tipo_escuela');
     }

@@ -245,9 +245,7 @@ export class GetArteComponent implements OnInit{
     secciones(){
         this.router.navigateByUrl('/secciones');
     }
-    seguimientos(){
-        this.router.navigateByUrl('/seguimientos');
-    }
+
     tipo_escuela(){
         this.router.navigateByUrl('/tipo_escuela');
     }

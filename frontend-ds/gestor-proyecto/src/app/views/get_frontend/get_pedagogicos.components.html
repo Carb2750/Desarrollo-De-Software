@@ -58,7 +58,6 @@
                       <li><a class="dropdown-item" (click)="rendimiento_academico()">Rendimiento Académico</a></li>
                       <li><a class="dropdown-item" (click)="problemas_emocionales()">Problemas Emocionales</a></li>
                       <li><a class="dropdown-item" (click)="secciones()">Secciones</a></li>
-                      <li><a class="dropdown-item" (click)="seguimientos()">Seguimientos</a></li>
                       <li><a class="dropdown-item" (click)="tipo_escuela()">Tipo Escuela</a></li>
                       <li><a class="dropdown-item" (click)="trastornos()">Trastornos</a></li>
                       <li><a class="dropdown-item" (click)="listado_usuarioss()">Usuarios</a></li>
@@ -205,15 +204,15 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="repor">¿Ha sido reportado?</label>
-                            <textarea cols="5" rows="5" type="text" id="repor"  placeholder="En caso de ser si, escriba porque, de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_reportes" [ngModelOptions]="{standalone: true}"></textarea>
+                            <textarea cols="5" rows="5" type="text" id="repor"  onkeyup="this.value=this.value.replace(/[\n]/g,'');" placeholder="En caso de ser si, escriba porque, de lo contrario escriba no." class="form-control" [(ngModel)]="pedagogico.obs_reportes" [ngModelOptions]="{standalone: true}"></textarea>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="expu">¿Ha sido expulsado?</label>
-                            <textarea cols="5" rows="5" type="text" id="expu" placeholder="En caso de ser si, escriba porque, de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_expulsion" [ngModelOptions]="{standalone: true}"></textarea>
+                            <textarea cols="5" rows="5" type="text" id="expu" onkeyup="this.value=this.value.replace(/[\n]/g,'');"  placeholder="En caso de ser si, escriba porque, de lo contrario escriba no." class="form-control" [(ngModel)]="pedagogico.obs_expulsion" [ngModelOptions]="{standalone: true}"></textarea>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="repro">¿Ha reprobado alguna clase?</label>
-                            <textarea cols="5" rows="5" type="text" id="repro" placeholder="En caso de ser si, escriba cual(es), de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_reprobado" [ngModelOptions]="{standalone: true}"></textarea>
+                            <textarea cols="5" rows="5" type="text" id="repro" onkeyup="this.value=this.value.replace(/[\n]/g,'');" placeholder="En caso de ser si, escriba cual(es), de lo contrario escriba no." class="form-control" [(ngModel)]="pedagogico.obs_reprobado" [ngModelOptions]="{standalone: true}"></textarea>
                         </div>
 
                     </div>
@@ -299,15 +298,15 @@
                         </div>
                         <div class="form-group">
                             <label for="rep">¿Ha sido reportado?</label>
-                            <textarea cols="5" rows="5" type="text" id="rep" placeholder="En caso de ser si, escriba porque, de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_reportes" [ngModelOptions]="{standalone: true}"></textarea>
+                            <textarea cols="5" rows="5" type="text" id="rep" onkeyup="this.value=this.value.replace(/[\n]/g,'');" placeholder="En caso de ser si, escriba porque, de lo contrario escriba no." class="form-control" [(ngModel)]="pedagogico.obs_reportes" [ngModelOptions]="{standalone: true}"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exp">¿Ha sido expulsado?</label>
-                            <textarea cols="5" rows="5" type="text" id="exp" placeholder="En caso de ser si, escriba porque, de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_expulsion" [ngModelOptions]="{standalone: true}"></textarea>
+                            <textarea cols="5" rows="5" type="text" id="exp" onkeyup="this.value=this.value.replace(/[\n]/g,'');" placeholder="En caso de ser si, escriba porque, de lo contrario escriba no." class="form-control" [(ngModel)]="pedagogico.obs_expulsion" [ngModelOptions]="{standalone: true}"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="repr">¿Ha reprobado alguna clase?</label>
-                            <textarea cols="5" rows="5" type="text" id="repr" placeholder="En caso de ser si, escriba cual(es), de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_reprobado" [ngModelOptions]="{standalone: true}"></textarea>
+                            <textarea cols="5" rows="5" type="text" id="repr" onkeyup="this.value=this.value.replace(/[\n]/g,'');" placeholder="En caso de ser si, escriba cual(es), de lo contrario escriba no." class="form-control" [(ngModel)]="pedagogico.obs_reprobado" [ngModelOptions]="{standalone: true}"></textarea>
                         </div>
                     </form>
                 </div>

@@ -434,7 +434,7 @@ export class AppService{
     }
 
     update_alumno(load, alumno):Observable<any> {
-        alumno.id_alumno = load.id_alumno
+        alumno.codigo_expediente = load.codigo_expediente
         return this.httpClient.put(this.endPoint + "/update_alumno", alumno, {params: load, responseType: 'json'});
     }
 

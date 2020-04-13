@@ -57,20 +57,26 @@ export class InformacionFichaComponent implements OnInit{
         var y = document.getElementById("emer1").textContent; 
         var z = document.getElementById("motivos").textContent;
         var obs = document.getElementById("obs").textContent; 
-        var doc = document.getElementById("documentospresenta").textContent; 
+        var doc; 
         var part1,part2;
         var parte1,parte2;
         var nose1,nose2,nose3,nose4;
-        var raios1,raios2,raios3,raios4;
+        var value1,value2,value3,value4,value5,value6;
+        var aver = [];
+        if(document.getElementById("documentospresenta")==null){
+            doc = "";
+        }else{
+            doc = document.getElementById("documentospresenta").textContent; 
+        }
         if(z.length>30){
-            part1 = z.slice(0,29);
+            part1 = z.slice(0,30);
             part2 = z.slice(30);
         }else{
             part1 = z;
             part2 = "";
         }
         if(q.length>50){
-            parte1 = q.slice(0,49);
+            parte1 = q.slice(0,50);
             parte2 = q.slice(50);
         }else{
             parte1 = q;
@@ -78,31 +84,52 @@ export class InformacionFichaComponent implements OnInit{
         }
         if(obs.length>70){
             nose1 = obs.slice(0,70);
-            nose2 = obs.slice(71);
+            nose2 = obs.slice(70);
         }else{
             nose1 = obs;
             nose2 = "";
         }
         if(nose2.length>93){
             nose3 = nose2.slice(0,93);
-            nose4 = nose2.slice(94);
+            nose4 = nose2.slice(93);
         }else{
             nose3 = "";
             nose4 = "";
         }
-        if(doc.length>44){
-            raios1 = doc.slice(0,44);
-            raios2 = doc.slice(44);
+        if(doc.match('Curriculum Vitae')){
+            aver[0] = 'Curriculum Vitae';
         }else{
-            raios1 = doc;
-            raios2 = "";
+            aver[0]="";
         }
-        if(raios2.length>93){
-            raios3 = raios2.slice(0,93);
-            raios4 = raios2.slice(94);
+        if(doc.match('Titulo')){
+            aver[1] = 'Titulo';
         }else{
-            raios3 = "";
-            raios4 = "";
+            aver[1]="";
+        }
+        if(doc.match('Diploma')){
+            aver[2] = 'Diploma';
+        }else{
+            aver[2]="";
+        }
+        if(doc.match('Partida Nacimiento')){
+            aver[3] = 'Partida Nacimiento';
+        }else{
+            aver[3]="";
+        }
+        if(doc.match('Pasaporte')){
+            aver[4] = 'Pasaporte';
+        }else{
+            aver[4]="";
+        }
+        if(doc.match('Calificaciones de años anteriores')){
+            aver[5] = 'Calificaciones de años anteriores';
+        }else{
+            aver[5]="";
+        }
+        if(doc.match('Identificación de los padres')){
+            aver[6] = 'Identificación de los padres';
+        }else{
+            aver[6]="";
         }
 
         var pdf = new jsPDF("l", "mm", "letter");
@@ -170,15 +197,8 @@ export class InformacionFichaComponent implements OnInit{
         pdf.text("Que lo motivo a ingresar a este instituto:________________________________________________",42,72);
         pdf.text(part2,45,82);
         pdf.text("________________________________________________________________________________", 42, 82);
-        pdf.text(raios1,95,92);
         pdf.text("Documentos que presenta:__________________________________________________________",42,92);
-        if(raios2.length>93){
-            pdf.text(raios3,45,102);
-        }else{
-            pdf.text(raios2,45,102);
-        }
         pdf.text("________________________________________________________________________________", 42, 102);
-        pdf.text(raios4,45,112);
         pdf.text("________________________________________________________________________________", 42, 112);
         pdf.text(nose1,75,122);
         pdf.text("Observaciones:____________________________________________________________________",42,122);
@@ -193,6 +213,117 @@ export class InformacionFichaComponent implements OnInit{
         pdf.setDrawColor(0,0,128);
         pdf.rect(5, 5, pdf.internal.pageSize.width - 10, pdf.internal.pageSize.height - 10, 'S');
         pdf.rect(6, 4, pdf.internal.pageSize.width - 12, pdf.internal.pageSize.height - 8, 'S');
+        for(var conta=0;conta<aver.length;conta++){
+            if(aver[conta]!=""){
+                pdf.text(aver[conta],95,92);
+                value1=conta;
+                break;
+            }
+        }
+        for(var conta=0;conta<aver.length;conta++){
+            if(conta==value1){
+                conta++;
+            }
+            if(aver[conta]!=""){
+                pdf.text(aver[conta],163,92);
+                value2=conta;
+                break;
+            }
+        }
+        for(var conta=0;conta<aver.length;conta++){
+            if(conta==value1){
+                conta++;
+            }
+            if(conta==value2){
+                conta++;
+            }
+            if(aver[conta]!=""){
+                pdf.text(aver[conta],42,102);
+                value3=conta;
+                break;
+            }
+        }
+        for(var conta=0;conta<aver.length;conta++){
+            if(conta==value1){
+                conta++;
+            }
+            if(conta==value2){
+                conta++;
+            }
+            if(conta==value3){
+                conta++;
+            }
+            if(aver[conta]!=""){
+                pdf.text(aver[conta],110,102);
+                value4=conta;
+                break;
+            }
+        }
+        for(var conta=0;conta<aver.length;conta++){
+            if(conta==value1){
+                conta++;
+            }
+            if(conta==value2){
+                conta++;
+            }
+            if(conta==value3){
+                conta++;
+            }
+            if(conta==value4){
+                conta++;
+            }
+            if(aver[conta]!=""){
+                pdf.text(aver[conta],163,102);
+                value5=conta;
+                break;
+            }
+        }
+        for(var conta=0;conta<aver.length;conta++){
+            if(conta==value1){
+                conta++;
+            }
+            if(conta==value2){
+                conta++;
+            }
+            if(conta==value3){
+                conta++;
+            }
+            if(conta==value4){
+                conta++;
+            }
+            if(conta==value5){
+                conta++;
+            }
+            if(aver[conta]!=""){
+                pdf.text(aver[conta],42,112);
+                value6=conta;
+                break;
+            }
+        }
+        for(var conta=0;conta<aver.length;conta++){
+            if(conta==value1){
+                conta++;
+            }
+            if(conta==value2){
+                conta++;
+            }
+            if(conta==value3){
+                conta++;
+            }
+            if(conta==value4){
+                conta++;
+            }
+            if(conta==value5){
+                conta++;
+            }
+            if(conta==value6){
+                conta++;
+            }
+            if(aver[conta]!=""){
+                pdf.text(aver[conta],110,112);
+                break;
+            }
+        }
         pdf.save("Ficha_Alumno_"+this.alumno.id_alumno+".pdf");
         
     }
@@ -363,9 +494,6 @@ export class InformacionFichaComponent implements OnInit{
     }
     secciones(){
         this.router.navigateByUrl('/secciones');
-    }
-    seguimientos(){
-        this.router.navigateByUrl('/seguimientos');
     }
     tipo_escuela(){
         this.router.navigateByUrl('/tipo_escuela');

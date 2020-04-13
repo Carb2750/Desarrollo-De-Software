@@ -1437,8 +1437,9 @@ router.get('/get_alumno', (req, res, next) => {
 
 
 router.put('/update_alumno', (req, res, next) => {
-            var query = 'update `alumnos datos` set nombre_alumno=?,segundo_nombre=?,apellido_alumno=?,segundo_apellido=?,fecha_nacimiento=?,sexo=?,nacionalidad=?,lugar_procedencia=?,residencial_actual_alumno=?,residencia_actual=?,nombre_padre=?,tel_padre=?,ocupacion_padre=?,nombre_madre=?,tel_madre=?,ocupacion_madre=?,aspectos_pedagogicos=?,cod_aspectos_personal=?,tel_celular=?,tel_casa=?,tel_trabajo=?,correo=?,codigo_ficha=? where id_alumno=?';
-            var values = [req.body.nombre_alumno,
+            var query = 'update `alumnos datos` set id_alumno=?, nombre_alumno=?,segundo_nombre=?,apellido_alumno=?,segundo_apellido=?,fecha_nacimiento=?,sexo=?,nacionalidad=?,lugar_procedencia=?,residencial_actual_alumno=?,residencia_actual=?,nombre_padre=?,tel_padre=?,ocupacion_padre=?,nombre_madre=?,tel_madre=?,ocupacion_madre=?,aspectos_pedagogicos=?,cod_aspectos_personal=?,tel_celular=?,tel_casa=?,tel_trabajo=?,correo=?,codigo_ficha=? where codigo_expediente=?';
+            var values = [req.body.id_alumno,
+                req.body.nombre_alumno,
                 req.body.segundo_nombre,
                 req.body.apellido_alumno,
                 req.body.segundo_apellido,
@@ -1461,7 +1462,7 @@ router.put('/update_alumno', (req, res, next) => {
                 req.body.tel_trabajo,
                 req.body.correo,
                 req.body.codigo_ficha,
-                req.body.id_alumno]
+                req.body.codigo_expediente]
             con.query(query, values, (err, result, fields) => {
                 if(err) {
                     next(err);
