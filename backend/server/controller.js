@@ -19,7 +19,7 @@ var con = mysql.createPool({
 
 
 router.get('/get_usuarios', (req, res, next) => {
-    var query = 'select * from usuarios';
+    var query = 'select * from usuarios where codigo > 1';
     con.query(query, (err, result, fields) => {
         if(err) {
             next(err);

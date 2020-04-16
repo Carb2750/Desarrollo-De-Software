@@ -41,7 +41,7 @@
                       <li><a class="dropdown-item" (click)="asignatura_facilidad()">Asigatura Facilidad</a></li>
                       <li><a class="dropdown-item" (click)="aspectos_pedagogicos()">Aspectos Pedagógicos</a></li>
                       <li><a class="dropdown-item" (click)="aspectos_personales()">Aspectos Personales</a></li>
-                      <li><a class="dropdown-item" (click)="ciudades()">Ciudades</a></li>              
+                      <li><a class="dropdown-item" (click)="ciudades()">Departamentos</a></li>              
                       <li><a class="dropdown-item" (click)="consideracion()">Consideración Estudios</a></li>
                       <li><a class="dropdown-item" (click)="vive()">Convive</a></li>
                       <li><a class="dropdown-item" (click)="cursos()">Cursos</a></li>
@@ -73,14 +73,14 @@
           </nav>
     </header>
     <div  class="text-center">
-        <h1 class="text-success mar4"> Ciudades </h1>
+        <h1 class="text-success mar4"> Departamentos </h1>
     
             
             
             <table  class="table table-hover table-striped table-info text-center">
             <thead class="thead-dark">
                 <tr>
-                    <th>Nombre de la Ciudad</th>
+                    <th>Nombre del Departamento</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -99,7 +99,7 @@
 
 
     <div class="aligncenter">
-        <button  (click)="toggleShow()" class="mar3 btn btn-primary">Nueva Ciudad</button>
+        <button  (click)="toggleShow()" class="mar3 btn btn-primary">Nuevo Departamento</button>
 
     </div>
     <div *ngIf="isShown" class="center aligncenter container-fluid"  id="divshow" >
@@ -107,10 +107,10 @@
             <div class="container-md">
                 <form action="/" enctype="multipart/form-data"  method="post" ngNativeValidate #form>
                     <div class="form-group offset-md-3 col-md-6">
-                        <label for="sec">Nombre de la ciudad</label>
+                        <label for="sec">Nombre del Departamento</label>
                         <input type="text" id="sec" class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" required [(ngModel)]="ciudad.nom_ciudad" [ngModelOptions]="{standalone: true}" >
                     </div>
-                    <button  (click)="form.checkValidity()?  insert_ciudad() : null" class="btn btn-primary mar12">Insertar Ciudad</button>
+                    <button  (click)="form.checkValidity()?  insert_ciudad() : null" class="btn btn-primary mar12">Insertar Departamento</button>
                     <button  (click)="toggleShow()"  class="btn btn-secondary mar12">Esconder</button>
                 </form>
             </div>
@@ -122,7 +122,7 @@
     <div class="modal-dialog modal-dialog-scrollable" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Actualización de Ciudad</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">Actualización de Departamento</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -132,7 +132,7 @@
                 <div class="container-md">
                     <form action="/" enctype="multipart/form-data"  method="post" ngNativeValidate #form1>
                         <div class="form-group">
-                            <label for="sec">Nombre de la ciudad</label>
+                            <label for="sec">Nombre del Departamento</label>
                             <input type="text" id="sec" class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" required [(ngModel)]="ciudad.nom_ciudad" [ngModelOptions]="{standalone: true}" >
                         </div>
                         <div class="modal-footer">

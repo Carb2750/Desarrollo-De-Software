@@ -553,7 +553,7 @@ export class GetFichaDocumentoComponent implements OnInit{
         this.router.navigateByUrl('/aspectos_personales');
     }
     ciudades(){
-        this.router.navigateByUrl('/ciudades');
+        this.router.navigateByUrl('/departamentos');
     }
     consideracion(){
         this.router.navigateByUrl('/consideracion');
@@ -592,7 +592,7 @@ export class GetFichaDocumentoComponent implements OnInit{
         this.router.navigateByUrl('/mejor_amigo');
     }
     menu(){
-        this.router.navigateByUrl('/menu');
+        this.router.navigateByUrl('/principal');
     }
     modalidades(){
         this.router.navigateByUrl('/modalidades');

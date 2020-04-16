@@ -210,6 +210,8 @@ export class InformacionFichaComponent implements OnInit{
         pdf.text("________________________________________________________________________________", 42, 132);
         pdf.text(nose4,45,142);
         pdf.text("________________________________________________________________________________", 42, 142);
+        pdf.text("____________________                 _________________________              ___________________",42,182);
+        pdf.text(" Firma del Orientador(a)                   Firma del Padre o Encargado                    Firma del Alumno",42,188);
         pdf.setDrawColor(0,0,128);
         pdf.rect(5, 5, pdf.internal.pageSize.width - 10, pdf.internal.pageSize.height - 10, 'S');
         pdf.rect(6, 4, pdf.internal.pageSize.width - 12, pdf.internal.pageSize.height - 8, 'S');
@@ -224,6 +226,10 @@ export class InformacionFichaComponent implements OnInit{
             if(conta==value1){
                 conta++;
             }
+            if(conta>=aver.length){
+                pdf.text("",163,92);
+                break;
+            }
             if(aver[conta]!=""){
                 pdf.text(aver[conta],163,92);
                 value2=conta;
@@ -236,6 +242,10 @@ export class InformacionFichaComponent implements OnInit{
             }
             if(conta==value2){
                 conta++;
+            }
+            if(conta>=aver.length){
+                pdf.text("",42,102);
+                break;
             }
             if(aver[conta]!=""){
                 pdf.text(aver[conta],42,102);
@@ -252,6 +262,10 @@ export class InformacionFichaComponent implements OnInit{
             }
             if(conta==value3){
                 conta++;
+            }
+            if(conta>=aver.length){
+                pdf.text("",110,102);
+                break;
             }
             if(aver[conta]!=""){
                 pdf.text(aver[conta],110,102);
@@ -271,6 +285,10 @@ export class InformacionFichaComponent implements OnInit{
             }
             if(conta==value4){
                 conta++;
+            }
+            if(conta>=aver.length){
+                pdf.text("",163,102);
+                break;
             }
             if(aver[conta]!=""){
                 pdf.text(aver[conta],163,102);
@@ -293,6 +311,10 @@ export class InformacionFichaComponent implements OnInit{
             }
             if(conta==value5){
                 conta++;
+            }
+            if(conta>=aver.length){
+                pdf.text("",42,112);
+                break;
             }
             if(aver[conta]!=""){
                 pdf.text(aver[conta],42,112);
@@ -318,6 +340,10 @@ export class InformacionFichaComponent implements OnInit{
             }
             if(conta==value6){
                 conta++;
+            }
+            if(conta>=aver.length){
+                pdf.text("",110,112);
+                break;
             }
             if(aver[conta]!=""){
                 pdf.text(aver[conta],110,112);
@@ -433,7 +459,7 @@ export class InformacionFichaComponent implements OnInit{
         this.router.navigateByUrl('/aspectos_personales');
     }
     ciudades(){
-        this.router.navigateByUrl('/ciudades');
+        this.router.navigateByUrl('/departamentos');
     }
     consideracion(){
         this.router.navigateByUrl('/consideracion');
@@ -472,7 +498,7 @@ export class InformacionFichaComponent implements OnInit{
         this.router.navigateByUrl('/mejor_amigo');
     }
     menu(){
-        this.router.navigateByUrl('/menu');
+        this.router.navigateByUrl('/principal');
     }
     modalidades(){
         this.router.navigateByUrl('/modalidades');

@@ -340,6 +340,10 @@ export class InformacionRegistroComponent implements OnInit{
             if(conta==valor1){
                 conta++;
             }
+            if(conta>aver.length){
+                pdf.text("",25.4,225);
+                break;
+            }
             if(aver[conta]!=""){
                 pdf.text(aver[conta],25.4,225);
                 valor2=conta;
@@ -352,6 +356,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==valor2){
                 conta++;
+            }
+            if(conta>aver.length){
+                pdf.text("",25.4,235);
+                break;
             }
             if(aver[conta]!=""){
                 pdf.text(aver[conta],25.4,235);
@@ -368,6 +376,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==valor3){
                 conta++;
+            }
+            if(conta>aver.length){
+                pdf.text("",95.4,215);
+                break;
             }
             if(aver[conta]!=""){
                 pdf.text(aver[conta],95.4,215);
@@ -388,6 +400,10 @@ export class InformacionRegistroComponent implements OnInit{
             if(conta==valor4){
                 conta++;
             }
+            if(conta>aver.length){
+                pdf.text("",95.4,225);
+                break;
+            }
             if(aver[conta]!=""){
                 pdf.text(aver[conta],95.4,225);
                 break;
@@ -404,6 +420,10 @@ export class InformacionRegistroComponent implements OnInit{
             if(conta==value1){
                 conta++;
             }
+            if(conta>aver2.length){
+                pdf.text("",25.4,105);
+                break;
+            }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],25.4,105);
                 value2=conta;
@@ -416,6 +436,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value2){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",25.4,115);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],25.4,115);
@@ -432,6 +456,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value3){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",25.4,125);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],25.4,125);
@@ -451,6 +479,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value4){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",25.4,135);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],25.4,135);
@@ -473,6 +505,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value5){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",25.4,145);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],25.4,145);
@@ -498,6 +534,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value6){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",25.4,155);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],25.4,155);
@@ -526,6 +566,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value7){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",25.4,165);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],25.4,165);
@@ -557,6 +601,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value8){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",25.4,175);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],25.4,175);
@@ -591,6 +639,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value9){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",25.4,185);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],25.4,185);
@@ -628,6 +680,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value10){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",25.4,195);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],25.4,195);
@@ -668,6 +724,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value11){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",95.4,95);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],95.4,95);
@@ -711,6 +771,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value12){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",95.4,105);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],95.4,105);
@@ -757,6 +821,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value13){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",95.4,115);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],95.4,115);
@@ -806,6 +874,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value14){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",95.4,125);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],95.4,125);
@@ -858,6 +930,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value15){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",95.4,135);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],95.4,135);
@@ -913,6 +989,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value16){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",95.4,145);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],95.4,145);
@@ -971,6 +1051,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value17){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",95.4,155);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],95.4,155);
@@ -1032,6 +1116,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value18){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",95.4,165);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],95.4,165);
@@ -1096,6 +1184,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value19){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",95.4,175);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],95.4,175);
@@ -1163,6 +1255,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value20){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",95.4,185);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],95.4,185);
@@ -1233,6 +1329,10 @@ export class InformacionRegistroComponent implements OnInit{
             }
             if(conta==value21){
                 conta++;
+            }
+            if(conta>aver2.length){
+                pdf.text("",95.4,195);
+                break;
             }
             if(aver2[conta]!=""){
                 pdf.text(aver2[conta],95.4,195);
@@ -1379,7 +1479,7 @@ export class InformacionRegistroComponent implements OnInit{
         this.router.navigateByUrl('/aspectos_personales');
     }
     ciudades(){
-        this.router.navigateByUrl('/ciudades');
+        this.router.navigateByUrl('/departamentos');
     }
     consideracion(){
         this.router.navigateByUrl('/consideracion');
@@ -1418,7 +1518,7 @@ export class InformacionRegistroComponent implements OnInit{
         this.router.navigateByUrl('/mejor_amigo');
     }
     menu(){
-        this.router.navigateByUrl('/menu');
+        this.router.navigateByUrl('/principal');
     }
     modalidades(){
         this.router.navigateByUrl('/modalidades');

@@ -43,7 +43,7 @@ const routes: Routes = [
         component: GetFrontendComponent
     },
     {
-        path: 'ciudades',
+        path: 'departamentos',
         component: GetCiudadComponent
     },
     {

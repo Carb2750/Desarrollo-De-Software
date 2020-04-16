@@ -41,7 +41,7 @@
                       <li><a class="dropdown-item" (click)="asignatura_facilidad()">Asigatura Facilidad</a></li>
                       <li><a class="dropdown-item" (click)="aspectos_pedagogicos()">Aspectos Pedagógicos</a></li>
                       <li><a class="dropdown-item" (click)="aspectos_personales()">Aspectos Personales</a></li>
-                      <li><a class="dropdown-item" (click)="ciudades()">Ciudades</a></li>              
+                      <li><a class="dropdown-item" (click)="ciudades()">Departamentos</a></li>              
                       <li><a class="dropdown-item" (click)="consideracion()">Consideración Estudios</a></li>
                       <li><a class="dropdown-item" (click)="vive()">Convive</a></li>
                       <li><a class="dropdown-item" (click)="cursos()">Cursos</a></li>
@@ -93,7 +93,7 @@
                     <td>{{x.usuario}}</td>
                     <td>{{x.correo}}</td>
                     <td><button (click)="pass_code(x.codigo,x.nombre,x.apellido,x.usuario,x.pass,x.correo)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Actualizar</button></td>
-                    <td><button (click)="delete_usuario(x.codigo)" class="btn btn-danger">Borrar</button></td>
+                    <td><button (click)="delete_usuario(x.codigo,x.usuario)" class="btn btn-danger">Borrar</button></td>
                 </tr>
             </tbody>
         </table>

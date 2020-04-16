@@ -722,7 +722,6 @@ export class FormularioComponent implements OnInit{
         this.get_codigos_deportes();
         this.get_codigos_artes();
         this.get_codigos_problemas();
-        
     }
 
     get_codigos_curso() {
@@ -1271,19 +1270,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans2.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err){
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans2.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans2 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -1291,7 +1290,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans2).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err){
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -1327,19 +1326,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans3.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans3.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans3 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -1347,7 +1346,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans3).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -1383,19 +1382,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans4.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans4.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans4 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -1403,7 +1402,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans4).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -1440,19 +1439,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans5.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans5.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans5 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -1460,7 +1459,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans5).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -1496,19 +1495,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans6.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans6.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans6 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -1516,7 +1515,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans6).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -1552,19 +1551,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans7.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans7.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans7 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -1572,7 +1571,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans7).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -1608,19 +1607,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans8.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans8.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans8 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -1628,7 +1627,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans8).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -1664,19 +1663,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans9.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans9.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans9 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -1684,7 +1683,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans9).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -1721,19 +1720,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans10.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans10.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans10 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -1741,7 +1740,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans10).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -1777,19 +1776,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans11.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans11.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans11 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -1797,7 +1796,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans11).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -1833,19 +1832,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans12.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans12.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans12 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -1853,7 +1852,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans12).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -1889,19 +1888,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans13.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans13.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans13 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -1909,7 +1908,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans13).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -1945,19 +1944,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans14.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans14.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans14 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -1965,7 +1964,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans14).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -2001,19 +2000,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans15.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans15.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans15 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -2021,7 +2020,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans15).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -2057,19 +2056,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans16.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans16.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans16 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -2077,7 +2076,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans16).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -2113,19 +2112,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans17.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans17.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans17 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -2133,7 +2132,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans17).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -2169,19 +2168,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans18.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans18.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans18 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -2189,7 +2188,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans18).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -2225,19 +2224,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans19.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans19.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans19 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -2245,7 +2244,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans19).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -2281,19 +2280,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans20.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans20.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans20 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -2301,7 +2300,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans20).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -2337,19 +2336,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans21.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans21.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans21 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -2357,7 +2356,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans21).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -2393,19 +2392,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans22.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans22.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans22 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -2413,7 +2412,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans22).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -2449,19 +2448,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans23.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans23.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans23 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -2469,7 +2468,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans23).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -2505,19 +2504,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans24.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans24.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans24 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -2525,7 +2524,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans24).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -2561,19 +2560,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans25.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans25.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans25 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -2581,7 +2580,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans25).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -2617,19 +2616,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans26.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans26.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans26 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -2637,7 +2636,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans26).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -2673,19 +2672,19 @@ export class FormularioComponent implements OnInit{
         var expediente = new GreenBullet();
         if(this.detalletrans27.codigo_trans==null){   
         }else{
-            this.service.get_ultimoexpediente().subscribe(
+            this.service.get_alumno().subscribe(
                 data => response = data,
-                err => {
+                function(err) {
                    
                 },
                 () => {
-                    this.service.get_ultimoexpediente().subscribe(
+                    this.service.get_alumno().subscribe(
                         data => response1 = data,
-                        err => {
+                        function(err) {
                            
                         },
                         () => {
-                            expediente.codigo_expediente=Number(response1[0].codigo_expediente);
+                            expediente.codigo_expediente=Number(response1[response1.length-1].codigo_expediente)+1;
                             this.detalletrans27.codigo_expediente = expediente.codigo_expediente;
                             this.detalletrans27 = {
                                 codigo_expediente:expediente.codigo_expediente,
@@ -2693,7 +2692,7 @@ export class FormularioComponent implements OnInit{
                             }
                             this.service.insert_alumnostranstornos(this.detalletrans27).subscribe(
                                 data => response2 = data,
-                                err => {
+                                function(err) {
                                     swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -3181,7 +3180,7 @@ export class FormularioComponent implements OnInit{
         this.router.navigateByUrl('/aspectos_personales');
     }
     ciudades(){
-        this.router.navigateByUrl('/ciudades');
+        this.router.navigateByUrl('/departamentos');
     }
     consideracion(){
         this.router.navigateByUrl('/consideracion');
@@ -3220,7 +3219,7 @@ export class FormularioComponent implements OnInit{
         this.router.navigateByUrl('/mejor_amigo');
     }
     menu(){
-        this.router.navigateByUrl('/menu');
+        this.router.navigateByUrl('/principal');
     }
     modalidades(){
         this.router.navigateByUrl('/modalidades');
