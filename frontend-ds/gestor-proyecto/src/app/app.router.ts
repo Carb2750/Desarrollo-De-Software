@@ -37,14 +37,13 @@ import { InformacionFichaComponent } from './views/get_frontend/informacionficha
 import { BlueBullet } from './views/get_frontend/informacionficha.components';
 import { InformacionRegistroComponent } from './views/get_frontend/informacionregistro.components';
 import { YellowBullet } from './views/get_frontend/informacionregistro.components';
-import { GetSeguimientosComponent } from './views/get_frontend/seguimientos.components';
 const routes: Routes = [
     {
         path: 'listado_usuarios',
         component: GetFrontendComponent
     },
     {
-        path: 'ciudades',
+        path: 'departamentos',
         component: GetCiudadComponent
     },
     {
@@ -166,10 +165,6 @@ const routes: Routes = [
     {
         path: 'hoja_registro',
         component: InformacionRegistroComponent
-    },
-    {
-        path: 'seguimientos',
-        component: GetSeguimientosComponent
     }
 ];
 

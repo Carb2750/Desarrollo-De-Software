@@ -436,7 +436,7 @@ export class GetPersonalesComponent implements OnInit{
         this.router.navigateByUrl('/aspectos_personales');
     }
     ciudades(){
-        this.router.navigateByUrl('/ciudades');
+        this.router.navigateByUrl('/departamentos');
     }
     consideracion(){
         this.router.navigateByUrl('/consideracion');
@@ -475,7 +475,7 @@ export class GetPersonalesComponent implements OnInit{
         this.router.navigateByUrl('/mejor_amigo');
     }
     menu(){
-        this.router.navigateByUrl('/menu');
+        this.router.navigateByUrl('/principal');
     }
     modalidades(){
         this.router.navigateByUrl('/modalidades');
@@ -498,9 +498,7 @@ export class GetPersonalesComponent implements OnInit{
     secciones(){
         this.router.navigateByUrl('/secciones');
     }
-    seguimientos(){
-        this.router.navigateByUrl('/seguimientos');
-    }
+
     tipo_escuela(){
         this.router.navigateByUrl('/tipo_escuela');
     }

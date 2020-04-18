@@ -31,7 +31,7 @@ export class LoginComponent implements OnDestroy{
     }
     
     aver(){
-        this.router.navigateByUrl('/menu');
+        this.router.navigateByUrl('/principal');
     }
 
     login(){
@@ -66,7 +66,7 @@ export class LoginComponent implements OnDestroy{
                         if(response){
                             this.service.set_usuariologueado(this.login_data.usuario);
                             this.service.set_session(response);
-                            this.router.navigateByUrl('/menu');
+                            this.router.navigateByUrl('/principal');
                         }else{
                             swal.fire({
                                 icon: 'error',

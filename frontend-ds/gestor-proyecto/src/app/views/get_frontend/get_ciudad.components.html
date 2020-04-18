@@ -41,7 +41,7 @@
                       <li><a class="dropdown-item" (click)="asignatura_facilidad()">Asigatura Facilidad</a></li>
                       <li><a class="dropdown-item" (click)="aspectos_pedagogicos()">Aspectos Pedagógicos</a></li>
                       <li><a class="dropdown-item" (click)="aspectos_personales()">Aspectos Personales</a></li>
-                      <li><a class="dropdown-item" (click)="ciudades()">Ciudades</a></li>              
+                      <li><a class="dropdown-item" (click)="ciudades()">Departamentos</a></li>              
                       <li><a class="dropdown-item" (click)="consideracion()">Consideración Estudios</a></li>
                       <li><a class="dropdown-item" (click)="vive()">Convive</a></li>
                       <li><a class="dropdown-item" (click)="cursos()">Cursos</a></li>
@@ -58,7 +58,6 @@
                       <li><a class="dropdown-item" (click)="rendimiento_academico()">Rendimiento Académico</a></li>
                       <li><a class="dropdown-item" (click)="problemas_emocionales()">Problemas Emocionales</a></li>
                       <li><a class="dropdown-item" (click)="secciones()">Secciones</a></li>
-                      <li><a class="dropdown-item" (click)="seguimientos()">Seguimientos</a></li>
                       <li><a class="dropdown-item" (click)="tipo_escuela()">Tipo Escuela</a></li>
                       <li><a class="dropdown-item" (click)="trastornos()">Trastornos</a></li>
                       <li><a class="dropdown-item" (click)="listado_usuarioss()">Usuarios</a></li>
@@ -68,26 +67,20 @@
                     </li>
                 </ul>
                 
-                <ul class="navbar-nav nav-flex-icons">
-                    <li class="nav-item">
-                      <a href="https://www.facebook.com" class="nav-link">
-                        <img alt="Siguenos en Facebook" src="https://lh6.googleusercontent.com/-CYt37hfDnQ8/T3nNydojf_I/AAAAAAAAAr0/P5OtlZxV4rk/s32/facebook32.png" width=32 height=32  />
-                      </a>
-                    </li>
-                  </ul>
+
                 </div>
               </div>
           </nav>
     </header>
     <div  class="text-center">
-        <h1 class="text-success mar4"> Ciudades </h1>
+        <h1 class="text-success mar4"> Departamentos </h1>
     
             
             
             <table  class="table table-hover table-striped table-info text-center">
             <thead class="thead-dark">
                 <tr>
-                    <th>Nombre de la Ciudad</th>
+                    <th>Nombre del Departamento</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -106,7 +99,7 @@
 
 
     <div class="aligncenter">
-        <button  (click)="toggleShow()" class="mar3 btn btn-primary">Nueva Ciudad</button>
+        <button  (click)="toggleShow()" class="mar3 btn btn-primary">Nuevo Departamento</button>
 
     </div>
     <div *ngIf="isShown" class="center aligncenter container-fluid"  id="divshow" >
@@ -114,10 +107,10 @@
             <div class="container-md">
                 <form action="/" enctype="multipart/form-data"  method="post" ngNativeValidate #form>
                     <div class="form-group offset-md-3 col-md-6">
-                        <label for="sec">Nombre de la ciudad</label>
+                        <label for="sec">Nombre del Departamento</label>
                         <input type="text" id="sec" class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" required [(ngModel)]="ciudad.nom_ciudad" [ngModelOptions]="{standalone: true}" >
                     </div>
-                    <button  (click)="form.checkValidity()?  insert_ciudad() : null" class="btn btn-primary mar12">Insertar Ciudad</button>
+                    <button  (click)="form.checkValidity()?  insert_ciudad() : null" class="btn btn-primary mar12">Insertar Departamento</button>
                     <button  (click)="toggleShow()"  class="btn btn-secondary mar12">Esconder</button>
                 </form>
             </div>
@@ -129,7 +122,7 @@
     <div class="modal-dialog modal-dialog-scrollable" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Actualización de Ciudad</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">Actualización de Departamento</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -139,7 +132,7 @@
                 <div class="container-md">
                     <form action="/" enctype="multipart/form-data"  method="post" ngNativeValidate #form1>
                         <div class="form-group">
-                            <label for="sec">Nombre de la ciudad</label>
+                            <label for="sec">Nombre del Departamento</label>
                             <input type="text" id="sec" class="form-control" onkeyup="this.value=this.value.replace(/[^a-z,\sA-ZñÑáéíóúÁÉÍÓÚüÜ]/g,'');" required [(ngModel)]="ciudad.nom_ciudad" [ngModelOptions]="{standalone: true}" >
                         </div>
                         <div class="modal-footer">

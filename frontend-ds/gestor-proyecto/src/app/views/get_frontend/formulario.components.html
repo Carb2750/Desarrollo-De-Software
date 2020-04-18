@@ -40,7 +40,7 @@
                   <li><a class="dropdown-item" (click)="asignatura_facilidad()">Asigatura Facilidad</a></li>
                   <li><a class="dropdown-item" (click)="aspectos_pedagogicos()">Aspectos Pedagógicos</a></li>
                   <li><a class="dropdown-item" (click)="aspectos_personales()">Aspectos Personales</a></li>
-                  <li><a class="dropdown-item" (click)="ciudades()">Ciudades</a></li>              
+                  <li><a class="dropdown-item" (click)="ciudades()">Departamentos</a></li>              
                   <li><a class="dropdown-item" (click)="consideracion()">Consideración Estudios</a></li>
                   <li><a class="dropdown-item" (click)="vive()">Convive</a></li>
                   <li><a class="dropdown-item" (click)="cursos()">Cursos</a></li>
@@ -57,7 +57,6 @@
                   <li><a class="dropdown-item" (click)="rendimiento_academico()">Rendimiento Académico</a></li>
                   <li><a class="dropdown-item" (click)="problemas_emocionales()">Problemas Emocionales</a></li>
                   <li><a class="dropdown-item" (click)="secciones()">Secciones</a></li>
-                  <li><a class="dropdown-item" (click)="seguimientos()">Seguimientos</a></li>
                   <li><a class="dropdown-item" (click)="tipo_escuela()">Tipo Escuela</a></li>
                   <li><a class="dropdown-item" (click)="trastornos()">Trastornos</a></li>
                   <li><a class="dropdown-item" (click)="listado_usuarioss()">Usuarios</a></li>
@@ -67,13 +66,7 @@
                 </li>
             </ul>
             
-            <ul class="navbar-nav nav-flex-icons">
-                <li class="nav-item">
-                  <a href="https://www.facebook.com" class="nav-link">
-                    <img alt="Siguenos en Facebook" src="https://lh6.googleusercontent.com/-CYt37hfDnQ8/T3nNydojf_I/AAAAAAAAAr0/P5OtlZxV4rk/s32/facebook32.png" width=32 height=32  />
-                  </a>
-                </li>
-              </ul>
+
             </div>
           </div>
       </nav>
@@ -91,7 +84,7 @@
                         <div class="form-row">
                             <div class="form-group offset-md-3 col-md-6">
                                 <label for="identidad">No. de Identidad</label>
-                                <input type="text" id="identidad" class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" minlength=13 maxlength=13  required [(ngModel)]="alumno.id_alumno" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="identidad" class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" minlength=13 maxlength=13  required [(ngModel)]="alumno.id_alumno" [ngModelOptions]="{standalone: true}"  pattern="(01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17|18)([0-9]{11})">
                             </div>
                         </div>
                         <div class="form-row">
@@ -116,7 +109,7 @@
                                     <input type="date" format="yyyy/mm/dd" id="na" placeholder="Fecha" class="form-control" required [(ngModel)]="alumno.fecha_nacimiento" [ngModelOptions]="{standalone: true}">
                             </div>
                             <div class="form-group  col-md-6">
-                                <label for="ciu">Ciudad de Nacimiento</label>
+                                <label for="ciu">Departamento de Nacimiento</label>
                                 <select id="ciu" class="form-control" required [(ngModel)]="ficha.cod_ciudad" [ngModelOptions]="{standalone: true}" >
                                   <option selected value="">- Seleccione -</option>
                                   <option *ngFor="let x of listado_codigo_ciudad" [value]="x.cod_ciudad">{{x.nom_ciudad}}</option>
@@ -167,11 +160,11 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="telca">Teléfono Casa</label>
-                                <input type="text" id="telca" maxlength=8 minlength=8  class="form-control" [(ngModel)]="alumno.tel_casa" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="telca" maxlength=8 minlength=8  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_casa" [ngModelOptions]="{standalone: true}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="telt">Teléfono de Trabajo</label>
-                                <input type="text" id="telt" maxlength=8 minlength=8  class="form-control" [(ngModel)]="alumno.tel_trabajo" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="telt" maxlength=8 minlength=8  class="form-control" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]="alumno.tel_trabajo" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
@@ -185,7 +178,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="telp">Teléfono de su Padre o Guardian</label>
-                                <input type="text" id="telp"  class="form-control"  onkeyup="this.value=this.value.replace(/[^0-9-)(]/g,'');" required [(ngModel)]="alumno.tel_padre" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="telp"  class="form-control"  minlength=8 maxlength=8 onkeyup="this.value=this.value.replace(/[^0-9-)(]/g,'');" required [(ngModel)]="alumno.tel_padre" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>
                         <div class="form-row">
@@ -199,7 +192,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="telm">Teléfono de su Madre o Guardian</label>
-                                <input type="text" id="telm"  class="form-control"  onkeyup="this.value=this.value.replace(/[^0-9-)(]/g,'');" [(ngModel)]="alumno.tel_madre" [ngModelOptions]="{standalone: true}">
+                                <input type="text" id="telm"  class="form-control" minlength=8 maxlength=8  onkeyup="this.value=this.value.replace(/[^0-9-)(]/g,'');" [(ngModel)]="alumno.tel_madre" [ngModelOptions]="{standalone: true}">
                             </div>
                         </div>  
                         <div class="form-row">
@@ -237,7 +230,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="anio">Año de Ingreso</label>
-                                <input type="number" id="anio" min=1978 max=2080 class="form-control" required [(ngModel)]="ficha.anio" [ngModelOptions]="{standalone: true}">
+                                <input type="number" id="anio" min=1978 max=2080 maxlength=4 class="form-control" required [(ngModel)]="ficha.anio" [ngModelOptions]="{standalone: true}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="proce">Instituto de Procedencia</label>
@@ -290,7 +283,7 @@
                                   </div>
                                   <div class="form-check ">
                                     <input class="form-check-input" type="checkbox" id="tit"  value="2" [(ngModel)]="fichadocumento2.tipo_documento" [ngModelOptions]="{standalone: true}">
-                                    <label class="form-check-label" for="tit">Titulo</label>
+                                    <label class="form-check-label" for="tit">Título</label>
                                   </div>
                                   <div class="form-check ">
                                     <input class="form-check-input" type="checkbox" id="diplo" value="4" [(ngModel)]="fichadocumento4.tipo_documento" [ngModelOptions]="{standalone: true}"> 
@@ -397,15 +390,15 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="repro">¿Ha reprobado o repetido alguna clase o curso?</label>
-                                <textarea cols="5" rows="5" type="text" id="repro" placeholder="En caso de ser si, escriba cual(es), de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_reprobado" [ngModelOptions]="{standalone: true}"></textarea>
+                                <textarea cols="5" rows="5" type="text" id="repro" onkeyup="this.value=this.value.replace(/[\n]/g,'');" placeholder="En caso de ser si, escriba cual(es), de lo contrario escriba no" class="form-control" [(ngModel)]="pedagogico.obs_reprobado" [ngModelOptions]="{standalone: true}"></textarea>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="repor">¿Ha sido reportado?</label>
-                                <textarea cols="5" rows="5" type="text" id="repor" placeholder="En caso de ser si, escriba porque, de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_reportes" [ngModelOptions]="{standalone: true}"></textarea>
+                                <textarea cols="5" rows="5" type="text" id="repor" onkeyup="this.value=this.value.replace(/[\n]/g,'');"  placeholder="En caso de ser si, escriba porque, de lo contrario escriba no" class="form-control" [(ngModel)]="pedagogico.obs_reportes" [ngModelOptions]="{standalone: true}"></textarea>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="expu">¿Ha sido expulsado?</label>
-                                <textarea cols="5" rows="5" type="text" id="expu" placeholder="En caso de ser si, escriba porque, de lo contrario deje el campo vacio." class="form-control" [(ngModel)]="pedagogico.obs_expulsion" [ngModelOptions]="{standalone: true}"></textarea>
+                                <textarea cols="5" rows="5" type="text" id="expu" onkeyup="this.value=this.value.replace(/[\n]/g,'');" placeholder="En caso de ser si, escriba porque, de lo contrario escriba no" class="form-control" [(ngModel)]="pedagogico.obs_expulsion" [ngModelOptions]="{standalone: true}"></textarea>
                             </div>
                         </div>
 
